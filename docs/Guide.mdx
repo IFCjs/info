@@ -1,0 +1,283 @@
+---
+sidebar_position: 2
+---
+
+# Getting started
+
+## Introduction
+
+Creating a BIM application with IFC.js is very easy.
+However, this requires a basic knowledge of web development (HTML, CSS, JavaScript), as well as the 3d library to be used to represent the geometry.
+In this case Three.js will be used.
+If you have no previous experience with Three.js and don't know where to start, you should probably look [here](https://threejsfundamentals.org/).
+In addition, you need to have Node.js and any IDE installed in order to follow the steps below.
+
+This tutorial will be done with Vanilla JavaScript, without using frameworks like React, Vue, Angular, etc.
+However, the same steps can be adapted and applied to any of these use cases.
+You can find the complete project of the guide [here](https://github.com/IFCjs/hello-world) and the deployed application [here](https://ifcjs.github.io/hello-world/introduction/).
+
+## Setting up the project
+
+The first thing to do is to create an empty folder that will contain our project.
+We have to start a project with the npm init command.
+This will create a package.json file containing some data such as the project name, version, commands and dependencies.
+In addition, the following dependencies must be installed with npm:
+
+```bash
+//Install a 3D library: in this case three.js will be used
+npm i three
+
+//Install a bundler: we will use rollup.js for this guide
+npm i rollup --save-dev
+npm i @rollup/plugin-node-resolve --save-dev
+
+//Install a transpiler: we choose Babel
+npm i @rollup/plugin-babel --save-dev
+npm i @babel/core --save-dev
+npm i @babel/preset-env --save-dev
+```
+
+The next step is to create an HTML file (index.html) as the entry point of the application.
+The HTML will have a canvas element that will be used to render the Three.js scene, as well as an input element, which will be the one we use to open IFC files from our computer to the application.
+It will also have a reference to a file called "Bundle.js" which will be the file we are going to create with rollup and which will contain all the code for our application.
+
+```html title="index.html"
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="file" name="load" id="file-input" />
+    <canvas id="three-canvas"></canvas>
+    <script src="bundle.js"></script>
+  </body>
+</html>
+```
+
+In order for the canvas to be full screen we are going to create the following CSS file:
+
+```css title="stylesheet.css"
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  overflow: hidden;
+}
+
+#three-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  outline: none;
+}
+
+#file-input {
+  z-index: 1;
+  position: absolute;
+}
+```
+
+Next, the rollup configuration file must be created.
+This file has to be called rollup.config.js and includes the reference to the plugins we have previously installed, and assumes that the JavaScript file we are going to work with is called "app.js".
+
+```js title="rollup.config.js"
+import resolve from "@rollup/plugin-node-resolve";
+import babel from "@rollup/plugin-babel";
+
+export default {
+  input: "app.js",
+  output: [
+    {
+      format: "cjs",
+      file: "bundle.js",
+    },
+  ],
+  plugins: [
+    resolve(),
+    babel({
+      exclude: "node_modules/**",
+    }),
+  ],
+};
+```
+
+In addition, we need to create the babel configuration file, called .babelrc (no name, just extension).
+
+```json title=".babelrc"
+{
+  "presets": ["@babel/env"]
+}
+```
+
+Also, the package.json file needs to be modified to contain the commands to control rollup.
+If we have installed everything correctly, we should see the same dependencies in this file.
+
+```json title="package.json"
+{
+  "name": "lcdlv",
+  "version": "1.0.0",
+  "description": "-",
+  "main": "app.js",
+  "scripts": {
+    "build": "rollup -c",
+    "watch": "rollup -c -w"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.13.15",
+    "@babel/preset-env": "^7.13.15",
+    "@rollup/plugin-babel": "^5.3.0",
+    "@rollup/plugin-node-resolve": "^11.2.1",
+    "rollup": "^2.45.2"
+  },
+  "dependencies": {
+    "three": "^0.127.0"
+  }
+}
+```
+
+The next thing to do is to copy the web-ifc.wasm file to a directory in your project.
+This file is necessary because it contains the core of web-ifc, which is the library with all the logic to read and write IFC files with near native speed.
+This file can be found in node_modules\three\examples\jsm\loaders\ifc.
+We can copy it wherever we want;
+in this example it will be copied to a folder called wasm in the root directory of the project.
+
+Finally, we are going to create the JavaScript file to write the code for our application.
+This file has to be located in the root directory of the project and has to be called "app.js";
+otherwise, we'll have to modify the rollup.config.js accordingly.
+If we have done everything correctly, we should be able to use the command "npm run build", so that a file called bundle.js appears in the root directory of the project.
+Also, if we run the command "npm run watch" we will see how that file is updated every time we make changes to the code and save.
+
+To run the application locally we will need a local server.
+The easiest way is to install the VS Code Live Server extension, which allows us to open an instance of Google Chrome and to run our web application and see the changes we make to the code in real time.
+Although there are other libraries that do the same, in this guide we will use Live Server.
+If you don't know how to use Live Server or are using another IDE, check the documentation or other tutorials to see how to use Live Server or another similar solution in your IDE.
+
+If you have any problems following these steps, you can review the [completed project](https://github.com/IFCjs/hello-world).
+
+## Setting up a 3D scene
+
+Next we are going to create a basic 3D scene using Three.js.
+Note that this is not a Three.js tutorial;
+if you have no previous experience with the library, we recommend that you [learn the basics](https://threejsfundamentals.org/) before attempting to make an open BIM application with IFC.js.
+
+```js title="app.js"
+import {
+  AmbientLight,
+  AxesHelper,
+  Color,
+  DirectionalLight,
+  GridHelper,
+  PerspectiveCamera,
+  Scene,
+  WebGLRenderer,
+} from "three";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+
+//Creates the Three.js scene
+const scene = new Scene();
+scene.background = new Color(0xaaaaaa);
+
+//Object to store the size of the viewport
+const size = {
+  width: window.innerWidth,
+  height: window.innerHeight,
+};
+
+//Creates the camera (point of view of the user)
+const camera = new PerspectiveCamera(75, size.width / size.height);
+camera.position.z = 3;
+camera.position.y = 3;
+camera.position.x = 3;
+
+//Creates the lights of the scene
+const lightColor = 0xffffff;
+
+const ambientLight = new AmbientLight(lightColor, 0.5);
+scene.add(ambientLight);
+
+const directionalLight = new DirectionalLight(lightColor, 1);
+directionalLight.position.set(0, 10, 0);
+directionalLight.target.position.set(-5, 0, 0);
+scene.add(directionalLight);
+scene.add(directionalLight.target);
+
+//Sets up the renderer, fetching the canvas of the HTML
+const threeCanvas = document.getElementById("three-canvas");
+const renderer = new WebGLRenderer({ canvas: threeCanvas });
+renderer.setSize(size.width, size.height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+//Creates grids and axes in the scene
+const grid = new GridHelper(50, 30);
+scene.add(grid);
+
+const axes = new AxesHelper();
+axes.material.depthTest = false;
+axes.renderOrder = 1;
+scene.add(axes);
+
+//Creates the orbit controls (to navigate the scene)
+const controls = new OrbitControls(camera, threeCanvas);
+controls.enableDamping = true;
+
+//Animation loop
+const animate = () => {
+  controls.update();
+  renderer.render(scene, camera);
+  requestAnimationFrame(animate);
+};
+
+animate();
+
+//Adjust the viewport to the size of the browser
+window.addEventListener("resize", () => {
+  (size.width = window.innerWidth), (size.height = window.innerHeight);
+  camera.aspect = size.width / size.height;
+  camera.updateProjectionMatrix();
+  renderer.setSize(size.width, size.height);
+});
+```
+
+## Loading IFC files
+
+Finally, we need something to load IFCs;
+that something is IFC.js, which is integrated with Three.js as its official IFC Loader.
+This can be done by instantiating the loader and creating an event for when the user uploads an IFC file to the HTML input element.
+
+```js title="app.js"
+import { IFCLoader } from "three/examples/jsm/loaders/IFCLoader";
+
+//Sets up the IFC loading
+const ifcLoader = new IFCLoader();
+ifcLoader.setWasmPath("wasm/");
+
+const input = document.getElementById("file-input");
+input.addEventListener(
+  "change",
+  (changed) => {
+    var ifcURL = URL.createObjectURL(changed.target.files[0]);
+    console.log(ifcURL);
+    ifcLoader.load(ifcURL, (geometry) => scene.add(geometry));
+  },
+  false
+);
+```
+
+Congratulations!
+You have just created your first IFC viewer.
+If you have done everything correctly, you should be able to see something similar to [this](https://ifcjs.github.io/hello-world/introduction/) in your local server.
+From here, the possibilities are endless.
+You can take a look at web-ifc-viewer to [web-ifc-viewer](https://github.com/agviegas/web-ifc-viewer) to see the IFC viewer we are building,
+which includes tools for object selection, changing geometry appearance, section planes and much more.
+You can try it [here](https://agviegas.github.io/web-ifc-viewer/).
