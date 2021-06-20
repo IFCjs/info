@@ -55,10 +55,24 @@ IFC.js reads IFC files and generates two things:
 Creating a BIM applications with IFC.js is as easy as creating a webpage with JavaScript, HTML and CSS:
 
 export const Highlight = () => (
-<iframe width="100%" height="300" src="https://ifcjs.github.io/hello-world/landing-page/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+<iframe width="100%" height="300" key={Math.random()} src="https://ifcjs.github.io/hello-world/introduction/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 );
 
 <Highlight></Highlight>
+
+```js
+      import { IfcLoader } from 'web-ifc-three';
+      import { Scene } from 'three';
+
+      //Creates THREE.js scene
+      const scene = new Scene();
+
+      ...
+      
+      //Loads IFC and adds it to the scene
+      const ifcLoader = new IfcLoader();
+      ifcLoader.load(ifcURL, (geometry) => scene.add(geometry));
+```
 
 ## Who is this library for
 
@@ -66,4 +80,21 @@ This library is for anyone who wants to develop BIM applications: both developer
 
 To use this library it is necessary to have a basic knowledge of JavaScript, HTML and CSS. This knowledge is beyond the scope of this documentation. You'll also need to use some 3D library to display the geometry of the IFC (Three.js or Babylon.js). If you don't know where to start, we suggest you to take a look [here](https://threejsfundamentals.org/) or just join the [Discord Channel](https://discord.com/invite/g7Uzn2KSwB) and say hi.
 
-<script async src="//jsfiddle.net/ansoni/up9q7d6L/10/embed/js,html,css,result/dark/"></script>
+
+```shell
+npx @docusaurus/init@latest init my-website classic
+```
+
+## Start your site
+
+Run the development server:
+
+```shell
+cd my-website
+
+npx docusaurus start
+```
+
+Your site starts at `http://localhost:3000`.
+
+Open `docs/intro.md` and edit some lines: the site **reloads automatically** and display your changes.
