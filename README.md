@@ -31,3 +31,8 @@ GIT_USER=<Your GitHub username> USE_SSH=true yarn deploy
 ```
 
 If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+
+## Internationalization
+
+It is easy to translate a Docusaurus website with its internationalization (i18n) support.
+Please see [here](https://docusaurus.io/docs/i18n/introduction)
