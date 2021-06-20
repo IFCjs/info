@@ -9,6 +9,18 @@ module.exports = {
   favicon: 'img/favicon.ico',
   organizationName: 'IFCjs', // Usually your GitHub org/user name.
   projectName: 'info', // Usually your repo name.
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'ja'],
+    localeConfigs: {
+      en: {
+        label: 'English',
+      },
+      ja: {
+        label: '日本語',
+      }
+    }
+  },
   themeConfig: {
     image: 'img/logo.png',
     navbar: {
@@ -30,6 +42,10 @@ module.exports = {
           label: 'GitHub',
           position: 'right',
         },
+        {
+          type: 'localeDropdown',
+          position: 'right',
+        }
       ],
     },
     footer: {

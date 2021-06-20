@@ -1,48 +1,49 @@
 import React from 'react';
 import clsx from 'clsx';
 import styles from './HomepageFeatures.module.css';
+import Translate, {translate} from '@docusaurus/Translate'
 
 const FeatureList = [
   {
     title: 'Native speed',
     Svg: require('../../static/img/iconmonstr-time-19.svg').default,
     description: (
-      <>
+      <Translate>
         The IFC.js parsing engine is based on WebAssembly and C++, 
         and is specifically designed to read data from large files as fast as a desktop application.
-      </>
+      </Translate>
     ),
   },
   {
     title: 'Multi platform',
     Svg: require('../../static/img/iconmonstr-smartphone-16.svg').default,
     description: (
-      <>
+      <Translate>
         IFC.js is compatible with any platform: web application (frontend and backend), 
         desktop applications (Windows, Mac and Linux) and mobile applications (Android and iOS).
-      </>
+      </Translate>
     ),
   },
   {
     title: 'Plug and Play',
     Svg: require('../../static/img/iconmonstr-product-3.svg').default,
     description: (
-      <>
+      <Translate>
         With IFC.js it is possible to create open BIM applications in less than 100 lines of JavaScript,
         without needing to know how the internals of the IFC schema work. 
         Focus your efforts on what brings value to your business.
-      </>
+      </Translate>
     ),
   },
   {
     title: 'Lightweight',
     Svg: require('../../static/img/iconmonstr-paper-plane-2.svg').default,
     description: (
-      <>
+      <Translate>
         An open BIM application created with IFC.js can weigh less than 1 MB. 
         This library allows the creation of web and native applications with
         almost no impact on the final weight of the application.
-      </>
+      </Translate>
     ),
   },
 ];
