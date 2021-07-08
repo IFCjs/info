@@ -1,7 +1,7 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
   title: 'IFC.js',
-  tagline: 'IFC toolkit for JavaScript.',
+  tagline: 'BIM toolkit for JavaScript.',
   url: 'https://IFCjs.github.io',
   baseUrl: '/info/',
   onBrokenLinks: 'warn',
@@ -9,20 +9,30 @@ module.exports = {
   favicon: 'img/favicon.ico',
   organizationName: 'IFCjs', // Usually your GitHub org/user name.
   projectName: 'info', // Usually your repo name.
+  stylesheets: [
+    "https://fonts.googleapis.com/icon?family=Material+Icons",
+  ],
   i18n: {
     defaultLocale: 'en',
-    locales: ['en', 'ja'],
+    locales: ['en', 'ja', 'es'],
     localeConfigs: {
       en: {
         label: 'English',
       },
       ja: {
         label: '日本語',
+      },
+      es: {
+        label: "Español"
       }
     }
   },
   themeConfig: {
     image: 'img/logo.png',
+    prism: {
+      theme: require('./src/codeThemes/duotoneLight'),
+      darkTheme: require('./src/codeThemes/nightOwl'),
+    },
     navbar: {
       title: 'IFC.js',
       logo: {
@@ -32,7 +42,7 @@ module.exports = {
       items: [
         {
           type: 'doc',
-          docId: 'intro',
+          docId: 'Introduction',
           position: 'left',
           label: 'Docs',
         },
@@ -56,7 +66,7 @@ module.exports = {
           items: [
             {
               label: 'Tutorial',
-              to: '/docs/intro',
+              to: '/docs/introduction',
             },
           ],
         },
@@ -95,16 +105,10 @@ module.exports = {
       '@docusaurus/preset-classic',
       {
         docs: {
-          sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
-          editUrl:
-            'https://github.com/facebook/docusaurus/edit/master/website/',
+          sidebarPath: require.resolve('./sidebars.js')
         },
         blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          editUrl:
-            'https://github.com/facebook/docusaurus/edit/master/website/blog/',
+          showReadingTime: true
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),

@@ -1,167 +1,167 @@
 {
   "The IFC.js parsing engine is based on WebAssembly and C++, and is specifically designed to read data from large files as fast as a desktop application.": {
-    "message": "IFC.jsの解析エンジンは、WebAssemblyとC++をベースにしており、特に大容量ファイルからのデータ読み込みをデスクトップアプリケーション並みに高速化するように設計されています。"
+    "message": "The IFC.js parsing engine is based on WebAssembly and C++, and is specifically designed to read data from large files as fast as a desktop application."
   },
   "IFC.js is compatible with any platform: web application (frontend and backend), desktop applications (Windows, Mac and Linux) and mobile applications (Android and iOS).": {
-    "message": "IFC.jsは、Webアプリケーション（フロントエンド、バックエンド）、デスクトップアプリケーション（Windows、Mac、Linux）、モバイルアプリケーション（Android、iOS）など、あらゆるプラットフォームに対応しています。"
+    "message": "IFC.js is compatible with any platform: web application (frontend and backend), desktop applications (Windows, Mac and Linux) and mobile applications (Android and iOS)."
   },
   "An open BIM application created with IFC.js can weigh less than 1 MB. This library allows the creation of web and native applications with almost no impact on the final weight of the application.": {
-    "message": "IFC.jsで作成されたオープンBIMアプリケーションのファイルサイズは1MB以下になります。このライブラリは、アプリケーションの最終的なファイルサイズにほとんど影響を与えることなく、ウェブアプリケーションやネイティブアプリケーションを作成することができます。"
+    "message": "An open BIM application created with IFC.js can weigh less than 1 MB. This library allows the creation of web and native applications with almost no impact on the final weight of the application."
   },
   "theme.NotFound.title": {
-    "message": "ページが見つかりません",
+    "message": "Page not found",
     "description": "The title of the 404 page"
   },
   "theme.NotFound.p1": {
-    "message": "お探しのページが見つかりませんでした。",
+    "message": "The page you are looking for could not be found.",
     "description": "The first paragraph of the 404 page"
   },
   "theme.NotFound.p2": {
-    "message": "このページにリンクしているサイトの所有者に連絡をしてリンクが壊れていることを伝えてください。",
+    "message": "Please contact the owner of the site that links to this page and tell them that the link is broken.",
     "description": "The 2nd paragraph of the 404 page"
   },
   "theme.AnnouncementBar.closeButtonAriaLabel": {
-    "message": "閉じる",
+    "message": "Close",
     "description": "The ARIA label for close button of announcement bar"
   },
   "theme.blog.paginator.navAriaLabel": {
-    "message": "ブログ記事一覧のナビゲーション",
+    "message": "Blog post navigation",
     "description": "The ARIA label for the blog pagination"
   },
   "theme.blog.paginator.newerEntries": {
-    "message": "新しい記事",
+    "message": "New articles",
     "description": "The label used to navigate to the newer blog posts page (previous page)"
   },
   "theme.blog.paginator.olderEntries": {
-    "message": "過去の記事",
+    "message": "Previous articles",
     "description": "The label used to navigate to the older blog posts page (next page)"
   },
   "theme.blog.post.readingTime.plurals": {
-    "message": "約{readingTime}分",
+    "message": "About 12 minutes",
     "description": "Pluralized label for \"{readingTime} min read\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
   },
   "theme.tags.tagsListLabel": {
-    "message": "タグ:",
+    "message": "Tags",
     "description": "The label alongside a tag list"
   },
   "theme.blog.post.readMore": {
-    "message": "もっと見る",
+    "message": "See more",
     "description": "The label used in blog post item excerpts to link to full blog posts"
   },
   "theme.blog.post.paginator.navAriaLabel": {
-    "message": "ブログ記事のナビゲーション",
+    "message": "Blog post navigation",
     "description": "The ARIA label for the blog posts pagination"
   },
   "theme.blog.post.paginator.newerPost": {
-    "message": "新しい記事",
+    "message": "New articles",
     "description": "The blog post button label to navigate to the newer/previous post"
   },
   "theme.blog.post.paginator.olderPost": {
-    "message": "過去の記事",
+    "message": "Past articles",
     "description": "The blog post button label to navigate to the older/next post"
   },
   "theme.tags.tagsPageTitle": {
-    "message": "タグ",
+    "message": "Tags",
     "description": "The title of the tag list page"
   },
   "theme.blog.post.plurals": {
-    "message": "{count}件",
+    "message": "2 items",
     "description": "Pluralized label for \"{count} posts\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
   },
   "theme.blog.tagTitle": {
-    "message": "「{tagName}」タグの記事が{nPosts}あります",
+    "message": "There are 3 articles with the tag SPORTS:",
     "description": "The title of the page for a blog tag"
   },
   "theme.tags.tagsPageLink": {
-    "message": "全てのタグを見る",
+    "message": "See all tags",
     "description": "The label of the link targeting the tag list page"
   },
   "theme.CodeBlock.copyButtonAriaLabel": {
-    "message": "クリップボードにコードをコピー",
+    "message": "Copy code to the clipboard",
     "description": "The ARIA label for copy code blocks button"
   },
   "theme.CodeBlock.copied": {
-    "message": "コピーしました",
+    "message": "Copied",
     "description": "The copied button label on code blocks"
   },
   "theme.CodeBlock.copy": {
-    "message": "コピー",
+    "message": "Copy",
     "description": "The copy button label on code blocks"
   },
   "theme.docs.sidebar.expandButtonTitle": {
-    "message": "サイドバーを開く",
+    "message": "Open sidebar",
     "description": "The ARIA label and title attribute for expand button of doc sidebar"
   },
   "theme.docs.sidebar.expandButtonAriaLabel": {
-    "message": "サイドバーを開く",
+    "message": "Open sidebar",
     "description": "The ARIA label and title attribute for expand button of doc sidebar"
   },
   "theme.docs.paginator.navAriaLabel": {
-    "message": "ドキュメントのナビゲーション",
+    "message": "Document navigation",
     "description": "The ARIA label for the docs pagination"
   },
   "theme.docs.paginator.previous": {
-    "message": "前へ",
+    "message": "Previous",
     "description": "The label used to navigate to the previous doc"
   },
   "theme.docs.paginator.next": {
-    "message": "次へ",
+    "message": "Next",
     "description": "The label used to navigate to the next doc"
   },
   "theme.docs.sidebar.collapseButtonTitle": {
-    "message": "サイドバーを隠す",
+    "message": "Hide sidebar",
     "description": "The title attribute for collapse button of doc sidebar"
   },
   "theme.docs.sidebar.collapseButtonAriaLabel": {
-    "message": "サイドバーを隠す",
+    "message": "Hide sidebar",
     "description": "The title attribute for collapse button of doc sidebar"
   },
   "theme.docs.sidebar.responsiveCloseButtonLabel": {
-    "message": "メニューを閉じる",
+    "message": "Close menu",
     "description": "The ARIA label for close button of mobile doc sidebar"
   },
   "theme.docs.sidebar.responsiveOpenButtonLabel": {
-    "message": "メニューを開く",
+    "message": "Open menu",
     "description": "The ARIA label for open button of mobile doc sidebar"
   },
   "theme.docs.versions.unreleasedVersionLabel": {
-    "message": "これはリリース前の{siteTitle} {versionLabel}のドキュメントです。",
+    "message": "This is the pre-release documentation for SITETITLE VERSIONLABEL.",
     "description": "The label used to tell the user that he's browsing an unreleased doc version"
   },
   "theme.docs.versions.unmaintainedVersionLabel": {
-    "message": "これは{siteTitle} {versionLabel}のドキュメントで現在はアクティブにメンテナンスされていません。",
+    "message": "This is the documentation for SITETITLE VERSIONLABEL, which is not currently actively maintained.",
     "description": "The label used to tell the user that he's browsing an unmaintained doc version"
   },
   "theme.docs.versions.latestVersionSuggestionLabel": {
-    "message": "最新のドキュメントは{latestVersionLink} ({versionLabel}) を見てください。",
+    "message": "See LATESTVERSIONLINK VERSIONLABEL for the latest documentation.",
     "description": "The label userd to tell the user that he's browsing an unmaintained doc version"
   },
   "theme.docs.versions.latestVersionLinkLabel": {
-    "message": "最新バージョン",
+    "message": "Latest Versions",
     "description": "The label used for the latest version suggestion link label"
   },
   "theme.common.editThisPage": {
-    "message": "このページを編集",
+    "message": "Edit this page",
     "description": "The link label to edit the current page"
   },
   "theme.common.headingLinkTitle": {
-    "message": "見出しへの直接リンク",
+    "message": "Direct links to headings",
     "description": "Title for link to heading"
   },
   "theme.lastUpdated.atDate": {
-    "message": "{date}に",
+    "message": "On 12 OF JULY",
     "description": "The words used to describe on which date a page has been last updated"
   },
   "theme.lastUpdated.byUser": {
-    "message": "{user}が",
+    "message": "By ANTONIO",
     "description": "The words used to describe by who the page has been last updated"
   },
   "theme.lastUpdated.lastUpdatedAtBy": {
-    "message": "{atDate}{byUser}最終更新",
+    "message": "Last updated on 12 OF JULY by ANTONIO",
     "description": "The sentence used to display when a page has been last updated, and by who"
   },
   "theme.common.skipToMainContent": {
-    "message": "メインコンテンツまでスキップ",
+    "message": "Skip to main content",
     "description": "The skip to content label used for accessibility, allowing to rapidly navigate to main content with keyboard tab/enter navigation"
   }
 }

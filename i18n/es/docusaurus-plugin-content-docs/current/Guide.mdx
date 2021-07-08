@@ -1,0 +1,287 @@
+---
+sidebar_position: 2
+---
+
+# Getting started
+
+## Introduction
+
+IFC.js を使った BIM アプリケーションの作成はとても簡単です。
+ただし、そのためにはウェブ開発の基本的な知識（HTML、CSS、JavaScript）と、ジオメトリを表現するために使用する 3d ライブラリが必要です。
+ここでは、Three.js を使用します。
+Three.js の使用経験がなく、どこから手をつけていいかわからない場合は、[こちら](https://threejsfundamentals.org/)をご覧ください。
+また、以下の手順を実行するには、Node.js と任意の IDE がインストールされている必要があります。
+
+このチュートリアルでは、React、Vue、Angular などのフレームワークを使わず、Vanilla JavaScript で行います。
+しかし、同じ手順は、これらのユースケースのいずれにも適用することができます。
+このガイドの完全なプロジェクトのデータは[こちらのリポジトリ](https://github.com/IFCjs/hello-world)、デプロイされたアプリケーションは[こちら](https://ifcjs.github.io/hello-world/introduction/)でご覧いただけます。
+
+## Setting up the project
+
+まず最初に、プロジェクトを入れる空のフォルダを作成しなければなりません。
+プロジェクトを開始するには、`npm init` コマンドを実行する必要があります。
+これにより、プロジェクト名、バージョン、コマンド、依存関係などのデータを含む package.json ファイルが作成されます。
+さらに、以下の依存関係を npm でインストールする必要があります。
+
+```bash
+//3D ライブラリーのインストール: ここでは three.js を使います。
+npm i three
+
+//バンドラーのインストール: ここでは rollup.js を使います。
+npm i rollup --save-dev
+npm i @rollup/plugin-node-resolve --save-dev
+
+//トランスパイラーのインストール: ここでは Babel を使います。
+npm i @rollup/plugin-babel --save-dev
+npm i @babel/core --save-dev
+npm i @babel/preset-env --save-dev
+```
+
+次のステップでは、アプリケーションのエントリーポイントとなる HTML ファイル（index.html）を作成します。
+この HTML には、Three.js のシーンをレンダリングするための canvas 要素と、コンピュータからアプリケーションに IFC ファイルを開くための input 要素が含まれます。
+また、「Bundle.js」というファイルへの参照も含まれています。
+このファイルは、rollup.js で作成するファイルで、アプリケーションのすべてのコードが含まれています。
+
+```html title="index.html"
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="file" name="load" id="file-input" />
+    <canvas id="three-canvas"></canvas>
+    <script src="bundle.js"></script>
+  </body>
+</html>
+```
+
+キャンバスをフルスクリーンにするために、次のような CSS ファイルを作成します。
+
+```css title="stylesheet.css"
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  overflow: hidden;
+}
+
+#three-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  outline: none;
+}
+
+#file-input {
+  z-index: 1;
+  position: absolute;
+}
+```
+
+次に、rollup.js の設定ファイルを作成する必要があります。
+このファイルは「rollup.config.js」という名前で、先にインストールしたプラグインへの参照を含み、これから作業する JavaScript ファイルが「app.js」であることを前提としています。
+
+```js title="rollup.config.js"
+import resolve from "@rollup/plugin-node-resolve";
+import babel from "@rollup/plugin-babel";
+
+export default {
+  input: "app.js",
+  output: [
+    {
+      format: "cjs",
+      file: "bundle.js",
+    },
+  ],
+  plugins: [
+    resolve(),
+    babel({
+      exclude: "node_modules/**",
+    }),
+  ],
+};
+```
+
+さらに、.babelrc（名前はなく、拡張子だけ）と呼ばれる babel 設定ファイルを作成する必要があります。
+
+```json title=".babelrc"
+{
+  "presets": ["@babel/env"]
+}
+```
+
+また、package.json ファイルを変更して、rollup を制御するコマンドを含める必要があります。
+すべてが正しくインストールされていれば、このファイルと同じ依存関係になっているはずです。
+
+```json title="package.json"
+{
+  "name": "lcdlv",
+  "version": "1.0.0",
+  "description": "-",
+  "main": "app.js",
+  "scripts": {
+    "build": "rollup -c",
+    "watch": "rollup -c -w"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.13.15",
+    "@babel/preset-env": "^7.13.15",
+    "@rollup/plugin-babel": "^5.3.0",
+    "@rollup/plugin-node-resolve": "^11.2.1",
+    "rollup": "^2.45.2"
+  },
+  "dependencies": {
+    "three": "^0.127.0"
+  }
+}
+```
+
+次に行うことは、web-ifc.wasm ファイルをプロジェクト内のディレクトリにコピーすることです。
+このファイルは web-ifc のコアを含んでおり、IFC ファイルをネイティブに近い速度で読み書きするためのすべてのロジックを備えたライブラリであるために必要です。
+このファイルは、node_modules/three/examples/jsm/loaders/ifc の中にあります。このファイルは好きな場所にコピーすることができます。
+この例では、プロジェクトのルートディレクトリにある wasm というフォルダにコピーしています。
+
+最後に、アプリケーションのコードを記述するための JavaScript ファイルを作成します。
+このファイルは、プロジェクトのルートディレクトリに置き、「app.js」という名前にしなければなりません。
+そうしないと、rollup.config.js を適宜変更しなければなりません。
+すべての作業が正しく行われていれば、`npm run build`コマンドを使用して、プロジェクトのルートディレクトリに bundle.js というファイルが表示されるはずです。
+また、`npm run watch`コマンドを実行すると、コードに変更を加えて保存するたびに、ファイルが更新されていく様子がわかります。
+
+アプリケーションをローカルで実行するには、ローカルサーバが必要です。
+最も簡単な方法は、VS Code Live Server エクステンションをインストールすることです。
+これにより、Google Chrome のインスタンスを開き、ウェブアプリケーションを実行して、コードに加えた変更をリアルタイムに確認することができます。
+同様の機能を持つライブラリは他にもありますが、このガイドでは Live Server を使用します。
+Live Server の使い方がわからない場合や、他の IDE を使用している場合は、ドキュメントや他のチュートリアルを参照して、
+お使いの IDE で Live Server や他の同様のソリューションを使用する方法を確認してください。
+
+これらの手順で問題が発生した場合は、[完成したプロジェクト](https://github.com/IFCjs/hello-world)を確認することができます。
+
+## Setting up a 3D scene
+
+次に、Three.js を使用して基本的な 3D シーンを作成していきます。
+なお、これは Three.js のチュートリアルではありません。
+ライブラリの使用経験がない場合は、IFC.js を使ってオープンな BIM アプリケーションを作ろうとする前に、[基本的な知識を身につけること](https://threejsfundamentals.org/)をおすすめします。
+
+```js title="app.js"
+import {
+  AmbientLight,
+  AxesHelper,
+  Color,
+  DirectionalLight,
+  GridHelper,
+  PerspectiveCamera,
+  Scene,
+  WebGLRenderer,
+} from "three";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+
+//Three.js シーンの作成
+const scene = new Scene();
+scene.background = new Color(0xaaaaaa);
+
+//ビューポートのサイズを格納するオブジェクト
+const size = {
+  width: window.innerWidth,
+  height: window.innerHeight,
+};
+
+//ユーザーの視点になるカメラの作成
+const camera = new PerspectiveCamera(75, size.width / size.height);
+camera.position.z = 3;
+camera.position.y = 3;
+camera.position.x = 3;
+
+//シーン内のライトの作成
+const lightColor = 0xffffff;
+
+const ambientLight = new AmbientLight(lightColor, 0.5);
+scene.add(ambientLight);
+
+const directionalLight = new DirectionalLight(lightColor, 1);
+directionalLight.position.set(0, 10, 0);
+directionalLight.target.position.set(-5, 0, 0);
+scene.add(directionalLight);
+scene.add(directionalLight.target);
+
+//レンダラーを設定し、HTML のキャンバスを取得します
+const threeCanvas = document.getElementById("three-canvas");
+const renderer = new WebGLRenderer({ canvas: threeCanvas });
+renderer.setSize(size.width, size.height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+//シーンにグリッドと座標表示を追加します
+const grid = new GridHelper(50, 30);
+scene.add(grid);
+
+const axes = new AxesHelper();
+axes.material.depthTest = false;
+axes.renderOrder = 1;
+scene.add(axes);
+
+//シーンを操作するためのオービットコントロールの作成
+const controls = new OrbitControls(camera, threeCanvas);
+controls.enableDamping = true;
+
+//アニメーションのループの作成
+const animate = () => {
+  controls.update();
+  renderer.render(scene, camera);
+  requestAnimationFrame(animate);
+};
+
+animate();
+
+//ビューポートのサイズをブラウザに合わせる
+window.addEventListener("resize", () => {
+  (size.width = window.innerWidth), (size.height = window.innerHeight);
+  camera.aspect = size.width / size.height;
+  camera.updateProjectionMatrix();
+  renderer.setSize(size.width, size.height);
+});
+```
+
+## Loading IFC files
+
+最後に、IFC を読み込むためのものが必要になります。
+それが IFC.js です。
+IFC.js は Three.js の公式 IFC ローダーとして統合されています。
+このローダーをインスタンス化し、ユーザーが IFC ファイルを HTML の input 要素にアップロードしたときのイベントを作成することで実現できます。
+
+```js title="app.js"
+import { IFCLoader } from "three/examples/jsm/loaders/IFCLoader";
+
+//IFC 読み込みのセットアップ
+const ifcLoader = new IFCLoader();
+ifcLoader.setWasmPath("wasm/");
+
+const input = document.getElementById("file-input");
+input.addEventListener(
+  "change",
+  (changed) => {
+    var ifcURL = URL.createObjectURL(changed.target.files[0]);
+    console.log(ifcURL);
+    ifcLoader.load(ifcURL, (geometry) => scene.add(geometry));
+  },
+  false
+);
+```
+
+おめでとうございます!
+
+これではじめての IFC ビューアが完成しました。
+すべてが正しく行われていれば、ローカルサーバーに[このようなもの](https://ifcjs.github.io/hello-world/introduction/)が表示されているはずです。
+ここから、可能性は無限に広がります。
+私たちが作っている IFC ビューアを見るには、web-ifc-viewer から [web-ifc-viewer](https://github.com/agviegas/web-ifc-viewer) を見てください。
+このビューアには、オブジェクトの選択、ジオメトリの外観の変更、セクションプレーンなどのツールが含まれています。
+[ここ](https://agviegas.github.io/web-ifc-viewer/)ではそれを試すことができます。

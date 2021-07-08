@@ -1,0 +1,10 @@
+{
+  "theme.NotFound.title": {
+    "message": "Seite nicht gefunden",
+    "description": "The title of the 404 page"
+  },
+  "theme.NotFound.p1": {
+    "message": "Die von Ihnen gesuchte Seite konnte nicht gefunden werden.",
+    "description": "The first paragraph of the 404 page"
+  }
+}

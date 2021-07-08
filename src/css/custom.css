@@ -1,20 +1,78 @@
-/* stylelint-disable docusaurus/copyright-header */
-/**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
- */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
-/* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #f68200;
-  --ifm-color-primary-dark: #dd7500;
-  --ifm-color-primary-darker: #d16e00;
-  --ifm-color-primary-darkest: #ac5b00;
-  --ifm-color-primary-light: #ff8e10;
-  --ifm-color-primary-lighter: #ff941c;
-  --ifm-color-primary-lightest: #ffa541;
+  --ifm-color-primary: #1a73e8;
+  --ifm-color-primary-dark: #1567d3;
+  --ifm-color-primary-darker: #1461c7;
+  --ifm-color-primary-darkest: #1050a4;
+  --ifm-color-primary-light: #3181ea;
+  --ifm-color-primary-lighter: #3d88ec;
+  --ifm-color-primary-lightest: #609eef;
   --ifm-code-font-size: 95%;
+
+  --ifm-font-family-base: 'Open Sans';
+  --ifm-background-color: #F3F4F6;
+  --box-shadow:  0 1px 2px 1px #e6e6e6;
+  --box-shadow-big:  0 10px 20px 8px #e6e6e6;
+}
+
+html[data-theme='dark'] {
+  --ifm-color-primary: var(--ifm-color-primary-lightest);
+  --ifm-background-color: #2D333B;
+  --ifm-background-surface-color: #22272E;
+  --box-shadow:  none;
+  --box-shadow-big: none;
+  --ifm-alert-color: #ffffff;
+}
+
+article {
+  max-width: 45rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+/* Announcement Bar */
+div[class^='announcementBarContent'] {
+  background-color: var(--ifm-background-surface-color);
+  color: var(--ifm-font-color-base);
+}
+
+div[class^='announcementBarContent'] a {
+  color: var(--ifm-link-color);
+  text-decoration: inherit;
+}
+
+div[class^='announcementBarContent'] a:hover {
+  color: var(--ifm-link-color);
+  text-decoration: underline;
+}
+
+.footer--dark {
+  --ifm-footer-background-color: #22272E;
+}
+
+
+.main-wrapper {
+  min-height: 100vh !important;
+}
+
+.main-wrapper > div {
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+.prism-code, .card{
+  box-shadow: var(--box-shadow);
+  transition: box-shadow 0.1s ease-in-out;
+  margin: 2rem 0;
+}
+
+.prism-code:hover, .card:hover{
+  box-shadow: var(--box-shadow-big);
 }
 
 .docusaurus-highlight-code-line {
@@ -28,11 +86,9 @@ h2 > a {
   color: var(--ifm-heading-color);
 }
 
-
 iframe {
   border-radius: 0.5rem;
 }
-
 
 .landing-scene {
   width: 40%;
@@ -44,12 +100,6 @@ iframe {
 .container {
   min-width: 100%;
   min-height: 100%;
-}
-
-@media only screen and (max-width: 600px) {
-  .landing-scene {
-    min-width: 100%;
-  }
 }
 
 .landing-logo {
@@ -74,5 +124,92 @@ iframe {
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 1500px) {
+  .main-wrapper > div {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  :root {
+    --ifm-font-size-base: 18px;
+  }
+
+  article {
+    padding: 0;
+  }
+
+  article header h1 {
+    font-size: 2rem !important;
+  }
+
+  article h2 {
+    font-size: 1.4rem !important;
+    margin: 2rem 0 1rem 0 !important;
+    padding: 0 !important;
+  }
+
+  article h3 {
+    font-size: 1.3rem !important;
+    margin: 1.5rem 0 1rem 0 !important;
+    padding-top: 0 !important;
+  }
+
+  .hero {
+    height: 100vh !important;
+  }
+
+  .container {
+    margin-bottom: 4rem !important;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .landing-logo {
+    margin-top: auto;
+  }
+
+  .buttons_src-pages-{
+    margin-bottom: auto;
+  }
+
+  .card-demo, .alert, .prism-code {
+    margin: 1.5rem 0 !important;
+  }
+
+  .hero .hero__title {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-height: 997px) and (min-width: 997px) {
+  :root {
+    --ifm-font-size-base: 17px;
+  }
+}
+
+/* Horizontal mobile*/
+@media screen and (max-height: 500px) {
+  .hero > div > h1 {
+    font-size: 2rem;
+    margin: 0;
+  }
+  .hero > div > p {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero > div > img {
+    width: 2rem;
+    margin-bottom: 0;
+  }
+}
+
+@media only screen and (max-width: 1400px) {
+  .landing-scene {
+    min-width: 100%;
   }
 }
