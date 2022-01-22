@@ -59,8 +59,8 @@ const ifcLoader = new IFCLoader();
 async function loadIFC() {
     await ifcLoader.ifcManager.setWasmPath("../../");
     ifcLoader.load("../../IFC/01.ifc", (ifcModel) => {
-        ifcModels.push(ifcModel.mesh);
-        scene.add(ifcModel.mesh);
+        ifcModels.push(ifcModel);
+        scene.add(ifcModel);
     });
 }
 
