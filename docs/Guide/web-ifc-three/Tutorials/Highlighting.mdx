@@ -82,7 +82,6 @@ We can create a highlight effect when the user hovers with <a href="https://ifcj
          // Gets Express ID
          const index = found.faceIndex;
          const geometry = found.object.geometry;
-         const ifc = ifcLoader.ifcManager;
          const id = ifc.getExpressId(geometry, index);
 
          // Creates subset
@@ -95,7 +94,7 @@ We can create a highlight effect when the user hovers with <a href="https://ifcj
          })
      } else {
          // Removes previous highlight
-         ifc.removeSubset(model.id, scene, material);
+         ifc.removeSubset(model.id, material);
      }
   }
 
