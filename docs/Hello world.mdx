@@ -277,7 +277,7 @@ Finally, we will use IFC.js to load IFC files. This can be done by instantiating
       var ifcURL = URL.createObjectURL(file);
       ifcLoader.load(
             ifcURL,
-            (ifcModel) => scene.add(ifcModel.mesh));
+            (ifcModel) => scene.add(ifcModel));
     },
     false
   );
@@ -309,7 +309,7 @@ In the first case, it is sufficient to reference the URL of the IFC file. That i
 ```js
 ifcLoader.load(
     "models/Example_model.ifc",
-    (ifcModel) => scene.add(ifcModel.mesh));
+    (ifcModel) => scene.add(ifcModel));
 ```
 
 <IfcAlert>
