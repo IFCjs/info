@@ -25,17 +25,17 @@ import { IFCLoader } from "web-ifc-three/IFCLoader";
 const ifcLoader = new IFCLoader();
 ifcLoader.load(
     "models/Example_model.ifc",
-    (ifcModel) => scene.add(ifcModel.mesh));
+    (ifcModel) => scene.add(ifcModel));
 ```
 
   🏠🏠🏠
 With `web-ifc-three` you can load multiple models in the scene. Many of the API operations are executed on a specified model. To express on which model we want to operate we have to give its `ModelID`.
 
   🔍
-You can get the ID of a model through the property `modelID` of the generated meshes. We add this property to [Three.js default mesh](https://threejs.org/docs/#api/en/objects/Mesh).
+You can get the ID of a model through the property `modelID`.
 
 ```js
-const modelID = ifcModel.mesh.modelID;
+const modelID = ifcModel.modelID;
 ```
 
   ✌
@@ -341,7 +341,7 @@ Elements in IFC always have an associated type: IfcWall, IfcSlab, IfcWindow, Ifc
 #### Example:
 
 ```js
-  const model = ifcModel.mesh.modelID;
+  const model = ifcModel.modelID;
   const id = 2142;
   const manager = loader.ifcLoader.ifcManager;
   const type = manager.getIfcType(model, id);
@@ -405,7 +405,7 @@ All methods related to properties return an array of objects where the keys are 
 #### Example:
 
 ```js
-  const model = ifcModel.mesh.modelID;
+  const model = ifcModel.modelID;
   const id = 2142;
   const manager = loader.ifcLoader.ifcManager;
   const props = await manager.getItemProperties(model, id, false);
@@ -434,7 +434,7 @@ Gets the type properties of the given element.
 #### Example:
 
 ```js
-  const model = ifcModel.mesh.modelID;
+  const model = ifcModel.modelID;
   const id = 2142;
   const manager = loader.ifcLoader.ifcManager;
   const props = await manager.getTypeProperties(model, id, false);
@@ -468,7 +468,7 @@ Gets the property sets and quantity sets of the given element.
 #### Example:
 
 ```js
-  const model = ifcModel.mesh.modelID;
+  const model = ifcModel.modelID;
   const id = 2142;
   const manager = loader.ifcLoader.ifcManager;
   const props = await manager.getPropertySets(model, id, false);
@@ -498,7 +498,7 @@ Gets the material information of the given element.
 #### Example:
 
 ```js
-  const model = ifcModel.mesh.modelID;
+  const model = ifcModel.modelID;
   const id = 2142;
   const manager = loader.ifcLoader.ifcManager;
   const props = await manager.getMaterialsProperties(model, id, false);
@@ -526,7 +526,7 @@ The <a href="https://standards.buildingsmart.org/IFC/DEV/IFC4_2/FINAL/HTML/schem
 #### Example:
 
 ```js
-  const model = ifcModel.mesh.modelID;
+  const model = ifcModel.modelID;
   const manager = loader.ifcLoader.ifcManager;
   const ifcProject = await manager.getSpatialStructure(model);
 ```
@@ -557,7 +557,7 @@ Geometric subsets are extracts of the geometry of the model. For example, you co
 #### Example:
 
 ```js
-  const model = ifcModel.mesh.modelID;
+  const model = ifcModel.modelID;
   const manager = loader.ifcLoader.ifcManager;
   const subset = manager.getSubset(model);
 ```
@@ -591,7 +591,7 @@ Creates a new geometric subset.
 #### Example:
 
 ```js
-  const model = ifcModel.mesh.modelID;
+  const model = ifcModel.modelID;
   const manager = loader.ifcLoader.ifcManager;
   const config = {
         modelID: model
@@ -607,8 +607,8 @@ Creates a new geometric subset.
 ```js
   IfcLoader.IfcManager.removeSubset (
                         modelID: number,
-                        scene?: Scene,
-                        material?: Material
+                        material?: Material,
+                        customID?: string,
                         ): object;
 ```
 
@@ -619,14 +619,14 @@ Removes the specified geometric subset.
 
 - `modelID` ID of the IFC model.
 
-- `scene` (optional) Scene where the subset is located.
-
 - `material` (optional) Material assigned to the subset (if any).
+
+- `customID` (optional) Optional custom name to give to the subset. This allows to create multiple subsets with the same material.
 
 #### Example:
 
 ```js
-  const model = ifcModel.mesh.modelID;
+  const model = ifcModel.modelID;
   const manager = loader.ifcLoader.ifcManager;
   manager.removeSubset(model);
 ```
@@ -659,7 +659,7 @@ Removes the specified items from the specified geometric subset.
 
 ```js
   import { IFCWALLSTANDARDCASE as W } from 'web-ifc';
-  const model = ifcModel.mesh.modelID;
+  const model = ifcModel.modelID;
   const manager = loader.ifcLoader.ifcManager;
   const walls = await manager.getAllItemsOfType(0, W, false);
   manager.removeFromSubset(model, walls);
