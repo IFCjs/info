@@ -36,6 +36,10 @@ article {
   padding-right: 2rem;
 }
 
+.navbar {
+  z-index: 99999;
+}
+
 .container {
   max-width: 55rem !important;
 }
@@ -82,6 +86,15 @@ div[class^='announcementBarContent'] a:hover {
 }
 
 .docusaurus-highlight-code-line {
+  background-color: rgb(230,230,230) !important;
+}
+
+html[data-theme='dark'] .docusaurus-highlight-code-line {
+  /* Color which works with dark mode syntax highlighting theme */
+  background-color: rgb(20, 20, 30) !important;
+}
+
+.docusaurus-highlight-code-line {
   background-color: rgb(72, 77, 91);
   display: block;
   margin: 0 calc(-1 * var(--ifm-pre-padding));
@@ -120,6 +133,14 @@ iframe {
   display: block;
 }
 
+.table-of-contents {
+  max-height: 70vh;
+}
+
+.menu--responsive {
+  margin-top: 4rem;
+}
+
 @keyframes logo-spin {
   0% {
     transform: rotate(0);
@@ -141,6 +162,21 @@ iframe {
 @media (max-height: 450px) {
   .collapsible-scene {
     display: none;
+  }
+}
+
+@media (min-width: 1500px) {
+  [class="tableOfContents_node_modules-@docusaurus-theme-classic-lib-next-theme-TOC- thin-scrollbar"]{
+    width: 15rem;
+  }
+}
+
+@media (max-width: 1200px) and (min-width: 997px)  {
+  [class="col col--3"]{
+    visibility: collapse;
+  }
+  [class="col docItemCol_node_modules-@docusaurus-theme-classic-lib-next-theme-DocItem-"]{
+    margin-left: 3rem !important;
   }
 }
 
@@ -201,6 +237,10 @@ iframe {
   .hero .hero__title {
     font-size: 2.5rem;
   }
+
+  .ifcTabContent_src-components-Tab- {
+    margin: 0 !important;
+  }
 }
 
 @media (max-height: 997px) and (min-width: 997px) {
@@ -230,4 +270,45 @@ iframe {
   .landing-scene {
     min-width: 100%;
   }
+}
+
+/* ALGOLIA */
+html[data-theme='light'] .DocSearch {
+  /* --docsearch-primary-color: var(--ifm-color-primary); */
+  /* --docsearch-text-color: var(--ifm-font-color-base); */
+  --docsearch-muted-color: var(--ifm-color-secondary-darkest);
+  --docsearch-container-background: rgba(94, 100, 112, 0.7);
+  /* Modal */
+  --docsearch-modal-background: var(--ifm-color-secondary-lighter);
+  /* Search box */
+  --docsearch-searchbox-background: var(--ifm-color-secondary);
+  --docsearch-searchbox-focus-background: var(--ifm-color-white);
+  /* Hit */
+  --docsearch-hit-color: var(--ifm-font-color-base);
+  --docsearch-hit-active-color: var(--ifm-color-white);
+  --docsearch-hit-background: var(--ifm-color-white);
+  /* Footer */
+  --docsearch-footer-background: var(--ifm-color-white);
+}
+
+html[data-theme='dark'] .DocSearch {
+  --docsearch-text-color: var(--ifm-font-color-base);
+  --docsearch-muted-color: var(--ifm-color-secondary-darkest);
+  --docsearch-container-background: rgba(47, 55, 69, 0.7);
+  /* Modal */
+  --docsearch-modal-background: var(--ifm-background-color);
+  /* Search box */
+  --docsearch-searchbox-background: var(--ifm-background-color);
+  --docsearch-searchbox-focus-background: var(--ifm-color-black);
+  /* Hit */
+  --docsearch-hit-color: var(--ifm-font-color-base);
+  --docsearch-hit-active-color: var(--ifm-color-white);
+  --docsearch-hit-background: var(--ifm-color-emphasis-100);
+  /* Footer */
+  --docsearch-footer-background: var(--ifm-background-surface-color);
+  --docsearch-key-gradient: linear-gradient(
+          -26.5deg,
+          var(--ifm-color-emphasis-200) 0%,
+          var(--ifm-color-emphasis-100) 100%
+  );
 }

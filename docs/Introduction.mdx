@@ -9,7 +9,7 @@
   import {IfcTab} from "../src/components/Tab/Tab";
 
   🎮
-IFC.js is a JavaScript library to load, display and edit IFC models in the browser. Try the [live demo](https://ifcjs.github.io/web-ifc-viewer/examples/simple-html/) with your IFC model and discover the power of IFC.js.
+IFC.js is a JavaScript library to load, display and edit IFC models in the browser. Try the [live demo](https://ifcjs.github.io/web-ifc-viewer/example/index) with your IFC model and discover the power of IFC.js.
 
 ## What is this library?
 
@@ -85,18 +85,18 @@ IFC.js has two focuses:
 
 Creating BIM applications with IFC.js is as easy as creating a webpage with JavaScript, HTML and CSS.
 
-  <Scene link={"https://ifcjs.github.io/hello-world/scenes/introduction/"}/>
+  <Scene link={"https://ifcjs.github.io/hello-world/examples/web-ifc-three/introduction/"}/>
 
   ```js
   import { IfcLoader } from 'web-ifc-three';
   import { Scene } from 'three';
 
-  //Creates THREE.js scene
+  // Creates THREE.js scene
   const scene = new Scene();
 
-  //...
+  // ...
 
-  //Loads IFC and adds it to the scene
+  // Loads IFC and adds it to the scene
   const ifcLoader = new IfcLoader();
   ifcLoader.load(ifcURL, (geometry) => scene.add(geometry));
   ```
@@ -108,7 +108,7 @@ This library is for anyone who wants to develop BIM applications. This includes 
 To use this library it is necessary to have a basic knowledge of JavaScript, HTML and CSS. This knowledge is beyond the scope of this documentation. You'll also need to use some 3D libraries to display the geometry of the IFC (Three.js or Babylon.js).
 
   😊
-If you don't know where to start, we suggest you take a look [here](https://threejsfundamentals.org/) or just join the [Discord Channel](https://discord.com/invite/g7Uzn2KSwB) and say hi.
+If you don't know where to start, we suggest you take a look [here](https://threejsfundamentals.org/) or just join the [Discord Channel](https://discord.gg/FXfyR4XrKT) and say hi.
 
 ## Why is IFC.js different?
 
@@ -208,7 +208,7 @@ This library adapts web-ifc to Three.js, generating an <b>optimized 3D scene whe
             link: "https://ifcjs.github.io/info/docs/Guide/web-ifc-viewer/Introduction",
             content:
                 <p>
-This is a browser-based <a href={"https://ifcjs.github.io/web-ifc-viewer/examples/simple-html/"}>IFC viewer</a> with <b>many examples of what can be done with IFC.js</b>. Scene navigation, material changes, element selection by clicking on them, section plans, etc. There is an example of all these functionalities in this repository, so it can be reused in open BIM applications out of the box.</p>
+This is a browser-based <a href={"https://ifcjs.github.io/web-ifc-viewer/example/index"}>IFC viewer</a> with <b>many examples of what can be done with IFC.js</b>. Scene navigation, material changes, element selection by clicking on them, section plans, etc. There is an example of all these functionalities in this repository, so it can be reused in open BIM applications out of the box.</p>
         }
     ]
   }/>
@@ -221,7 +221,7 @@ Do you want to help us keep improving the world of Open BIM development with IFC
     icon="🤝"
     title=
 "I can't code, but I want to get in">
-That's great! There are tons of things you can do aside from coding. Get into the <a href={"https://discord.com/invite/g7Uzn2KSwB"}>Discord channel</a> to find out how.
+That's great! There are tons of things you can do aside from coding. Get into the <a href={"https://discord.gg/FXfyR4XrKT"}>Discord channel</a> to find out how.
   </IfcCard>
 
   <IfcCard
@@ -248,4 +248,4 @@ the official Three.js IFC Loader</a>.
 If you are interested in creating cool open BIM applications and you have great ideas for BIM tools or user interfaces, help us make <a href={"https://github.com/IFCjs/web-ifc-viewer"}>web-ifc-viewer</a> the best IFC viewer on the market.
   </IfcCard>
 
-In any case, we encourage you to stop by the [Discord channel](https://discord.com/invite/g7Uzn2KSwB), say hello and tell us what's on your mind, so we can give you some guidance.
+In any case, we encourage you to stop by the [Discord channel](https://discord.gg/FXfyR4XrKT), say hello and tell us what's on your mind, so we can give you some guidance.

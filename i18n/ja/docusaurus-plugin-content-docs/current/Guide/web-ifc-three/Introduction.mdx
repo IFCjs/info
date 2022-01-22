@@ -1,0 +1,83 @@
+---
+title: はじめに
+sidebar_position: 1
+---
+
+import {IfcCard} from "../../../../../../src/components/Card/InfoCard";
+import {IfcAlert} from "../../../../../../src/components/Alert/Alert";
+
+## BIMはジオメトリだけでなく...
+
+
+...しかし、ジオメトリを持っています。
+
+  💪
+  [Web-ifc]("https://ifcjs.github.io/info/docs/Guide/web-ifc/Introduction")は、ネイティブに近い速度でIFCを読み書きできる非常に強力なツールです。しかし、ほとんどすべてのBIMアプリケーションは、ユーザーに作業中のモデルの3Dビューを表示します。[[[[[ web-ifc ]]]]] をどんなグラフィックエンジンでも使用することができますが、私たちはすでに **web-ifc-three** でそれを実現しています。
+
+  🧶
+`web-ifc-three` は `web-ifc` のラッパーで、IFC ファイルからすべてのデータを読み込み、任意のブラウザで表示・編集可能なジオメトリに変換します。インストールするには、`npm i web-ifc-three` または `yarn add web-ifc-three` とします。このモジュールに関するいくつかのクールな事実。
+
+<IfcCard>
+    🐣
+超簡単に使えます。
+</IfcCard>
+
+<IfcCard>
+    🎩
+Three.jsの<a href="https://threejs.org/examples/webgl_loader_ifc.html">official IFCLoader</a>です。
+</IfcCard>
+
+<IfcCard>
+    🚀
+非常に効率的で、ブラウザ上で何千ものオブジェクトを60fpsで表示することができます。複数のモデルを表示したり、素材を変更したり、アイテムをフィルタリングしたりすることができます。
+</IfcCard>
+
+
+<IfcCard>
+    🧠
+複数のファイルの空間構造ツリーを取得し、トラバースすることができます。また、3Dビューでアイテムをクリックしたり、スマートフィルタを使って、すべてのアイテムのプロパティにアクセスすることができます。
+</IfcCard>
+
+  🎓
+以下のポイントでは、APIとその機能性について順を追って説明します。ただし、web-ifc-threeを使用する前に明確にしておくべきいくつかの問題があります。
+
+### `web-ifc` を直接使うことはできますか？
+
+web-ifcを使えば、IFCを読み書きできるほとんどのBIMツールを構築することができます。では、なぜその上にレイヤーを作るのでしょうか？
+
+  🤷‍♀️
+なぜなら、ほとんどのBIMツールは3Dであり、すべての開発者がゼロからビューアを実装するのは意味がないと考えているからです。データにしか興味がないのであれば、web-ifcを直接使用した方が良いかもしれません。
+
+さらに、web-ifc-threeを使えば、IFCフォーマットの経験がない開発者でも、IFCをより簡単に、より安全に扱うことができる。
+
+<IfcAlert>
+Web-ifcは柔軟性に優れていますが、IFCスキーマの知識が必要であり、導入の手間もかかります。
+</IfcAlert>
+
+### `THREE.IFCLoader` を直接使用することはできますか？
+
+  👬
+前述の通り、`web-ifc-three`はThree.jsの公式IFCLoaderです。つまり、Three.jsからIFCLoaderをインポートすると、`web-ifc-three`のリポジトリにあるコードと同じものになるのです。
+
+  🚧
+プロジェクトで `web-ifc-three` をインポートしないように、Three.js から `IFCLoader` をインポートしたくなるかもしれません。しかし、Three.js は非常に大規模なライブラリであり、その更新速度は IFC.js のそれよりもはるかに遅いことに注意してください。
+
+<IfcCard
+    icon="⏳"
+    title=
+        "わずかな遅れ"> Three.jsのIFCLoaderは最新のアップデートがされていない可能性があり、次のバージョンがリリースされるまで、修正した最新のバグはThree.jsでは未解決となります。
+</IfcCard>
+
+オリジナルの`IFCLoader`の代わりに`THREE.IFCLoader`を使うには、import文を変更するだけです。
+
+```js
+  // web-ifc-three（オリジナル）IFCLoaderの読み込み
+  import {
+    IFCLoader
+} from "web-ifc-three/IFCLoader";
+
+  // three.js IFCLoaderのインポート
+  import {
+      IFCLoader
+  } from "three/examples/jsm/loaders/IFCLoader";
+```

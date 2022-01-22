@@ -9,9 +9,9 @@
   import {IfcTab} from "../../../../src/components/Tab/Tab";
 
   🎮
-IFC.jsは、ブラウザ上でIFCモデルを読み込み、表示・編集するためのJavaScriptライブラリです。お手持ちのIFCモデルで[ライブデモ](https://ifcjs.github.io/web-ifc-viewer/examples/simple-html/)をお試しいただき、IFC.jsの実力を実感してください。
+IFC.jsは、ブラウザ上でIFCモデルを読み込み、表示・編集するためのJavaScriptライブラリです。お手持ちのIFCモデルで[ライブデモ](https://ifcjs.github.io/web-ifc-viewer/example/index)をお試しいただき、IFC.jsの実力を実感してください。
 
-H2__このライブラリは何ですか？
+## このライブラリは何ですか？
 
 ### IFCとは？
 
@@ -84,7 +84,7 @@ IFC.jsには2つの焦点があります。
 
 IFC.jsを使ったBIMアプリケーションの作成は、JavaScript、HTML、CSSでWebページを作成するのと同じくらい簡単です。
 
-  <Scene/>
+<Scene link={"https://ifcjs.github.io/hello-world/examples/web-ifc-three/introduction/"}/>
 
   ```js
   import { IfcLoader } from 'web-ifc-three';
@@ -107,7 +107,7 @@ IFC.jsを使ったBIMアプリケーションの作成は、JavaScript、HTML、
 このライブラリを使用するには、JavaScript、HTML、CSSの基本的な知識が必要です。この知識は、このドキュメントの範囲を超えています。また、IFCのジオメトリを表示するために、何らかの3Dライブラリ(Three.jsやBabylon.jsなど)を使用する必要があります。
 
   😊
-何から始めればいいのかわからないという方は、[こちら](https://threejsfundamentals.org/)をご覧になるか、[Discord Channel](https://discord.com/invite/g7Uzn2KSwB)に参加して、ご挨拶してみてはいかがでしょうか。
+何から始めればいいのかわからないという方は、[こちら](https://threejsfundamentals.org/)をご覧になるか、[Discord Channel](https://discord.gg/FXfyR4XrKT)に参加して、ご挨拶してみてはいかがでしょうか。
 
 ## IFC.jsはなぜ違うのですか？
 
@@ -186,6 +186,7 @@ Three.jsの力でジオメトリの<b>外観</b>を簡単に編集できます�
 
 IFC.jsは大規模な多言語(CやTypeScript JavaScriptなど)のライブラリです。それを一つのリポジトリに収めるのは難しく、扱いにくいものです。そのため、このライブラリは複数のリポジトリに存在し、それぞれが独自の目的を持っています。それらは[ここ](https://github.com/IFCjs)で見ることができます。
 
+
   <IfcTab items={
     [
         {
@@ -207,7 +208,7 @@ web-ifcをThree.jsに適応させ、ユーザーがIFCと直接対話できる<b
             link: "https://github.com/IFCjs/web-ifc-viewer",
             content:
                 <p>
-これはブラウザベースの<a href={"https://ifcjs.github.io/web-ifc-viewer/examples/simple-html/"}>IFCビューア</a>で、<b>IFC.jsでできることの多くの例</b>があります。シーンのナビゲーション、マテリアルの変更、クリックによる要素の選択、セクションプランなど。このリポジトリには、これらすべての機能性の例があるので、オープンなBIMアプリケーションですぐに再利用できます。</p>
+これはブラウザベースの<a href={"https://ifcjs.github.io/web-ifc-viewer/example/index"}>IFCビューア</a>で、<b>IFC.jsでできることの多くの例</b>があります。シーンのナビゲーション、マテリアルの変更、クリックによる要素の選択、セクションプランなど。このリポジトリには、これらすべての機能性の例があるので、オープンなBIMアプリケーションですぐに再利用できます。</p>
         }
     ]
   }/>
@@ -220,14 +221,14 @@ IFC.jsでオープンBIM開発の世界をどんどん良くしていきたい�
     icon="🤝"
     title=
 "コードは書けないけど、入ってみたい">
-それはいいですね。コーディング以外にも、できることはたくさんあります。その方法については、<a href={"https://discord.com/invite/g7Uzn2KSwB"}>Discordチャンネル</a>をご覧ください。
+それはいいですね。コーディング以外にも、できることはたくさんあります。その方法については、<a href={"https://discord.gg/FXfyR4XrKT"}>Discordチャンネル</a>をご覧ください。
   </IfcCard>
 
   <IfcCard
     icon="🧠"
     title=
         "パーシング、ジオメトリ、C++">
-C , WebAssembly, パーシングやIFCの細かい部分に情熱を持っている方は、業界最速のオープンソースBIMパーサーで私たちを助けてください。<a href={"https://github.com/tomvandig/web-ifc"}>web-ifc</a>です。
+C++ , WebAssembly, パーシングやIFCの細かい部分に情熱を持っている方は、業界最速のオープンソースBIMパーサーで私たちを助けてください。<a href={"https://github.com/tomvandig/web-ifc"}>web-ifc</a>です。
   </IfcCard>
 
   <IfcCard
@@ -247,4 +248,4 @@ C , WebAssembly, パーシングやIFCの細かい部分に情熱を持ってい
 クールなオープンBIMアプリケーションの作成に興味があり、BIMツールやユーザーインターフェースの素晴らしいアイデアをお持ちの方は、<a href={"https://github.com/IFCjs/web-ifc-viewer"}>web-ifc-viewer</a>を市場で最高のIFCビューアにするためにご協力ください。
   </IfcCard>
 
-いずれにしても、[Discordチャンネル](https://discord.com/invite/g7Uzn2KSwB)に立ち寄っていただき、ご挨拶をして、気になることを教えていただければ、ご案内ができると思います。
+いずれにしても、[Discordチャンネル](https://discord.gg/FXfyR4XrKT)に立ち寄っていただき、ご挨拶をして、気になることを教えていただければ、ご案内ができると思います。

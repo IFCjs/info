@@ -1,0 +1,249 @@
+---
+  title: 简介
+  sidebar_position: 1
+---
+
+  import {IfcCard} from "../../../../src/components/Card/InfoCard";
+  import {IfcAlert} from "../../../../src/components/Alert/Alert";
+  import {Scene} from "../../../../src/components/Scene/Scene";
+  import {IfcTab} from "../../../../src/components/Tab/Tab";
+
+  🎮
+IFC.js是一个JavaScript库，用于在浏览器中加载、显示和编辑IFC模型。用你的IFC模型试试[现场演示](https://ifcjs.github.io/web-ifc-viewer/example/index)，发现IFC.js的力量。
+
+## 这个库是什么？
+
+### 什么是IFC？
+
+🏠
+建筑师不再逐一绘制建筑图纸，而是创建建筑的三维模型，就像[The SIMS](https://www.ea.com/es-es/games/the-sims)中建模的房屋一样。这种工作方式被称为BIM（建筑信息模型），因为创建的模型同时包含了几何图形和信息。
+
+🔥
+然而，建筑是如此的复杂，以至于没有一个单一的应用程序可以完整地创建这些模型。每个应用程序都有一个特定的任务：建立几何模型，计算结构，进行能源模拟，创建项目文件，等等。
+
+👀
+这些工具来自世界各地的多个开发商，每一个都按其格式工作。换句话说，由结构计算应用程序创建的结构模型不能被能源模拟软件读取，反之亦然。那么，如何能从多个工具中创建一个建筑模型呢？
+
+🎉
+答案是[**IFC**](https://www.buildingsmart.org/standards/bsi-standards/industry-foundation-classes/)，这是BuildingSMART创建的一种格式，用于包含这些建筑的三维模型。它是开放的，所以任何人都可以读和写它。耶!
+
+
+  <IfcAlert>
+由于IFC的存在，任何开发者都可以自由地创建BIM应用程序，可以与建筑领域的大型开发公司的应用程序进行交流。
+  </IfcAlert>
+
+
+### IFC格式的问题
+
+任何想做BIM应用的人，**需要读写IFC文件，**能够从其他工具中导入和导出信息。不幸的是，IFC是一种很难读和写的格式。有几千页的文档，创建和维护一个自制的IFC解析器是一项巨大的任务。
+
+  <IfcCard title="
+你能负担得起IFC吗？"
+  >
+    💸
+这是只有拥有几个开发人员全职工作的公司才能负担得起的事情。这听起来不再那么开放了，不是吗？
+</IfcCard>
+
+如果你对IFC内部的样子感到好奇，这里有一个例子。想象一下，要解析成百上千行这样的内容。
+
+  ```js
+  #6699= IFCCARTESIANPOINT((0.,-1.7053025E-13));
+  #6701= IFCAXIS2PLACEMENT2D(#6699,#23);
+  #6703= IFCCARTESIANPOINT((892.,-253.399999,150.));
+  #6705= IFCAXIS2PLACEMENT3D(#6703,#15,#19);
+  #6706= IFCEXTRUDEDAREASOLID(#6702,#6705,#19,506.8);
+  #6707= IFCCOLOURRGB($,0.50196,0.501913,0.501960);
+  ```
+
+  💀
+即使你愿意从头开始创建一个解析器，并随着IFC模式的每一次改变而维护它，解决这个问题也有几个非简单的问题。如何在非常大的文件中管理内存？如何有效地实现几何图形的生成？当一个IFC没有被正确定义时，该怎么办？
+
+### IFC.js的救援
+
+如果所有的开发者都必须为他们的应用程序实现自己的IFC文件读写器，那就没有意义了。特别是当我们都想要同样的东西时。**导入和导出几何图形和数据**。
+
+  <IfcCard>
+IFC.js是一个JavaScript库，它使<b>读和写IFC文件</b>变得超级简单。
+  </IfcCard>
+
+这使建筑和施工应用程序的开发者能够毫不费力地在IFC中工作，并专注于为其业务增加价值的功能。
+
+## IFC.js 简而言之
+
+IFC.js有两个重点。
+
+  <IfcCard
+    icon="💎"
+    title=
+"几何学"> IFC.js可以生成3D场景，因为它与Three.js或Babylon.js等3D库兼容。这意味着你可以立即创建3D BIM工具。
+  </IfcCard>
+
+  <IfcCard
+    icon="🔗"
+    title=
+"数据"> 对与该几何体相关的所有属性的高层次访问。这意味着可以很容易地获取建筑部件、其材料、热特性、结构强度等方面的数据。
+  </IfcCard>
+
+用IFC.js创建BIM应用程序就像用JavaScript、HTML和CSS创建网页一样简单。
+
+  <Scene link={"https://ifcjs.github.io/hello-world/examples/web-ifc-three/introduction/"}/>
+
+  ```js
+  import { IfcLoader } from 'web-ifc-three';
+  import { Scene } from 'three';
+
+  // 创建THREE.js场景
+  const scene = new Scene();
+
+  //...
+
+  // 加载IFC并将其添加到场景中。
+  const ifcLoader = new IfcLoader();
+  ifcLoader.load(ifcURL, (geometry) => scene.add(geometry));
+  ```
+
+## 这个图书馆是为谁准备的
+
+这个库是为任何想开发BIM应用的人准备的。这既包括为建筑行业创建应用程序的开发者，也包括建筑师和其他想要利用IFC文件中的数据的专业人士。
+
+要使用这个库，有必要掌握JavaScript、HTML和CSS的基本知识。这些知识已经超出了本文档的范围。你还需要使用一些3D库来显示IFC的几何图形（Three.js或Babylon.js）。
+
+😊
+如果你不知道从哪里开始，我们建议你看一下[这里](https://threejsfundamentals.org/)，或者直接加入[Discord频道](https://discord.gg/FXfyR4XrKT)并打招呼。
+
+## 为什么IFC.js与众不同？
+
+IFC.js是一个由JavaScript编写的库，可以说是最普遍的语言之一。这意味着它与网络浏览器、桌面和移动应用程序兼容。JavaScript也是最容易学习的语言之一，它允许你用HTML和CSS构建用户界面。换句话说，用IFC.js创建BIM应用程序就像创建一个网页一样容易。
+
+### 多平台
+
+你可以使用IFC.js来为任何平台创建开放的BIM应用程序。
+
+  <IfcTab
+    items={
+        [
+            {
+                icon: "🌏",
+                content:
+                    <p><b>
+可以使用<b>vanilla JavaScript</b>或其他工具（如<b>React、Vue、Angular、Svelte等</b>）创建读写IFC文件和显示3D的前端网络应用</b>，而无需依赖服务器通信。也就是说，<i>使用IFC.js，我们可以把任何网络浏览器变成一个开放的BIM应用。</i></p>
+            },
+            {
+                icon: "🏢",
+                content: <p>
+有些情况下，IFC文件不能被客户端处理。例如，移动设备可能没有能力显示几个中型或大型IFC。在这种情况下，可以通过<a href={"https://nodejs.org/en/"}>Node.js</a>在服务器上使用IFC.js，并将已经准备好的Three.js场景发送给客户端。</p>
+            },
+            {
+                icon: "💻",
+                content: <p>
+有时我们并不想创建 Web 应用程序，而是想创建可在 Windows、iOS 和 Linux 上运行的 <b>原生桌面应用程序</b>。这要感谢<a href={"https://www.electronjs.org/"}>Electron</a>等技术。这些本地应用程序的编程方式将与 Web 应用程序相同；HTML、CSS、JavaScript、React、Vue 等。</p>
+            },
+            {
+                icon: "📱",
+                content:
+                    <p>
+IFC.js还支持<a href={"https://reactnative.dev/"}>React Native</a>，它将WebGL代码映射到本地OpenGL。这意味着您可以轻松创建与IFC兼容的<b>Open BIM应用程序，并在Android和iOS上运行</b>。</p>
+            }
+        ]
+    }/>
+
+### 速度
+
+  ⚡️
+  如果你有网络应用的经验，你可能会想，基于JavaScript的IFC库的弱点是性能。然而，该库的核心是用C++结合WebAssembly和[Emscripten](https://emscripten.org/)开发的。它是专门为**最高性能而设计的，允许IFC.js在直接在浏览器中运行时接近于桌面应用程序的速度和性能。
+
+### 特点
+
+  <IfcCard>
+    👓
+IFC.js可以<b>读</b>IFC文件，无缝连接。
+  </IfcCard>
+
+  <IfcCard>
+    🏐
+生成<b>3D几何图形</b>，在浏览器中以60 fps运行。
+  </IfcCard>
+
+  <IfcCard>
+   🎨
+利用Three.js的力量，轻松地编辑几何图形<b>外观</b>。
+  </IfcCard>
+
+  <IfcCard>
+    🏠🏠🏠
+加载<b>多个</b>联合的IFC模型。
+  </IfcCard>
+
+  <IfcCard>
+    📃
+检索报告和数据库的<b>IFC属性</b>。
+  </IfcCard>
+
+  <IfcCard>
+    ✍
+IFC.js还可以<b>编辑和编写</b>IFC文件，从头开始。
+  </IfcCard>
+
+## 源代码
+
+IFC.js是一个大型的、多语言的库（C++、TypeScript JavaScript等）。把它放在一个单一的资源库中会很困难，而且不方便。出于这个原因，该库存在于多个仓库中，每个仓库都有其用途。你可以找到它们[这里](https://github.com/IFCjs)。
+
+  <IfcTab items={
+    [
+        {
+            name: "web-ifc",
+            link: "https://ifcjs.github.io/info/docs/Guide/web-ifc/Introduction",
+            content:
+                <p>
+该库的核心是：用C++从头开始编写的IFC<b>解析器和几何生成器</b>，并通过Emscripten编译为WebAssembly。该库封装了读取IFC文件并将其数据加载到内存中的复杂性。</p>
+        },
+        {
+            name: "web-ifc-three",
+            link: "https://ifcjs.github.io/info/docs/Guide/web-ifc-three/Introduction",
+            content:
+                <p>
+这个库将web-ifc改编成Three.js，生成一个<b>优化的3D场景，用户可以直接与IFC互动</b>。该库是<a href={"https://threejs.org/examples/webgl_loader_ifc.html"}>官方Three.js IFC Loader</a>。由于有了这个适配器，只需两行代码就可以用Three.js创建开放式BIM应用程序。</p>
+        },
+        {
+            name: "web-ifc-viewer",
+            link: "https://ifcjs.github.io/info/docs/Guide/web-ifc-viewer/Introduction",
+            content:
+                <p>
+这是一个基于浏览器的<a href={"https://ifcjs.github.io/web-ifc-viewer/example/index"}>IFC浏览器</a>，有<b>许多可以用IFC.js完成的例子</b>。场景导航、材料变化、通过点击选择元素、剖面图等等。在这个资源库中，有所有这些功能的例子，所以它可以在开放的BIM应用程序中开箱即用。</p>
+        }
+    ]
+  }/>
+
+## 贡献
+
+你想帮助我们不断完善IFC.js的开放BIM开发世界吗？这个库很大，所以你必须选择你想参与的地方。
+
+  <IfcCard
+    icon="🤝"
+    title=
+"我不会编码，但我想进入">
+这很好! 除了编码之外，你还有很多事情可以做。进入<a href={"https://discord.gg/FXfyR4XrKT"}>Discord频道</a>，了解如何做。
+  </IfcCard>
+
+  <IfcCard
+    icon="🧠"
+    title=
+        "解析、几何学和C++">
+如果你对C++、WebAssembly、解析或IFC的细枝末节有热情，你可以用业内最快的开源BIM解析器帮助我们。<a href={"https://github.com/tomvandig/web-ifc"}>web-ifc</a>。
+  </IfcCard>
+
+  <IfcCard
+    icon="✨"
+    title=
+"Three.js、几何学和Typescript">
+如果你是一名Three.js开发人员，你可以帮助我们<a href={"https://github.com/IFCjs/web-ifc-three"}>web-ifc-three</a>，这就是<a href={"https://threejs.org/examples/webgl_loader_ifc.html"}> 官方的 Three.js IFC Loader</a>。
+  </IfcCard>
+
+  <IfcCard
+    icon="🌈"
+    title=
+"BIM工具、头脑风暴和用户体验">
+如果您对创建很酷的开放式BIM应用程序感兴趣，并且您对BIM工具或用户界面有很好的想法，请帮助我们使<a href={"https://github.com/IFCjs/web-ifc-viewer"}>web-ifc-viewer</a>成为市场上最好的IFC浏览器。
+  </IfcCard>
+
+在任何情况下，我们鼓励你到[Discord频道](https://discord.gg/FXfyR4XrKT)，打个招呼，告诉我们你的想法，这样我们可以给你一些指导。

@@ -4,9 +4,69 @@ sidebar_position: 1
 ---
 
 import {IfcCard} from "../../../src/components/Card/InfoCard";
+import {IfcAlert} from "../../../src/components/Alert/Alert";
 
-## 🚧👷‍♀️ Under construction 👷‍♂️🚧
+## Full IFC control at native speed
 
-<IfcCard icon="💙" title="Thanks for your interest in IFC.js!">
-    We are building this section of the documentation right now. In the meantime, you can join the <a href="https://discord.com/invite/g7Uzn2KSwB">Discord channel</a> and ask us any questions you need to implement IFC.js or to join the project.
+  🌎
+It is often thought that web applications are not as powerful as desktop applications. Relatively recently, however, [WebAssembly](https://webassembly.org/) appeared on the scene.
+
+<IfcAlert>
+    WebAssembly is a technology that allows the use of languages like C++ to create web applications.
+</IfcAlert>
+
+
+🔥🔥🔥
+This means we can have the best of both worlds: the **flexibility** of a web application and the **full performance** of a machine. And this is what web-ifc is all about. You can install it with `npm i web-ifc` or `yarn add web-ifc` and it has the following features:
+
+<IfcCard>
+    ⚡
+    It is as <b>fast</b> as native applications thanks to its parsing core, written from scratch in C++.
+</IfcCard>
+
+<IfcCard>
+    🚀
+    It can be run directly on the <b>client</b> or as a <b>backend service</b>. Bring BIM to all parts of your system!
+</IfcCard>
+
+<IfcCard>
+    📚
+    It can read <b>100% of the IFC data, including IFC types</b>. This allows data to be easily extracted, structured, traversed and entered into databases.
+</IfcCard>
+
+<IfcCard>
+    🌈
+It can <b>edit data and write entire IFCs from scratch</b>. Create apps that communicate with the large software vendors.
+</IfcCard>
+
+In the following points, the API and its functionalities will be shown step by step. However, there are a <b>some issues</b> that are important to be clear about before using `web-ifc`.
+
+### But wait, I don't know C++!
+
+  👌
+Don't worry! Although the parser is written in C++, it is compiled in a file called `web-ifc.wasm` that **browsers understand automatically**. Just include this file in your application and you will have access to the full API with native speed with **JavaScript** or **TypeScript**. How cool is that?
+
+### What is the .wasm file for?
+
+  🧠
+The web-ifc.wasm file contains the IFC **parsing core**. It is pre-compiled and **hyper-efficient**; unlike JavaScript, which has to be compiled line by line, this file can be sent directly to the CPU and executed without prior interpretation.
+
+  📦
+You can find this file in the `node-modules/web-ifc/web-ifc.wasm` folder. You will need to serve this file with your application (if frontend) or have it on your server (if backend).
+
+<IfcAlert>
+    Beware: when you update the web-ifc version in your application, you will also have to update (copy) the corresponding version of web-ifc.wasm .
+</IfcAlert>
+
+
+### When should I use web-ifc?
+
+  🦅
+`Web-ifc` is the **lightest** and **most flexible** module of IFC.js. However, this flexibility also means that you have to know what you are doing, and therefore know the internals of the IFC schema relatively well.
+
+  ☝
+Moreover, web-ifc **does not implement a 3d viewer**. This is an advantage, because it means that you can get IFC geometry without relying on a particular 3d renderer in a more agile way.
+
+<IfcCard>
+    If you want to see 3d geometry easily, you will either have to implement it yourself, or use <b>web-ifc-three</b> or <b>web-ifc-viewer</b>.
 </IfcCard>

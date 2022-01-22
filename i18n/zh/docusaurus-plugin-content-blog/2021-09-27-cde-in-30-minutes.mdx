@@ -1,0 +1,271 @@
+---
+slug: Build a CDE in 30 minutes
+title: 在30分钟内建立一个CDE
+author: Ansoni
+author_title: 从头开始制作你自己的CDE!
+author_url: https://github.com/agviegas
+author_image_url: https://secure.gravatar.com/avatar/9263b9f81d351788e46bc64000c03cb6
+tags: [
+教程, CDE, Google
+]
+---
+
+_所有的大公司都在销售他们的CDE。你为什么不做你自己的CDE呢？_
+
+<!--truncate-->
+
+import { IfcImage } from "../../../src/components/Image/Image";
+import { IfcCard } from "../../../src/components/Card/InfoCard";
+
+<IfcImage image=<img src={require('@site/static/img/blog/2021-09-27/lego.jpg').default} alt="Lego image"></img> ifcLink="https://www.pexels.com/photo/set-of-multicolored-plastic-construction-toys-scattered-on-floor-7444982/"></IfcImage>
+
+## 但等等，什么是CDE？
+
+📦
+非正式地讲，**CDE**只不过是一个集中的地方，可以通过互联网获取建筑项目的信息。
+
+  <IfcCard>
+🔧🔨
+CDEs可以拥有传统BIM应用的所有功能。3D查看器、阅读和编辑数据、能源模拟、自动测量和预算等。
+</IfcCard>️
+
+🌎🌍🌏
+然而，它们有一个基本的优势：它们是**在网络上的**，这意味着它们可以从任何地方和任何设备上访问，而无需安装任何东西。
+
+## 好吧，但我为什么想要一个CDE？
+
+💸
+嗯，事实是，现在，CDE是新的黑色。**业内几乎每家大公司都在建造CDE**，并以高昂的价格出售给他们的客户。
+
+🏃‍♀️🏃‍♂️🏃‍♀️
+随着互联网越来越快，越来越好，总有一天，我们所知道的桌面应用程序将失去意义，而我们的大部分任务将在Web应用程序或服务器应用程序中完成。换句话说，**CDE是未来的**，而现在有一场建立最佳CDE的大竞赛。
+
+## 我明白了，CDE是个好东西。但我永远无法自己开发一个。
+
+👩‍🏫
+错了! 你认为你不能做BIM解决方案的最大受益者是目前的BIM供应商。在IFC.js，我们想打破这个神话，从头开始做一个简单的CDE，以表明**开始开发BIM应用并不难**。
+
+☝
+很明显，这个教程是一个最小的例子。但从本教程的简单CDE到大公司的CDE，并没有想象中的那么多距离。**闲话少说，让我们继续吧！**。
+
+## CDE设计
+
+### 战略
+
+⏳
+我们只有**个半小时的时间来做这个CDE，所以我们必须仔细选择如何做，以不浪费任何时间。首先：我们需要**个地方来存储项目文件**。你知道有什么现有的工具可以让我们这样做吗？我们已经想到了**Google Drive**!
+
+  <IfcCard>
+💪
+Google Drive有很多功能：我们可以控制对文件的读写权限、版本控制、开放的API......。简而言之，它有许多BIM软件公司向你收费的东西，但完全免费。
+</IfcCard>️
+
+
+🛑
+然而，Google Drive有一个根本性的限制：它没有3D浏览器，也不允许轻易访问BIM模型（如IFC模型）中的数据。
+
+🤝
+**这就是IFC.js的作用**，它允许我们直接在网上建立BIM应用。将google drive的存储和权限功能与IFC.js的3D和数据阅读及编辑功能相结合，我们可以在30分钟内建立我们的基本CDE。下面是方法。
+
+### 建筑学
+
+🤷‍♀️
+**如何连接**IFC.js和google drive，以便能够同时作为CDE使用？我们的设计方案如下。它可能看起来很复杂，但实际上非常非常简单。
+
+<IfcImage hideSource={true} image=<img src={require('@site/static/img/blog/2021-09-27/schema.jpg').default} alt="Schema explaining the concept of the CDE"></img>></IfcImage>
+
+🏠
+首先，我们要创建一个**3D BIM网络应用程序，能够从google drive下载文件**。具体来说，它将从google drive下载它在URL参数中找到的ID的文件。例如，如果你的URL是`https://.../?id=123&name=TEST.ifc`，它将从登录到应用程序的用户的谷歌账户中下载`ID`为`123`的文件。
+
+🌐
+然后，我们将创建一个[谷歌铬扩展](https://developer.chrome.com/docs/extensions/)，它将做三件事。
+
+- **读取用户通过网络搜刮点击的HTML元素的名称**。
+
+- **使用google drive API找出该元素的ID**。
+
+- **创建一个菜单，让用户用IFC.js网络应用程序打开URL**。此外，你要添加两个URL参数：文件的名称和ID。
+
+  <IfcCard>
+简而言之：一个google chrome扩展在用户点击文件时获得文件的名称，并打开一个知道如何按其ID下载文件的网络应用。这就是全部。
+</IfcCard>️
+
+### IFC.js应用程序
+
+#### BIM应用程序
+
+🏢
+感谢IFC.js，**这是最简单的部分。具体来说，我们要用[web-ifc-viewer](https://github.com/IFCjs/web-ifc-viewer)来创建它，它可以在50行代码中制作BIM应用程序。你可以找到所有的代码[这里](https://github.com/IFCjs/hello-world/tree/main/examples/web-ifc-viewer/google-drive-viewer)。
+
+😉
+是的，你没看错。**一个完整的3D BIM应用，只有50行**。它还包括剖面图和三维尺寸等功能。
+
+```js
+    import {IfcViewerAPI} from 'web-ifc-viewer';
+    import {Color} from 'three'
+
+    // 获取渲染3d场景的div容器
+    const container = document.getElementById('viewer-container');
+
+    // 初始化IFC.js API，并将其添加为全局变量
+    const viewer = new IfcViewerAPI({
+                            container,
+                            backgroundColor: new Color(0xffffff)
+                                });
+    viewer.IFC.applyWebIfcConfig({
+                            COORDINATE_TO_ORIGIN: true,
+                            USE_FAST_BOOLS: true
+                                });
+    window.webIfcAPI = viewer;
+
+    // 设置场景
+    viewer.addAxes();
+    viewer.addGrid(50, 50);
+    viewer.IFC.setWasmPath('wasm/');
+    viewer.clipper.active = true;
+    let dimensionsActive = false;
+
+    // 增加基本的输入逻辑
+    const handleKeyDown = (event) => {
+        if (event.code === 'KeyE') {
+            dimensionsActive = !dimensionsActive;
+            viewer.dimensions.active = dimensionsActive;
+            viewer.dimensions.previewActive = dimensionsActive;
+            viewer.IFC.unPrepickIfcItems();
+            window.onmousemove = dimensionsActive ?
+                                            null :
+                                .IFC.prePickIfcItem;
+        }
+        if (event.code === 'KeyD') {
+            viewer.dimensions.create();
+        }
+        if (event.code === 'KeyG') {
+            viewer.clipper.createPlane();
+        }
+        if (event.code === 'Delete') {
+            viewer.dimensions.deleteAll();
+            viewer.clipper.deletePlane();
+            viewer.IFC.unpickIfcItems();
+        }
+    };
+    window.onkeydown = handleKeyDown;
+
+    // 悬停在项目上时突出显示项目
+    window.onmousemove = viewer.IFC.prePickIfcItem;
+
+    // 选择项目和日志属性
+    window.ondblclick = async () => {
+        const item = await viewer.IFC.pickIfcItem(true);
+        if(item.modelID === undefined || item.id === undefined ) return;
+        console.log(
+            await viewer.IFC.getProperties(item.modelID, item.id, true));
+    }
+```
+
+🎨
+确保你创建了必要的HTML和CSS，使浏览者拥有你想要的外观和感觉。
+
+
+#### Google Drive API
+
+🔒🔒🔒
+好吧，我们有一个BIM浏览器，但现在它还不能从**Google Drive API**下载任何东西。不过，这很容易：只要按照[官方文档](https://developers.google.com/drive/api/v3/quickstart/js)中的这些步骤，复制并粘贴JavaScript代码，就能访问API。
+
+  <IfcCard>
+🔑🔑🔑
+按照谷歌的指南，你需要创建一个新的谷歌云项目，以获得你自己的CLIENT_ID和API_KEY；它们只是你必须拥有的两个文本，以便谷歌知道你是谁。换句话说，你不能使用我们拥有的密钥来访问你的驱动器
+</IfcCard>️
+
+📋
+如果你看一下我们发布的代码，你会发现**我们几乎复制和粘贴了[google范例](https://developers.google.com/drive/api/v3/quickstart/js)中的所有代码。我们唯一添加的是以下内容，它只是从Web应用程序的URL中获取文件的ID，并从google drive中下载它。
+
+```js
+    /**
+     *  当签到状态改变时被调用，以适当地更新用户界面。在签到后，调用API。
+     */
+    function updateSigninStatus(isSignedIn) {
+        if (isSignedIn) {
+            const {id, name} = getIdAndName();
+            fileName.innerText = `Name: ${name}`;
+            if (id) downloadFile(id);
+            else console.log('No ID was providen as URL parameter!');
+        }
+    }
+
+    /**
+     *  在点击按钮时签入用户。
+     */
+    function handleAuthClick(event) {
+        authorizeButton.onclick = handleSignoutClick;
+        buttonText.innerText = 'Sign out';
+        gapi.auth2.getAuthInstance().signIn();
+    }
+
+
+    function downloadFile(fileId) {
+        gapi.client.drive.files.get({
+            fileId: fileId,
+            alt: 'media'
+        }).then(function (response) {
+            loadIfcModel(response.body);
+        }, function (error) {
+            console.error(error)
+        })
+    }
+
+    function getIdAndName() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get("id");
+        const name = urlParams.get("name");
+        return {id, name};
+    }
+
+    function loadIfcModel(text) {
+        const blob = new Blob([text], {type: 'text/plain'});
+        const file = new File([blob], "ifcModel");
+        window.webIfcAPI.IFC.loadIfc(file);
+    }
+```
+
+🎉🎉 祝贺你! 你刚刚建立了一个能够从Google Drive下载文件的BIM应用程序。现在只剩下最后一个部分：创建谷歌浏览器扩展。
+
+### 浏览器扩展
+
+现在我们要做一个谷歌浏览器扩展，以便**用户可以选择他们想要打开的文件**。如果你以前没有做过这个，可能听起来很吓人，但实际上非常简单。你可以找到完成的结果[这里]（https://github.com/IFCjs/Drive-CDE）。
+
+  <IfcCard>
+🔑🔑🔑
+按照谷歌的指南，你需要创建一个新的谷歌云项目，以获得你自己的CLIENT_ID和API_KEY；它们只是你必须拥有的两个文本，以便谷歌知道你是谁。换句话说，你不能使用我们拥有的密钥来访问你的驱动器！你可以通过以下方式来实现：1. <a href="https://developers.google.com/drive/api/v3/about-sdk#create_and_open_files_directly_from_the_drive_ui">请看这里，了解更多细节</a>。
+</IfcCard>️
+
+👣
+互联网上有许多[分步指南](https://dev.to/anobjectisa/how-to-build-a-chrome-extension-new-manifest-v3-5edk)，但我们建议你从我们的资源库中获取代码，研究它并玩弄它，看看它是如何工作的。
+
+🧱
+实际上只有2个重要的文件。
+
+- [background.js](https://github.com/IFCjs/Drive-CDE/blob/master/background.js)：控制页面的事件，比如当用户点击某个东西时，但不能访问页面内容。
+
+- [foreground.js](https://github.com/IFCjs/Drive-CDE/blob/master/foreground.js): 可以访问页面内容，但不能访问事件。
+
+👬
+因此，正如你所想象的，这两个文件必须相互沟通，以便做我们想要的事情。正如你在代码中看到的，它们用一个简单的消息系统来做。
+
+👩‍🏫
+在资源库中，你会发现关于什么做什么的分步注释。总共只有不到100行的相关代码：其他都是复制和粘贴的。
+
+
+### 所有的人都在一起!
+
+🔥🔥🔥
+这就是我们的30分钟CDE的样子。
+
+<iframe width="100%" height="600px" src="https://www.youtube.com/embed/lYzTaOBuv7k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+## 总结
+
+🏆
+祝贺你！你刚刚创建了**你的第一个CDE**。你刚刚创建了**你的第一个CDE**。它可能看起来不多，但想想它的所有功能：文件存储、权限和版本控制、三维视图、访问属性、三维测量、剖面图......
+
+🚀🚀🚀
+如果我们在这么短的时间内用Google Drive做到了这一点，你能想象用IFC.js和其他技术（如**数据库**或**服务器）构建的可能性有多大吗？**别担心，我们将制作关于所有这些和更多的教程

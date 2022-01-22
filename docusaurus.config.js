@@ -14,13 +14,16 @@ module.exports = {
   ],
   i18n: {
     defaultLocale: 'en',
-    locales: ['en', 'ja'],
+    locales: ['en', 'ja', 'zh'],
     localeConfigs: {
       en: {
         label: 'English',
       },
       ja: {
         label: '日本語',
+      },
+      zh: {
+        label: '中文'
       }
     }
   },
@@ -45,7 +48,7 @@ module.exports = {
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://discord.com/invite/g7Uzn2KSwB',
+          href: 'https://discord.gg/FXfyR4XrKT',
           label: 'Community',
           position: 'right'
         },
@@ -77,7 +80,7 @@ module.exports = {
           items: [
             {
               label: 'Discord',
-              href: 'https://discord.com/invite/g7Uzn2KSwB',
+              href: 'https://discord.gg/FXfyR4XrKT',
             },
             {
               label: 'Twitter',
@@ -100,6 +103,14 @@ module.exports = {
         },
       ],
       copyright: `Copyright © ${new Date().getFullYear()} IFC.js.`,
+    },
+    algolia: {
+      indexName: 'ifcjs',
+      appId: 'JKKUEA9VHK',
+      apiKey: '5d321bcacec1258a1ff695289d0be6c2',
+      searchParameters: { 'facetFilters': ["type:content"] },
+      debug: false
+      //... other Algolia params
     },
   },
   presets: [

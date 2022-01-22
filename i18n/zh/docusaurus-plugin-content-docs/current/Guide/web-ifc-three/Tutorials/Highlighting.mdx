@@ -1,0 +1,181 @@
+---
+title: ✨ 子集
+sidebar_position: 2
+---
+
+import {IfcCard} from "../../../../../../../src/components/Card/InfoCard";
+import {IfcAlert} from "../../../../../../../src/components/Alert/Alert";
+import {Scene} from "../../../../../../../src/components/Scene/Scene"
+
+## 简介
+
+  🎩
+在几乎所有的BIM应用程序中，当用户将鼠标移到元素上或选择它们时，元素会被高亮显示。IFC.js也不例外，在本教程中我们将看到如何实现这一点。
+
+<a href="https://ifcjs.github.io/info/docs/Guide/web-ifc-three/Tutorials/Picking/" target="_self">
+    👩‍🏫
+之前</a>我们已经看到了如何通过<a href="https://threejs.org/docs/#api/en/core/Raycaster">Raycaster</a>来获得我们投射射线的对象的ID。现在我们有了这些ID，就可以使用<b>几何子集</b>来突出显示这些元素。
+
+<IfcCard icon="🧱" title="几何子集？">
+<b>几何子集</b>是模型中的任何一组项目。例如：所有的门、所有的底层元素或所有满足某个条件的元素。
+</IfcCard>
+
+### 进口依赖性
+
+  ⚽
+我们需要一个[material](https://threejs.org/docs/#api/en/materials/Material)来突出这些项目。你可以选择任何你喜欢的材料；在这个例子中，我们将使用一个[MeshLambertmaterial](https://threejs.org/docs/#api/en/materials/MeshLambertMaterial)，我们将从Three的核心库中导入。
+
+```js
+import {
+  MeshLambertMaterial
+} from "three";
+```
+
+我们将使用Raycaster，所以你还需要<a href="https://ifcjs.github.io/info/docs/Guide/web-ifc-three/Tutorials/Picking/#import-threejs-dependencies" target="_self">这些依赖项</a>，以及<a href="https://ifcjs.github.io/info/docs/Guide/web-ifc-three/Tutorials/Picking/#import-three-mesh-bvh-optional" target="_self">three-mesh-bvh</a>，如果我们想获得最佳性能。
+
+## 如何做到这一点
+
+### 亮点材料
+
+  🌀
+第一件事是创建**高光材料**.玩玩配置，让材料看起来很好! 专业提示：你可以使用`depthTest=false`，这样物体从任何视角都可以看到。
+
+```js
+  // 创建子集材料
+  const preselectMat = new MeshLambertMaterial({
+      transparent: true,
+      opacity: 0.6,
+      color: 0xff88ff,
+      depthTest: false
+  })
+```
+  ☝
+请注意，几何子集是由它们的材料**独特地识别的。
+
+- 如果你用材料A创建了一个墙的子集，然后试图用同样的材料A创建另一个墙的子集，第二个墙将被添加到第一个墙的子集中。
+
+- 如果你用材料A创建了一个墙的子集，然后试图用材料B创建同一墙的另一个子集，你将创建两个独立的子集。
+
+<IfcAlert>
+You can have two separate subsets with the same appearance using two instances of the same material.
+</IfcAlert>
+
+### 单一子集
+
+  🐭
+我们可以用<a href="https://ifcjs.github.io/info/docs/Guide/web-ifc-three/api#createsubset" target="_self">createSubset</a>来创建用户悬停时的高亮效果。
+
+```js
+
+  const ifc = ifcLoader.ifcManager;
+
+  // Reference to the previous selection
+  let preselectModel = { id: - 1};
+
+  function highlight(event, material, model) {
+     const found = cast(event)[0];
+     if (found) {
+
+         // 获取模型ID
+         model.id = found.object.modelID;
+
+         // 获取快递ID
+         const index = found.faceIndex;
+         const geometry = found.object.geometry;
+         const ifc = ifcLoader.ifcManager;
+         const id = ifc.getExpressId(geometry, index);
+
+         // 创建子集
+         ifcLoader.ifcManager.createSubset({
+             modelID: model.id,
+             ids: [id],
+             material: material,
+             scene: scene,
+             removePrevious: true
+         })
+     } else {
+         // 移除之前的高亮部分
+         ifc.removeSubset(model.id, scene, material);
+     }
+  }
+
+  window.onmousemove = (event) => highlight(
+                                        event,
+                                        preselectMat,
+                                        preselectModel);
+```
+
+<Scene link={"https://ifcjs.github.io/hello-world/examples/web-ifc-three/highlighting-single/"}/>
+
+  👀
+有几个有趣的地方需要注意。
+
+- `cast()`的实现已经展示了<a href="https://ifcjs.github.io/info/docs/Guide/web-ifc-three/Tutorials/Picking/#how-to-do-it" target="_self">前面的</a>。
+
+- 变量`currentModel`用于存储所选模型的引用；这样，当用户不在悬停一个对象时，我们就能用<a href="https://ifcjs.github.io/info/docs/Guide/web-ifc-three/api#removesubset" target="_self">removeSubset</a>删除之前的子集。
+
+- 要创建子集的项目的ID必须以**数组的形式给出（即使它是一个单一的ID）。
+
+### 多个子集
+
+  💅💅💅
+使用**多个子集**和使用单个子集一样简单。我们只需要创建一个新的材料，用同样的功能创建一个新的子集，并将该子集的创建与一个事件相关联。
+
+在这个例子中，我们要把它绑定到**双击**，以模拟对象被选中时的高亮效果。
+
+```js
+const selectMat = new MeshLambertMaterial({
+                                transparent: true,
+                                opacity: 0.6,
+                                color: 0xff00ff,
+                                depthTest: false })
+
+const selectModel = { id: - 1};
+window.ondblclick = (event) => highlight(
+                                    event,
+                                    selectMat,
+                                    selectModel );
+```
+
+<Scene link={"https://ifcjs.github.io/hello-world/examples/web-ifc-three/highlighting-multiple/"}/>
+
+### 提取几何图形
+
+  👩‍🏫
+如果你创建了一个几何体子集，但没有指定高光材料，子集将有**的原始材料。
+
+<IfcAlert>
+例如，这将允许用BIM模型的所有底层元素创建一个几何子集，并隐藏其余部分。
+</IfcAlert>
+
+  🌚
+在下一个例子中，我们将对加载的IFC模型应用透明材料，并在鼠标悬停在一个项目上时创建一个具有原始材料的子集。为此，我们将使用与之前几乎相同的代码。
+
+```js {3,4,5,6,7,13,14,15,16}
+  ifcLoader.load("../../IFC/01.ifc", (ifcModel) => {
+      ifcModels.push(ifcModel.mesh);
+      ifcModel.mesh.material = new MeshLambertMaterial({
+          transparent: true,
+          opacity: 0.1,
+          color: 0x77aaff
+      });
+      scene.add(ifcModel.mesh)
+  });
+
+  // ...
+
+window.onmousemove = (event) => highlight(
+                                    event,
+                                    undefined,
+                                    highlightModel);
+```
+
+<Scene link={"https://ifcjs.github.io/hello-world/examples/web-ifc-three/highlighting-single-original-material/"}/>
+
+## 接下来的步骤
+
+🎉🎉🎉
+祝贺你! 你现在应该能够突出元素并从BIM模型中提取几何图形。干得好!
+
+📃
+然而，不要这么快就声称胜利。我们还没有谈到BIM中的 "我"，而这甚至比几何图形更重要。这就是下一课要讲的内容。

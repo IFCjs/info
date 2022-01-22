@@ -1,0 +1,328 @@
+---
+title: 你好，世界
+sidebar_position: 2
+---
+
+  import {IfcCard} from "../../../../src/components/Card/InfoCard";
+  import {IfcAlert} from "../../../../src/components/Alert/Alert";
+  import {Scene} from "../../../../src/components/Scene/Scene";
+
+## 简介
+
+  ⚡
+用IFC.js创建一个BIM应用程序是非常容易的。你可以找到指南的完整项目[这里](https://github.com/IFCjs/hello-world/tree/main/examples/web-ifc-three/helloworld)和部署的应用程序[这里](https://ifcjs.github.io/hello-world/examples/web-ifc-three/helloworld/)。你只需要有<a href="https://nodejs.org/en/">Node.js</a>和任何IDE的安装，就可以按照下面的步骤进行。另外，如果你没有任何IFC文件来跟随，你可以得到一些[这里](https://github.com/IFCjs/test-ifc-files)。
+
+  <IfcAlert>
+使用IFC.js需要有网络开发（HTML、CSS、JavaScript）和Three.js的基本知识。如果您以前没有使用Three.js的经验，您也许应该看看<a href="https://threejsfundamentals.org/">这里</a>。
+  </IfcAlert>
+
+  🐣
+这个最小的教程将用Vanilla JavaScript完成，不使用像React、Vue、Angular、Svelte等框架。然而，同样的步骤可以适应并应用于任何这些用例。
+
+## 设置项目
+
+### 安装图书馆
+
+  👩‍🏫
+首先要做的是创建一个空文件夹，用`npm init`命令启动一个新的npm项目。这将生成一个`package.json`文件，其中包含一些数据，如项目名称、版本、命令和依赖性。此外，以下依赖项必须与npm一起安装。
+
+```bash
+    // 安装IFC.js
+    npm i web-ifc-three
+
+    // 安装Three.js
+    npm i three
+
+    // 安装一个捆绑程序：我们将在本指南中使用rollup.js。
+    npm i rollup --save-dev
+    npm i @rollup/plugin-node-resolve --save-dev
+```
+
+  📝
+下一步是创建一个名为`index.html`的HTML文件作为应用程序的主文件。该HTML将有。
+- 一个**canvas元素**，用于渲染Three.js场景。
+- 一个**输入元素**，它将从我们的计算机上打开IFC文件到应用程序中。
+- 一个**脚本**，引用一个叫`bundle.js`的文件，这是我们将用rollup制作的应用程序的捆绑文件。
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="file" name="load" id="file-input" />
+    <canvas id="three-canvas"></canvas>
+    <script src="bundle.js"></script>
+  </body>
+</html>
+```
+
+### 添加样式
+
+  🎨
+下面的CSS文件将使画布成为全屏。
+
+```css
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  overflow: hidden;
+}
+
+#three-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  outline: none;
+}
+
+#file-input {
+  z-index: 1;
+  position: absolute;
+}
+```
+
+### 代码捆绑
+
+接下来，我们将创建rollup配置文件。这个文件必须称为`rollup.config.js`，包括对我们之前安装的插件的引用。
+
+  <IfcCard icon="🧻" title="Rollup?">
+Rollup是一个非常流行的捆绑库。例如，它是 Three.js 使用的捆绑器。请看一下<a href="https://rollupjs.org/guide/en/">rollup docs</a>，以了解更多。
+  </IfcCard>
+
+
+```js
+import resolve from '@rollup/plugin-node-resolve';
+
+export default {
+  input: 'src/app.js',
+  output: [
+    {
+      format: 'esm',
+      file: 'src/bundle.js'
+    },
+  ],
+  plugins: [
+    resolve(),
+  ]
+};
+```
+
+  🎯
+另外，`package.json`文件需要被修改，以包含控制rollup的命令。在每个命令中，你必须指定你的rollup配置文件的相对路径。如果我们已经正确安装了一切，我们应该在这个文件中看到相同的依赖关系（库的版本可能不同）。
+
+- `npm run build`将捆绑项目并在项目的根目录下创建一个名为`bundle.js`的文件。
+
+- `npm run watch`将激活`watch模式`，在我们每次修改代码并保存时自动更新该文件。
+
+```json
+
+{
+  "name": "example",
+  "version": "1.0.0",
+  "description": "-",
+  "main": "app.js",
+  "scripts": {
+    "build": "rollup -c ./rollup.config.js",
+    "watch": "rollup -w -c ./rollup.config.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^11.2.1",
+    "rollup": "^2.45.2"
+  },
+  "dependencies": {
+    "three": "^0.128.0",
+    "web-ifc-three": "0.0.32"
+  }
+}
+```
+
+### WebAssembly
+
+  📁
+  接下来要做的是把`web-ifc.wasm`和`web-ifc-mt.wasm`文件复制到你项目中的一个目录。它可以在`node_modules\web-ifc`中找到（如果你只使用Three的IFCLoader，则可以在`node_modules\three\examples\jsmloaders\ifc`中找到）。我们可以把它们复制到我们想要的地方；在这个例子中，它们将被复制到项目根目录下一个叫wasm的文件夹中。
+
+这些文件是必要的，因为它们包含了<a href="https://github.com/IFCjs/web-ifc">web-ifc</a>的编译的C++逻辑，它是以本地速度读写IFC文件的解析核心。
+
+<IfcAlert>
+    这些文件必须在你的应用程序中静态地提供。如果你使用的是React、Angular、Vue或Svelte等框架或库，这可能需要进行不同的调整。
+</IfcAlert>
+
+
+## 设置一个3D场景
+
+最后，我们要创建一个JavaScript文件，为我们的应用程序编写代码。这个文件可以位于任何地方，有任何名字，但你必须在`rollup.config.js`中反映出来。
+
+  🧱
+我们将使用Three.js创建一个基本的3D场景。
+
+```js
+  import {
+    AmbientLight,
+    AxesHelper,
+    DirectionalLight,
+    GridHelper,
+    PerspectiveCamera,
+    Scene,
+    WebGLRenderer,
+  } from "three";
+  import {
+      OrbitControls
+  } from "three/examples/jsm/controls/OrbitControls";
+
+  // 创建Three.js场景
+  const scene = new Scene();
+
+  //Object to store the size of the viewport
+  const size = {
+    width: window.innerWidth,
+    height: window.innerHeight,
+  };
+
+  // 创建摄像机（用户的视角）。
+  const aspect = size.width / size.height;
+  const camera = new PerspectiveCamera(75, aspect);
+  camera.position.z = 15;
+  camera.position.y = 13;
+  camera.position.x = 8;
+
+  // 创建场景的灯光
+  const lightColor = 0xffffff;
+
+  const ambientLight = new AmbientLight(lightColor, 0.5);
+  scene.add(ambientLight);
+
+  const directionalLight = new DirectionalLight(lightColor, 1);
+  directionalLight.position.set(0, 10, 0);
+  directionalLight.target.position.set(-5, 0, 0);
+  scene.add(directionalLight);
+  scene.add(directionalLight.target);
+
+  // 设置渲染器，获取HTML的画布。
+  const threeCanvas = document.getElementById("three-canvas");
+  const renderer = new WebGLRenderer({
+      canvas: threeCanvas,
+      alpha: true
+  });
+
+  renderer.setSize(size.width, size.height);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+  // 在场景中创建网格和坐标轴
+  const grid = new GridHelper(50, 30);
+  scene.add(grid);
+
+  const axes = new AxesHelper();
+  axes.material.depthTest = false;
+  axes.renderOrder = 1;
+  scene.add(axes);
+
+  // 创建轨道控制（用于导航场景）。
+  const controls = new OrbitControls(camera, threeCanvas);
+  controls.enableDamping = true;
+  controls.target.set(-2, 0, 0);
+
+  // 动画循环
+  const animate = () => {
+    controls.update();
+    renderer.render(scene, camera);
+    requestAnimationFrame(animate);
+  };
+
+  animate();
+
+  // 根据浏览器的大小调整视口
+  window.addEventListener("resize", () => {
+    size.width = window.innerWidth;
+    size.height = window.innerHeight;
+    camera.aspect = size.width / size.height;
+    camera.updateProjectionMatrix();
+    renderer.setSize(size.width, size.height);
+  });
+```
+
+  🌏
+要在本地运行该应用程序，我们需要一个本地服务器。如果你使用VS Code作为IDE，一个选择是安装[实时服务器扩展](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)，它允许我们打开谷歌浏览器的一个实例，运行我们的网络应用程序，并实时查看我们对代码的修改。
+
+## 加载IFC文件
+
+### 加载用户的模型
+
+  🏠
+最后，我们将使用IFC.js来加载IFC文件。这可以通过实例化加载器并为用户向HTML输入元素上传IFC文件时创建一个事件来完成。
+
+```js
+  import { IFCLoader } from "web-ifc-three/IFCLoader";
+
+  // 设置IFC加载
+  const ifcLoader = new IFCLoader();
+
+  const input = document.getElementById("file-input");
+  input.addEventListener(
+    "change",
+    (changed) => {
+      const file = changed.target.files[0];
+      var ifcURL = URL.createObjectURL(file);
+      ifcLoader.load(
+            ifcURL,
+            (ifcModel) => scene.add(ifcModel.mesh));
+    },
+    false
+  );
+```
+
+  🎣
+  请记住，如果你没有把wasm文件保存在项目的服务文件根目录下，你需要用`setWasmPath`指定它的位置。例如，如果我们把它们保存在项目根目录下的`wasm`文件夹中，该文件夹名为`static`，我们将做如下工作。
+
+```js
+  ifcLoader.ifcManager.setWasmPath("static/wasm/");
+```
+
+<Scene link={"https://ifcjs.github.io/hello-world/examples/web-ifc-three/helloworld/"}/>
+
+如果你所做的一切都正确，你应该能够在你的本地服务器中看到与[这](https://ifcjs.github.io/hello-world/examples/web-ifc-three/helloworld/)类似的东西。从这里开始，可能性是无穷的。
+
+### 加载我们的模型
+
+  🤔
+在上一点中，我们看到如何直接加载BIM模型，这很好。如果我们想显示我们的BIM模型而不是让用户上传他们的模型呢？这很简单。一般来说，有两种可能性。
+
+- 把IFC放在你想显示它的同一个应用程序里。
+- 必须从外部存储服务中获取它。
+
+
+  🎩
+在第一种情况下，只需引用IFC文件的URL即可。就是说，它在应用程序中的相对路径。例如，如果IFC在项目根部一个叫 "models "的文件夹中，我们可以在启动应用程序时加载该IFC，如下所示。
+
+```js
+ifcLoader.load(
+    "models/Example_model.ifc",
+    (ifcModel) => scene.add(ifcModel.mesh));
+```
+
+<IfcAlert>
+从远程存储服务中获取文件的方法因使用的服务而异。然而，逻辑是相同的：获取信息，创建一个URL并将其作为参数传递给IFCLoader。
+</IfcAlert>
+
+<Scene link={"https://ifcjs.github.io/hello-world/examples/web-ifc-three/introduction/"}/>
+
+## 总结
+
+  🎉
+恭喜你！你刚刚创建了你的第一个IFC浏览器。你刚刚创建了你的第一个IFC浏览器。进入文档的下几页，看看你还能用IFC.js做什么。
+
+  <IfcCard icon="🔥" title="我还能用IFC.js做什么？">
+这仅仅是个开始。你可以看看<a href="https://github.com/IFCjs/web-ifc-viewer">web-ifc-viewer</a>，它包括用于选择对象、改变几何体外观、剖面图和更多的工具。你可以试试<a href="https://ifcjs.github.io/web-ifc-viewer/example/index">这里</a>。
+  </IfcCard>
