@@ -1,6 +1,6 @@
 ---
 title: Hello world
-sidebar_position: 2
+sidebar_position: 3
 ---
 
   import {IfcCard} from "../src/components/Card/InfoCard";
@@ -10,7 +10,7 @@ sidebar_position: 2
 ## Introduction
 
   ⚡
-Creating a BIM application with IFC.js is very easy. You can find the complete project of the guide [here](https://github.com/IFCjs/hello-world/tree/main/scenes/helloworld) and the deployed application [here](https://ifcjs.github.io/hello-world/scenes/helloworld/). You only need to have <a href="https://nodejs.org/en/">Node.js</a> and any IDE installed to follow the steps below. Also, if you don't have any IFC files to follow along, you can get some [here](https://github.com/IFCjs/test-ifc-files).
+Creating a BIM application with IFC.js is very easy. You can find the complete project of the guide [here](https://github.com/IFCjs/hello-world/tree/main/examples/web-ifc-three/helloworld) and the deployed application [here](https://ifcjs.github.io/hello-world/examples/web-ifc-three/helloworld/). You only need to have <a href="https://nodejs.org/en/">Node.js</a> and any IDE installed to follow the steps below. Also, if you don't have any IFC files to follow along, you can get some [here](https://github.com/IFCjs/test-ifc-files).
 
   <IfcAlert>
 Using IFC.js requires a basic knowledge of web development (HTML, CSS, JavaScript) and Three.js. If you have no previous experience with Three.js, you should probably look <a href="https://threejsfundamentals.org/">here</a>.
@@ -152,12 +152,12 @@ Also, the `package.json` file needs to be modified to contain the commands to co
 ### WebAssembly
 
   📁
-The next thing to do is to copy the `web-ifc.wasm` file to a directory in your project. It can be found in `node_modules\three\examples\jsm\loaders\ifc`. We can copy it wherever we want; in this example, it will be copied to a folder called wasm in the root directory of the project.
+The next thing to do is to copy the `web-ifc.wasm` and `web-ifc-mt.wasm` files to a directory in your project. It can be found in `node_modules\web-ifc` (or `node_modules\three\examples\jsm\loaders\ifc` if you are only using Three's IFCLoader). We can copy them wherever we want; in this example, they will be copied to a folder called wasm in the root directory of the project.
 
-This file is necessary because it contains the compiled C++ logic of <a href="https://github.com/IFCjs/web-ifc">web-ifc</a>, which is the parsing core to read and write IFC files with native speed
+These files are necessary because they contain the compiled C++ logic of <a href="https://github.com/IFCjs/web-ifc">web-ifc</a>, which is the parsing core to read and write IFC files with native speed.
 
   <IfcAlert>
-This file has to be served statically in your application. This might need different tweaks if you are using frameworks or libraries like React, Angular, Vue or Svelte.
+These files have to be served statically in your application. This might need different tweaks if you are using frameworks or libraries like React, Angular, Vue or Svelte.
   </IfcAlert>
 
 
@@ -258,6 +258,8 @@ To run the application locally we will need a local server. If you are using VS 
 
 ## Loading IFC files
 
+### Loading user's models
+
   🏠
 Finally, we will use IFC.js to load IFC files. This can be done by instantiating the loader and creating an event for when the user uploads an IFC file to the HTML input element.
 
@@ -271,29 +273,56 @@ Finally, we will use IFC.js to load IFC files. This can be done by instantiating
   input.addEventListener(
     "change",
     (changed) => {
-      var ifcURL = URL.createObjectURL(changed.target.files[0]);
-      ifcLoader.load(ifcURL, (ifcModel) => scene.add(ifcModel.mesh));
+      const file = changed.target.files[0];
+      var ifcURL = URL.createObjectURL(file);
+      ifcLoader.load(
+            ifcURL,
+            (ifcModel) => scene.add(ifcModel.mesh));
     },
     false
   );
 ```
 
   🎣
-Keep in mind that if you haven't saved the file `web-ifc.wasm` in the root of the project, you'll need to specify its location with `setWasmPath`. For instance, if we had store `web-ifc.wasm` in a folder called `wasm` contained in a folder called `static` in the root of the project, we would do the following:
+Keep in mind that if you haven't saved the wasm files in the root of served files of the project, you'll need to specify its location with `setWasmPath`. For instance, if we had them stored in a folder called `wasm` contained in a folder called `static` in the root of the project, we would do the following:
 
 ```js
   ifcLoader.ifcManager.setWasmPath("static/wasm/");
 ```
 
-<Scene link={"https://ifcjs.github.io/hello-world/scenes/helloworld/"}/>
+<Scene link={"https://ifcjs.github.io/hello-world/examples/web-ifc-three/helloworld/"}/>
 
-If you have done everything correctly, you should be able to see something similar to [this](https://ifcjs.github.io/hello-world/scenes/helloworld/) in your local server. From here, the possibilities are endless.
+If you have done everything correctly, you should be able to see something similar to [this](https://ifcjs.github.io/hello-world/examples/web-ifc-three/helloworld/) in your local server. From here, the possibilities are endless.
 
-  <IfcCard icon="🔥" title="What else can I do with IFC.js?">
-This is just the beginning. You can take a look at <a href="https://github.com/IFCjs/web-ifc-viewer">web-ifc-viewer</a>, which includes tools for object selection, changing geometry appearance, section planes and much more. You can try it <a href="https://ifcjs.github.io/web-ifc-viewer/examples/simple-html/">here</a>.
-  </IfcCard>
+### Loading our models
+
+  🤔
+In the previous point we saw how to load BIM models directly, and that's great. What if we want to show our BIM models instead of allowing the user to upload theirs? This is very simple. Generally there are two possibilities:
+
+- Having the IFC in the same application where you want to display it.
+- Having to get it from an external storage service.
+
+
+  🎩
+In the first case, it is sufficient to reference the URL of the IFC file. That is, its relative path in the application. For example, if the IFC is in a folder called "models" in the root of the project, we could load that IFC when starting the application as follows:
+
+```js
+ifcLoader.load(
+    "models/Example_model.ifc",
+    (ifcModel) => scene.add(ifcModel.mesh));
+```
+
+<IfcAlert>
+    Getting a file from a remote storage service varies depending on the service used. However, the logic is the same: get the information, create a URL and pass it as an argument to the IFCLoader.
+</IfcAlert>
+
+<Scene link={"https://ifcjs.github.io/hello-world/examples/web-ifc-three/introduction/"}/>
+
+## Conclusion
 
   🎉
 Congratulations! You have just created your first IFC viewer. Go to the next pages of the docs to find out what else can you do with IFC.js.
 
-
+  <IfcCard icon="🔥" title="What else can I do with IFC.js?">
+This is just the beginning. You can take a look at <a href="https://github.com/IFCjs/web-ifc-viewer">web-ifc-viewer</a>, which includes tools for object selection, changing geometry appearance, section planes and much more. You can try it <a href="https://ifcjs.github.io/web-ifc-viewer/example/index">here</a>.
+  </IfcCard>

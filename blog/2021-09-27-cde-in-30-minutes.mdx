@@ -1,0 +1,272 @@
+---
+slug: Build a CDE in 30 minutes
+title: Build a CDE in 30 minutes
+author: Ansoni
+author_title: Make you own CDE from scratch!
+author_url: https://github.com/agviegas
+author_image_url: https://secure.gravatar.com/avatar/9263b9f81d351788e46bc64000c03cb6
+tags: [
+tutorial, CDE, Google
+]
+---
+
+_All the big companies are selling their CDE. Why don't YOU make your own CDE?_
+
+<!--truncate-->
+
+import { IfcImage } from "../src/components/Image/Image";
+import { IfcCard } from "../src/components/Card/InfoCard";
+
+<IfcImage hideSource={true} image=<img src={require('@site/static/img/blog/2021-09-27/lego.jpg').default} alt="Lego image"></img> ifcLink="https://www.pexels.com/photo/set-of-multicolored-plastic-construction-toys-scattered-on-floor-7444982/"></IfcImage>
+
+## But wait, what is a CDE?
+
+📦
+Informally speaking, **CDE** is nothing more than a place where the information of a construction project is centralised and accesible through internet.
+
+  <IfcCard>
+🔧🔨
+CDEs can have all the functionalities of traditional BIM applications: 3D viewers, reading and editing data, energy simulations, automatic measurements and budgets, etc.
+</IfcCard>️
+
+🌎🌍🌏
+However, they have a fundamental advantage: they are **on the web**, and that means they are accessible from anywhere and from any device without having to install anything.
+
+## Ok, but why would I want a CDE?
+
+💸
+Well, the truth is that right now, CDEs are the new black. **Almost every major company in the industry is building a CDE** and selling them to their customers at exorbitant prices.
+
+🏃‍♀️🏃‍♂️🏃‍♀️
+With internet getting faster and better, there will come a day when desktop applications as we know them will lose relevance, and a large part of our tasks will be performed in web applications or server applications. In other words, **CDEs are the future**, and right now there is a big race to build the best one.
+
+## I get it, CDEs rock. But I will never be able to develop one myself
+
+👩‍🏫
+Wrong! The biggest beneficiary of you thinking you can't do BIM solutions is the current BIM vendors. At IFC.js we wanted to bust that myth and make a simple CDE from scratch to show that **starting to develop BIM applications is not that difficult**.
+
+☝
+Obviously, this tutorial is a minimal example. But from the simple CDE of this tutorial to the CDEs of large companies, there is not as much distance as it might seem. **Enough chit-chat, let's get on with it!**
+
+## CDE design
+
+### Strategy
+
+⏳
+We only have **half an hour** to do this CDE, so we have to choose carefully how to do it in order not to waste any time. First things first: we need **a place to store project documentation**. Do you know of an existing tool that allows us to do that? We have thought of **Google Drive**!
+
+  <IfcCard>
+💪
+Google Drive has a lot of power: we can control read and write access to files, version control, an open API... In short, it has many of the things that BIM software companies charge you for, but totally free.
+</IfcCard>️
+
+
+🛑
+However, Google Drive has a fundamental limitation: it does not have a 3D viewer and does not allow easy access to data in BIM models (e.g. IFC models).
+
+🤝
+**This is where IFC.js comes in**, allowing us to build BIM applications directly on the web. Combining the storage and permissions power of google drive with the 3d and data reading and editing capabilities of IFC.js, we could build our basic CDE in 30 minutes. Here's how:
+
+### Architecture
+
+🤷‍♀️
+**How to connect** IFC.js and google drive to be able to use both as a CDE? Our design proposal is as follows. It may look complicated, but it's actually very very simple.
+
+<IfcImage image=<img src={require('@site/static/img/blog/2021-09-27/schema.jpg').default} alt="Schema explaining the concept of the CDE"></img>></IfcImage>
+
+🏠
+First we are going to create an **3D BIM web application that is able to download files from google drive**. Specifically, it will download the file from google drive whose ID it finds in its URL parameter. For example, if your URL is `https://.../?id=123&name=TEST.ifc`, it will download the file whose `ID` is `123` from the google account of the user who is logged into the app.
+
+🌐
+Then we are going to create a [google chrome extension](https://developer.chrome.com/docs/extensions/) that is going to do three things:
+
+- **Read the name of the HTML element** that the user clicks on via web scraping.
+
+- **Find out the ID of that element** using the google drive API.
+
+- **Create a menu that allows the user to open the URL with the IFC.js web application**. In addition, you are going to add two url parameters: the name and the id of the file.
+
+  <IfcCard>
+In short: a google chrome extension gets the name of a file when the user clicks on it and opens a web app that knows how to download files by their ID. That's all.
+</IfcCard>️
+
+### IFC.js app
+
+#### BIM app
+
+🏢
+Thanks to IFC.js, **this is the easiest part**. Specifically, we are going to create it with [web-ifc-viewer](https://github.com/IFCjs/web-ifc-viewer), which allows to make BIM applications in 50 lines of code. You can find all the code [here](https://github.com/IFCjs/hello-world/tree/main/examples/web-ifc-viewer/google-drive-viewer).
+
+😉
+Yes, you read that right: **a full 3D BIM app in 50 lines**. And it includes functionalities such as section drawings and 3D dimensions.
+
+```js
+    import {IfcViewerAPI} from 'web-ifc-viewer';
+    import {Color} from 'three'
+
+    // Get div container where 3d scene is rendered
+    const container = document.getElementById('viewer-container');
+
+    // Initialize IFC.js API and add it as global variable
+    const viewer = new IfcViewerAPI({
+                            container,
+                            backgroundColor: new Color(0xffffff)
+                                });
+    viewer.IFC.applyWebIfcConfig({
+                            COORDINATE_TO_ORIGIN: true,
+                            USE_FAST_BOOLS: true
+                                });
+    window.webIfcAPI = viewer;
+
+    // Set up scene
+    viewer.addAxes();
+    viewer.addGrid(50, 50);
+    viewer.IFC.setWasmPath('wasm/');
+    viewer.clipper.active = true;
+    let dimensionsActive = false;
+
+    // Add basic input logic
+    const handleKeyDown = (event) => {
+        if (event.code === 'KeyE') {
+            dimensionsActive = !dimensionsActive;
+            viewer.dimensions.active = dimensionsActive;
+            viewer.dimensions.previewActive = dimensionsActive;
+            viewer.IFC.unPrepickIfcItems();
+            window.onmousemove = dimensionsActive ?
+                                            null :
+                                .IFC.prePickIfcItem;
+        }
+        if (event.code === 'KeyD') {
+            viewer.dimensions.create();
+        }
+        if (event.code === 'KeyG') {
+            viewer.clipper.createPlane();
+        }
+        if (event.code === 'Delete') {
+            viewer.dimensions.deleteAll();
+            viewer.clipper.deletePlane();
+            viewer.IFC.unpickIfcItems();
+        }
+    };
+    window.onkeydown = handleKeyDown;
+
+    // Highlight items when hovering over them
+    window.onmousemove = viewer.IFC.prePickIfcItem;
+
+    // Select items and log properties
+    window.ondblclick = async () => {
+        const item = await viewer.IFC.pickIfcItem(true);
+        if(item.modelID === undefined || item.id === undefined ) return;
+        console.log(
+            await viewer.IFC.getProperties(item.modelID, item.id, true));
+    }
+```
+
+🎨
+Make sure you create the necessary HTML and CSS to give the viewer the look and feel you want.
+
+
+#### Google Drive API
+
+🔒🔒🔒
+Well, we have a BIM viewer, but for now it can't download anything from the **Google Drive API**. However, that's easy: just follow these steps from the [official documentation](https://developers.google.com/drive/api/v3/quickstart/js) and copy and paste the JavaScript code to be able to access the API.
+
+  <IfcCard>
+🔑🔑🔑
+Following the google guide, you'll need to create a new Google Cloud project to get your own CLIENT_ID and API_KEY; they are just two texts that you must have for google to know who you are. In other words, you can't use the keys we have to access to your drive!
+</IfcCard>️
+
+📋
+If you take a look at the code we have posted, you will see that **we have copied and pasted almost all of the code** from the [google example](https://developers.google.com/drive/api/v3/quickstart/js). The only thing we have added is the following, which simply gets the ID of the file from the URL of the web application and downloads it from google drive:
+
+```js
+    /**
+     *  Called when the signed in status changes, to update the UI
+     *  appropriately. After a sign-in, the API is called.
+     */
+    function updateSigninStatus(isSignedIn) {
+        if (isSignedIn) {
+            const {id, name} = getIdAndName();
+            fileName.innerText = `Name: ${name}`;
+            if (id) downloadFile(id);
+            else console.log('No ID was providen as URL parameter!');
+        }
+    }
+
+    /**
+     *  Sign in the user upon button click.
+     */
+    function handleAuthClick(event) {
+        authorizeButton.onclick = handleSignoutClick;
+        buttonText.innerText = 'Sign out';
+        gapi.auth2.getAuthInstance().signIn();
+    }
+
+
+    function downloadFile(fileId) {
+        gapi.client.drive.files.get({
+            fileId: fileId,
+            alt: 'media'
+        }).then(function (response) {
+            loadIfcModel(response.body);
+        }, function (error) {
+            console.error(error)
+        })
+    }
+
+    function getIdAndName() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get("id");
+        const name = urlParams.get("name");
+        return {id, name};
+    }
+
+    function loadIfcModel(text) {
+        const blob = new Blob([text], {type: 'text/plain'});
+        const file = new File([blob], "ifcModel");
+        window.webIfcAPI.IFC.loadIfc(file);
+    }
+```
+
+🎉🎉 Congratulations! You have just built a BIM application capable of downloading files from Google Drive. Now all that remains is the last part: creating the Google Chrome extension.
+
+### Chrome extension
+
+Now we are going to make a Google Chrome extension so that the **user can select the files they want to open**. If you've never done this before, it may sound intimidating, but it's actually very simple. You can find the finished result [here](https://github.com/IFCjs/Drive-CDE).
+
+  <IfcCard>
+🔑🔑🔑
+Following the google guide, you'll need to create a new Google Cloud project to get your own CLIENT_ID and API_KEY; they are just two texts that you must have for google to know who you are. In other words, you can't use the keys we have to access to your drive! <a href="https://developers.google.com/drive/api/v3/about-sdk#create_and_open_files_directly_from_the_drive_ui">Have a look here for more details</a>.
+</IfcCard>️
+
+👣
+There are many [step-by-step guides](https://dev.to/anobjectisa/how-to-build-a-chrome-extension-new-manifest-v3-5edk) on the internet, but we recommend that you take the code from our repository, study it and play with it to see how it works.
+
+🧱
+There are really only 2 important files:
+
+- [background.js](https://github.com/IFCjs/Drive-CDE/blob/master/background.js): controls the events of the page, like when the user clicks on something, but doesn't have access to the page content.
+
+- [foreground.js](https://github.com/IFCjs/Drive-CDE/blob/master/foreground.js): has access to the page content, but not to the events.
+
+👬
+So, as you can imagine, both files have to communicate with each other in order to do what we want. As you can see in the code, they do it with a simple message system.
+
+👩‍🏫
+In the repository you will find step-by-step comments on what does what. In total, there are less than 100 lines of relevant code: everything else is copied and pasted.
+
+
+### All toguether!
+
+🔥🔥🔥
+This is how our 30 minutes CDE looks:
+
+<iframe width="100%" height="600px" src="https://www.youtube.com/embed/lYzTaOBuv7k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+## Conclusion
+
+🏆
+Congratulations! You have just created **your first CDE**. It may not seem much, but think of all its functionalities: file storage, permissions and version control, 3d view, access to properties, 3d measurements, section planes...
+
+🚀🚀🚀
+If we have done this in such a short time and using Google Drive, can you imagine what is possible to build with IFC.js and other technologies such as **databases** or **servers?** Don't worry, we'll be making tutorials on all that and more!

@@ -1,9 +1,9 @@
 .ifcImage {
-  margin: 2rem;
+  margin: 0rem;
 }
 
 @media screen and (max-width: 1400px) {
   .ifcImage {
-    margin: 2rem 0;
+    margin: 0;
   }
 }

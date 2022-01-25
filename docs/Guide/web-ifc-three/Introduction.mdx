@@ -12,64 +12,72 @@ import {IfcAlert} from "../../../src/components/Alert/Alert";
 ...but it has geometry.
 
   💪
-[Web-ifc]("https://ifcjs.github.io/info/docs/Guide/web-ifc/Introduction") is a very powerful tool capable of reading and writing IFCs with near-native speed. However, almost all BIM applications do not just read and write, but show the user a 3D view of the models they are working with. You could use web-ifc in any graphics engine, but we have already done that for you in **web-ifc-three**.
+[Web-ifc]("https://ifcjs.github.io/info/docs/Guide/web-ifc/Introduction") is a very powerful tool capable of reading and writing IFCs with near-native speed. However, almost all BIM applications show the user a 3D view of the models they are working with. You could use `web-ifc` in any graphics engine, but we have already done that for you in **web-ifc-three**.
 
   🧶
-`web-ifc-three` is a wrapper around [web-ifc]("https://ifcjs.github.io/info/docs/Guide/web-ifc/Introduction") that reads all data from IFC files and transforms it into geometry that can be displayed and edited in any browser. You can install it with `npm i web-ifc-three` or `yarn add web-ifc-three`.
-
-Some cool facts about this module:
+`web-ifc-three` is a wrapper around `web-ifc` that reads all data from IFC files and transforms it into geometry that can be displayed and edited in any browser. You can install it with `npm i web-ifc-three` or `yarn add web-ifc-three`. Some cool facts about this module:
 
 <IfcCard>
-    🏅
+    🐣
     It's super easy to use.
 </IfcCard>
 
 <IfcCard>
-    🏅
+    🎩
     It's the <a href="https://threejs.org/examples/webgl_loader_ifc.html">official IFCLoader of Three.js</a>.
 </IfcCard>
 
 <IfcCard>
-    🏅
+    🚀
     It's very efficient, being able to display thousands of objects at 60 fps in a browser. It can display multiple models, change materials and filter items.
 </IfcCard>
 
 
 <IfcCard>
-    🏅
+    🧠
     It can get and traverse the spatial structure tree of multiple files. Also, it can access the properties of all the items, both clicking on them in the 3d view and with smart filters.
 </IfcCard>
 
+  🎓
 In the following points, the API and its functionalities will be shown step by step. However, there are a couple of issues that are important to be clear about before using web-ifc-three.
 
 ### Can I use `web-ifc` directly?
 
-With web-ifc you could build almost any BIM tool capable of reading and writing IFC. So why create a layer on top of it? Because almost all BIM tools are 3d, and we think it would not make sense for all developers to implement their own viewer from scratch.
+With web-ifc you could build almost any BIM tool capable of reading and writing IFC. So why create a layer on top of it?
 
-If you are not interested in displaying a 3d scene and are only interested in the data, you may be better off using web-ifc directly. This is way more flexible, but will
+  🤷‍♀️
+Because almost all BIM tools are 3D, and we think it would not make sense for all developers to implement a viewer from scratch. If you are only interested in the data, you may be better off using web-ifc directly.
+
+In addition, web-ifc-three makes working with IFCs much easier and safer even for the developer who has no previous experience with the format.
 
 <IfcAlert>
-    Web-ifc-three not only creates geometry, but has logic that makes it much easier to traverse the IFC data, retrieve the spatial structure tree, access properties, etc.
+    Web-ifc is way more flexible but requires more knowledge of the IFC schema and a greater implementation effort.
 </IfcAlert>
 
 ### Can I use the `THREE.IFCLoader` directly?
 
-As mentioned above, web-ifc-three is the official IFCLoader of Three.js. That is, if you import the IFCLoader from Three.js, the code will be exactly the same as the code you will find in the web-ifc-three repository.
+  👬
+As mentioned above, `web-ifc-three` is the official IFCLoader of Three.js. That is, if you import the IFCLoader from Three.js, the code will be the same as the code you will find in the `web-ifc-three` repository.
 
-You might be tempted to import the IFCLoader from Three.js and not import web-ifc-three in your project. This should work, but beware that Three.js is a very large library, and its update rate is much slower than that of IFC.js.
+  🚧
+You might be tempted to import the `IFCLoader` from Three.js to avoid importing `web-ifc-three` in your project. This should work, but beware that Three.js is a very large library, and its update rate is much slower than that of IFC.js.
 
 <IfcCard
     icon="⏳"
     title=
-        "Slight delay"> Not only does this mean that Three.js IFCLoader may not have the latest updates, but also that the latest bugs we have fixed will remain unresolved in Three.js until the next version is released. As IFC.js grows, this lag will become less and less noticeable.
+        "Slight delay"> Three.js IFCLoader may not have the latest updates and the latest bugs we have fixed will remain unresolved in Three.js until the next version is released.
 </IfcCard>
 
-To use the `THREE.IFCLoader` or the original `IFCLoader` you only have to change the import statement:
+To use the `THREE.IFCLoader` instead of the original `IFCLoader` you only have to change the import statement:
 
 ```js
-  // Import three.js IFCLoader
-  import {IFCLoader} from "three/examples/jsm/loaders/IFCLoader";
-
   // Import web-ifc-three (original) IFCLoader
-  import {IFCLoader} from "web-ifc-three/IFCLoader";
+  import {
+    IFCLoader
+} from "web-ifc-three/IFCLoader";
+
+  // Import three.js IFCLoader
+  import {
+      IFCLoader
+  } from "three/examples/jsm/loaders/IFCLoader";
 ```

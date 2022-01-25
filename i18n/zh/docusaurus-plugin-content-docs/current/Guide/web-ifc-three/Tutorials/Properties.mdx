@@ -1,0 +1,204 @@
+---
+title: 📃 财产
+sidebar_position: 3
+---
+
+
+import {IfcAlert} from "../../../../../../../src/components/Alert/Alert";
+import {IfcCard} from "../../../../../../../src/components/Card/InfoCard";
+import {Scene} from "../../../../../../../src/components/Scene/Scene"
+
+## 简介
+
+🧬🧬🧬️
+尽管几乎所有的BIM模型都有几何图形，但几乎所有人都同意真正重要的是BIM中的 "I"，即**信息。IFC.js可以以**的速度从上到下遍历任何IFC文件，而且几乎不需要代码。
+
+💾
+这不仅使创建网络应用成为可能，**在客户端直接从IFC**文件中读取信息，而且还可以将这些信息传输到关系型或非关系型数据库，并在后端进行处理。
+
+<IfcAlert>
+    IFC.js可以通过ID、空间树和过滤搜索来读取IFC文件。
+</IfcAlert>
+
+📚
+在IFC方案中，有几种类型的属性，每一种都有特定的用途，IFC.js可以得到**的所有属性。一些最常见的是。
+
+<IfcCard icon="📕" title="本土属性">
+    具体到每个IFC班。
+</IfcCard>
+
+<IfcCard icon="📗" title="类型属性">
+    描述同一类型的所有元素的属性（如某一类型的所有围护墙）。
+</IfcCard>
+
+<IfcCard icon="📘" title="材料特性">
+    描述了构成该元素层的所有材料。
+</IfcCard>
+
+<IfcCard icon="📙" title="属性集">
+    任意的用户定义的属性集。可能有多个属性集与一个或多个元素相关联。每个属性集都包含一个任意的、相互关联的属性组。
+</IfcCard>
+
+<IfcCard icon="📒" title="数量集">
+    描述它们所指向的元素的尺寸的属性集。虽然也可以从几何定义中隐含地推断出元素的尺寸，但这种明确的描述使得创建测量IFC模型的应用程序变得更加容易。
+</IfcCard>
+
+🚴‍♂️ 但理论够了! 让我们开始工作吧。
+
+## 如何做到这一点
+
+### 你好属性
+
+
+<p>
+    👩‍🏫
+    从IFC中提取属性的基本方法是从一个元素的ID中提取。在许多情况下，当用户选择一个元素时，我们会希望得到它的直接和间接属性。<a href="https://ifcjs.github.io/info/zh/docs/Guide/web-ifc-three/Tutorials/Picking/" target="_self">
+    之前的教程</a>已经展示了如何轻松获得该ID。</p>
+
+☝
+现在我们有了这个ID，要获得一个元素的属性有多难呢？你只需要在我们在<a href="https://ifcjs.github.io/info/zh/docs/Guide/web-ifc-three/Tutorials/Picking/" target="_self">采摘教程</a>中看到的基础上增加**一行代码，就能在双击时看到所选元素的属性。
+
+```js {9}
+// 当一个项目被选中时，会执行该事件
+async function pick(event) {
+    const found = cast(event)[0];
+    if (found) {
+        const index = found.faceIndex;
+        const geometry = found.object.geometry;
+        const ifc = ifcLoader.ifcManager;
+        const id = ifc.getExpressId(geometry, index);
+        const modelID = found.object.modelID;
+        const props = await ifc.getItemProperties(modelID, id);
+        output.innerHTML = JSON.stringify(props, null, 2);
+    }
+}
+```
+
+<Scene link={"https://ifcjs.github.io/hello-world/examples/web-ifc-three/picking-properties/"}/>
+
+**🤨 但这些属性是什么？**
+
+它们是**原生属性**，也就是说，每个ifc元素类型所固有的基本属性。这些属性是以**JavaScript对象的形式给出的，所以它们非常容易被遍历
+
+**🤔 为什么有些属性有数字作为值？**
+
+这些不是数字，而是**表达式的ID**! 这意味着你可以用这个ID再次使用`getItemProperties()`，你会得到那个**引用的**元素的属性。
+
+<IfcCard>
+    这就是IFC的工作方式：每个元素都有属性，每个属性都可以是其他元素的引用。因此，你基本上可以通过引用来遍历整个IFC。
+</IfcCard>
+
+**😑 参考资料？但我想直接得到所有的信息!**
+
+别担心，我们会帮你解决的 你可以使用`getItemProperties()`的可选第三个参数，这是一个布尔值，默认为假。如果你把它设置为 "真"，我们将递归地获得所有被引用的元素，并把所有的东西都打包在一个单一的JavaScript对象中。
+
+尽管如此，我们通常建议避免这样做，以避免运行时的开销。更好的做法是只对那些你需要的ID使用`getItemProperties()`，当你需要它们时。
+
+**🙄 我怎样才能获得其他类型的财产？**
+
+IFC.js的API还有其他类似的方法，用于所有其他属性类型。`getTypeProperties()`、`getMaterialProperties()`和`getPropertySets()`。最后一个方法同时获取了属性集和数量集。
+
+**😨 `getItemProperties()`是穿越IFC的唯一方法吗？**
+
+根本不可能! 我们接下来会看到如何穿越整个空间结构。
+
+
+### 穿越国际金融中心
+
+🔥 你现在可以从一个元素的ID来浏览IFC信息，你也知道如何通过点击场景中的物体来获得ID。然而，我们知道，**这还不够**。
+
+- 如果你想获得没有几何表示的元素的属性（例如`IfcSite`），该怎么办？
+
+- 如果你想穿越整个IFC的空间结构，怎么办？
+
+🌈 当然，使用IFC.js的API，这一切都非常容易。
+
+### Spatial tree
+
+🌳🌲🌴 你可能知道，所有的IFC都有一个一般的结构，叫做**空间元素结构**（我们会把它称为 "空间树"）。它是由定义项目中所有产品（物理对象）的相对位置的元素组成。
+
+<IfcAlert>
+    空间结构一般由IfcProject、IfcSite、IfcBuilding、IfcBuildingStorey和IfcSpace组成。
+</IfcAlert>
+
+你可以通过调用`getSpatialStructure()`来获得项目的空间结构，其中唯一的参数是`modelID`。这个方法将作为一个JavaScript对象返回项目的整个空间结构。
+
+🚧 这是否意味着你可以得到该项目所有产品的所有属性？**不，***，因为那将是很昂贵的计算。相反，你得到的是一棵包含以下信息的项目树。
+
+```ts
+interface Node {
+    expressID: number;
+    type: string;
+    children: Node[];
+}
+```
+
+👩‍🏫
+注意，你只能得到**类型**（如`IfcWall`）和**表达的ID**。如果你想得到一个元素的属性，你必须遍历树，在所有的ID上调用上述的属性获取方法。
+
+<IfcCard>
+    如果你的目标是向用户显示属性，一般来说，只有在用户要求时（例如，在你的GUI中点击一个特定的项目）才会得到属性，这样会更好。
+</IfcCard>
+
+例如，如果你要求一个项目的空间结构，你可能得到这样的结果。
+
+```js
+{
+    expressID: 100,
+    type: "IfcProject",
+    children: [{
+        expressID: 101,
+        type: "IfcSite",
+        children: [{
+            expressID: 102,
+            type: "IfcBuilding",
+            children:[
+                {
+                    expressID: 103,
+                    type: "IfcBuildingStorey",
+                    children: {...}
+                },
+                {
+                    expressID: 104,
+                    type: "IfcBuildingStorey",
+                    children: {...}
+                }
+            ]
+        }]
+    }]
+}
+```
+
+### 按类型获取项目
+
+👩‍🏫
+有时你想检索**某种类型的所有元素（例如项目中的所有`IfcWall`实例）。在这些情况下，通过点击选择元素或获取项目的空间树是没有用的。
+
+🎸🪕🎻
+这就是 `getAllItemsOfType` 方法的作用。使用它真的很简单，你可以直接从`web-ifc`导入类型。例如，要获得项目中所有`IfcSlab`实例的属性，你可以做以下工作。
+
+```js
+import { IFCSLAB } from "web-ifc";
+
+const ifc = ifcLoader.ifcManager;
+const modelID = 0;
+
+async function logAllSlabs() {
+    const slabsID = await ifc.getAllItemsOfType(modelID, IFCSLAB);
+
+    for(let i = 0; i <= slabsID.length; i++) {
+        const slabID = slabsID[i];
+        const slabProperties = await ifc.getItemProperties(0, slabID);
+        console.log(slabProperties);
+    }
+}
+
+logAllSlabs();
+```
+
+## 接下来的步骤
+
+🎉🎉🎉
+祝贺你！你现在应该能够**穿越任何IFC**并提取你所寻找的属性。你现在应该能够**穿越任何IFC**并提取你要找的属性。
+
+🐱‍👤 然而，我们能用这些属性做什么呢？在下面的教程中可以找到一个可能的应用，我们将看到如何**隐藏和隔离**元素。

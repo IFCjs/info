@@ -1,0 +1,145 @@
+---
+title: 🤏 ピッキング
+sidebar_position: 1
+---
+
+import {IfcCard} from "../../../../../../../src/components/Card/InfoCard";
+import {IfcAlert} from "../../../../../../../src/components/Alert/Alert";
+import {Scene} from "../../../../../../../src/components/Scene/Scene"
+
+## はじめに
+
+🚶‍♀️
+これまではIFCモデルをシーンに読み込むだけでした。しかし、そのモデルを操作できるようになれば、さらに素晴らしいと思います。
+
+### Three.jsの依存関係のインポート
+
+  ⚡⚡⚡
+オブジェクトを使って何かをする前には、オブジェクトを選択できる必要があります。これは、`three`のコアライブラリからインポートできる[Three.js Raycaster](https://threejs.org/docs/#api/en/core/Raycaster)を使えば簡単に実現できます。さらに、シーン内のマウスの位置を保存するために、[Vector2](https://threejs.org/docs/#api/en/math/Vector2)オブジェクトをインポートします。
+
+```js
+import {
+  Raycaster,
+  Vector2
+} from "three";
+```
+
+<IfcAlert>
+レイキャスターは、シーン内のオブジェクトに当たる「ビーム」を発射し、その情報を返すことができます。
+</IfcAlert>
+
+### インポート three-mesh-bvh （オプション
+
+  👩‍🚀🚀
+さらに、[three-mesh-bvh library](https://github.com/gkjohnson/three-mesh-bvh)をインポートして、オブジェクトの選択をより最適なものにしていきます。これは `npm i three-mesh-bvh` でインストールできます。心配しないでください、あなたはそのライブラリの使い方を学ぶ必要はありません。これらのライブラリのオブジェクトを渡すだけで、あとはIFC.jsが面倒を見てくれます。
+
+```js
+import {
+    acceleratedRaycast,
+    computeBoundsTree,
+    disposeBoundsTree
+} from 'three-mesh-bvh';
+
+// 最適なピッキングを設定する
+ifcLoader.ifcManager.setupThreeMeshBVH(
+                        computeBoundsTree,
+                        disposeBoundsTree,
+                        acceleratedRaycast);
+```
+
+### IFCモデルのストアリファレンス
+
+  🏠🏠🏠
+何かをする前に、シーン内のIFCモデルを選択するための参照を保存する必要があります。そのためには、読み込んだモデルを保存する配列を作成する必要があります。
+
+```js {2,6}
+  // IFCの読み込みを設定する
+  const ifcModels = [];
+  const ifcLoader = new IFCLoader();
+  async function loadIFC() {
+      await ifcLoader.ifcManager.setWasmPath("../../");
+      ifcLoader.load("../../IFC/01.ifc", (ifcModel) => {
+          ifcModels.push(ifcModel.mesh);
+          scene.add(ifcModel.mesh);
+      });
+  }
+
+loadIFC();
+```
+
+## その方法とは
+
+  🐁
+次に、Raycaster のインスタンスとマウスの位置ベクトルを作成します。アプリケーションを最適化するために、Raycasterは最初に遭遇したオブジェクトからのみ情報を取得します。
+
+```js
+const raycaster = new Raycaster();
+raycaster.firstHitOnly = true;
+const mouse = new Vector2();
+```
+
+次に、Raycasterが光線を投射するために、スクリーン上のマウスの位置を計算する関数が必要です。そのことに注意してください。
+
+- threeCanvas オブジェクトは、Three.js のシーンがレンダリングされている HTML の `<canvas>` 要素です。このオブジェクトへの参照は、`getElementByID()`で取得できます。
+
+- ビームがどのオブジェクトと衝突するかを指定する必要があります。ここでは、読み込んだIFCモデルのみに衝突します。つまり、シーン内に他のオブジェクトがある場合は無視されます。
+
+```js
+function cast(event) {
+
+  // スクリーン上のマウスの位置を計算する
+  const bounds = threeCanvas.getBoundingClientRect();
+
+  const x1 = event.clientX - bounds.left;
+  const x2 = bounds.right - bounds.left;
+  mouse.x = (x1 / x2) * 2 - 1;
+
+  const y1 = event.clientY - bounds.top;
+  const y2 = bounds.bottom - bounds.top;
+  mouse.y = -(y1 / y2) * 2 + 1;
+
+  // マウスを指し示すカメラの上に置く
+  raycaster.setFromCamera(mouse, camera);
+
+  // 光線を当てる
+  return raycaster.intersectObjects(ifcModels);
+}
+```
+
+  👓
+レイを発射し、それが衝突したオブジェクトを返す関数がありますが、そのオブジェクトで何もしていません。そこで、レイが当たった面のインデックスを取得し、それが属するオブジェクトのExpress IDをコンソールに記録する2つ目の関数を作ってみましょう。
+
+```js
+function pick(event) {
+    const found = cast(event)[0];
+    if (found) {
+        const index = found.faceIndex;
+        const geometry = found.object.geometry;
+        const ifc = ifcLoader.ifcManager;
+        const id = ifc.getExpressId(geometry, index);
+        console.log(id);
+    }
+}
+```
+
+<IfcAlert>
+Raycasterは、<i>raycaster.firstHitOnly = true;</i>の場合でも、常にオブジェクトの配列を返します。この場合、配列には、<i>[0]</i>で抽出できる1つのオブジェクトしか含まれません。
+</IfcAlert>
+
+最後に、その関数をイベント（ここではダブルクリック）と関連付けるだけです。
+
+```js
+  threeCanvas.ondblclick = pick;
+```
+
+すべてが正しく行われ、アイテムをダブルクリックすると、コンソールにそのExpress IDが表示されます（コンソールにはF12を押すか、ページを検査することでアクセスできます）。
+
+<Scene link={"https://ifcjs.github.io/hello-world/examples/web-ifc-three/picking/"}/>
+
+## 次のステップ
+
+  🎉🎉🎉
+おめでとうございます。これで、オブジェクトをクリックして、そのオブジェクトのIDを取得する方法がわかりました。そのIDを使っていろいろなことができるようになりました。
+
+  ✨
+しかし、オブジェクトが選択されたことをユーザーがグラフィカルに確認できたらいいですよね。そのためには、次のポイントである要素のハイライトの仕方を学びましょう。

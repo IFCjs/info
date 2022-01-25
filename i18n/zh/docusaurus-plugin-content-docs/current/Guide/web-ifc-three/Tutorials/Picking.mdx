@@ -1,0 +1,146 @@
+---
+title: 🤏 拣选
+sidebar_position: 1
+---
+
+import {IfcCard} from "../../../../../../../src/components/Card/InfoCard";
+import {IfcAlert} from "../../../../../../../src/components/Alert/Alert";
+import {Scene} from "../../../../../../../src/components/Scene/Scene"
+
+## 简介
+
+🚶‍♀️
+到目前为止，我们只把IFC模型加载到场景中。这已经很不错了，但如果能够与该模型进行交互就更好了，而这正是我们要做的。
+
+### 导入Three.js的依赖性
+
+  ⚡⚡⚡
+在你能对物体进行操作之前，你需要能够选择它们。这可以通过[Three.js Raycaster](https://threejs.org/docs/#api/en/core/Raycaster)轻松实现，它可以从`three`的核心库导入。此外，我们将导入一个[Vector2](https://threejs.org/docs/#api/en/math/Vector2)对象来存储鼠标在场景中的位置。
+
+```js
+import {
+  Raycaster,
+  Vector2
+} from "three";
+```
+
+<IfcAlert>
+THREE.Raycaster允许你发射 "光束"，击中场景中的物体并返回其信息。
+</IfcAlert>
+
+### 导入tree-mesh-bvh（可选）。
+
+  👩‍🚀🚀
+此外，我们将导入[three-mesh-bvh库](https://github.com/gkjohnson/three-mesh-bvh)，使对象的选择更加优化。这可以用`npm i three-mesh-bvh`来安装。别担心，你不需要学习如何使用这个库。只要给我们这些库的对象，IFC.js会处理剩下的事情。
+
+```js
+import {
+    acceleratedRaycast,
+    computeBoundsTree,
+    disposeBoundsTree
+} from 'three-mesh-bvh';
+
+// Sets up optimized picking
+ifcLoader.ifcManager.setupThreeMeshBVH(
+                        computeBoundsTree,
+                        disposeBoundsTree,
+                        acceleratedRaycast);
+```
+
+### 存储IFC模型的参考
+
+  🏠🏠🏠
+在做其他事情之前，有必要在场景中保存一个对IFC模型的引用，以便选择它们。要做到这一点，我们只需要创建一个数组，在其中存储我们加载的模型。
+
+```js {2,6}
+//Sets up the IFC loading
+const ifcModels = [];
+const ifcLoader = new IFCLoader();
+ifcLoader.ifcManager.setWasmPath("../../");
+async function loadIFC() {
+    await ifcLoader.ifcManager.setWasmPath("../../");
+    ifcLoader.load("../../IFC/01.ifc", (ifcModel) => {
+        ifcModels.push(ifcModel.mesh);
+        scene.add(ifcModel.mesh);
+    });
+}
+
+loadIFC();
+```
+
+## 如何做
+
+  🐁
+接下来我们将创建一个Raycaster的实例和鼠标位置矢量。为了优化应用程序，Raycaster将只从它遇到的第一个对象中获取信息。
+
+```js
+const raycaster = new Raycaster();
+raycaster.firstHitOnly = true;
+const mouse = new Vector2();
+```
+
+现在我们需要一个函数来让Raycaster投射射线，计算鼠标在屏幕上的位置。请注意。
+
+- threeCanvas对象是渲染Three.js场景的HTML`<canvas>`元素。可以用`getElementByID()`检索到它的引用。
+
+- 有必要指定光束与哪些物体碰撞。在这种情况下，它只会与加载的IFC模型相撞，也就是说，如果场景中有更多的物体，它将忽略它们。
+
+```js
+function cast(event) {
+
+  // 计算鼠标在屏幕上的位置
+  const bounds = threeCanvas.getBoundingClientRect();
+
+  const x1 = event.clientX - bounds.left;
+  const x2 = bounds.right - bounds.left;
+  mouse.x = (x1 / x2) * 2 - 1;
+
+  const y1 = event.clientY - bounds.top;
+  const y2 = bounds.bottom - bounds.top;
+  mouse.y = -(y1 / y2) * 2 + 1;
+
+  // 将其放置在指向鼠标的相机上
+  raycaster.setFromCamera(mouse, camera);
+
+  // 投射射线
+  return raycaster.intersectObjects(ifcModels);
+}
+```
+
+  👓
+我们有一个函数可以发射射线并返回它所碰撞的物体，但我们并没有对该物体做任何事情。让我们创建第二个函数，获取射线击中的面的索引，并在控制台中记录它所属的对象的快递ID。
+
+```js
+function pick(event) {
+    const found = cast(event)[0];
+    if (found) {
+        const index = found.faceIndex;
+        const geometry = found.object.geometry;
+        const ifc = ifcLoader.ifcManager;
+        const id = ifc.getExpressId(geometry, index);
+        console.log(id);
+    }
+}
+```
+
+<IfcAlert>
+Raycaster总是返回一个对象数组，即使<i>raycaster.firstHitOnly = true;</i>。在这种情况下，数组将只包含一个可以用<i>[0]</i>提取的对象。
+</IfcAlert>
+
+最后，剩下的就是将该函数与一个事件（在本例中是一个双击）联系起来。
+
+```js
+  threeCanvas.ondblclick = pick;
+```
+
+如果你做对了一切，双击一个项目，你会在控制台中看到它的快递ID（你可以通过按F12或检查页面来访问控制台）。
+
+<Scene link={"https://ifcjs.github.io/hello-world/examples/web-ifc-three/picking/"}/>
+
+## Next steps
+
+  🎉🎉🎉
+祝贺你! 你现在知道如何通过点击一个物体来获得它的ID。现在我们可以用这个ID做很多事情。
+
+  ✨
+然而，如果用户能以图形方式看到对象被选中，那就更好了。为此，让我们进入下一点，在那里我们将学习如何突出显示元素。

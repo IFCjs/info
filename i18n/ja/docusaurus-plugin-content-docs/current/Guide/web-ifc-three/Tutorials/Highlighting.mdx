@@ -1,0 +1,181 @@
+---
+title: ✨ サブセット
+sidebar_position: 2
+---
+
+import {IfcCard} from "../../../../../../../src/components/Card/InfoCard";
+import {IfcAlert} from "../../../../../../../src/components/Alert/Alert";
+import {Scene} from "../../../../../../../src/components/Scene/Scene"
+
+## はじめに
+
+  🎩
+ほとんどのBIMアプリケーションでは、ユーザーが要素の上にマウスを移動させたり、選択したりすると、要素がハイライトされます。IFC.jsも例外ではありません。このチュートリアルでは、これを実現する方法を見ていきます。
+
+<a href="https://ifcjs.github.io/info/docs/Guide/web-ifc-three/Tutorials/Picking/" target="_self">
+    👩‍🏫
+前回の</a>では、<a href="https://threejs.org/docs/#api/en/core/Raycaster">Raycaster</a>でレイをキャストしたオブジェクトのIDを取得する方法を見ました。これらのIDが得られたので、<b>幾何学的なサブセット</b>を使用してそれらの要素を強調することができます。
+
+<IfcCard icon="🧱" title="幾何学的なサブセット？">
+<b>幾何学的サブセット</b>は、モデル内のアイテムの任意のグループです。例えば、すべてのドア、すべての1階要素、または与えられた条件を満たすすべての要素などです。
+</IfcCard>
+
+### インポートの依存性
+
+  🏀
+アイテムを強調するためには、[material](https://threejs.org/docs/#api/en/materials/Material)が必要です。この例では、Threeのコアライブラリからインポートした[MeshLambertmaterial](https://threejs.org/docs/#api/en/materials/MeshLambertMaterial)を使用しています。
+
+```js
+import {
+  MeshLambertMaterial
+} from "three";
+```
+
+今回はRaycasterを使用するので、<a href="https://ifcjs.github.io/info/docs/Guide/web-ifc-three/Tutorials/Picking/#import-threejs-dependencies" target="_self">これらの依存関係</a>も必要ですし、最適なパフォーマンスを求めるなら<a href="https://ifcjs.github.io/info/docs/Guide/web-ifc-three/Tutorials/Picking/#import-three-mesh-bvh-optional" target="_self">three-mesh-bvh</a>も必要です。
+
+## その方法とは
+
+### ハイライト素材
+
+  🌀
+まず最初に、**ハイライトマテリアル**を作成します。設定を変更して、マテリアルをきれいに見せましょう。プロのアドバイス: `depthTest=false` を使用すると、どの視点からでもオブジェクトが見えるようになります。
+
+```js
+  // サブセット素材の作成
+  const preselectMat = new MeshLambertMaterial({
+      transparent: true,
+      opacity: 0.6,
+      color: 0xff88ff,
+      depthTest: false
+  })
+```
+  🎭
+幾何学的なサブセットは、その素材によって**一意に識別される**ことに注意してください。
+
+- 材料Aを使用した壁でサブセットを作成した後、同じ材料Aを使用した別の壁のサブセットを作成しようとすると、2番目の壁が最初の壁のサブセットに追加されます。
+
+- 材料Aを使用して壁でサブセットを作成し、次に材料Bを使用して同じ壁の別のサブセットを作成しようとすると、2つの独立したサブセットが作成されます。
+
+<IfcAlert>
+同じ素材の2つのインスタンスを使って、同じ外観の2つのサブセットを作ることができます。
+</IfcAlert>
+
+### シングルサブセット
+
+ <p> 🐭
+<a href="https://ifcjs.github.io/info/docs/Guide/web-ifc-three/api#createsubset" target="_self">createSubset</a>を使えば、ユーザーがホバーしたときにハイライト効果を出すことができます。</p>
+
+```js
+
+  const ifc = ifcLoader.ifcManager;
+
+  // 前のセレクションへの参照
+  let preselectModel = { id: - 1};
+
+  function highlight(event, material, model) {
+     const found = cast(event)[0];
+     if (found) {
+
+         // モデルIDの取得
+         model.id = found.object.modelID;
+
+         // Express IDを取得する
+         const index = found.faceIndex;
+         const geometry = found.object.geometry;
+         const ifc = ifcLoader.ifcManager;
+         const id = ifc.getExpressId(geometry, index);
+
+         // サブセットの作成
+         ifcLoader.ifcManager.createSubset({
+             modelID: model.id,
+             ids: [id],
+             material: material,
+             scene: scene,
+             removePrevious: true
+         })
+     } else {
+         // Removes previous highlight
+         ifc.removeSubset(model.id, scene, material);
+     }
+  }
+
+  window.onmousemove = (event) => highlight(
+                                        event,
+                                        preselectMat,
+                                        preselectModel);
+```
+
+<Scene link={"https://ifcjs.github.io/hello-world/examples/web-ifc-three/highlighting-single/"}/>
+
+  👀
+いくつかの興味深い点があります。
+
+- `cast()`の実装については、<a href="https://ifcjs.github.io/info/docs/Guide/web-ifc-three/Tutorials/Picking/#how-to-do-it" target="_self">前回</a>で紹介しました。
+
+- 変数`currentModel`は、選択されたモデルの参照を格納するために使用されます。このようにして、ユーザーがオブジェクトにカーソルを合わせていないときに、<a href="https://ifcjs.github.io/info/docs/Guide/web-ifc-three/api#removesubset" target="_self">removeSubset</a>で前のサブセットを削除することができます。
+
+- サブセットを作成するアイテムのIDは、**配列**として与えられなければなりません（単一のIDであっても）。
+
+### 複数のサブセット
+
+  💅💅💅
+  **複数のサブセット**を扱うのは、単一のサブセットを扱うのと同じくらい簡単です。新しい材料を作成し、同じ機能を持つ新しいサブセットを作成し、そのサブセットの作成をイベントに関連付けるだけでよいのです。
+
+この例では、**ダブルクリック**にバインドすることで、オブジェクトが選択されたときにハイライトされる効果をシミュレートします。
+
+```js
+const selectMat = new MeshLambertMaterial({
+                                transparent: true,
+                                opacity: 0.6,
+                                color: 0xff00ff,
+                                depthTest: false })
+
+const selectModel = { id: - 1};
+window.ondblclick = (event) => highlight(
+                                    event,
+                                    selectMat,
+                                    selectModel );
+```
+
+<Scene link={"https://ifcjs.github.io/hello-world/examples/web-ifc-three/highlighting-multiple/"}/>
+
+### ジオメトリの抽出
+
+  👩‍🏫
+ジオメトリサブセットを作成し、ハイライトマテリアルを指定しない場合、サブセットには**オリジナルマテリアル**が使用されます。
+
+<IfcAlert>
+    これにより、例えば、BIMモデルの1階部分のすべての要素で幾何学的なサブセットを作成し、それ以外の要素を隠すことができます。
+</IfcAlert>
+
+  🌚
+次の例では、読み込まれたIFCモデルに透明なマテリアルを適用し、マウスがアイテムの上に乗ったときに元のマテリアルでサブセットを作成します。これには先ほどとほぼ同じコードを使います。
+
+```js {3,4,5,6,7,13,14,15,16}
+  ifcLoader.load("../../IFC/01.ifc", (ifcModel) => {
+      ifcModels.push(ifcModel.mesh);
+      ifcModel.mesh.material = new MeshLambertMaterial({
+          transparent: true,
+          opacity: 0.1,
+          color: 0x77aaff
+      });
+      scene.add(ifcModel.mesh)
+  });
+
+  // ...
+
+window.onmousemove = (event) => highlight(
+                                    event,
+                                    undefined,
+                                    highlightModel);
+```
+
+<Scene link={"https://ifcjs.github.io/hello-world/examples/web-ifc-three/highlighting-single-original-material/"}/>
+
+## 次のステップ
+
+🎉🎉🎉
+おめでとうございます。これで、BIMモデルから要素をハイライトしたり、ジオメトリを抽出したりできるようになりました。お疲れ様でした。
+
+  📃
+しかし、すぐに勝利を主張してはいけません。BIMの "I "についてはまだ話していませんが、これはジオメトリよりもさらに重要なことです。それが次のレッスンの目的です。

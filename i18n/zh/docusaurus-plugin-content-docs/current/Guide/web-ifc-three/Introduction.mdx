@@ -1,0 +1,83 @@
+---
+title: 简介
+sidebar_position: 1
+---
+
+import {IfcCard} from "../../../../../../src/components/Card/InfoCard";
+import {IfcAlert} from "../../../../../../src/components/Alert/Alert";
+
+## BIM不仅是几何学...
+
+
+...但它有几何学。
+
+  💪
+  [Web-ifc]("https://ifcjs.github.io/info/docs/Guide/web-ifc/Introduction")是一个非常强大的工具，能够以接近原生的速度读写IFCs。然而，几乎所有的BIM应用程序都会向用户展示他们正在处理的模型的三维视图。你可以在任何图形引擎中使用`web-ifc`，但我们已经在**web-ifc-three**中为你做了这些。
+
+  🧶
+  `web-ifc-three`是`web-ifc`的一个包装器，它从IFC文件中读取所有数据，并将其转化为可在任何浏览器中显示和编辑的几何图形。你可以用`npm i web-ifc-three`或`yarn add web-ifc-three`安装它。关于这个模块的一些很酷的事实。
+
+<IfcCard>
+    🐣
+    它超级容易使用。
+</IfcCard>
+
+<IfcCard>
+    🎩
+    它是<a href="https://threejs.org/examples/webgl_loader_ifc.html">Three.js的官方IFCLoader</a>。
+</IfcCard>
+
+<IfcCard>
+    🚀
+    它非常高效，能够在浏览器中以60帧/秒的速度显示成千上万的物体。它可以显示多个模型，改变材料和过滤项目。
+</IfcCard>
+
+
+<IfcCard>
+    🧠
+    它可以获得并遍历多个文件的空间结构树。此外，它还可以访问所有项目的属性，既可以在三维视图中点击它们，也可以使用智能过滤器。
+</IfcCard>
+
+  🎓
+  在以下几点中，将逐步展示该API及其功能。然而，在使用web-ifc-three之前，有几个问题是必须要清楚的。
+
+### 我可以直接使用`web-ifc`吗？
+
+通过web-ifc，你可以建立几乎所有能够读写IFC的BIM工具。那么，为什么要在它上面创建一个层呢？
+
+  🤷‍♀️
+因为几乎所有的BIM工具都是3D的，而且我们认为对所有的开发者来说，从头开始实现一个查看器是没有意义的。如果你只对数据感兴趣，你可能最好直接使用web-ifc。
+
+此外，web-ifc-three让使用IFC的工作变得更加简单和安全，即使是对于那些以前没有使用该格式经验的开发者来说也是如此。
+
+<IfcAlert>
+Web-ifc更灵活，但需要更多IFC模式的知识。
+</IfcAlert>
+
+###我可以直接使用`THREE.IFCLoader`吗?
+
+  👬
+如上所述，`web-ifc-three` 是 Three.js 的官方 IFCLoader。也就是说，如果你从Three.js中导入IFCLoader，其代码将与`web-ifc-three`资源库中的代码相同。
+
+  🚧
+你可能想从Three.js导入`IFCLoader`，以避免在你的项目中导入`web-ifc-three`。这应该可以，但要注意Three.js是一个非常大的库，其更新速度比IFC.js慢得多。
+
+<IfcCard
+    icon="⏳"
+    title=
+        "略有延迟"> Three.js IFCLoader可能没有最新的更新，在下一个版本发布之前，我们已经修复的最新bug在Three.js中仍未得到解决。
+</IfcCard>
+
+`Three.js IFCLoader`可能没有最新的更新，在下一个版本发布之前，我们已经修复的最新bug在Three.js中仍未得到解决。
+
+```js
+  // 导入web-ifc-three（原始）IFCLoader
+  import {
+    IFCLoader
+} from "web-ifc-three/IFCLoader";
+
+  // 导入three.js IFCLoader
+  import {
+      IFCLoader
+  } from "three/examples/jsm/loaders/IFCLoader";
+```

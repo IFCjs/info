@@ -1,0 +1,68 @@
+---
+  slug: Why IFC doesnt work
+  title: IFCがうまくいかない理由
+  author: Ansoni
+  author_title: IFCがうまくいかない理由
+  author_url: https://github.com/agviegas
+  author_image_url: https://secure.gravatar.com/avatar/9263b9f81d351788e46bc64000c03cb6
+  tags: [
+  インダストリー, ifc
+  ]
+---
+
+_異なるベンダーのソフトウェア間での共同作業は、どうしてこんなに難しいのでしょうか？_
+
+<!--truncate-->
+
+import { IfcImage } from "../../../src/components/Image/Image";
+import { IfcCard } from "../../../src/components/Card/InfoCard";
+
+<IfcImage image=<img src={require('@site/static/img/blog/2021-12-01/viktoria-goda.jpg').default} alt="PC image"></img>
+   alt="PC image" ifcLink="https://www.pexels.com/es-es/foto/tiza-azul-roja-y-amarilla-1107495/"></IfcImage>
+
+  🤜💥🤛
+BIM市場では、さまざまなベンダーから複数のツールが提供されています。つまり、あるアプリケーションから別のアプリケーションにデータを転送するためにIFCを使用しなければならないことが多く、**ここで相互運用性の問題が発生します**。
+
+  🤒
+ソフトウェアからソフトウェアへのドキュメントの転送でデータが失われたり、ジオメトリが思うように表示されなかったり、フェデレーションモデルが適切でなくなったりすることは、あらゆる規模のプロジェクトで多くの人が経験してきた**落とし穴**です。
+
+  <IfcCard>
+🤷‍♂️
+私たちは、次のような疑問を持ち始めます。
+なぜIFCはそんなにうまくいかないのか？
+オープンなBIM技術は実現不可能なのか？
+</IfcCard>
+
+<IfcImage hideSource={true} image=<img src={require('@site/static/img/clipart/1.png').default} alt="PC image"></img>
+           alt="PC image"></IfcImage>
+
+📃
+IFCはテキスト形式（非バイナリを意味する）であり、オープンなフォーマットであるため、実行不可能であるという意見が多くあります。しかし、ソフトウェア業界で標準となっている**JSON**フォーマットもテキスト形式であり、完全に機能します。
+
+👨‍💻👨‍💻👨‍💻
+また、スキーマ自体に問題があるという人もいます。確かにIFCは複雑でドキュメントも辛口ですが、IFC.jsは **3人が暇つぶしに** の間に始めたもので、並外れた可能性を秘めたものを1年足らずで実装しました。
+
+問題は、**大手ソフトウェア会社がIFC** に商業的関心を持っていないことにあるようです。実際には、すべての企業の最終的な目標は、ユーザーに自社のエコシステム全体を使用するよう説得することです。IFCは多くの場合、彼らがまだ実装する時間がなかったり、ビジネスが彼らの利益と一致していない他のツールに依存するための、部分的に欠陥のあるソリューションなのです。
+
+ <IfcCard>
+👨‍💼 💼 言い換えれば、これらの大企業がIFCとのコミュニケーションを改善しなかった場合、どれだけの顧客を失うことになるでしょうか？おそらく、ほとんどないでしょう。
+</IfcCard>
+
+💵💵💵 **このようにして、IFCが「うまく機能していない」という錯覚を起こしながら**、途方もない開発や他社の買収によってエコシステムを成長させ続けているのです。
+
+🙍‍♂️これは残念なことですが、IFCに商業的な利益をもたらしている業界関係者もいます。エンジニアリング会社、建築会社、建設会社、不動産会社、資産管理会社などです。
+
+💸 **この状況では、私たちは大きな敗者となります。**私たちは皆、閉鎖的な民間のエコシステムに身をゆだね、これらの企業に依存するか、あるいはIFCを彼らのツールに実装する際に生じるあらゆる問題で時間とお金を無駄にするかを選択しなければなりません。
+
+🤝 先週、[Typsa](https://www.typsa.com/en/)のオフィスで、[Ferrovial](https://www.ferrovial.com/)と[FCC](https://www.fcc.es/)の代表者との間で[オープン・カンバセーション](https://teys.es/01-hackaton-typsa-ue4-actividades/)という円卓会議が行われ、全員が「**自分たちの利益を守るために、BIMソフトウェアの世界でステップアップして開発する時が来たのではないか**」と合意しました。
+
+<IfcImage hideSource={true} image=<img src={require('@site/static/img/clipart/2.png').default} alt="PC image"></img>
+           alt="PC image"></IfcImage>
+
+💪 巨人には到底追いつけないと思われるかもしれません。しかし、私たちだけではありません。このプロジェクトには[多くの企業](https://ifcjs.github.io/info/docs/Contribute)が参加しています。**あらゆる種類の企業、あらゆる規模の企業、あらゆる地域の企業が、お金を払わずに自分たちでBIMツールを作っています**。その中には、新しいプレーヤーとして市場に参入しているところもあります。
+
+👩‍💻 BIMアプリケーションの開発は難しいように聞こえますが、実際にはビデオゲームよりもはるかに簡単で、現在ではGodot、Unreal、Unityなどのツールを使って、短時間でビデオゲームを作ることができます。IFC.jsのようなツールを使えば、BIMツールを簡単に作ることができます。
+
+ <IfcCard>
+💛 私たちはこれを可能にするために努力しています。これこそが、この分野を改善する唯一の方法だと確信しています。
+</IfcCard>
