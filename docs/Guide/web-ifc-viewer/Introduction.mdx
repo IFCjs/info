@@ -3,10 +3,124 @@ title: Introduction
 sidebar_position: 2
 ---
 
-import {IfcCard} from "../../../src/components/Card/InfoCard";
+    import {IfcCard} from "../../../src/components/Card/InfoCard";
+    import {IfcAlert} from "../../../src/components/Alert/Alert";
+    import {Scene} from "../../../src/components/Scene/Scene";
 
-## 🚧👷‍♀️ Under construction 👷‍♂️🚧
+## Introduction
 
-<IfcCard icon="💙" title="Thanks for your interest in IFC.js!">
-    We are building this section of the documentation right now. In the meantime, you can join the <a href="https://discord.gg/FXfyR4XrKT">Discord channel</a> and ask us any questions you need to implement IFC.js or to join the project.
+As discussed in the [Getting Started](../Getting%20started.mdx) guide - web-ifc-three viewer is a 3D BIM viewer with many tools and functionalities already implemented (section drawings, dimensions, etc.), allowing you to create BIM tools with very little effort.\
+It is suggseted to use this when you want to create a BIM viewer and you don't want to spend time implementing all the model navigation tools you would like to have.
+
+## Setting up the project
+
+The [Hello World](../../Hello%20world.mdx) guide talks about the basic set-up of a ifc.js project. But with web-ifc-viewer the set-up becomes even more simpler because most of the set-up is already done for you.
+
+The first thing to do is to create an empty folder and [start a new npm project](https://docs.npmjs.com/cli/v8/commands/npm-init) with the command `npm init`. This will generate a package.json file containing some data such as the project name, version, commands and dependencies
+
+### Installing libraries
+
+The next step is to install the dependencies necessarry for this project. Below are the commands that install the respective dependencies:
+
+```bash
+//Install web-ifc-viewer
+npm i web-ifc-viewer
+
+// Install a bundler: we will use rollup.js for this guide
+npm i rollup --save-dev
+npm i @rollup/plugin-node-resolve --save-dev
+```
+
+<IfcCard icon="📃" title="three.js?">
+Note that installing web-ifc-three also installs the three.js library which allows you to customize the viewer as required in the next steps
 </IfcCard>
+
+### HTML, CSS, Bundling & WASM files
+
+You can follow the steps in the [Hello World](../../Hello%20world.mdx) guide to create the `index.html`, `styles.css`, `rollup.config.js` files and also copy the necessary `.wasm` files from `node_modules\web-ifc` (or `node_modules\three\examples\jsm\loaders\ifc` folder.
+
+<IfcCard icon="📃" title="minor change in index.html">
+    Note that there is one minor change in index.html file you need to make - compared to the "Hello World" guide. You don't need to create a `<canvas>` element manually as it will b created by web-ifc-viewer for you. But you do need to add the container element in which the viewer is supposed to be placed in.
+</IfcCard>
+
+Replace `<canvas id="three-canvas"></canvas>` from you `index.html` file with `<div id="viewer-container"></div>`
+
+## Setting up 3D-Scene (web-ifc-viewer)
+
+Once you have the `index.html`, `styles.css` & the `.wasm` files in place, you can then move on to adding the javascript(`index.js`) which will load the viewer. This file can be located anywhere and have any name, but you must reflect this in the `rollup.config.js`.
+
+Below code is where we are setting up a basic threejs scene using `IfcViewerAPI()` methos of `web-ifc-viewer`. Note that this code is just the viewer - In the next step we will add the functionality to load models into this viewer.
+
+```js
+import { Color } from 'three';
+import { IfcViewerAPI } from 'web-ifc-viewer';
+
+const container = document.getElementById('viewer-container');
+const viewer = new IfcViewerAPI({ container, backgroundColor: new Color(0xffffff) });
+viewer.axes.setAxes();
+viewer.grid.setGrid();
+
+const input = document.getElementById("file-input");
+
+window.ondblclick = () => viewer.IFC.selector.pickIfcItem(true);
+window.onmousemove = () => viewer.IFC.selector.prePickIfcItem();
+viewer.clipper.active = true;
+
+window.onkeydown = (event) => {
+    if (event.code === 'KeyP') {
+        viewer.clipper.createPlane();
+    }
+    else if (event.code === 'KeyO') {
+        viewer.clipper.deletePlane();
+    }
+}
+```
+
+## Loading IFC files
+
+### Loading user's models
+
+Finally, we will use IFC.js to load IFC files by allowing the user to choose a local file and using the `IfcViewerAPI()` we instantiated above to load the model.
+
+```js
+input.addEventListener("change",
+
+    async (changed) => {
+
+        const file = changed.target.files[0];
+        const ifcURL = URL.createObjectURL(file);
+        viewer.IFC.loadIfcUrl(ifcURL);
+    },
+
+    false
+);
+```
+
+### Loading our models
+
+In order to load a ifc file from a server, you need to use the `loadIfcUrl()` to convert the model path url into something that the web-ifc-viewer can read. Below is a function `loadIfc(url)` that is used to do that.
+
+```js
+async function loadIfc(url) {
+    const model = await viewer.IFC.loadIfcUrl(url);
+    viewer.shadowDropper.renderShadow(model.modelID);
+}
+
+// load model from the below path in your respository
+loadIfc('models/01.ifc');
+```
+
+If you have done everything correctly, you should be able to see something similar to [this](https://ifcjs.github.io/hello-world/examples/web-ifc-viewer/hello-world/) in your local server.
+
+<Scene link={"https://ifcjs.github.io/hello-world/examples/web-ifc-viewer/hello-world/"}/>
+
+## Conclusion
+
+  🎉
+Congratulations! You have just created your first IFC viewer. Go to the next pages of the docs to find out what else can you do with IFC Viewer.
+
+  <IfcCard icon="🔥" title="What else can I do with IFC.js?">
+This is just the beginning. You can take a look at <a href="https://github.com/IFCjs/hello-world/tree/main/examples/web-ifc-viewer">web-ifc-viewer examples</a>, which includes tools for floor plans, changing geometry visibility, floor plans and much more. You can try it <a href="https://ifcjs.github.io/web-ifc-viewer/example/index">here</a>.
+  </IfcCard>
+
+  In the next set of articles, we will talk about how to enable additional in-build features in web-ifc-viewer.
