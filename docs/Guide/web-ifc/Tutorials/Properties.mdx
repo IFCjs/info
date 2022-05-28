@@ -59,6 +59,18 @@ const table = document.createElement("table");
 ..
 ```
 
+**Reading File**
+
+We will read file and call [`LoadFileData()`](https://github.com/IFCjs/hello-world/blob/main/examples/web-ifc/ifc-to-json/properties/app.js#:~:text=async%20function%20LoadFile(ifcAsText)) and send IFC data as Text
+```js
+fetch('../../../../IFC/01.ifc')
+  .then(response => response.text())
+  .then(data => {
+    // This will send the file data to our LoadFileData method
+    LoadFileData(data);
+});
+```
+
 ** Creating a method which will be called for getting Element Properties **
 All the code for getting **Element Data** goes inside it
 ```js {8}
