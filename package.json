@@ -17,7 +17,7 @@
     "format": "prettier --write .",
     "lint:format": "prettier --list-different .",
     "lint:mdx": "node ./scripts/lint-mdx.mjs",
-    "lint": "yarn lint:mdx"
+    "lint": "yarn lint:format && yarn lint:mdx"
   },
   "dependencies": {
     "@docusaurus/core": "2.0.0-beta.0",
