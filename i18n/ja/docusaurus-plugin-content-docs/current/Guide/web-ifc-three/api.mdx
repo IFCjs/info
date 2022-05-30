@@ -3,55 +3,56 @@ title: API
 sidebar_position: 3
 ---
 
-import {IfcCard} from "../../../../../../src/components/Card/InfoCard";
-import {IfcAlert} from "../../../../../../src/components/Alert/Alert";
+import { IfcCard } from "../../../../../../src/components/Card/InfoCard";
+import { IfcAlert } from "../../../../../../src/components/Alert/Alert";
 
-##  web-ifc-threeでできるすごいことリスト
+## web-ifc-three でできるすごいことリスト
 
-  📃
-すべてのAPIはドキュメント化されていますので、このドキュメントで紹介されているオブジェクトやメソッドを使用すると、使用しているIDEにかかわらず、Intellisenseでヘルプが表示されるはずです。[チェックしてみてください！ ](https://github.com/IFCjs/web-ifc-three/blob/main/web-ifc-three/src/IFC/components/IFCManager.ts)
+📃
+すべての API はドキュメント化されていますので、このドキュメントで紹介されているオブジェクトやメソッドを使用すると、使用している IDE にかかわらず、Intellisense でヘルプが表示されるはずです。[チェックしてみてください！ ](https://github.com/IFCjs/web-ifc-three/blob/main/web-ifc-three/src/IFC/components/IFCManager.ts)
 
-  👩‍🏫
-しかし、インテリセンスやコメントを読むことは、最も快適なことではないことを理解しているので、このページでは、APIでできることの概要を説明します。すべての内容は、後ほど個別のチュートリアルで詳しく説明します。
+👩‍🏫
+しかし、インテリセンスやコメントを読むことは、最も快適なことではないことを理解しているので、このページでは、API でできることの概要を説明します。すべての内容は、後ほど個別のチュートリアルで詳しく説明します。
 
-##  IfcLoader
+## IfcLoader
 
-  💎
-ライブラリーからインポートする唯一のオブジェクトです。IFCを扱うために必要なすべてのロジックが含まれています。その`load()`メソッドと`loadAsync()`メソッドを使用して、URLからIFCを読み込むことができます。<a>他のThree.js Loader </a>と同様です。例えば、IFCを読み込むには以下のようにします。
+💎
+ライブラリーからインポートする唯一のオブジェクトです。IFC を扱うために必要なすべてのロジックが含まれています。その`load()`メソッドと`loadAsync()`メソッドを使用して、URL から IFC を読み込むことができます。<a>他の Three.js Loader </a>と同様です。例えば、IFC を読み込むには以下のようにします。
 
 ```js
 import { IFCLoader } from "web-ifc-three/IFCLoader";
 
 const ifcLoader = new IFCLoader();
-ifcLoader.load(
-    "models/Example_model.ifc",
-    (ifcModel) => scene.add(ifcModel));
+ifcLoader.load("models/Example_model.ifc", (ifcModel) => scene.add(ifcModel));
 ```
 
-  🏠🏠🏠
-`web-ifc-three`では、シーン内に複数のモデルを読み込むことができます。APIの操作の多くは、指定されたモデルに対して実行されます。どのモデルを操作したいかを表すには、そのモデルの`ModelID`を指定する必要があります。
+🏠🏠🏠
+`web-ifc-three`では、シーン内に複数のモデルを読み込むことができます。API の操作の多くは、指定されたモデルに対して実行されます。どのモデルを操作したいかを表すには、そのモデルの`ModelID`を指定する必要があります。
 
-  🔍
-モデルのIDは、生成されたメッシュのプロパティ`modelID`で取得できます。
+🔍
+モデルの ID は、生成されたメッシュのプロパティ`modelID`で取得できます。
 
 ```js
 const modelID = ifcModel.modelID;
 ```
 
-  ✌
-このAPIにアクセスするには2つの方法があります。
+✌
+この API にアクセスするには 2 つの方法があります。
 
 - `IfcLoader`が`load`と`loadAsync`で生成する`IfcModel`のインスタンスを介して。
 
 - `IfcLoader.IfcManager`を介して。
 
 <IfcAlert>
-<b>IfcModel</b>のインスタンスと<b>IfcLoader.IfcManager</b>の両方は、APIにアクセスするために互換的に使用することができます。<b>IfcModel</b>を使用する場合、ModelIDを引数として与える必要はありません(暗黙的に知られています)。
+  <b>IfcModel</b>のインスタンスと<b>IfcLoader.IfcManager</b>
+  の両方は、APIにアクセスするために互換的に使用することができます。
+  <b>IfcModel</b>
+  を使用する場合、ModelIDを引数として与える必要はありません(暗黙的に知られています)。
 </IfcAlert>
 
-##  🧰 セットアップ
+## 🧰 セットアップ
 
-###  setWasmPath
+### setWasmPath
 
 ```js
   async IfcLoader.IfcManager.setWasmPath (
@@ -59,12 +60,13 @@ const modelID = ifcModel.modelID;
                         ): void;
 ```
 
-  🧠
+🧠
 web-ifc.wasm`と`web-ifc-mt.wasm`のファイルの場所を指定します。これらのファイルは、web-ifcファイルであり、IFC.jsを使ってアプリケーションを作成する際に必要となります。これらのファイルは `node_modules/web-ifc/` で見つけることができます。
 
-
-<IfcCard icon={"🚧"} title={"使う道具には気をつけよう"} >
-React、Angular、Vue、Svelteなどのフレームワークやライブラリを使用している場合、プロジェクトのルートパスと提供されるアプリケーションのルートパスが一致しないことがあります。静的に提供されるファイルのパスがどのように管理されているか、<a href="https://github.com/IFCjs/examples">各ケース</a>で確認する必要があります。
+<IfcCard icon={"🚧"} title={"使う道具には気をつけよう"}>
+  React、Angular、Vue、Svelteなどのフレームワークやライブラリを使用している場合、プロジェクトのルートパスと提供されるアプリケーションのルートパスが一致しないことがあります。静的に提供されるファイルのパスがどのように管理されているか、
+  <a href="https://github.com/IFCjs/examples">各ケース</a>
+  で確認する必要があります。
 </IfcCard>
 
 #### 関数の引数
@@ -76,10 +78,10 @@ React、Angular、Vue、Svelteなどのフレームワークやライブラリ�
 `web-ifc.wasm` が dist/wasmDir にある場合。
 
 ```js
-  await ifcLoader.setWasmPath("dist/wasmDir/");
+await ifcLoader.setWasmPath("dist/wasmDir/");
 ```
 
-###  setupThreeMeshBVH
+### setupThreeMeshBVH
 
 ```js
   IfcLoader.IfcManager.setupThreeMeshBVH (
@@ -89,42 +91,41 @@ React、Angular、Vue、Svelteなどのフレームワークやライブラリ�
                         ): void;
 ```
 
-  ⚡⚡⚡
-この方法により、オブジェクトのピッキングが格段に速くなり、特に重いジオメトリを持つ非常に大きなモデルの場合に有効です。この方法により、IFC.jsはGarrett Johnson氏の素晴らしい[ライブラリ](https://github.com/gkjohnson/three-mesh-bvh)を使用することができます。`npm i three-mesh-bvh`または `yarn add three-mesh-bvh` でインストールできます。
+⚡⚡⚡
+この方法により、オブジェクトのピッキングが格段に速くなり、特に重いジオメトリを持つ非常に大きなモデルの場合に有効です。この方法により、IFC.js は Garrett Johnson 氏の素晴らしい[ライブラリ](https://github.com/gkjohnson/three-mesh-bvh)を使用することができます。`npm i three-mesh-bvh`または `yarn add three-mesh-bvh` でインストールできます。
 
 <IfcCard>
-この方法は必須ではありませんが、中/大IFCモデルのオブジェクトを60fpsで選択できるようにしたい場合は必要です。
+  この方法は必須ではありませんが、中/大IFCモデルのオブジェクトを60fpsで選択できるようにしたい場合は必要です。
 </IfcCard>
 
 #### 関数の引数
 
-- `computeBoundsTree` 新しいBVHを構築し、それをboundsTreeに割り当て、新しいインデックスバッファをジオメトリに適用する、プリメイドのBufferGeometry拡張関数です。- [ソース](https://github.com/gkjohnson/three-mesh-bvh#computeboundstree)。
+- `computeBoundsTree` 新しい BVH を構築し、それを boundsTree に割り当て、新しいインデックスバッファをジオメトリに適用する、プリメイドの BufferGeometry 拡張関数です。- [ソース](https://github.com/gkjohnson/three-mesh-bvh#computeboundstree)。
 
-- `disposeBoundsTree` BVHを破棄するBufferGeometry拡張関数です。- [ソース](https://github.com/gkjohnson/three-mesh-bvh#disposeboundstree)を参照してください。
+- `disposeBoundsTree` BVH を破棄する BufferGeometry 拡張関数です。- [ソース](https://github.com/gkjohnson/three-mesh-bvh#disposeboundstree)を参照してください。
 
-- `acceleratedRaycast` THREE.Mesh.raycastと同じシグネチャーを持つ、高速化されたレイキャスト関数です。BVHが利用可能な場合はレイキャスティングに使用し、そうでない場合はビルトインのアプローチに戻ります。- [ソース](https://github.com/gkjohnson/three-mesh-bvh#acceleratedraycast)を参照してください。
+- `acceleratedRaycast` THREE.Mesh.raycast と同じシグネチャーを持つ、高速化されたレイキャスト関数です。BVH が利用可能な場合はレイキャスティングに使用し、そうでない場合はビルトインのアプローチに戻ります。- [ソース](https://github.com/gkjohnson/three-mesh-bvh#acceleratedraycast)を参照してください。
 
 #### 例
 
 ```js
-import {
-    IFCLoader
-} from 'web-ifc-three/dist/IFCLoader';
+import { IFCLoader } from "web-ifc-three/dist/IFCLoader";
 
 import {
-    acceleratedRaycast,
-    computeBoundsTree,
-    disposeBoundsTree
-} from 'three-mesh-bvh';
+  acceleratedRaycast,
+  computeBoundsTree,
+  disposeBoundsTree,
+} from "three-mesh-bvh";
 
 const ifcLoader = new IFCLoader();
 ifcLoader.ifcManager.setupThreeMeshBVH(
-    acceleratedRaycast,
-    computeBoundsTree,
-    disposeBoundsTree);
+  acceleratedRaycast,
+  computeBoundsTree,
+  disposeBoundsTree
+);
 ```
 
-###  setOnProgress
+### setOnProgress
 
 ```js
   IfcLoader.IfcManager.setOnProgress (
@@ -133,24 +134,24 @@ ifcLoader.ifcManager.setupThreeMeshBVH(
 ```
 
 ⏳
-IFCが10％ロードされるごとに呼び出されるコールバック関数を設定します。これにより、ローディングバーを表示して、ユーザーにローディングの状況を示すことができます。
+IFC が 10％ロードされるごとに呼び出されるコールバック関数を設定します。これにより、ローディングバーを表示して、ユーザーにローディングの状況を示すことができます。
 
 #### 関数の引数
 
-- `onProgress`: 10%ごとに呼び出されるコールバック関数です。この関数は、2つのプロパティを持つオブジェクトを受け取る1つの引数を持つ必要があります。`loaded`（読み込まれたオブジェクトの数）と `total`（ファイル内のオブジェクトの数）です。
+- `onProgress`: 10%ごとに呼び出されるコールバック関数です。この関数は、2 つのプロパティを持つオブジェクトを受け取る 1 つの引数を持つ必要があります。`loaded`（読み込まれたオブジェクトの数）と `total`（ファイル内のオブジェクトの数）です。
 
 #### 例
 
 ```js
-  function exampleCallback(event) {
-    const progress = event.total / event.progress * 100;
-    console.log("Progress: ", progress, "%");
-  }
+function exampleCallback(event) {
+  const progress = (event.total / event.progress) * 100;
+  console.log("Progress: ", progress, "%");
+}
 
-  ifcLoader.ifcManager.setOnProgress(exampleCallback);
+ifcLoader.ifcManager.setOnProgress(exampleCallback);
 ```
 
-###  applyWebIfcConfig
+### applyWebIfcConfig
 
 ```js
   async IfcLoader.IfcManager.applyWebIfcConfig (
@@ -177,13 +178,13 @@ IFCが10％ロードされるごとに呼び出されるコールバック関数
 ファイルが地理的に配置されていて、それをシーンの原点に持ってきたい場合。
 
 ```js
-  await ifcLoader.ifcManager.applyWebIfcConfig({
-                         COORDINATE_TO_ORIGIN: true,
-                         USE_FAST_BOOLS: false
-                                            });
+await ifcLoader.ifcManager.applyWebIfcConfig({
+  COORDINATE_TO_ORIGIN: true,
+  USE_FAST_BOOLS: false,
+});
 ```
 
-###  useWebworkers
+### useWebworkers
 
 ```js
   async IfcLoader.IfcManager.useWebWorkers (
@@ -193,9 +194,9 @@ IFCが10％ロードされるごとに呼び出されるコールバック関数
 ```
 
 👷‍♀️👷‍♀️👷‍♀️
-解析ロジックを含むウェブワーカーをトグルします。APIの残りの部分は同じですが、すべてのロジックはマシンの別のスレッドで実行されるため、重い操作でアプリがブロックされることはありません。
+解析ロジックを含むウェブワーカーをトグルします。API の残りの部分は同じですが、すべてのロジックはマシンの別のスレッドで実行されるため、重い操作でアプリがブロックされることはありません。
 
-🚧 ファイル`IFCWorker.js`をプロジェクトにコピーして、第2引数に相対パスを渡す必要があります。
+🚧 ファイル`IFCWorker.js`をプロジェクトにコピーして、第 2 引数に相対パスを渡す必要があります。
 
 #### 関数の引数
 
@@ -213,7 +214,7 @@ IFCが10％ロードされるごとに呼び出されるコールバック関数
                                             });
 ```
 
-###  useJSONData
+### useJSONData
 
 ```js
   async IfcLoader.IfcManager.useJSONData (
@@ -222,22 +223,23 @@ IFCが10％ロードされるごとに呼び出されるコールバック関数
 ```
 
 🚀
-WASMデータの代わりにJSONプロパティデータを使用し、メモリ消費量が大幅に減少します。以下のシナリオでのみ使用してください。
-- IFCのプロパティにアクセスする必要がない場合は。
-- プロパティをJSONで提供する場合。
-IFCファイルからのJSONの取得は、以下のように事前に行うことができます[この例](https://github.com/IFCjs/hello-world/tree/main/examples/web-ifc/ifc-to-json/node)。
+WASM データの代わりに JSON プロパティデータを使用し、メモリ消費量が大幅に減少します。以下のシナリオでのみ使用してください。
+
+- IFC のプロパティにアクセスする必要がない場合は。
+- プロパティを JSON で提供する場合。
+  IFC ファイルからの JSON の取得は、以下のように事前に行うことができます[この例](https://github.com/IFCjs/hello-world/tree/main/examples/web-ifc/ifc-to-json/node)。
 
 #### 関数の引数
 
-- `useJSON`: JSONデータを使用するかどうか。
+- `useJSON`: JSON データを使用するかどうか。
 
 #### 例
 
 ```js
-  await ifcLoader.ifcManager.useJSONData(true);
+await ifcLoader.ifcManager.useJSONData(true);
 ```
 
-###  addModelJSONData
+### addModelJSONData
 
 ```js
   async IfcLoader.IfcManager.addModelJSONData (
@@ -247,20 +249,20 @@ IFCファイルからのJSONの取得は、以下のように事前に行うこ�
 ```
 
 📦📦📦
-モデルのプロパティをJSONデータとして追加します。Web Workerを使用している場合は、オーバーヘッドを避けるために、代わりに`loadJsonDataFromWorker()`を使用してください。
+モデルのプロパティを JSON データとして追加します。Web Worker を使用している場合は、オーバーヘッドを避けるために、代わりに`loadJsonDataFromWorker()`を使用してください。
 
 #### 関数の引数
 
-- `modelID`: IFCモデルのIDです。
-- `data`: のデータを，キーがexpressID，値がプロパティであるオブジェクトとして取得します。さらに、各値はプロパティとして、`expressID`（アイテムのID）と`type`（アイテムのIFCクラス）を持っています。
+- `modelID`: IFC モデルの ID です。
+- `data`: のデータを，キーが expressID，値がプロパティであるオブジェクトとして取得します。さらに、各値はプロパティとして、`expressID`（アイテムの ID）と`type`（アイテムの IFC クラス）を持っています。
 
 #### 例
 
 ```js
-  await ifcLoader.ifcManager.addModelJSONData(0, jsonData);
+await ifcLoader.ifcManager.addModelJSONData(0, jsonData);
 ```
 
-###  loadJsonDataFromWorker
+### loadJsonDataFromWorker
 
 ```js
   async IfcLoader.IfcManager.loadJsonDataFromWorker (
@@ -270,22 +272,22 @@ IFCファイルからのJSONの取得は、以下のように事前に行うこ�
 ```
 
 📦📦📦
-JSONファイルからIFCモデルのデータをWeb Workerから直接読み込みます。ウェブワーカーを使用していない場合は、代わりに `addModelJSONData()` を使用してください。
+JSON ファイルから IFC モデルのデータを Web Worker から直接読み込みます。ウェブワーカーを使用していない場合は、代わりに `addModelJSONData()` を使用してください。
 
 #### 関数の引数
 
-- `modelID`: IFCモデルのIDです。
-- `path`: JSONファイルへのパスは、Web Workerファイルへの相対パスです。
+- `modelID`: IFC モデルの ID です。
+- `path`: JSON ファイルへのパスは、Web Worker ファイルへの相対パスです。
 
 #### 例
 
 ```js
-  await ifcLoader.ifcManager.loadJsonDataFromWorker(0, "path/to/data.json");
+await ifcLoader.ifcManager.loadJsonDataFromWorker(0, "path/to/data.json");
 ```
 
-##  🔍 ゲッターズ
+## 🔍 ゲッターズ
 
-###  getExpressId
+### getExpressId
 
 ```js
   IfcLoader.IfcManager.getExpressId (
@@ -294,11 +296,11 @@ JSONファイルからIFCモデルのデータをWeb Workerから直接読み込
                         ): number;
 ```
 
-  💳
-IFC要素のExpress IDをフェースインデックスから取得する。
+💳
+IFC 要素の Express ID をフェースインデックスから取得する。
 
 <IfcCard icon="📜" title="なぜ顔認証なのか？">
-なぜなら、3D空間のオブジェクトをマウスで選択すると、その面のインデックスが得られるからです。通常、その面をハイライトしたり、分離したり、すべてのプロパティを取得するためには、その面が属するオブジェクトのIDが必要です。
+  なぜなら、3D空間のオブジェクトをマウスで選択すると、その面のインデックスが得られるからです。通常、その面をハイライトしたり、分離したり、すべてのプロパティを取得するためには、その面が属するオブジェクトのIDが必要です。
 </IfcCard>
 
 #### 関数の引数
@@ -310,13 +312,12 @@ IFC要素のExpress IDをフェースインデックスから取得する。
 #### 例
 
 ```js
-  const intersected = raycaster.intersectObject(mesh)[0];
-  const index = intersected.faceIndex;
-  const id = ifcLoader.ifcManager.getExpressId(mesh, index);
+const intersected = raycaster.intersectObject(mesh)[0];
+const index = intersected.faceIndex;
+const id = ifcLoader.ifcManager.getExpressId(mesh, index);
 ```
 
-
-###  getIfcType
+### getIfcType
 
 ```js
   IfcLoader.IfcManager.getIfcType (
@@ -324,29 +325,30 @@ IFC要素のExpress IDをフェースインデックスから取得する。
                         id: number,
                         ): string;
 ```
+
 🎸🪕🎻
-指定された要素のIFCタイプを取得します（例：IFCWALL）。
+指定された要素の IFC タイプを取得します（例：IFCWALL）。
 
 <IfcAlert>
-IFCの要素には、必ず関連するタイプがあります。IfcWall、IfcSlab、IfcWindow、IfcDoorなどです。
+  IFCの要素には、必ず関連するタイプがあります。IfcWall、IfcSlab、IfcWindow、IfcDoorなどです。
 </IfcAlert>
 
 #### 関数の引数
 
-- `modelID` IFCモデルのIDです。
+- `modelID` IFC モデルの ID です。
 
-- `id` プロパティを取得したいアイテムのエクスプレスID。これは、`getExpressId` (3Dビューでオブジェクトを選択している場合)、または `getAllItemsOfType` や `getSpatialStructure` でモデルをトラバースすることで取得できます。
+- `id` プロパティを取得したいアイテムのエクスプレス ID。これは、`getExpressId` (3D ビューでオブジェクトを選択している場合)、または `getAllItemsOfType` や `getSpatialStructure` でモデルをトラバースすることで取得できます。
 
 #### 例
 
 ```js
-  const model = ifcModel.modelID;
-  const id = 2142;
-  const manager = loader.ifcLoader.ifcManager;
-  const type = manager.getIfcType(model, id);
+const model = ifcModel.modelID;
+const id = 2142;
+const manager = loader.ifcLoader.ifcManager;
+const type = manager.getIfcType(model, id);
 ```
 
-###  getAllItemsOfType
+### getAllItemsOfType
 
 ```js
   async IfcLoader.IfcManager.getAllItemsOfType (
@@ -356,27 +358,27 @@ IFCの要素には、必ず関連するタイプがあります。IfcWall、IfcS
                             ): number[] | object[];
 ```
 
-  🎸🎸🎸
-指定されたモデルの指定されたIFCタイプのすべてのオブジェクト（すべての壁、すべての床、すべての窓など）を返します。これは、`expressID`の配列を返すか、（`verbose = true`の場合）見つかったアイテムのプロパティを含むオブジェクトの配列を返すことができます。
+🎸🎸🎸
+指定されたモデルの指定された IFC タイプのすべてのオブジェクト（すべての壁、すべての床、すべての窓など）を返します。これは、`expressID`の配列を返すか、（`verbose = true`の場合）見つかったアイテムのプロパティを含むオブジェクトの配列を返すことができます。
 
 #### 関数の引数
 
-- `modelID` IFCモデルのIDです。
+- `modelID` IFC モデルの ID です。
 
-- `type`  取得したい要素のIFCタイプです。これらのタイプは `web-ifc` から直接インポートすることができます (以下の例を参照)。
+- `type` 取得したい要素の IFC タイプです。これらのタイプは `web-ifc` から直接インポートすることができます (以下の例を参照)。
 
-- `verbose` trueの場合、見つかったすべてのアイテムのプロパティを取得します。大きなモデルでは、この処理に時間がかかることがあるので、注意が必要です。
+- `verbose` true の場合、見つかったすべてのアイテムのプロパティを取得します。大きなモデルでは、この処理に時間がかかることがあるので、注意が必要です。
 
 #### 例
 
 ```js
-  import { IFCWALLSTANDARDCASE as W } from 'web-ifc';
+import { IFCWALLSTANDARDCASE as W } from "web-ifc";
 
-  const manager = loader.ifcLoader.ifcManager;
-  const walls = await manager.getAllItemsOfType(0, W, false);
+const manager = loader.ifcLoader.ifcManager;
+const walls = await manager.getAllItemsOfType(0, W, false);
 ```
 
-###  getItemProperties
+### getItemProperties
 
 ```js
   async IfcLoader.IfcManager.getItemProperties (
@@ -386,31 +388,31 @@ IFCの要素には、必ず関連するタイプがあります。IfcWall、IfcS
                             ): object[];
 ```
 
-  📕🔍
-与えられた要素のネイティブ・プロパティを取得します。IFCスキーマでは、プロパティには直接プロパティと間接プロパティの2種類があります。間接的なプロパティ（psets、qsets、typeプロパティ）の取得方法については後述します。
+📕🔍
+与えられた要素のネイティブ・プロパティを取得します。IFC スキーマでは、プロパティには直接プロパティと間接プロパティの 2 種類があります。間接的なプロパティ（psets、qsets、type プロパティ）の取得方法については後述します。
 
 <IfcAlert>
-プロパティに関連するすべてのメソッドは、キーがプロパティの名前で、値がその値であるオブジェクトの配列を返します。
+  プロパティに関連するすべてのメソッドは、キーがプロパティの名前で、値がその値であるオブジェクトの配列を返します。
 </IfcAlert>
 
 #### 関数の引数
 
-- `modelID` IFCモデルのIDです。
+- `modelID` IFC モデルの ID です。
 
-- `id` プロパティを取得したいアイテムのエクスプレスID。これは、`getExpressId` (3Dビューでオブジェクトを選択している場合)、または `getAllItemsOfType` や `getSpatialStructure` でモデルをトラバースすることで取得できます。
+- `id` プロパティを取得したいアイテムのエクスプレス ID。これは、`getExpressId` (3D ビューでオブジェクトを選択している場合)、または `getAllItemsOfType` や `getSpatialStructure` でモデルをトラバースすることで取得できます。
 
-- `recursive` trueの場合、参照されているすべての要素のプロパティを再帰的に取得します。大きなモデルでは、この処理に時間がかかることがありますので、注意してください。
+- `recursive` true の場合、参照されているすべての要素のプロパティを再帰的に取得します。大きなモデルでは、この処理に時間がかかることがありますので、注意してください。
 
 #### 例
 
 ```js
-  const model = ifcModel.modelID;
-  const id = 2142;
-  const manager = loader.ifcLoader.ifcManager;
-  const props = await manager.getItemProperties(model, id, false);
+const model = ifcModel.modelID;
+const id = 2142;
+const manager = loader.ifcLoader.ifcManager;
+const props = await manager.getItemProperties(model, id, false);
 ```
 
-###  getTypeProperties
+### getTypeProperties
 
 ```js
   async IfcLoader.IfcManager.getTypeProperties (
@@ -419,27 +421,28 @@ IFCの要素には、必ず関連するタイプがあります。IfcWall、IfcS
                             recursive = false
                             ): number[] | object[];
 ```
-  📘🔍
+
+📘🔍
 与えられた要素のタイププロパティを取得します。
 
 #### 関数の引数
 
-- `modelID` IFCモデルのIDです。
+- `modelID` IFC モデルの ID です。
 
-- `id` プロパティを取得したいアイテムのエクスプレスID。これは、`getExpressId` (3Dビューでオブジェクトを選択している場合)、または `getAllItemsOfType` や `getSpatialStructure` でモデルをトラバースすることで取得できます。
+- `id` プロパティを取得したいアイテムのエクスプレス ID。これは、`getExpressId` (3D ビューでオブジェクトを選択している場合)、または `getAllItemsOfType` や `getSpatialStructure` でモデルをトラバースすることで取得できます。
 
-- `recursive` trueの場合、参照されているすべての要素のプロパティを再帰的に取得します。大きなモデルでは、この操作に時間がかかることがあるので、注意が必要です。
+- `recursive` true の場合、参照されているすべての要素のプロパティを再帰的に取得します。大きなモデルでは、この操作に時間がかかることがあるので、注意が必要です。
 
 #### 例
 
 ```js
-  const model = ifcModel.modelID;
-  const id = 2142;
-  const manager = loader.ifcLoader.ifcManager;
-  const props = await manager.getTypeProperties(model, id, false);
+const model = ifcModel.modelID;
+const id = 2142;
+const manager = loader.ifcLoader.ifcManager;
+const props = await manager.getTypeProperties(model, id, false);
 ```
 
-###  getPropertySets
+### getPropertySets
 
 ```js
   async IfcLoader.IfcManager.getPropertySets (
@@ -452,28 +455,28 @@ IFCの要素には、必ず関連するタイプがあります。IfcWall、IfcS
 📗🔍
 与えられた要素のプロパティセットと数量セットを取得します。
 
-<IfcCard icon="📃" title="Property sets?" >
-ネイティブプロパティとタイププロパティは、IFCスキーマであらかじめ定義されているもので、常に同じ情報を含んでいます。一方、プロパティセットは任意のもので、ユーザーが定義することができます。
+<IfcCard icon="📃" title="Property sets?">
+  ネイティブプロパティとタイププロパティは、IFCスキーマであらかじめ定義されているもので、常に同じ情報を含んでいます。一方、プロパティセットは任意のもので、ユーザーが定義することができます。
 </IfcCard>
 
 #### 関数の引数
 
-- `modelID` IFCモデルのIDです。
+- `modelID` IFC モデルの ID です。
 
-- `id` プロパティを取得したいアイテムのエクスプレスID。これは、`getExpressId` (3Dビューでオブジェクトを選択している場合)、または `getAllItemsOfType` や `getSpatialStructure` でモデルをトラバースすることで取得できます。
+- `id` プロパティを取得したいアイテムのエクスプレス ID。これは、`getExpressId` (3D ビューでオブジェクトを選択している場合)、または `getAllItemsOfType` や `getSpatialStructure` でモデルをトラバースすることで取得できます。
 
-- `recursive` trueの場合、参照されているすべての要素のプロパティを再帰的に取得します。大きなモデルでは、この操作に時間がかかることがあるので、注意が必要です。
+- `recursive` true の場合、参照されているすべての要素のプロパティを再帰的に取得します。大きなモデルでは、この操作に時間がかかることがあるので、注意が必要です。
 
 #### 例
 
 ```js
-  const model = ifcModel.modelID;
-  const id = 2142;
-  const manager = loader.ifcLoader.ifcManager;
-  const props = await manager.getPropertySets(model, id, false);
+const model = ifcModel.modelID;
+const id = 2142;
+const manager = loader.ifcLoader.ifcManager;
+const props = await manager.getPropertySets(model, id, false);
 ```
 
-###  getMaterialsProperties
+### getMaterialsProperties
 
 ```js
   async IfcLoader.IfcManager.getMaterialsProperties (
@@ -488,51 +491,54 @@ IFCの要素には、必ず関連するタイプがあります。IfcWall、IfcS
 
 #### 関数の引数:
 
-- `modelID` IFCモデルのIDです。
+- `modelID` IFC モデルの ID です。
 
-- `id` プロパティを取得したいアイテムのエクスプレスID。これは、`getExpressId` (3Dビューでオブジェクトを選択している場合)、または `getAllItemsOfType` や `getSpatialStructure` でモデルをトラバースすることで取得できます。
+- `id` プロパティを取得したいアイテムのエクスプレス ID。これは、`getExpressId` (3D ビューでオブジェクトを選択している場合)、または `getAllItemsOfType` や `getSpatialStructure` でモデルをトラバースすることで取得できます。
 
-- `recursive` trueの場合、参照されているすべての要素のプロパティを再帰的に取得します。大きなモデルでは、この操作に時間がかかることがあるので、注意が必要です。
+- `recursive` true の場合、参照されているすべての要素のプロパティを再帰的に取得します。大きなモデルでは、この操作に時間がかかることがあるので、注意が必要です。
 
 #### 例:
 
 ```js
-  const model = ifcModel.modelID;
-  const id = 2142;
-  const manager = loader.ifcLoader.ifcManager;
-  const props = await manager.getMaterialsProperties(model, id, false);
+const model = ifcModel.modelID;
+const id = 2142;
+const manager = loader.ifcLoader.ifcManager;
+const props = await manager.getMaterialsProperties(model, id, false);
 ```
 
-
-###  getSpatialStructure
+### getSpatialStructure
 
 ```js
   async IfcLoader.IfcManager.getSpatialStructure (
                         modelID: number
                         ): object;
 ```
-  🔗🔗🔗
+
+🔗🔗🔗
 Gets the spatial structure of the project.
 
 <IfcAlert>
-<a href="https://standards.buildingsmart.org/IFC/DEV/IFC4_2/FINAL/HTML/schema/ifcproductextension/lexical/ifcspatialstructureelement.htm">空間構造</a>は、すべてのIFCプロジェクトを編成する階層構造です（すべての物理的アイテムは、空間構造の要素に参照されます）。
+  <a href="https://standards.buildingsmart.org/IFC/DEV/IFC4_2/FINAL/HTML/schema/ifcproductextension/lexical/ifcspatialstructureelement.htm">
+    空間構造
+  </a>
+  は、すべてのIFCプロジェクトを編成する階層構造です（すべての物理的アイテムは、空間構造の要素に参照されます）。
 </IfcAlert>
 
 #### 関数の引数
 
-- `modelID` IFCモデルのIDです。
+- `modelID` IFC モデルの ID です。
 
 #### 例
 
 ```js
-  const model = ifcModel.modelID;
-  const manager = loader.ifcLoader.ifcManager;
-  const ifcProject = await manager.getSpatialStructure(model);
+const model = ifcModel.modelID;
+const manager = loader.ifcLoader.ifcManager;
+const ifcProject = await manager.getSpatialStructure(model);
 ```
 
-##  🧱 Subsets
+## 🧱 Subsets
 
-###  getSubset
+### getSubset
 
 ```js
   IfcLoader.IfcManager.getSubset (
@@ -540,34 +546,36 @@ Gets the spatial structure of the project.
                         material?: Material
                         ): object;
 ```
-  🧱🔍
+
+🧱🔍
 指定された[material](https://threejs.org/docs/#api/en/materials/Material)を持つサブセットのメッシュを取得します。素材が指定されていない場合は、元の素材を使用したサブセットが返されます。
 
 <IfcAlert>
-ジオメトリックサブセットとは、モデルのジオメトリを抽出したものです。例えば、特定の条件を満たすすべてのIfcDoorsとIfcWindowsを含むサブセットを抽出し、それらをハイライトしたりエクスポートしたりすることができます。
+  ジオメトリックサブセットとは、モデルのジオメトリを抽出したものです。例えば、特定の条件を満たすすべてのIfcDoorsとIfcWindowsを含むサブセットを抽出し、それらをハイライトしたりエクスポートしたりすることができます。
 </IfcAlert>
 
 #### 関数の引数
 
-- `modelID` IFCモデルのIDです。
+- `modelID` IFC モデルの ID です。
 
 - `material` (オプション) サブセットに割り当てられた素材（ある場合）。
 
 #### 例
 
 ```js
-  const model = ifcModel.modelID;
-  const manager = loader.ifcLoader.ifcManager;
-  const subset = manager.getSubset(model);
+const model = ifcModel.modelID;
+const manager = loader.ifcLoader.ifcManager;
+const subset = manager.getSubset(model);
 ```
 
-###  createSubset
+### createSubset
 
 ```js
   IfcLoader.IfcManager.createSubset (
                         config: SubsetConfig
                         ): object;
 ```
+
 🧱✨
 新しい幾何学的サブセットを作成します。
 
@@ -577,9 +585,9 @@ Gets the spatial structure of the project.
 
   - `scene` モデルが配置されているシーン。
 
-  - `modelID` モデルのIDです。
+  - `modelID` モデルの ID です。
 
-  - `ids` サブセットに適合するモデルのアイテムのIDを表す。
+  - `ids` サブセットに適合するモデルのアイテムの ID を表す。
 
   - `removePrevious` このモデルの前のサブセットをこの素材で削除するかどうか。
 
@@ -601,7 +609,7 @@ Gets the spatial structure of the project.
   manager.createSubset(config);
 ```
 
-###  removeSubset
+### removeSubset
 
 ```js
   IfcLoader.IfcManager.removeSubset (
@@ -611,12 +619,12 @@ Gets the spatial structure of the project.
                         ): object;
 ```
 
-  🧱💣
+🧱💣
 指定された幾何学的サブセットを削除します。
 
 #### 関数の引数
 
-- `modelID` IFCモデルのIDです。
+- `modelID` IFC モデルの ID です。
 
 - `material` (オプション) サブセットに割り当てられた素材（ある場合）。
 
@@ -625,12 +633,12 @@ Gets the spatial structure of the project.
 #### 例
 
 ```js
-  const model = ifcModel.modelID;
-  const manager = loader.ifcLoader.ifcManager;
-  manager.removeSubset(model);
+const model = ifcModel.modelID;
+const manager = loader.ifcLoader.ifcManager;
+manager.removeSubset(model);
 ```
 
-###  removeFromSubset
+### removeFromSubset
 
 ```js
   IfcLoader.IfcManager.removeFromSubset (
@@ -646,7 +654,7 @@ Gets the spatial structure of the project.
 
 #### 関数の引数
 
-- `modelID` IFCモデルのIDです。
+- `modelID` IFC モデルの ID です。
 
 - `ids` サブセットから削除するアイテムの ID。
 
@@ -657,9 +665,9 @@ Gets the spatial structure of the project.
 #### 例
 
 ```js
-  import { IFCWALLSTANDARDCASE as W } from 'web-ifc';
-  const model = ifcModel.modelID;
-  const manager = loader.ifcLoader.ifcManager;
-  const walls = await manager.getAllItemsOfType(0, W, false);
-  manager.removeFromSubset(model, walls);
+import { IFCWALLSTANDARDCASE as W } from "web-ifc";
+const model = ifcModel.modelID;
+const manager = loader.ifcLoader.ifcManager;
+const walls = await manager.getAllItemsOfType(0, W, false);
+manager.removeFromSubset(model, walls);
 ```

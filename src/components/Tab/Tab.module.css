@@ -1,41 +1,41 @@
 .ifcTabItem {
-    width: 100% !important;
-    justify-content: center;
+  width: 100% !important;
+  justify-content: center;
 }
 
 .ifcTabContent {
-    border-radius: var(--ifm-alert-border-radius);
-    background-color: var(--ifm-highlight-color);
-    box-shadow: var(--box-shadow);
-    transition: var(--box-shadow-transition);
-    padding: 3rem;
+  border-radius: var(--ifm-alert-border-radius);
+  background-color: var(--ifm-highlight-color);
+  box-shadow: var(--box-shadow);
+  transition: var(--box-shadow-transition);
+  padding: 3rem;
 }
 
 .linkContainer {
-    display: flex;
-    justify-content: flex-end;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .ifcTabContent:hover {
-    box-shadow: var(--box-shadow-big);
+  box-shadow: var(--box-shadow-big);
 }
 
-.iconSpacing{
-    min-height: 3rem;
-    transform: translateX(-1rem);
+.iconSpacing {
+  min-height: 3rem;
+  transform: translateX(-1rem);
 }
 
 @media (max-width: 1400px) {
-    .ifcTabItem {
-        font-size: 1rem;
-    }
+  .ifcTabItem {
+    font-size: 1rem;
+  }
 
-    .ifcTabContent {
-        margin: 2rem 0;
-        padding: 2rem;
-    }
+  .ifcTabContent {
+    margin: 2rem 0;
+    padding: 2rem;
+  }
 
-    .linkContainer {
-        transform: translateX(-1rem) translateY(-1rem);
-    }
+  .linkContainer {
+    transform: translateX(-1rem) translateY(-1rem);
+  }
 }

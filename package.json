@@ -14,8 +14,8 @@
     "write-heading-ids": "docusaurus write-heading-ids",
     "publish-docs": "cmd /C 'set \"GIT_USER=agviegas\" && yarn deploy'",
     "prepare": "husky install",
-    "format": "prettier --ignore-path .gitignore --write .",
-    "lint:format": "prettier --ignore-path .gitignore --list-different .",
+    "format": "prettier --write .",
+    "lint:format": "prettier --list-different .",
     "lint:mdx": "node ./scripts/lint-mdx.mjs",
     "lint": "yarn lint:mdx"
   },

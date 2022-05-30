@@ -3,9 +3,9 @@ title: 🧠 Memory
 sidebar_position: 5
 ---
 
-import {IfcCard} from "../../../../src/components/Card/InfoCard";
-import {IfcAlert} from "../../../../src/components/Alert/Alert";
-import {Scene} from "../../../../src/components/Scene/Scene"
+import { IfcCard } from "../../../../src/components/Card/InfoCard";
+import { IfcAlert } from "../../../../src/components/Alert/Alert";
+import { Scene } from "../../../../src/components/Scene/Scene";
 
 ## Introduction
 
@@ -22,19 +22,28 @@ However, when working with Three.js, data going to the graphics card (e.g. buffe
 That means that if we close a viewer made with Three.js (with or without IFC.js), we will create a 💦 **memory leak** 💦. That is to say, we are blocking a part of the user's RAM memory. If the leak becomes too big, the application will become slower and slower and may **crash**.
 
 <IfcAlert>
-    You can find more information about this topic <a href="https://threejs.org/docs/#manual/en/introduction/How-to-dispose-of-objects">here</a>.
+  You can find more information about this topic{" "}
+  <a href="https://threejs.org/docs/#manual/en/introduction/How-to-dispose-of-objects">
+    here
+  </a>
+  .
 </IfcAlert>
 
 🚀
-This becomes especially critical if we are creating a **SPA** (**Single Page Application**), for example, using frameworks and libraries such as **React or **Angular**. In these cases the web application is never reloaded, and the memory leak accumulates.
+This becomes especially critical if we are creating a **SPA** (**Single Page Application**), for example, using frameworks and libraries such as **React or **Angular\*\*. In these cases the web application is never reloaded, and the memory leak accumulates.
 
 Fortunately, IFC.js has taken this into account and allows you to **release the used memory very easily**. Let's see how. 👇
 
 <IfcCard>
-    You can find the full example of this tutorial <a href="https://github.com/IFCjs/hello-world/tree/main/examples/web-ifc-three/memory">here</a>.
+  You can find the full example of this tutorial{" "}
+  <a href="https://github.com/IFCjs/hello-world/tree/main/examples/web-ifc-three/memory">
+    here
+  </a>
+  .
 </IfcCard>
 
 ## How to do it
+
 ### Monitoring the memory
 
 👀
@@ -54,11 +63,11 @@ document.body.append(stats.dom);
 
 // Animation loop
 const animate = () => {
-	stats.begin();
+  stats.begin();
 
-	// Update other stuff
-	stats.end();
-	requestAnimationFrame(animate);
+  // Update other stuff
+  stats.end();
+  requestAnimationFrame(animate);
 };
 
 animate();
@@ -78,20 +87,19 @@ Now let's create a function that removes all the memory consumed by IFC.js. Ther
 
 ```js
 async function releaseMemory() {
-	// This releases all IFCLoader memory
-	await ifcLoader.ifcManager.dispose();
-	ifcLoader = null;
-	ifcLoader = new IFCLoader();
+  // This releases all IFCLoader memory
+  await ifcLoader.ifcManager.dispose();
+  ifcLoader = null;
+  ifcLoader = new IFCLoader();
 
-	// If the wasm path was set before, we need to reset it
-	await ifcLoader.ifcManager.setWasmPath('../../../');
+  // If the wasm path was set before, we need to reset it
+  await ifcLoader.ifcManager.setWasmPath("../../../");
 
-	// If IFC models are an array or object,
-    // you must release them there as well
-	// Otherwise, they won't be garbage collected
-	models.length = 0;
+  // If IFC models are an array or object,
+  // you must release them there as well
+  // Otherwise, they won't be garbage collected
+  models.length = 0;
 }
-
 ```
 
 ### Set up simple GUI
@@ -100,22 +108,24 @@ async function releaseMemory() {
 Finally, we are going to create an HTML button and link it to the function we created earlier.
 
 ```html
-<input type="button"
-id="memory-button" value="Release memory">
+<input type="button" id="memory-button" value="Release memory" />
 ```
 
 ```js
 // Sets up memory disposal
-const button = document.getElementById('memory-button');
+const button = document.getElementById("memory-button");
 button.addEventListener(`click`, () => releaseMemory());
 ```
 
 😎 This is how the application looks like:
 
-<Scene link={"https://ifcjs.github.io/hello-world/examples/web-ifc-three/memory/index.html"}/>
+<Scene
+  link={
+    "https://ifcjs.github.io/hello-world/examples/web-ifc-three/memory/index.html"
+  }
+/>
 
 Try loading a model and releasing the memory: you'll see it go back to normal. Beware that **it can take some seconds**, as the browser garbage collector takes some time. Alternatively, you can manually apply the garbage collector using the browser's developer tools.
-
 
 ### SPA
 

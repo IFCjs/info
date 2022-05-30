@@ -1,54 +1,54 @@
 .hidden {
-    opacity: 0;
-    transition: all 0.3s ease-in-out;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
 }
 
 .iconContainer {
-    margin: 5px;
+  margin: 5px;
 }
 
 .visible {
-    opacity: 1;
-    transition: opacity 0.3s ease-in-out;
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
 }
 
 .link {
-    position: absolute;
-    text-decoration: none !important;
-    font-size: 1.5rem;
-    text-align: center;
-    animation: wiggle 2.5s infinite;
+  position: absolute;
+  text-decoration: none !important;
+  font-size: 1.5rem;
+  text-align: center;
+  animation: wiggle 2.5s infinite;
 }
 
 .clickable {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .clickable:hover {
-    opacity: 0.7;
+  opacity: 0.7;
 }
 
 @keyframes wiggle {
-    0% {
-        transform: rotate(0deg);
-    }
-    80% {
-        transform: rotate(0deg);
-    }
-    85% {
-        transform: rotate(15deg);
-    }
-    95% {
-        transform: rotate(-15deg);
-    }
-    100% {
-        transform: rotate(0deg);
-    }
+  0% {
+    transform: rotate(0deg);
+  }
+  80% {
+    transform: rotate(0deg);
+  }
+  85% {
+    transform: rotate(15deg);
+  }
+  95% {
+    transform: rotate(-15deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }
 
 @media screen and (max-width: 1400px) {
-    .hidden {
-        visibility: visible;
-        opacity: 1;
-    }
+  .hidden {
+    visibility: visible;
+    opacity: 1;
+  }
 }

@@ -1,14 +1,14 @@
 .threeScene {
-    display: block;
-    width: 100% !important;
-    height: 50%;
-    min-height: 20rem;
-    border-radius: 8px;
-    margin: 1rem 0;
+  display: block;
+  width: 100% !important;
+  height: 50%;
+  min-height: 20rem;
+  border-radius: 8px;
+  margin: 1rem 0;
 }
 
 @media (max-width: 450px) {
-    .threeScene {
-        display: none !important;
-    }
+  .threeScene {
+    display: none !important;
+  }
 }

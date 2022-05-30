@@ -3,9 +3,9 @@ title: 👓 Hiding
 sidebar_position: 4
 ---
 
-import {IfcCard} from "../../../../src/components/Card/InfoCard";
-import {IfcAlert} from "../../../../src/components/Alert/Alert";
-import {Scene} from "../../../../src/components/Scene/Scene"
+import { IfcCard } from "../../../../src/components/Card/InfoCard";
+import { IfcAlert } from "../../../../src/components/Alert/Alert";
+import { Scene } from "../../../../src/components/Scene/Scene";
 
 ## Introduction
 
@@ -18,9 +18,12 @@ However, in many BIM applications it is also possible to **hide and isolate elem
 🍰 Of course, this is a piece of cake using IFC.js. In this example we are going to create **filters by category**, so that the user can show or hide items using checkboxes.
 
 <IfcCard>
-    As with the other tutorials, you can find the full example <a href="https://github.com/IFCjs/hello-world/tree/main/examples/web-ifc-three/hiding">here</a>.
+  As with the other tutorials, you can find the full example{" "}
+  <a href="https://github.com/IFCjs/hello-world/tree/main/examples/web-ifc-three/hiding">
+    here
+  </a>
+  .
 </IfcCard>
-
 
 ## How to do it
 
@@ -34,30 +37,30 @@ To save memory, **categories in IFC.js are defined as numeric constants**. So le
 
 ```js
 import {
-    IFCWALLSTANDARDCASE,
-    IFCSLAB,
-    IFCDOOR,
-    IFCWINDOW,
-    IFCFURNISHINGELEMENT,
-    IFCMEMBER,
-    IFCPLATE
-} from 'web-ifc';
+  IFCWALLSTANDARDCASE,
+  IFCSLAB,
+  IFCDOOR,
+  IFCWINDOW,
+  IFCFURNISHINGELEMENT,
+  IFCMEMBER,
+  IFCPLATE,
+} from "web-ifc";
 
 // List of categories names
 const categories = {
-    IFCWALLSTANDARDCASE,
-    IFCSLAB,
-    IFCFURNISHINGELEMENT,
-    IFCDOOR,
-    IFCWINDOW,
-    IFCPLATE,
-    IFCMEMBER
+  IFCWALLSTANDARDCASE,
+  IFCSLAB,
+  IFCFURNISHINGELEMENT,
+  IFCDOOR,
+  IFCWINDOW,
+  IFCPLATE,
+  IFCMEMBER,
 };
 
 // Gets the name of a category
 function getName(category) {
-    const names = Object.keys(categories);
-    return names.find(name => categories[name] === category);
+  const names = Object.keys(categories);
+  return names.find((name) => categories[name] === category);
 }
 ```
 
@@ -65,30 +68,30 @@ function getName(category) {
 Now let's create a couple of functions to **get all the IDs** of the elements belonging to a category and **create a subset** with those IDs.
 
 <IfcAlert>
-    Remember that many IFC.js functions are asynchronous, so we're going to use async and await.
+  Remember that many IFC.js functions are asynchronous, so we're going to use
+  async and await.
 </IfcAlert>
 
 👩‍🏫
 You can also use `removeFromSubset()` to remove a single item from a subset (e.g. hide a single item). If you combine that with `createSubset()` with `removePrevious = false`, you'll have full control of what is added to which subset and its visibility.
 
-
 ```js
 // Gets the IDs of all the items of a specific category
 async function getAll(category) {
-	const manager = ifcLoader.ifcManager;
-    return manager.getAllItemsOfType(0, category, false);
+  const manager = ifcLoader.ifcManager;
+  return manager.getAllItemsOfType(0, category, false);
 }
 
 // Creates a new subset containing all elements of a category
 async function newSubsetOfType(category) {
-    const ids = await getAll(category);
-    return ifcLoader.ifcManager.createSubset({
-        modelID: 0,
-        scene,
-        ids,
-        removePrevious: true,
-        customID: category.toString()
-    })
+  const ids = await getAll(category);
+  return ifcLoader.ifcManager.createSubset({
+    modelID: 0,
+    scene,
+    ids,
+    removePrevious: true,
+    customID: category.toString(),
+  });
 }
 ```
 
@@ -103,82 +106,84 @@ This can easily be done with a little **HTML** and **CSS**:
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="icon" href="../../../favicon.ico">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="../../../favicon.ico" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
     <title>IFC.js</title>
-</head>
-<body>
-<canvas id="three-canvas"></canvas>
+  </head>
+  <body>
+    <canvas id="three-canvas"></canvas>
 
-<div class="checkboxes">
-    <div>
-        <input checked="true" id="IFCWALLSTANDARDCASE" type="checkbox">
+    <div class="checkboxes">
+      <div>
+        <input checked="true" id="IFCWALLSTANDARDCASE" type="checkbox" />
         Walls
-    </div>
-    <div>
-        <input checked="true" id="IFCSLAB" type="checkbox">
+      </div>
+      <div>
+        <input checked="true" id="IFCSLAB" type="checkbox" />
         Slabs
-    </div>
-    <div>
-        <input checked="true" id="IFCWINDOW" type="checkbox">
+      </div>
+      <div>
+        <input checked="true" id="IFCWINDOW" type="checkbox" />
         Windows
-    </div>
-    <div>
-        <input checked="true" id="IFCFURNISHINGELEMENT" type="checkbox">
+      </div>
+      <div>
+        <input checked="true" id="IFCFURNISHINGELEMENT" type="checkbox" />
         Furniture
-    </div>
-    <div>
-        <input checked="true" id="IFCDOOR" type="checkbox">
+      </div>
+      <div>
+        <input checked="true" id="IFCDOOR" type="checkbox" />
         Doors
-    </div>
-    <div>
-        <input checked="true" id="IFCMEMBER" type="checkbox">
+      </div>
+      <div>
+        <input checked="true" id="IFCMEMBER" type="checkbox" />
         Curtain wall structure
-    </div>
-    <div>
-        <input checked="true" id="IFCPLATE" type="checkbox">
+      </div>
+      <div>
+        <input checked="true" id="IFCPLATE" type="checkbox" />
         Curtain wall plates
+      </div>
     </div>
-</div>
 
-<script src="bundle.js"></script>
-</body>
+    <script src="bundle.js"></script>
+  </body>
 </html>
 ```
 
 ```css
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-html, body {
-    overflow: hidden;
+html,
+body {
+  overflow: hidden;
 }
 
-#three-canvas{
-    position: fixed;
-    top: 0;
-    left: 0;
-    outline: none;
+#three-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  outline: none;
 }
 
-#file-input{
-    z-index: 1;
-    position: absolute;
+#file-input {
+  z-index: 1;
+  position: absolute;
 }
 
 .checkboxes {
-    position: absolute;
-    left: 1rem;
-    top: 1rem;
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
 }
 ```
+
 ### Bind GUI with visibility
 
 ✨
@@ -192,35 +197,39 @@ Here it is worth noting that to make the code more concise we have given **each 
 const subsets = {};
 
 async function setupAllCategories() {
-	const allCategories = Object.values(categories);
-	for (let i = 0; i < allCategories.length; i++) {
-		const category = allCategories[i];
-		await setupCategory(category);
-	}
+  const allCategories = Object.values(categories);
+  for (let i = 0; i < allCategories.length; i++) {
+    const category = allCategories[i];
+    await setupCategory(category);
+  }
 }
 
 // Creates a new subset and configures the checkbox
 async function setupCategory(category) {
-	subsets[category] = await newSubsetOfType(category);
-	setupCheckBox(category);
+  subsets[category] = await newSubsetOfType(category);
+  setupCheckBox(category);
 }
 
 // Sets up the checkbox event to hide / show elements
 function setupCheckBox(category) {
-	const name = getName(category);
-	const checkBox = document.getElementById(name);
-	checkBox.addEventListener('change', (event) => {
-		const checked = event.target.checked;
-		const subset = subsets[category];
-		if (checked) scene.add(subset);
-		else subset.removeFromParent();
-	});
+  const name = getName(category);
+  const checkBox = document.getElementById(name);
+  checkBox.addEventListener("change", (event) => {
+    const checked = event.target.checked;
+    const subset = subsets[category];
+    if (checked) scene.add(subset);
+    else subset.removeFromParent();
+  });
 }
 ```
 
 😎 And here is the result:
 
-<Scene link={"https://ifcjs.github.io/hello-world/examples/web-ifc-three/hiding/index.html"}/>
+<Scene
+  link={
+    "https://ifcjs.github.io/hello-world/examples/web-ifc-three/hiding/index.html"
+  }
+/>
 
 ## Next steps
 
@@ -228,7 +237,9 @@ function setupCheckBox(category) {
 Congratulations! Now you know how to control the visibility of elements using any filter.
 
 <IfcAlert>
-    This would be the same if we want to filter with other properties (e.g. the floor they belong to using the spatial structure tree, seen in the properties section).  Just make sure you get the IDs of the elements you want to filter.
+  This would be the same if we want to filter with other properties (e.g. the
+  floor they belong to using the spatial structure tree, seen in the properties
+  section). Just make sure you get the IDs of the elements you want to filter.
 </IfcAlert>
 
 👩‍🏫

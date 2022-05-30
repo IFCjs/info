@@ -3,9 +3,9 @@ title: 🚀 多线程
 sidebar_position: 6
 ---
 
-import {IfcCard} from "../../../../../../../src/components/Card/InfoCard";
-import {IfcAlert} from "../../../../../../../src/components/Alert/Alert";
-import {Scene} from "../../../../../../../src/components/Scene/Scene"
+import { IfcCard } from "../../../../../../../src/components/Card/InfoCard";
+import { IfcAlert } from "../../../../../../../src/components/Alert/Alert";
+import { Scene } from "../../../../../../../src/components/Scene/Scene";
 
 ## 简介
 
@@ -13,39 +13,42 @@ import {Scene} from "../../../../../../../src/components/Scene/Scene"
 到目前为止所看到的一切都非常酷，但我们有一个问题：当我们加载一个非常大的模型时，**应用程序冻结了几秒钟**。当我们想从模型中提取许多属性时，这个问题也会发生。有什么办法可以避免这个问题吗？
 
 🔥
-当然，**IFC.js已经预见到了这种情况，并实现了**多线程。这意味着繁重的操作将在一个并行的进程中进行，不会阻塞应用程序，当进程结束时，应用程序将被异步更新。
+当然，**IFC.js 已经预见到了这种情况，并实现了**多线程。这意味着繁重的操作将在一个并行的进程中进行，不会阻塞应用程序，当进程结束时，应用程序将被异步更新。
 
 👌
-这听起来很复杂，而且确实如此。但不要担心：我们已经把它设置好了，所以你只需几行代码就可以在你的BIM应用程序中使用这个。
+这听起来很复杂，而且确实如此。但不要担心：我们已经把它设置好了，所以你只需几行代码就可以在你的 BIM 应用程序中使用这个。
 
 <IfcCard>
-你可以找到这个教程的完整例子<a href="https://github.com/IFCjs/hello-world/tree/main/examples/web-ifc-three/multithreading">这里</a>。
+  你可以找到这个教程的完整例子
+  <a href="https://github.com/IFCjs/hello-world/tree/main/examples/web-ifc-three/multithreading">
+    这里
+  </a>。
 </IfcCard>
-
 
 ## 如何做到这一点
 
 ### 设置网络工作者
 
 👩‍🏫
-为了启用多线程，必须配置**webworker**。但什么是webworker？webworker是网络浏览器为了能够与多线程一起工作而具备的机制。但如果你以前没有听说过它们，也不用担心，**你不需要它们来在IFC.js中使用多线程**。
+为了启用多线程，必须配置**webworker**。但什么是 webworker？webworker 是网络浏览器为了能够与多线程一起工作而具备的机制。但如果你以前没有听说过它们，也不用担心，**你不需要它们来在 IFC.js 中使用多线程**。
 
 📦📦📦
-如果你用`npm`、`yarn`或其他软件包管理器工作，你的项目中应该有一个叫`node_modules`的文件夹，里面有你的项目使用的所有库的文件夹。在`node_modules/web-ifc-three`中，你会发现使用webworkers所需的两个文件。`IFCWorker.js`和`IFCWorker.js.map`。
+如果你用`npm`、`yarn`或其他软件包管理器工作，你的项目中应该有一个叫`node_modules`的文件夹，里面有你的项目使用的所有库的文件夹。在`node_modules/web-ifc-three`中，你会发现使用 webworkers 所需的两个文件。`IFCWorker.js`和`IFCWorker.js.map`。
 
 <IfcCard>
-你必须把这两个文件复制到你的项目中的一个目录中，这个目录将与最终的应用程序一起提供。这取决于你所使用的技术（vanilla JS、React、Angular等）。你可以使用你用于wasm文件的同一目录。
+  你必须把这两个文件复制到你的项目中的一个目录中，这个目录将与最终的应用程序一起提供。这取决于你所使用的技术（vanilla
+  JS、React、Angular等）。你可以使用你用于wasm文件的同一目录。
 </IfcCard>
 
 🌍
-然后你必须指定这个文件的位置，与wasm文件的方法相同。这可以这样做。
+然后你必须指定这个文件的位置，与 wasm 文件的方法相同。这可以这样做。
 
 ```js
 async function setUpMultiThreading() {
-    const manager = ifcLoader.ifcManager;
-    // 这些路径取决于你如何构造你的项目
-	await manager.useWebWorkers(true, 'IFCWorker.js');
-	await manager.setWasmPath('../../../');
+  const manager = ifcLoader.ifcManager;
+  // 这些路径取决于你如何构造你的项目
+  await manager.useWebWorkers(true, "IFCWorker.js");
+  await manager.setWasmPath("../../../");
 }
 
 setUpMultiThreading();
@@ -55,48 +58,54 @@ setUpMultiThreading();
 还有，voi lá! 信不信由你，你已经在你的项目中启用了多线程。如果你现在尝试在你的应用程序中加载一个文件，或者尝试一次获得许多属性，你会看到**应用程序不会冻结**。
 
 <IfcAlert>
-注意，如果你激活了网络工作者，wasm文件的路径必须是与网络工作者相对的。
+  注意，如果你激活了网络工作者，wasm文件的路径必须是与网络工作者相对的。
 </IfcAlert>
 
 🤖❓📚
-请记住，**webworker的版本必须与你所使用的库的版本相匹配**。这意味着，如果你将来更新了`web-ifc-three`的版本，你就需要重新复制这些文件。你可以使用一个命令行库来自动复制文件，如`cpy`。
+请记住，**webworker 的版本必须与你所使用的库的版本相匹配**。这意味着，如果你将来更新了`web-ifc-three`的版本，你就需要重新复制这些文件。你可以使用一个命令行库来自动复制文件，如`cpy`。
 
 ### 装载进度
 
 🔥
-在你的BIM应用程序中使用多线程有许多好处。最直接的是，我们现在可以**向用户显示模型的加载进度**。首先，我们将添加一个简单的HTML消息来显示进度。
+在你的 BIM 应用程序中使用多线程有许多好处。最直接的是，我们现在可以**向用户显示模型的加载进度**。首先，我们将添加一个简单的 HTML 消息来显示进度。
 
 ```html
 div id="text-container">
-   <p>Progress:</p><p id="progress-text">0</p><p>%</p>
+<p>Progress:</p>
+<p id="progress-text">0</p>
+<p>%</p>
 /div>
 ```
 
 ✨✨✨
-接下来我们要把这个HTML元素与模型加载事件**链接起来**。这可以通过 "setOnProgress() "方法轻松实现。让我们也应用一些基本的数学知识来**将进度转换为百分比**。
+接下来我们要把这个 HTML 元素与模型加载事件**链接起来**。这可以通过 "setOnProgress() "方法轻松实现。让我们也应用一些基本的数学知识来**将进度转换为百分比**。
 
 ```js
 function setupProgressNotification() {
-    const text = document.getElementById('progress-text');
-    ifcLoader.ifcManager.setOnProgress((event) => {
-      const percent = event.loaded / event.total * 100;
-    	const result = Math.trunc(percent);
-    	text.innerText = result.toString();
-    });
+  const text = document.getElementById("progress-text");
+  ifcLoader.ifcManager.setOnProgress((event) => {
+    const percent = (event.loaded / event.total) * 100;
+    const result = Math.trunc(percent);
+    text.innerText = result.toString();
+  });
 }
 
 setupProgressNotification();
 ```
 
 🌈
-如果你做得很正确，我们应该能看到下面的查看器。如果你尝试加载一个IFC模型，你不仅会看到**加载过程不会阻挡3D视图**，而且**html文本会实时显示加载进度**。
+如果你做得很正确，我们应该能看到下面的查看器。如果你尝试加载一个 IFC 模型，你不仅会看到**加载过程不会阻挡 3D 视图**，而且**html 文本会实时显示加载进度**。
 
-<Scene link={"https://ifcjs.github.io/hello-world/examples/web-ifc-three/multithreading/index.html"}/>
+<Scene
+  link={
+    "https://ifcjs.github.io/hello-world/examples/web-ifc-three/multithreading/index.html"
+  }
+/>
 
 ## 接下来的步骤
 
 🎉🎉🎉
-祝贺你！你现在可以**创建多线程的BIM应用程序了。你现在可以**创建永不冻结的多线程BIM应用程序了。
+祝贺你！你现在可以**创建多线程的 BIM 应用程序了。你现在可以**创建永不冻结的多线程 BIM 应用程序了。
 
 😎
-你现在已经熟悉了IFC.js的一些高级工具，但还有很多东西需要学习。在后面的教程中，我们将看到如何不仅读取，而且**编辑和创建IFC文件**。
+你现在已经熟悉了 IFC.js 的一些高级工具，但还有很多东西需要学习。在后面的教程中，我们将看到如何不仅读取，而且**编辑和创建 IFC 文件**。

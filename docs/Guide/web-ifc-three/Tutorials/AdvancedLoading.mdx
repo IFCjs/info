@@ -3,9 +3,9 @@ title: 🚀 Multithreading
 sidebar_position: 6
 ---
 
-import {IfcCard} from "../../../../src/components/Card/InfoCard";
-import {IfcAlert} from "../../../../src/components/Alert/Alert";
-import {Scene} from "../../../../src/components/Scene/Scene"
+import { IfcCard } from "../../../../src/components/Card/InfoCard";
+import { IfcAlert } from "../../../../src/components/Alert/Alert";
+import { Scene } from "../../../../src/components/Scene/Scene";
 
 ## Introduction
 
@@ -19,9 +19,12 @@ Of course, IFC.js has foreseen this situation and has implemented **multithreadi
 This sounds complicated, and it is. But don't worry: we've got it all set up so you can have this in your BIM applications in a couple of lines of code.
 
 <IfcCard>
-    You can find the full example of this tutorial <a href="https://github.com/IFCjs/hello-world/tree/main/examples/web-ifc-three/multithreading">here</a>.
+  You can find the full example of this tutorial{" "}
+  <a href="https://github.com/IFCjs/hello-world/tree/main/examples/web-ifc-three/multithreading">
+    here
+  </a>
+  .
 </IfcCard>
-
 
 ## How to do it
 
@@ -34,7 +37,10 @@ In order to enable multithreading, the **webworker** must be configured. But wha
 If you work with `npm`, `yarn` or another package manager in your project there should be a folder called `node_modules`, with all the folders of the libraries your project is using. In `node_modules/web-ifc-three` you will find the two files needed to use webworkers: `IFCWorker.js` and `IFCWorker.js.map`.
 
 <IfcCard>
-You have to copy these two files to a directory in your project that will be served with the final application. This varies depending on the technology you are using (vanilla JS, React, Angular, etc). You can use the same directory you are using for the wasm files.
+  You have to copy these two files to a directory in your project that will be
+  served with the final application. This varies depending on the technology you
+  are using (vanilla JS, React, Angular, etc). You can use the same directory
+  you are using for the wasm files.
 </IfcCard>
 
 🌍
@@ -42,10 +48,10 @@ Then you have to specify where this file is located, in the same way as with the
 
 ```js
 async function setUpMultiThreading() {
-    const manager = ifcLoader.ifcManager;
-    // These paths depend on how you structure your project
-	await manager.useWebWorkers(true, 'IFCWorker.js');
-	await manager.setWasmPath('../../../');
+  const manager = ifcLoader.ifcManager;
+  // These paths depend on how you structure your project
+  await manager.useWebWorkers(true, "IFCWorker.js");
+  await manager.setWasmPath("../../../");
 }
 
 setUpMultiThreading();
@@ -55,7 +61,8 @@ setUpMultiThreading();
 And, voi lá! Believe it or not, you have already enabled multithreading in your project. If you now try to load a file in your application or try to get many properties at once, you will see that **the application does not freeze**.
 
 <IfcAlert>
-    Note that if you activate the webworker, the path to the wasm files must be relative to the webworker.
+  Note that if you activate the webworker, the path to the wasm files must be
+  relative to the webworker.
 </IfcAlert>
 
 🤖❓📚
@@ -68,7 +75,9 @@ Using multithreading in your BIM application has numerous advantages. The most i
 
 ```html
 div id="text-container">
-   <p>Progress:</p><p id="progress-text">0</p><p>%</p>
+<p>Progress:</p>
+<p id="progress-text">0</p>
+<p>%</p>
 /div>
 ```
 
@@ -77,12 +86,12 @@ Next we are going to **link this HTML element to the model load event**. This ca
 
 ```js
 function setupProgressNotification() {
-    const text = document.getElementById('progress-text');
-    ifcLoader.ifcManager.setOnProgress((event) => {
-      const percent = event.loaded / event.total * 100;
-    	const result = Math.trunc(percent);
-    	text.innerText = result.toString();
-    });
+  const text = document.getElementById("progress-text");
+  ifcLoader.ifcManager.setOnProgress((event) => {
+    const percent = (event.loaded / event.total) * 100;
+    const result = Math.trunc(percent);
+    text.innerText = result.toString();
+  });
 }
 
 setupProgressNotification();
@@ -91,7 +100,11 @@ setupProgressNotification();
 🌈
 If you have done everything correctly, we should be able to see the following viewer. If you try to load an IFC model, not only you will see that **the loading process does not block the 3D view**, but the **html text shows the loading progress in real time**.
 
-<Scene link={"https://ifcjs.github.io/hello-world/examples/web-ifc-three/multithreading/index.html"}/>
+<Scene
+  link={
+    "https://ifcjs.github.io/hello-world/examples/web-ifc-three/multithreading/index.html"
+  }
+/>
 
 ## Next steps
 

@@ -3,17 +3,17 @@ title: はじめに
 sidebar_position: 0
 ---
 
-  import {IfcCard} from "../../../../../src/components/Card/InfoCard";
+import { IfcCard } from "../../../../../src/components/Card/InfoCard";
 
-## IFC.jsを理解する
+## IFC.js を理解する
 
-  🐟🐠🐡
-IFC.jsは単なるライブラリではなく、BIMツールの作成を容易にするライブラリとプロジェクトのエコシステムです。このモジュール化には2つの理由があります。
+🐟🐠🐡
+IFC.js は単なるライブラリではなく、BIM ツールの作成を容易にするライブラリとプロジェクトのエコシステムです。このモジュール化には 2 つの理由があります。
 
 - 必要なものだけをアプリケーションで使用できるようにするため。
 - ライブラリのメンテナンス性を高めるため。
 
-それぞれのケースで何を使うべきかを知るためには、どの部分で構成されているかを理解することが重要です。IFC.jsは基本的に3つのレイヤーで構成されており、それぞれが独自の責任を持っています。
+それぞれのケースで何を使うべきかを知るためには、どの部分で構成されているかを理解することが重要です。IFC.js は基本的に 3 つのレイヤーで構成されており、それぞれが独自の責任を持っています。
 
 <IfcCard icon="🧩" title="web-ifc" link="https://ifcjs.github.io/info/docs/Guide/web-ifc/Introduction">
 
@@ -24,7 +24,9 @@ IFCファイルのパーサーです。IFCからすべての情報を読み取�
 
 </div>
 
-<div><b>使うときは</b></div>
+<div>
+  <b>使うときは</b>
+</div>
 
 <div style={{margin: "1rem 0"}}>
 ビューアを使わずにIFCファイルを読み書きしたいとき。このライブラリは、データに対してフルパワーを発揮しますが、使用するにはIFCスキーマの理解が必要です。
@@ -34,14 +36,17 @@ IFCファイルのパーサーです。IFCからすべての情報を読み取�
 
 <IfcCard icon="🧩" title="web-ifc-three" link="https://ifcjs.github.io/info/docs/Guide/web-ifc-three/Introduction">
 
-<div style={{margin: "1rem 0"}}>
-3D BIMビューア。3Dモデルを60fpsで表示してナビゲートしたり、要素を選択したり、すべてのIFCデータを簡単に読み込んでエンドユーザに表示することができます。three.jsの公式IFCローダです。
+<div style={{ margin: "1rem 0" }}>
+  3D
+  BIMビューア。3Dモデルを60fpsで表示してナビゲートしたり、要素を選択したり、すべてのIFCデータを簡単に読み込んでエンドユーザに表示することができます。three.jsの公式IFCローダです。
 </div>
 
-<div><b>使うときは</b></div>
+<div>
+  <b>使うときは</b>
+</div>
 
-<div style={{margin: "1rem 0"}}>
-アプリケーション用のBIMビューアを作成し、実装されたすべての機能を完全にコントロールしたい場合。
+<div style={{ margin: "1rem 0" }}>
+  アプリケーション用のBIMビューアを作成し、実装されたすべての機能を完全にコントロールしたい場合。
 </div>
 
 <div><b>による。</b>web-ifc</div>
@@ -49,14 +54,17 @@ IFCファイルのパーサーです。IFCからすべての情報を読み取�
 
 <IfcCard icon="🧩" title="web-ifc-viewer" link="https://ifcjs.github.io/info/docs/Guide/web-ifc-viewer/Introduction">
 
-<div style={{margin: "1rem 0"}}>
-多くのツールと機能（断面図、寸法など）がすでに実装されている3D BIMビューアで、ほとんど手間をかけずにBIMツールを作成することができます。
+<div style={{ margin: "1rem 0" }}>
+  多くのツールと機能（断面図、寸法など）がすでに実装されている3D
+  BIMビューアで、ほとんど手間をかけずにBIMツールを作成することができます。
 </div>
 
-<div><b>使うときは</b></div>
+<div>
+  <b>使うときは</b>
+</div>
 
-<div style={{margin: "1rem 0"}}>
-BIMビューワを作りたいが、欲しいモデルナビゲーションツールをすべて実装するのには時間をかけたくないという場合。
+<div style={{ margin: "1rem 0" }}>
+  BIMビューワを作りたいが、欲しいモデルナビゲーションツールをすべて実装するのには時間をかけたくないという場合。
 </div>
 
 <div><b>による。</b>web-ifc-three</div>

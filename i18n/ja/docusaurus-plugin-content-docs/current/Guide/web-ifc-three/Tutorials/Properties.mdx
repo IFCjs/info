@@ -3,43 +3,43 @@ title: 📃 プロパティ
 sidebar_position: 3
 ---
 
-import {IfcAlert} from "../../../../../../../src/components/Alert/Alert";
-import {IfcCard} from "../../../../../../../src/components/Card/InfoCard";
-import {Scene} from "../../../../../../../src/components/Scene/Scene"
+import { IfcAlert } from "../../../../../../../src/components/Alert/Alert";
+import { IfcCard } from "../../../../../../../src/components/Card/InfoCard";
+import { Scene } from "../../../../../../../src/components/Scene/Scene";
 
 ## はじめに
 
 🧬🧬🧬️
-ほぼすべてのBIMモデルにはジオメトリが含まれていますが、本当に重要なのはBIMの「I」、つまり**情報**であることは誰もが認めるところでしょう。IFC.jsは、どんなIFCファイルでも上から下まで、**ネイティブなスピード**で、**ほとんどコード**なしにトラバースすることができます。
+ほぼすべての BIM モデルにはジオメトリが含まれていますが、本当に重要なのは BIM の「I」、つまり**情報**であることは誰もが認めるところでしょう。IFC.js は、どんな IFC ファイルでも上から下まで、**ネイティブなスピード**で、**ほとんどコード**なしにトラバースすることができます。
 
 💾
-これにより、クライアント側でIFC**ファイルから直接情報を読み取るウェブアプリケーションを作成できるだけでなく、その情報をリレーショナルまたはノンリレーショナルデータベースに転送し、バックエンドで処理することも可能になりました。
+これにより、クライアント側で IFC\*\*ファイルから直接情報を読み取るウェブアプリケーションを作成できるだけでなく、その情報をリレーショナルまたはノンリレーショナルデータベースに転送し、バックエンドで処理することも可能になりました。
 
 <IfcAlert>
-    IFC.jsは、IFCファイルをID別、空間ツリー別、フィルタリング検索で読み取ることができます。
+  IFC.jsは、IFCファイルをID別、空間ツリー別、フィルタリング検索で読み取ることができます。
 </IfcAlert>
 
 📚
-IFCスキームにはいくつかのタイプのプロパティがあり、それぞれが特定の目的を持っていますが、IFC.jsはそれらすべてを **取得** できます。最も一般的なものをいくつか紹介します。
+IFC スキームにはいくつかのタイプのプロパティがあり、それぞれが特定の目的を持っていますが、IFC.js はそれらすべてを **取得** できます。最も一般的なものをいくつか紹介します。
 
 <IfcCard icon="📕" title="ネイティブ・プロパティ">
-    IFCの各クラスに固有のもの。
+  IFCの各クラスに固有のもの。
 </IfcCard>
 
 <IfcCard icon="📗" title="タイプのプロパティ">
-    同じタイプのすべての要素の特性を記述する（例：特定のタイプのすべてのエンベロープの壁）。
+  同じタイプのすべての要素の特性を記述する（例：特定のタイプのすべてのエンベロープの壁）。
 </IfcCard>
 
 <IfcCard icon="📘" title="材料の特性">
-    その要素のレイヤーを構成するすべての素材を記述します。
+  その要素のレイヤーを構成するすべての素材を記述します。
 </IfcCard>
 
 <IfcCard icon="📙" title="プロパティセット">
-    ユーザー定義のプロパティの任意のセット。1つまたは複数の要素に関連する複数のプロパティセットが存在する可能性があります。各プロパティセットには、相互に関連する任意のプロパティ群が含まれる。
+  ユーザー定義のプロパティの任意のセット。1つまたは複数の要素に関連する複数のプロパティセットが存在する可能性があります。各プロパティセットには、相互に関連する任意のプロパティ群が含まれる。
 </IfcCard>
 
 <IfcCard icon="📒" title="量の特性">
-    参照している要素の寸法を記述するプロパティのセット。ジオメトリの定義から暗黙的に要素の寸法を推測することも可能ですが、このように明示的に記述することで、IFCモデルを計測するアプリケーションの作成が非常に容易になります。
+  参照している要素の寸法を記述するプロパティのセット。ジオメトリの定義から暗黙的に要素の寸法を推測することも可能ですが、このように明示的に記述することで、IFCモデルを計測するアプリケーションの作成が非常に容易になります。
 </IfcCard>
 
 🚴‍♂️ しかし、理論はもういい。早速、作業に取り掛かりましょう。
@@ -48,95 +48,106 @@ IFCスキームにはいくつかのタイプのプロパティがあり、そ�
 
 ### ハロープロパティ
 
-
 <p>
-    👩‍🏫
-    IFCからプロパティを抽出する基本的な方法は、要素のIDから抽出することです。多くの場合、ユーザーが要素を選択したときに、その要素の直接・間接のプロパティを取得したいと考えます。<a href="https://ifcjs.github.io/info/ja/docs/Guide/web-ifc-three/Tutorials/Picking/" target="_self">
-    これまでのチュートリアル</a>では、そのIDを簡単に取得する方法を紹介してきました。</p>
+  👩‍🏫
+  IFCからプロパティを抽出する基本的な方法は、要素のIDから抽出することです。多くの場合、ユーザーが要素を選択したときに、その要素の直接・間接のプロパティを取得したいと考えます。
+  <a
+    href="https://ifcjs.github.io/info/ja/docs/Guide/web-ifc-three/Tutorials/Picking/"
+    target="_self"
+  >
+    これまでのチュートリアル
+  </a>
+  では、そのIDを簡単に取得する方法を紹介してきました。
+</p>
 
 ☝
-さて、IDがわかったところで、要素のプロパティを取得するのは難しいでしょうか？<a href="https://ifcjs.github.io/info/ja/docs/Guide/web-ifc-three/Tutorials/Picking/" target="_self"> アイテム選択のチュートリアル </a>で見たものに**1行のコード**を追加するだけで、ダブルクリックしたときに選択した要素のプロパティを見ることができます。
+さて、ID がわかったところで、要素のプロパティを取得するのは難しいでしょうか？<a href="https://ifcjs.github.io/info/ja/docs/Guide/web-ifc-three/Tutorials/Picking/" target="_self"> アイテム選択のチュートリアル </a>で見たものに**1 行のコード**を追加するだけで、ダブルクリックしたときに選択した要素のプロパティを見ることができます。
 
 ```js {9}
 // アイテムがピックされたときに実行されるイベント
 async function pick(event) {
-    const found = cast(event)[0];
-    if (found) {
-        const index = found.faceIndex;
-        const geometry = found.object.geometry;
-        const ifc = ifcLoader.ifcManager;
-        const id = ifc.getExpressId(geometry, index);
-        const modelID = found.object.modelID;
-        const props = await ifc.getItemProperties(modelID, id);
-        output.innerHTML = JSON.stringify(props, null, 2);
-    }
+  const found = cast(event)[0];
+  if (found) {
+    const index = found.faceIndex;
+    const geometry = found.object.geometry;
+    const ifc = ifcLoader.ifcManager;
+    const id = ifc.getExpressId(geometry, index);
+    const modelID = found.object.modelID;
+    const props = await ifc.getItemProperties(modelID, id);
+    output.innerHTML = JSON.stringify(props, null, 2);
+  }
 }
 ```
 
-<Scene link={"https://ifcjs.github.io/hello-world/examples/web-ifc-three/picking-properties/"}/>
+<Scene
+  link={
+    "https://ifcjs.github.io/hello-world/examples/web-ifc-three/picking-properties/"
+  }
+/>
 
 **🤨 しかし、その特性とは何でしょうか？**
 
-これらは**ネイティブ・プロパティ**、つまり、各ifc要素タイプに固有の基本的なプロパティです。プロパティは**JavaScriptオブジェクト**として与えられるので、非常に簡単にトラバースすることができます。
+これらは**ネイティブ・プロパティ**、つまり、各 ifc 要素タイプに固有の基本的なプロパティです。プロパティは**JavaScript オブジェクト**として与えられるので、非常に簡単にトラバースすることができます。
 
 **🤔 数値を値として持つプロパティがあるのはなぜですか？**
 
-これは数字ではなく、**express ID**です。つまり、そのIDを使って再び`getItemProperties()`を使えば、その**参照された**要素のプロパティが得られるということです。
+これは数字ではなく、**express ID**です。つまり、その ID を使って再び`getItemProperties()`を使えば、その**参照された**要素のプロパティが得られるということです。
 
 <IfcCard>
-    これがIFCの仕組みです。各 <b>要素</b>は<b>プロパティ</b>を持ち、各<b>プロパティ</b>は他の<b>要素</b>への参照となります。そのため、基本的には参照を介してIFC全体を横断することができます。
+  これがIFCの仕組みです。各 <b>要素</b>は<b>プロパティ</b>を持ち、各
+  <b>プロパティ</b>は他の<b>要素</b>
+  への参照となります。そのため、基本的には参照を介してIFC全体を横断することができます。
 </IfcCard>
 
 **😑 リファレンス？しかし、私はすべての情報を直接欲しい！。**
 
-心配はご無用です。オプションで`getItemProperties()`の3番目のパラメータを使うことができます。これはブール値で、デフォルトではfalseです。これをtrueに設定すると、参照されているすべての要素を再帰的に取得し、すべてを1つのJavaScriptオブジェクトにうまくまとめて表示します。
+心配はご無用です。オプションで`getItemProperties()`の 3 番目のパラメータを使うことができます。これはブール値で、デフォルトでは false です。これを true に設定すると、参照されているすべての要素を再帰的に取得し、すべてを 1 つの JavaScript オブジェクトにうまくまとめて表示します。
 
-とはいえ、ランタイムのオーバーヘッドを避けるために、通常はこれを避けることをお勧めします。必要なときに必要なIDだけに`getItemProperties()`を使用する方がはるかに良いでしょう。
+とはいえ、ランタイムのオーバーヘッドを避けるために、通常はこれを避けることをお勧めします。必要なときに必要な ID だけに`getItemProperties()`を使用する方がはるかに良いでしょう。
 
 **🙄 他のタイプのプロパティを取得するにはどうすればいいですか？**
 
-IFC.jsのAPIには、他のすべてのプロパティタイプに対して同様のメソッドがあります。すなわち、`getTypeProperties()`、`getMaterialProperties()`、`getPropertySets()`です。この最後のメソッドは、プロパティセットと数量セットの両方を取得します。
+IFC.js の API には、他のすべてのプロパティタイプに対して同様のメソッドがあります。すなわち、`getTypeProperties()`、`getMaterialProperties()`、`getPropertySets()`です。この最後のメソッドは、プロパティセットと数量セットの両方を取得します。
 
-**😨 IFCを横断するには、getItemProperties()しかないのでしょうか？**
+**😨 IFC を横断するには、getItemProperties()しかないのでしょうか？**
 
 そんなことはありません。次は、空間構造全体を横断する方法を見てみましょう。
 
+### IFC を使いこなす
 
-### IFCを使いこなす
-
-🔥 要素のIDからIFC情報を参照できるようになりましたし、シーン内のオブジェクトをクリックしてIDを取得する方法も知っています。しかし、これだけでは不十分なのです。
+🔥 要素の ID から IFC 情報を参照できるようになりましたし、シーン内のオブジェクトをクリックして ID を取得する方法も知っています。しかし、これだけでは不十分なのです。
 
 - 幾何学的な表現を持たない要素（例：`IfcSite`）のプロパティを取得したい場合は？
 
-- IFCの空間構造全体を横断したい場合は？
+- IFC の空間構造全体を横断したい場合は？
 
-🌈 もちろん、IFC.jsのAPIを使えば、これらのことはとても簡単です。
+🌈 もちろん、IFC.js の API を使えば、これらのことはとても簡単です。
 
 ### 空間ツリー
 
-🌳🌲🌴 ご存知のように、すべてのIFCには、**空間要素構造**（ここでは空間ツリーと呼ぶ）と呼ばれる一般的な構造があります。これは、プロジェクト内のすべての製品（物理的オブジェクト）の相対的な位置を定義する要素で構成されています。
+🌳🌲🌴 ご存知のように、すべての IFC には、**空間要素構造**（ここでは空間ツリーと呼ぶ）と呼ばれる一般的な構造があります。これは、プロジェクト内のすべての製品（物理的オブジェクト）の相対的な位置を定義する要素で構成されています。
 
 <IfcAlert>
-    空間構造は一般的に、IfcProject、IfcSite、IfcBuilding、IfcBuildingStorey、IfcSpaceで構成されています。
+  空間構造は一般的に、IfcProject、IfcSite、IfcBuilding、IfcBuildingStorey、IfcSpaceで構成されています。
 </IfcAlert>
 
-プロジェクトの空間構造を取得するには、単純に `getSpatialStructure()` を呼び出します。ここで、唯一のパラメータは `modelID` です。このメソッドはプロジェクトの空間構造全体をJavaScriptのオブジェクトとして返します。
+プロジェクトの空間構造を取得するには、単純に `getSpatialStructure()` を呼び出します。ここで、唯一のパラメータは `modelID` です。このメソッドはプロジェクトの空間構造全体を JavaScript のオブジェクトとして返します。
 
 🚧 これは、プロジェクトのすべての製品のすべてのプロパティを取得することを意味しますか？**いいえ**、それは計算量が多くなるからです。その代わり、次のような情報を持つアイテムのツリーが得られます。
 
 ```ts
 interface Node {
-    expressID: number;
-    type: string;
-    children: Node[];
+  expressID: number;
+  type: string;
+  children: Node[];
 }
 ```
 
 👩‍🏫
-**type**（例：`IfcWall`）と**express ID**しか取得できないことに注意してください。要素のプロパティを取得したい場合は、ツリーをトラバースして、すべてのIDに対して上述のプロパティゲッターメソッドを呼び出す必要があります。
+**type**（例：`IfcWall`）と**express ID**しか取得できないことに注意してください。要素のプロパティを取得したい場合は、ツリーをトラバースして、すべての ID に対して上述のプロパティゲッターメソッドを呼び出す必要があります。
 
 <IfcCard>
-    ユーザーにプロパティを表示することが目的であれば、一般的には、ユーザーが要求したとき（例：GUIで特定のアイテムをクリックしたとき）にのみプロパティを取得する方が良いでしょう。
+  ユーザーにプロパティを表示することが目的であれば、一般的には、ユーザーが要求したとき（例：GUIで特定のアイテムをクリックしたとき）にのみプロパティを取得する方が良いでしょう。
 </IfcCard>
 
 例えば、プロジェクトの空間構造を要求すると、次のようなものが出てきます。
@@ -182,23 +193,22 @@ import { IFCSLAB } from "web-ifc";
 const ifc = ifcLoader.ifcManager;
 const modelID = 0;
 
-  async function logAllSlabs() {
-      const slabsID = await ifc.getAllItemsOfType(modelID, IFCSLAB);
+async function logAllSlabs() {
+  const slabsID = await ifc.getAllItemsOfType(modelID, IFCSLAB);
 
-      for(let i = 0; i <= slabsID.length; i++) {
-          const slabID = slabsID[i];
-          const slabProperties = await ifc.getItemProperties(0, slabID);
-          console.log(slabProperties);
-      }
-
+  for (let i = 0; i <= slabsID.length; i++) {
+    const slabID = slabsID[i];
+    const slabProperties = await ifc.getItemProperties(0, slabID);
+    console.log(slabProperties);
   }
+}
 
-  logAllSlabs();
+logAllSlabs();
 ```
 
 ## Next steps
 
 🎉🎉🎉
-おめでとうございます。これでどんなIFCでも、探しているプロパティを抽出することができるはずです。
+おめでとうございます。これでどんな IFC でも、探しているプロパティを抽出することができるはずです。
 
-🐱‍👤 しかし、これらのプロパティを使って何ができるでしょうか？以下のチュートリアルでは、要素を**隠す**、孤立させる**方法を紹介しています。
+🐱‍👤 しかし、これらのプロパティを使って何ができるでしょうか？以下のチュートリアルでは、要素を**隠す**、孤立させる\*\*方法を紹介しています。

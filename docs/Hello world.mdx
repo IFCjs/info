@@ -3,27 +3,31 @@ title: Hello world
 sidebar_position: 4
 ---
 
-  import {IfcCard} from "../src/components/Card/InfoCard";
-  import {IfcAlert} from "../src/components/Alert/Alert";
-  import {Scene} from "../src/components/Scene/Scene";
+import { IfcCard } from "../src/components/Card/InfoCard";
+import { IfcAlert } from "../src/components/Alert/Alert";
+import { Scene } from "../src/components/Scene/Scene";
 
 ## Introduction
 
-  ⚡
+⚡
 Creating a BIM application with IFC.js is very easy. You can find the complete project of the guide [here](https://github.com/IFCjs/hello-world/tree/main/examples/web-ifc-three/helloworld) and the deployed application [here](https://ifcjs.github.io/hello-world/examples/web-ifc-three/helloworld/). You only need to have <a href="https://nodejs.org/en/">Node.js</a> and any IDE installed to follow the steps below. Also, if you don't have any IFC files to follow along, you can get some [here](https://github.com/IFCjs/test-ifc-files).
 
-  <IfcAlert>
-Using IFC.js requires a basic knowledge of web development (HTML, CSS, JavaScript) and Three.js. If you have no previous experience with Three.js, you should probably look <a href="https://threejs.org/manual/">here</a>.
-  </IfcAlert>
+{" "}
 
-  🐣
+<IfcAlert>
+  Using IFC.js requires a basic knowledge of web development (HTML, CSS,
+  JavaScript) and Three.js. If you have no previous experience with Three.js,
+  you should probably look <a href="https://threejs.org/manual/">here</a>.
+</IfcAlert>
+
+🐣
 This minimal tutorial will be done with Vanilla JavaScript, without using frameworks like React, Vue, Angular, Svelte, etc. However, the same steps can be adapted and applied to any of these use cases.
 
 ## Setting up the project
 
 ### Install libraries
 
-  👩‍🏫
+👩‍🏫
 The first thing to do is to create an empty folder and start a new npm project with the command `npm init`. This will generate a `package.json` file containing some data such as the project name, version, commands and dependencies. In addition, the following dependencies must be installed with npm:
 
 ```bash
@@ -38,8 +42,9 @@ The first thing to do is to create an empty folder and start a new npm project w
     npm i @rollup/plugin-node-resolve --save-dev
 ```
 
-  📝
+📝
 The next step is to create an HTML file named `index.html` as the main document of the application. The HTML will have:
+
 - A **canvas element**, used to render the Three.js scene.
 - An **input element**, which will open IFC files from our computer to the application.
 - A **script** referencing a file called `bundle.js`, which is the bundle of the app that we will produce with rollup.
@@ -64,7 +69,7 @@ The next step is to create an HTML file named `index.html` as the main document 
 
 ### Adding style
 
-  🎨
+🎨
 The following CSS file will make the canvas full screen:
 
 ```css
@@ -96,29 +101,30 @@ body {
 
 Next, we'll create the rollup configuration file. This file has to be called `rollup.config.js` and includes the reference to the plugins we have previously installed.
 
-  <IfcCard icon="🧻" title="Rollup?">
-Rollup is a very popular bundling library. For instance, it's the bundler used by Three.js. Take a look at the <a href="https://rollupjs.org/guide/en/">rollup docs</a> to learn more.
-  </IfcCard>
+{" "}
 
+<IfcCard icon="🧻" title="Rollup?">
+  Rollup is a very popular bundling library. For instance, it's the bundler used
+  by Three.js. Take a look at the{" "}
+  <a href="https://rollupjs.org/guide/en/">rollup docs</a> to learn more.
+</IfcCard>
 
 ```js
-import resolve from '@rollup/plugin-node-resolve';
+import resolve from "@rollup/plugin-node-resolve";
 
 export default {
-  input: 'src/app.js',
+  input: "src/app.js",
   output: [
     {
-      format: 'esm',
-      file: 'src/bundle.js'
+      format: "esm",
+      file: "src/bundle.js",
     },
   ],
-  plugins: [
-    resolve(),
-  ]
+  plugins: [resolve()],
 };
 ```
 
-  🎯
+🎯
 Also, the `package.json` file needs to be modified to contain the commands to control rollup easily. In each command, you'll have to specify the relative path to your rollup configuration file. If we have installed everything correctly, we should see the same dependencies in this file (the version of the libraries may differ).
 
 - `npm run build` will bundle the project and create a file called `bundle.js` in the root directory of the project.
@@ -126,7 +132,6 @@ Also, the `package.json` file needs to be modified to contain the commands to co
 - `npm run watch` will activate the `watch mode`, updating that file automatically every time we make changes to the code and save it.
 
 ```json
-
 {
   "name": "example",
   "version": "1.0.0",
@@ -151,178 +156,190 @@ Also, the `package.json` file needs to be modified to contain the commands to co
 
 ### WebAssembly
 
-  📁
+📁
 The next thing to do is to copy the `web-ifc.wasm` and `web-ifc-mt.wasm` files to a directory in your project. It can be found in `node_modules\web-ifc` (or `node_modules\three\examples\jsm\loaders\ifc` if you are only using Three's IFCLoader). We can copy them wherever we want; in this example, they will be copied to a folder called wasm in the root directory of the project.
 
 These files are necessary because they contain the compiled C++ logic of <a href="https://github.com/IFCjs/web-ifc">web-ifc</a>, which is the parsing core to read and write IFC files with native speed.
 
-  <IfcAlert>
-These files have to be served statically in your application. This might need different tweaks if you are using frameworks or libraries like React, Angular, Vue or Svelte.
-  </IfcAlert>
+{" "}
 
+<IfcAlert>
+  These files have to be served statically in your application. This might need
+  different tweaks if you are using frameworks or libraries like React, Angular,
+  Vue or Svelte.
+</IfcAlert>
 
 ## Setting up a 3D scene
 
 Finally, we are going to create the JavaScript file to write the code for our application. This file can be located anywhere and have any name, but you must reflect this in the `rollup.config.js`.
 
-  🧱
+🧱
 We are going to create a basic 3D scene using Three.js.
 
 ```js
-  import {
-    AmbientLight,
-    AxesHelper,
-    DirectionalLight,
-    GridHelper,
-    PerspectiveCamera,
-    Scene,
-    WebGLRenderer,
-  } from "three";
-  import {
-      OrbitControls
-  } from "three/examples/jsm/controls/OrbitControls";
+import {
+  AmbientLight,
+  AxesHelper,
+  DirectionalLight,
+  GridHelper,
+  PerspectiveCamera,
+  Scene,
+  WebGLRenderer,
+} from "three";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
-  //Creates the Three.js scene
-  const scene = new Scene();
+//Creates the Three.js scene
+const scene = new Scene();
 
-  //Object to store the size of the viewport
-  const size = {
-    width: window.innerWidth,
-    height: window.innerHeight,
-  };
+//Object to store the size of the viewport
+const size = {
+  width: window.innerWidth,
+  height: window.innerHeight,
+};
 
-  //Creates the camera (point of view of the user)
-  const aspect = size.width / size.height;
-  const camera = new PerspectiveCamera(75, aspect);
-  camera.position.z = 15;
-  camera.position.y = 13;
-  camera.position.x = 8;
+//Creates the camera (point of view of the user)
+const aspect = size.width / size.height;
+const camera = new PerspectiveCamera(75, aspect);
+camera.position.z = 15;
+camera.position.y = 13;
+camera.position.x = 8;
 
-  //Creates the lights of the scene
-  const lightColor = 0xffffff;
+//Creates the lights of the scene
+const lightColor = 0xffffff;
 
-  const ambientLight = new AmbientLight(lightColor, 0.5);
-  scene.add(ambientLight);
+const ambientLight = new AmbientLight(lightColor, 0.5);
+scene.add(ambientLight);
 
-  const directionalLight = new DirectionalLight(lightColor, 1);
-  directionalLight.position.set(0, 10, 0);
-  directionalLight.target.position.set(-5, 0, 0);
-  scene.add(directionalLight);
-  scene.add(directionalLight.target);
+const directionalLight = new DirectionalLight(lightColor, 1);
+directionalLight.position.set(0, 10, 0);
+directionalLight.target.position.set(-5, 0, 0);
+scene.add(directionalLight);
+scene.add(directionalLight.target);
 
-  //Sets up the renderer, fetching the canvas of the HTML
-  const threeCanvas = document.getElementById("three-canvas");
-  const renderer = new WebGLRenderer({
-      canvas: threeCanvas,
-      alpha: true
-  });
+//Sets up the renderer, fetching the canvas of the HTML
+const threeCanvas = document.getElementById("three-canvas");
+const renderer = new WebGLRenderer({
+  canvas: threeCanvas,
+  alpha: true,
+});
 
+renderer.setSize(size.width, size.height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+//Creates grids and axes in the scene
+const grid = new GridHelper(50, 30);
+scene.add(grid);
+
+const axes = new AxesHelper();
+axes.material.depthTest = false;
+axes.renderOrder = 1;
+scene.add(axes);
+
+//Creates the orbit controls (to navigate the scene)
+const controls = new OrbitControls(camera, threeCanvas);
+controls.enableDamping = true;
+controls.target.set(-2, 0, 0);
+
+//Animation loop
+const animate = () => {
+  controls.update();
+  renderer.render(scene, camera);
+  requestAnimationFrame(animate);
+};
+
+animate();
+
+//Adjust the viewport to the size of the browser
+window.addEventListener("resize", () => {
+  size.width = window.innerWidth;
+  size.height = window.innerHeight;
+  camera.aspect = size.width / size.height;
+  camera.updateProjectionMatrix();
   renderer.setSize(size.width, size.height);
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-  //Creates grids and axes in the scene
-  const grid = new GridHelper(50, 30);
-  scene.add(grid);
-
-  const axes = new AxesHelper();
-  axes.material.depthTest = false;
-  axes.renderOrder = 1;
-  scene.add(axes);
-
-  //Creates the orbit controls (to navigate the scene)
-  const controls = new OrbitControls(camera, threeCanvas);
-  controls.enableDamping = true;
-  controls.target.set(-2, 0, 0);
-
-  //Animation loop
-  const animate = () => {
-    controls.update();
-    renderer.render(scene, camera);
-    requestAnimationFrame(animate);
-  };
-
-  animate();
-
-  //Adjust the viewport to the size of the browser
-  window.addEventListener("resize", () => {
-    size.width = window.innerWidth;
-    size.height = window.innerHeight;
-    camera.aspect = size.width / size.height;
-    camera.updateProjectionMatrix();
-    renderer.setSize(size.width, size.height);
-  });
+});
 ```
 
-  🌏
+🌏
 To run the application locally we will need a local server. If you are using VS Code as IDE, one option is to install the [Live Server extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer), which allows us to open an instance of Google Chrome, run our web application and see the changes we make to the code in real-time.
 
 ## Loading IFC files
 
 ### Loading user's models
 
-  🏠
+🏠
 Finally, we will use IFC.js to load IFC files. This can be done by instantiating the loader and creating an event for when the user uploads an IFC file to the HTML input element.
 
 ```js
-  import { IFCLoader } from "web-ifc-three/IFCLoader";
+import { IFCLoader } from "web-ifc-three/IFCLoader";
 
-  // Sets up the IFC loading
-  const ifcLoader = new IFCLoader();
+// Sets up the IFC loading
+const ifcLoader = new IFCLoader();
 
-  const input = document.getElementById("file-input");
-  input.addEventListener(
-    "change",
-    (changed) => {
-      const file = changed.target.files[0];
-      var ifcURL = URL.createObjectURL(file);
-      ifcLoader.load(
-            ifcURL,
-            (ifcModel) => scene.add(ifcModel));
-    },
-    false
-  );
+const input = document.getElementById("file-input");
+input.addEventListener(
+  "change",
+  (changed) => {
+    const file = changed.target.files[0];
+    var ifcURL = URL.createObjectURL(file);
+    ifcLoader.load(ifcURL, (ifcModel) => scene.add(ifcModel));
+  },
+  false
+);
 ```
 
-  🎣
+🎣
 Keep in mind that if you haven't saved the wasm files in the root of served files of the project, you'll need to specify its location with `setWasmPath`. For instance, if we had them stored in a folder called `wasm` contained in a folder called `static` in the root of the project, we would do the following:
 
 ```js
-  ifcLoader.ifcManager.setWasmPath("static/wasm/");
+ifcLoader.ifcManager.setWasmPath("static/wasm/");
 ```
 
-<Scene link={"https://ifcjs.github.io/hello-world/examples/web-ifc-three/helloworld/"}/>
+<Scene
+  link={
+    "https://ifcjs.github.io/hello-world/examples/web-ifc-three/helloworld/"
+  }
+/>
 
 If you have done everything correctly, you should be able to see something similar to [this](https://ifcjs.github.io/hello-world/examples/web-ifc-three/helloworld/) in your local server. From here, the possibilities are endless.
 
 ### Loading our models
 
-  🤔
+🤔
 In the previous point we saw how to load BIM models directly, and that's great. What if we want to show our BIM models instead of allowing the user to upload theirs? This is very simple. Generally there are two possibilities:
 
 - Having the IFC in the same application where you want to display it.
 - Having to get it from an external storage service.
 
-
   🎩
-In the first case, it is sufficient to reference the URL of the IFC file. That is, its relative path in the application. For example, if the IFC is in a folder called "models" in the root of the project, we could load that IFC when starting the application as follows:
+  In the first case, it is sufficient to reference the URL of the IFC file. That is, its relative path in the application. For example, if the IFC is in a folder called "models" in the root of the project, we could load that IFC when starting the application as follows:
 
 ```js
-ifcLoader.load(
-    "models/Example_model.ifc",
-    (ifcModel) => scene.add(ifcModel));
+ifcLoader.load("models/Example_model.ifc", (ifcModel) => scene.add(ifcModel));
 ```
 
 <IfcAlert>
-    Getting a file from a remote storage service varies depending on the service used. However, the logic is the same: get the information, create a URL and pass it as an argument to the IFCLoader.
+  Getting a file from a remote storage service varies depending on the service
+  used. However, the logic is the same: get the information, create a URL and
+  pass it as an argument to the IFCLoader.
 </IfcAlert>
 
-<Scene link={"https://ifcjs.github.io/hello-world/examples/web-ifc-three/introduction/"}/>
+<Scene
+  link={
+    "https://ifcjs.github.io/hello-world/examples/web-ifc-three/introduction/"
+  }
+/>
 
 ## Conclusion
 
-  🎉
+🎉
 Congratulations! You have just created your first IFC viewer. Go to the next pages of the docs to find out what else can you do with IFC.js.
 
-  <IfcCard icon="🔥" title="What else can I do with IFC.js?">
-This is just the beginning. You can take a look at <a href="https://github.com/IFCjs/web-ifc-viewer">web-ifc-viewer</a>, which includes tools for object selection, changing geometry appearance, section planes and much more. You can try it <a href="https://ifcjs.github.io/web-ifc-viewer/example/index">here</a>.
-  </IfcCard>
+{" "}
+
+<IfcCard icon="🔥" title="What else can I do with IFC.js?">
+  This is just the beginning. You can take a look at{" "}
+  <a href="https://github.com/IFCjs/web-ifc-viewer">web-ifc-viewer</a>, which
+  includes tools for object selection, changing geometry appearance, section
+  planes and much more. You can try it{" "}
+  <a href="https://ifcjs.github.io/web-ifc-viewer/example/index">here</a>.
+</IfcCard>

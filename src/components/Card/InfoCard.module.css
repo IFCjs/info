@@ -1,19 +1,19 @@
 .titleOffset {
-    margin-left: 3rem;
+  margin-left: 3rem;
 }
 
 .iconContainer {
-    transform: translateY(-10px);
-    position: absolute;
+  transform: translateY(-10px);
+  position: absolute;
 }
 
 @media screen and (max-width: 1400px) {
-    .iconContainer {
-        transform: translateY(0);
-    }
+  .iconContainer {
+    transform: translateY(0);
+  }
 
-    .titleOffset {
-        margin-top: 3rem !important;
-        margin-bottom: 0 !important;
-    }
+  .titleOffset {
+    margin-top: 3rem !important;
+    margin-bottom: 0 !important;
+  }
 }

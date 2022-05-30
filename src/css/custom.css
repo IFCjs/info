@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
 
 :root {
   --ifm-color-primary: #1a73e8;
@@ -11,19 +11,19 @@
   --ifm-code-font-size: 95%;
 
   --ifm-highlight-color: var(--ifm-color-secondary);
-  --ifm-font-family-base: 'Open Sans';
-  --ifm-background-color: #F3F4F6;
-  --box-shadow:  0 1px 2px 1px #e6e6e6;
-  --box-shadow-big:  0 10px 20px 8px #e6e6e6;
+  --ifm-font-family-base: "Open Sans";
+  --ifm-background-color: #f3f4f6;
+  --box-shadow: 0 1px 2px 1px #e6e6e6;
+  --box-shadow-big: 0 10px 20px 8px #e6e6e6;
   --box-shadow-transition: box-shadow 0.1s ease-in-out;
 }
 
-html[data-theme='dark'] {
-  --ifm-background-color: #2D333B;
-  --ifm-background-surface-color: #22272E;
+html[data-theme="dark"] {
+  --ifm-background-color: #2d333b;
+  --ifm-background-surface-color: #22272e;
   --ifm-highlight-color: var(--ifm-background-surface-color);
   --ifm-color-primary: var(--ifm-color-primary-lightest);
-  --box-shadow:  none;
+  --box-shadow: none;
   --box-shadow-big: none;
   --ifm-alert-color: #ffffff;
 }
@@ -45,25 +45,24 @@ article {
 }
 
 /* Announcement Bar */
-div[class^='announcementBarContent'] {
+div[class^="announcementBarContent"] {
   background-color: var(--ifm-background-surface-color);
   color: var(--ifm-font-color-base);
 }
 
-div[class^='announcementBarContent'] a {
+div[class^="announcementBarContent"] a {
   color: var(--ifm-link-color);
   text-decoration: inherit;
 }
 
-div[class^='announcementBarContent'] a:hover {
+div[class^="announcementBarContent"] a:hover {
   color: var(--ifm-link-color);
   text-decoration: underline;
 }
 
 .footer--dark {
-  --ifm-footer-background-color: #22272E;
+  --ifm-footer-background-color: #22272e;
 }
-
 
 .main-wrapper {
   min-height: 100vh !important;
@@ -75,21 +74,23 @@ div[class^='announcementBarContent'] a:hover {
   margin-right: auto;
 }
 
-.prism-code, .card{
+.prism-code,
+.card {
   box-shadow: var(--box-shadow);
   transition: var(--box-shadow-transition);
   margin: 2rem 0;
 }
 
-.prism-code:hover, .card:hover{
+.prism-code:hover,
+.card:hover {
   box-shadow: var(--box-shadow-big);
 }
 
 .docusaurus-highlight-code-line {
-  background-color: rgb(230,230,230) !important;
+  background-color: rgb(230, 230, 230) !important;
 }
 
-html[data-theme='dark'] .docusaurus-highlight-code-line {
+html[data-theme="dark"] .docusaurus-highlight-code-line {
   /* Color which works with dark mode syntax highlighting theme */
   background-color: rgb(20, 20, 30) !important;
 }
@@ -174,16 +175,16 @@ iframe {
 }
 
 @media (min-width: 1500px) {
-  [class="tableOfContents_node_modules-@docusaurus-theme-classic-lib-next-theme-TOC- thin-scrollbar"]{
+  [class="tableOfContents_node_modules-@docusaurus-theme-classic-lib-next-theme-TOC- thin-scrollbar"] {
     width: 15rem;
   }
 }
 
-@media (max-width: 1200px) and (min-width: 997px)  {
-  [class="col col--3"]{
+@media (max-width: 1200px) and (min-width: 997px) {
+  [class="col col--3"] {
     visibility: collapse;
   }
-  [class="col docItemCol_node_modules-@docusaurus-theme-classic-lib-next-theme-DocItem-"]{
+  [class="col docItemCol_node_modules-@docusaurus-theme-classic-lib-next-theme-DocItem-"] {
     margin-left: 3rem !important;
   }
 }
@@ -234,11 +235,13 @@ iframe {
     margin-top: auto;
   }
 
-  .buttons_src-pages-{
+  .buttons_src-pages- {
     margin-bottom: auto;
   }
 
-  .card-demo, .alert, .prism-code {
+  .card-demo,
+  .alert,
+  .prism-code {
     margin: 1.5rem 0 !important;
   }
 
@@ -281,7 +284,7 @@ iframe {
 }
 
 /* ALGOLIA */
-html[data-theme='light'] .DocSearch {
+html[data-theme="light"] .DocSearch {
   /* --docsearch-primary-color: var(--ifm-color-primary); */
   /* --docsearch-text-color: var(--ifm-font-color-base); */
   --docsearch-muted-color: var(--ifm-color-secondary-darkest);
@@ -299,7 +302,7 @@ html[data-theme='light'] .DocSearch {
   --docsearch-footer-background: var(--ifm-color-white);
 }
 
-html[data-theme='dark'] .DocSearch {
+html[data-theme="dark"] .DocSearch {
   --docsearch-text-color: var(--ifm-font-color-base);
   --docsearch-muted-color: var(--ifm-color-secondary-darkest);
   --docsearch-container-background: rgba(47, 55, 69, 0.7);
@@ -315,9 +318,9 @@ html[data-theme='dark'] .DocSearch {
   /* Footer */
   --docsearch-footer-background: var(--ifm-background-surface-color);
   --docsearch-key-gradient: linear-gradient(
-          -26.5deg,
-          var(--ifm-color-emphasis-200) 0%,
-          var(--ifm-color-emphasis-100) 100%
+    -26.5deg,
+    var(--ifm-color-emphasis-200) 0%,
+    var(--ifm-color-emphasis-100) 100%
   );
 }
 

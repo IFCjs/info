@@ -3,9 +3,9 @@ title: 📃 Properties
 sidebar_position: 3
 ---
 
-import {IfcAlert} from "../../../../src/components/Alert/Alert";
-import {IfcCard} from "../../../../src/components/Card/InfoCard";
-import {Scene} from "../../../../src/components/Scene/Scene"
+import { IfcAlert } from "../../../../src/components/Alert/Alert";
+import { IfcCard } from "../../../../src/components/Card/InfoCard";
+import { Scene } from "../../../../src/components/Scene/Scene";
 
 ## Introduction
 
@@ -16,30 +16,36 @@ Although virtually all BIM models have geometry, almost everyone agrees that wha
 This not only makes it possible to create web applications that **read information from IFC** files directly on the client side, but also to transfer that information into relational or non-relational databases and process it on the backend.
 
 <IfcAlert>
-IFC.js can read IFC files by IDs, by spatial tree and by filtered search.
+  IFC.js can read IFC files by IDs, by spatial tree and by filtered search.
 </IfcAlert>
 
 📚
 There are several types of properties in the IFC scheme, each with a specific purpose, and IFC.js can get **all of them**. Some of the most common are:
 
 <IfcCard icon="📕" title="Native properties">
-    Specific to each IFC class.
+  Specific to each IFC class.
 </IfcCard>
 
 <IfcCard icon="📗" title="Type properties">
-    Describe properties of all elements of the same type (e.g. all envelope walls of a particular type).
+  Describe properties of all elements of the same type (e.g. all envelope walls
+  of a particular type).
 </IfcCard>
 
 <IfcCard icon="📘" title="Material properties">
-    Describes all the materials that make up the layers of that element.
+  Describes all the materials that make up the layers of that element.
 </IfcCard>
 
 <IfcCard icon="📙" title="Property sets">
-    Arbitrary sets of user-defined properties. There may be multiple sets of properties associated with one or more elements. Each property set contains an arbitrary group of properties related to each other.
+  Arbitrary sets of user-defined properties. There may be multiple sets of
+  properties associated with one or more elements. Each property set contains an
+  arbitrary group of properties related to each other.
 </IfcCard>
 
 <IfcCard icon="📒" title="Quantity sets">
-    Sets of properties describing the dimensions of the elements to which they refer. Although it would also be possible to infer element dimensions implicitly from the geometry definition, this explicit description makes it much easier to create applications that measure IFC models.
+  Sets of properties describing the dimensions of the elements to which they
+  refer. Although it would also be possible to infer element dimensions
+  implicitly from the geometry definition, this explicit description makes it
+  much easier to create applications that measure IFC models.
 </IfcCard>
 
 🚴‍♂️ But enough theory! Let's get down to work.
@@ -48,36 +54,43 @@ There are several types of properties in the IFC scheme, each with a specific pu
 
 ### Hello properties
 
-
 <p>
-    👩‍🏫
-    The basic way to extract properties from an IFC is from the ID of an element. In many cases, when the user selects an element, we will want to get its direct and indirect properties. 
-    <a href="https://ifcjs.github.io/info/docs/Guide/web-ifc-three/Tutorials/Picking/" target="_self">
+  👩‍🏫 The basic way to extract properties from an IFC is from the ID of an
+  element. In many cases, when the user selects an element, we will want to get
+  its direct and indirect properties.
+  <a
+    href="https://ifcjs.github.io/info/docs/Guide/web-ifc-three/Tutorials/Picking/"
+    target="_self"
+  >
     Previous tutorials{" "}
-    </a> 
-    have shown how to get that ID easily.
+  </a>
+  have shown how to get that ID easily.
 </p>
 
-   ☝
+☝
 Now that we have that ID, how hard it is to get the properties of an element? You only need to add **one line of code** to what we saw in the <a href="https://ifcjs.github.io/info/docs/Guide/web-ifc-three/Tutorials/Picking/" target="_self"> picking tutorial </a> to be able to see the properties of the selected element when double clicking.
 
 ```js {9}
 // Event that gets executed when an item is picked
 async function pick(event) {
-    const found = cast(event)[0];
-    if (found) {
-        const index = found.faceIndex;
-        const geometry = found.object.geometry;
-        const ifc = ifcLoader.ifcManager;
-        const id = ifc.getExpressId(geometry, index);
-        const modelID = found.object.modelID;
-        const props = await ifc.getItemProperties(modelID, id);
-        output.innerHTML = JSON.stringify(props, null, 2);
-    }
+  const found = cast(event)[0];
+  if (found) {
+    const index = found.faceIndex;
+    const geometry = found.object.geometry;
+    const ifc = ifcLoader.ifcManager;
+    const id = ifc.getExpressId(geometry, index);
+    const modelID = found.object.modelID;
+    const props = await ifc.getItemProperties(modelID, id);
+    output.innerHTML = JSON.stringify(props, null, 2);
+  }
 }
 ```
 
-<Scene link={"https://ifcjs.github.io/hello-world/examples/web-ifc-three/picking-properties/"}/>
+<Scene
+  link={
+    "https://ifcjs.github.io/hello-world/examples/web-ifc-three/picking-properties/"
+  }
+/>
 
 **🤨 But what are these properties?**
 
@@ -88,7 +101,9 @@ They are **native properties**, that is, the basic properties inherent to each i
 These are not numbers, but **express IDs**! This means that you can use `getItemProperties()` again using that ID, and you'll get the properties of that **referenced** element.
 
 <IfcCard>
-    That is how IFC works: each <b>element</b> has <b>properties</b>, and each <b>property</b> can be the reference to other <b>element</b>. So you can basically traverse the whole IFC navigating through references.
+  That is how IFC works: each <b>element</b> has <b>properties</b>, and each{" "}
+  <b>property</b> can be the reference to other <b>element</b>. So you can
+  basically traverse the whole IFC navigating through references.
 </IfcCard>
 
 **😑 References? But I want all the information directly!**
@@ -105,7 +120,6 @@ The IFC.js API has other similar methods for all other property types: `getTypeP
 
 Not at all! We'll see how to traverse the whole spatial structure next.
 
-
 ### Traverse the IFC
 
 🔥 You can now browse the IFC information from the ID of an element, and you also know how to get the ID by clicking on objects in the scene. However, we know that **this is not enough**.
@@ -121,7 +135,8 @@ Not at all! We'll see how to traverse the whole spatial structure next.
 🌳🌲🌴 As you may know, all IFCs have a general structure called **Spatial Element Structure** (we'll refer to it as `spatial tree`). It is composed of elements that define the relative position of all products (physical objects) in the project.
 
 <IfcAlert>
-    The spatial structure generally consists of IfcProject, IfcSite, IfcBuilding, IfcBuildingStorey and IfcSpace.
+  The spatial structure generally consists of IfcProject, IfcSite, IfcBuilding,
+  IfcBuildingStorey and IfcSpace.
 </IfcAlert>
 
 You can get the spatial structure of the project simply calling `getSpatialStructure()`, where the only parameter is the `modelID`. This method will return the whole spatial structure of the project as a JavaScript object.
@@ -130,9 +145,9 @@ You can get the spatial structure of the project simply calling `getSpatialStruc
 
 ```ts
 interface Node {
-    expressID: number;
-    type: string;
-    children: Node[];
+  expressID: number;
+  type: string;
+  children: Node[];
 }
 ```
 
@@ -140,7 +155,9 @@ interface Node {
 Notice that you only get the **type** (e.g. `IfcWall`) and the **express ID**. If you want to get the properties of an element, you'll have to traverse the tree and call the abovementioned property getter methods over all the IDs.
 
 <IfcCard>
-    If your goal is to display properties to users, it's generally better to only get the properties when the user requests it (e. g. clicks on a specific item in your GUI).
+  If your goal is to display properties to users, it's generally better to only
+  get the properties when the user requests it (e. g. clicks on a specific item
+  in your GUI).
 </IfcCard>
 
 For instance, if you request the spatial structure of a project, you might get something like this:
@@ -187,14 +204,13 @@ const ifc = ifcLoader.ifcManager;
 const modelID = 0;
 
 async function logAllSlabs() {
-    const slabsID = await ifc.getAllItemsOfType(modelID, IFCSLAB);
+  const slabsID = await ifc.getAllItemsOfType(modelID, IFCSLAB);
 
-    for(let i = 0; i <= slabsID.length; i++) {
-        const slabID = slabsID[i];
-        const slabProperties = await ifc.getItemProperties(0, slabID);
-        console.log(slabProperties);
-    }
-
+  for (let i = 0; i <= slabsID.length; i++) {
+    const slabID = slabsID[i];
+    const slabProperties = await ifc.getItemProperties(0, slabID);
+    console.log(slabProperties);
+  }
 }
 
 logAllSlabs();

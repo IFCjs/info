@@ -11,21 +11,21 @@
 
 This repository is the official documentation of [IFC.js](https://github.com/IFCjs). You can visit it live [here](https://ifcjs.github.io/info/). It contains all the information regarding the project, including:
 
-* The motivation behind IFC.js.
+- The motivation behind IFC.js.
 
-* Introduction to all the modules of the library.
+- Introduction to all the modules of the library.
 
-* API reference.
+- API reference.
 
-* Step by step tutorials.
+- Step by step tutorials.
 
-* Informal articles of the authors.
+- Informal articles of the authors.
 
-* Collaboration system and patreon.
+- Collaboration system and patreon.
 
-* Community highlight.
+- Community highlight.
 
-* Link to social networks.
+- Link to social networks.
 
 ## Status
 
@@ -49,15 +49,15 @@ To start the project in another lanaguage, you can use the `--locale` flag:
 
 This project consists of the following folders:
 
-* **docs**: the markdown documents of the documentation.
+- **docs**: the markdown documents of the documentation.
 
-* **blog**: the markdown documents of the blog.
+- **blog**: the markdown documents of the blog.
 
-* **i18n**: the markdown documents of the docs in other languages.
+- **i18n**: the markdown documents of the docs in other languages.
 
-* **src**: react components used in the docs to make cool stuff.
+- **src**: react components used in the docs to make cool stuff.
 
-* **static**: images and icons.
+- **static**: images and icons.
 
 ## Contributing
 
@@ -65,10 +65,8 @@ Want to help out? Great!
 
 These docs use a very simple markdown that makes it super easy to make edits and create new documentation, even if you are not familiar with React. Simply copy markdown documents and they will show up in the documentation with the correct style.
 
-* Feel free to propose new tutorials to the [community](https://discord.gg/FXfyR4XrKT) and submit them here via pull request.
+- Feel free to propose new tutorials to the [community](https://discord.gg/FXfyR4XrKT) and submit them here via pull request.
 
-* If you miss any tutorial that is not here, you can make a request in the issues or in our [discord server](https://discord.gg/FXfyR4XrKT).
+- If you miss any tutorial that is not here, you can make a request in the issues or in our [discord server](https://discord.gg/FXfyR4XrKT).
 
-You can use the pre-made components importing them (check the existing `.jsx` files to find out how) or even create new components to make these docs even cooler. 
-
-
+You can use the pre-made components importing them (check the existing `.jsx` files to find out how) or even create new components to make these docs even cooler.
