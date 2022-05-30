@@ -15,9 +15,8 @@
     "publish-docs": "cmd /C 'set \"GIT_USER=agviegas\" && yarn deploy'",
     "prepare": "husky install",
     "format": "prettier --write .",
-    "lint:format": "prettier --list-different .",
     "lint:mdx": "node ./scripts/lint-mdx.mjs",
-    "lint": "yarn lint:format && yarn lint:mdx"
+    "lint": "yarn lint:mdx"
   },
   "dependencies": {
     "@docusaurus/core": "2.0.0-beta.0",
@@ -51,6 +50,7 @@
     "husky": "^8.0.0",
     "picocolors": "^1.0.0",
     "prettier": "^2.6.2",
+    "pretty-quick": "^3.1.3",
     "remark": "^14.0.2",
     "remark-comment": "^1.0.0",
     "remark-frontmatter": "^4.0.1",
