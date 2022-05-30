@@ -3,9 +3,9 @@ title: Introduction
 sidebar_position: 2
 ---
 
-    import {IfcCard} from "../../../src/components/Card/InfoCard";
-    import {IfcAlert} from "../../../src/components/Alert/Alert";
-    import {Scene} from "../../../src/components/Scene/Scene";
+import { IfcCard } from "../../../src/components/Card/InfoCard";
+import { IfcAlert } from "../../../src/components/Alert/Alert";
+import { Scene } from "../../../src/components/Scene/Scene";
 
 ## Introduction
 
@@ -32,7 +32,8 @@ npm i @rollup/plugin-node-resolve --save-dev
 ```
 
 <IfcCard icon="📃" title="three.js?">
-Note that installing web-ifc-three also installs the three.js library which allows you to customize the viewer as required in the next steps
+  Note that installing web-ifc-three also installs the three.js library which
+  allows you to customize the viewer as required in the next steps
 </IfcCard>
 
 ### HTML, CSS, Bundling & WASM files
@@ -46,8 +47,14 @@ Note that installing web-ifc-three also installs the three.js library which allo
 Replace `<canvas id="three-canvas"></canvas>` from you `index.html` file with `<div id="viewer-container"></div>`
 
 <IfcCard icon="🌏" title="What else can I do with IFC.js?">
- To run the application locally we will need a local server. If you are using VS Code as IDE, one option is to install the <a href = "https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer">Live Server extension</a>, which allows us to open an instance of Google Chrome, run our web application and see the changes we make to the code in real-time.
- </IfcCard>
+  To run the application locally we will need a local server. If you are using
+  VS Code as IDE, one option is to install the{" "}
+  <a href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer">
+    Live Server extension
+  </a>
+  , which allows us to open an instance of Google Chrome, run our web application
+  and see the changes we make to the code in real-time.
+</IfcCard>
 
 ## Setting up 3D-Scene (web-ifc-viewer)
 
@@ -56,11 +63,14 @@ Once you have the `index.html`, `styles.css` & the `.wasm` files in place, you c
 🎥 Below code is where we are setting up a basic threejs scene using `IfcViewerAPI()` method of `web-ifc-viewer`. Note that this code is just the viewer - In the next step we will add the functionality to load models into this viewer.
 
 ```js
-import { Color } from 'three';
-import { IfcViewerAPI } from 'web-ifc-viewer';
+import { Color } from "three";
+import { IfcViewerAPI } from "web-ifc-viewer";
 
-const container = document.getElementById('viewer-container');
-const viewer = new IfcViewerAPI({ container, backgroundColor: new Color(0xffffff) });
+const container = document.getElementById("viewer-container");
+const viewer = new IfcViewerAPI({
+  container,
+  backgroundColor: new Color(0xffffff),
+});
 viewer.axes.setAxes();
 viewer.grid.setGrid();
 
@@ -71,13 +81,12 @@ window.onmousemove = () => viewer.IFC.selector.prePickIfcItem();
 viewer.clipper.active = true;
 
 window.onkeydown = (event) => {
-    if (event.code === 'KeyP') {
-        viewer.clipper.createPlane();
-    }
-    else if (event.code === 'KeyO') {
-        viewer.clipper.deletePlane();
-    }
-}
+  if (event.code === "KeyP") {
+    viewer.clipper.createPlane();
+  } else if (event.code === "KeyO") {
+    viewer.clipper.deletePlane();
+  }
+};
 ```
 
 ## Loading IFC files
@@ -87,16 +96,16 @@ window.onkeydown = (event) => {
 🏠 Finally, we will use IFC.js to load IFC files by allowing the user to choose a local file and using the `IfcViewerAPI()` we instantiated above to load the model.
 
 ```js
-input.addEventListener("change",
+input.addEventListener(
+  "change",
 
-    async (changed) => {
+  async (changed) => {
+    const file = changed.target.files[0];
+    const ifcURL = URL.createObjectURL(file);
+    viewer.IFC.loadIfcUrl(ifcURL);
+  },
 
-        const file = changed.target.files[0];
-        const ifcURL = URL.createObjectURL(file);
-        viewer.IFC.loadIfcUrl(ifcURL);
-    },
-
-    false
+  false
 );
 ```
 
@@ -106,25 +115,38 @@ input.addEventListener("change",
 
 ```js
 async function loadIfc(url) {
-    const model = await viewer.IFC.loadIfcUrl(url);
-    viewer.shadowDropper.renderShadow(model.modelID);
+  const model = await viewer.IFC.loadIfcUrl(url);
+  viewer.shadowDropper.renderShadow(model.modelID);
 }
 
 // load model from the below path in your repository
-loadIfc('models/01.ifc');
+loadIfc("models/01.ifc");
 ```
 
 🚩If you have done everything correctly, you should be able to see something similar to [this](https://ifcjs.github.io/hello-world/examples/web-ifc-viewer/hello-world/) in your local server.
 
-<Scene link={"https://ifcjs.github.io/hello-world/examples/web-ifc-viewer/hello-world/"}/>
+<Scene
+  link={
+    "https://ifcjs.github.io/hello-world/examples/web-ifc-viewer/hello-world/"
+  }
+/>
 
 ## Conclusion
 
-  🎉
+🎉
 Congratulations! You have just created your first IFC viewer. Go to the next pages of the docs to find out what else can you do with IFC Viewer.
 
-  <IfcCard icon="🔥" title="What else can I do with IFC.js?">
-This is just the beginning. You can take a look at <a href="https://github.com/IFCjs/hello-world/tree/main/examples/web-ifc-viewer">web-ifc-viewer examples</a>, which includes tools for floor plans, changing geometry visibility, floor plans and much more. You can try it <a href="https://ifcjs.github.io/web-ifc-viewer/example/index">here</a>.
-  </IfcCard>
+{" "}
+
+<IfcCard icon="🔥" title="What else can I do with IFC.js?">
+  This is just the beginning. You can take a look at{" "}
+  <a href="https://github.com/IFCjs/hello-world/tree/main/examples/web-ifc-viewer">
+    web-ifc-viewer examples
+  </a>
+  , which includes tools for floor plans, changing geometry visibility, floor plans
+  and much more. You can try it <a href="https://ifcjs.github.io/web-ifc-viewer/example/index">
+    here
+  </a>.
+</IfcCard>
 
 ⏩ In the next set of articles, we will talk about how to enable additional in-build features in web-ifc-viewer.
