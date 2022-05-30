@@ -1,5 +1,6 @@
 import fs from "fs";
 import glob from "glob";
+import p from "path";
 import pc from "picocolors";
 import { remark } from "remark";
 import remarkComment from "remark-comment";
@@ -23,6 +24,11 @@ function main() {
         pc.bold(
           `Found ${errorCount} MDX file with parsing errors. See above for details.\n`
         )
+      )
+    );
+    console.log(
+      pc.bold(
+        `Read ${p.resolve(process.cwd(), "MDX.md")} for common solutions.\n`
       )
     );
     process.exit(1);
