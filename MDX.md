@@ -1,13 +1,5 @@
 # MDX Common Errors
 
-> If you guided to read this file after trying to commit, try to run:
->
-> ```bash
-> yarn format
-> ```
->
-> Then, retry committing your changes. If it still fails, then keep reading.
-
 The MDX compiler is not that smart. So, we need to make sure that we write MDX in a way that compiler can understand.
 
 Few things you have to keep in mind:
