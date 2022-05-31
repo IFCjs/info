@@ -6264,7 +6264,7 @@ mdast-util-definitions@^4.0.0:
   dependencies:
     unist-util-visit "^2.0.0"
 
-mdast-util-from-markdown@^1.0.0:
+mdast-util-from-markdown@^1.0.0, mdast-util-from-markdown@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/mdast-util-from-markdown/-/mdast-util-from-markdown-1.2.0.tgz#84df2924ccc6c995dec1e2368b2b208ad0a76268"
   integrity sha512-iZJyyvKD1+K7QX1b5jXdE7Sc5dtoTry1vzV28UZZe8Z1xVnB/czKntJ7ZAkG0tANqRnBF6p3p7GpU1y19DTf2Q==
@@ -9671,7 +9671,7 @@ unist-util-visit@2.0.3, unist-util-visit@^2.0.0, unist-util-visit@^2.0.1, unist-
     unist-util-is "^4.0.0"
     unist-util-visit-parents "^3.0.0"
 
-unist-util-visit@^4.0.0:
+unist-util-visit@^4.0.0, unist-util-visit@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/unist-util-visit/-/unist-util-visit-4.1.0.tgz#f41e407a9e94da31594e6b1c9811c51ab0b3d8f5"
   integrity sha512-n7lyhFKJfVZ9MnKtqbsqkQEk5P1KShj0+//V7mAcoI6bpbUjh3C/OG8HVD+pBihfh6Ovl01m8dkcv9HNqYajmQ==
