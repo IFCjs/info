@@ -538,7 +538,8 @@ The <a href="https://standards.buildingsmart.org/IFC/DEV/IFC4_2/FINAL/HTML/schem
 ```js
   IfcLoader.IfcManager.getSubset (
                         modelID: number,
-                        material?: Material
+                        material?: Material,
+                        customID?: string
                         ): object;
 ```
   🧱🔍
@@ -553,6 +554,8 @@ Geometric subsets are extracts of the geometry of the model. For example, you co
 - `modelID` ID of the IFC model.
 
 - `material` (optional) Material assigned to the subset (if any).
+
+- `customID` (optional) Optional custom name of the subset (if any). 
 
 #### Example:
 
