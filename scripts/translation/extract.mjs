@@ -1,3 +1,4 @@
+import { generate, GENERATOR } from "astring";
 import fs from "fs-extra";
 import glob from "glob";
 import { mdxToMarkdown } from "mdast-util-mdx";
@@ -8,6 +9,7 @@ import remarkFrontmatter from "remark-frontmatter";
 import remarkMdx from "remark-mdx";
 import { visit } from "unist-util-visit";
 import { config } from "./config.mjs";
+import { JSX } from "./JSX.mjs";
 import {
   IGNORE_NODE_TYPES,
   endsWith,
@@ -100,7 +102,7 @@ function extract(baseDir, path, outputDir) {
  * @param { string } value
  * @returns { import('remark-mdx').Root }
  */
-function getMdxAst(value) {
+export function getMdxAst(value) {
   return remark()
     .use(remarkFrontmatter)
     .use(remarkMdx)
@@ -108,7 +110,12 @@ function getMdxAst(value) {
     .parse(value);
 }
 
-function getTranslatableStrings(ast) {
+/**
+ * @param { import("@types/mdast").Root } ast
+ * @returns { strings[] }
+ */
+export function getTranslatableStrings(ast) {
+  const names = Object.keys(config.components);
   const strings = [];
 
   visit(ast, (node, _index, parent) => {
@@ -120,8 +127,44 @@ function getTranslatableStrings(ast) {
       return;
     }
 
-    const string = toMarkdown(node, { extensions: [mdxToMarkdown()] });
-    strings.push(string);
+    if (node.type === "mdxJsxFlowElement") {
+      /** @type { import("mdast-util-mdx").MdxJsxFlowElement } */
+      const { name, attributes, children } = node;
+
+      if (!names.includes(name)) return;
+
+      if (attributes) {
+        for (const attribute of attributes) {
+          if (!config.components[name].includes(attribute.name)) continue;
+
+          if (typeof attribute.value === "string") {
+            strings.push(attribute.value);
+          } else {
+            const expression = attribute.value.data.estree.body[0].expression;
+
+            if (expression.type === "Literal") {
+              strings.push(expression.raw);
+            } else if (expression.type === "JSXElement") {
+              strings.push(
+                generate(attribute.value.data.estree, {
+                  generator: { ...GENERATOR, ...JSX },
+                })
+              );
+            }
+          }
+        }
+      }
+
+      if (children.length > 0) {
+        for (const child of children) {
+          const string = toMarkdown(child, { extensions: [mdxToMarkdown()] });
+          strings.push(string);
+        }
+      }
+    } else {
+      const string = toMarkdown(node, { extensions: [mdxToMarkdown()] });
+      strings.push(string);
+    }
   });
 
   return strings;

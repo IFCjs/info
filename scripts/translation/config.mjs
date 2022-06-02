@@ -16,4 +16,8 @@ export const config = {
     source: "i18n",
     output: "i18n",
   },
+  components: {
+    IfcCard: ["title"],
+    IfcImage: ["image"],
+  },
 };

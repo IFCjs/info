@@ -4,6 +4,9 @@ export interface Config {
   blog: SourceOutputDirectories;
   docs: SourceOutputDirectories;
   translations: SourceOutputDirectories;
+  components: {
+    [Name: string]: string[];
+  };
 }
 
 export interface SourceOutputDirectories {
