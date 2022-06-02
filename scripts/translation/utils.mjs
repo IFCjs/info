@@ -24,17 +24,6 @@ export function resolvePath(to, from) {
 }
 
 /**
- * Join a path with `CWD`, returning the joined path
- * but not necessarilly a valid path.
- *
- * @param { string } path
- * @returns { string }
- */
-export function joinPath(path) {
-  return p.join(CWD, path);
-}
-
-/**
  * Check whether a file have the given extension.
  *
  * @param { string } extension
@@ -69,38 +58,4 @@ export function getFile(path) {
  */
 export function setFile({ path, value }) {
   fs.outputFileSync(path, value);
-}
-
-/**
- * Find the start index of the dynamic part of `sourcesPattern`.
- *
- * @param { string } sourcesPattern
- * @returns { string }
- */
-export function getInferredPathStart(sourcesPattern) {
-  return CWD.length + sourcesPattern.indexOf("*");
-}
-
-/**
- * Attach `cwd` to outputsPattern, so it become an absolute path.
- *
- * @param { string } outputsPattern
- * @returns { string }
- */
-export function getOutputsPattern(outputsPattern) {
-  return p.join(CWD, outputsPattern);
-}
-
-/**
- * Get MDX flavored `mdast`.
- *
- * @param { string } value
- * @returns { import('remark-mdx').Root }
- */
-export function getMdxAst(value) {
-  return remark()
-    .use(remarkFrontmatter)
-    .use(remarkMdx)
-    .use(remarkComment, { ast: true })
-    .parse(value);
 }

@@ -8,60 +8,33 @@ import remarkFrontmatter from "remark-frontmatter";
 import remarkMdx from "remark-mdx";
 import { visit } from "unist-util-visit";
 import { config } from "./config.mjs";
-import {
-  CWD,
-  IGNORE_NODE_TYPES,
-  endsWith,
-  getFile,
-  getInferredPathStart,
-  getMdxAst,
-  getOutputsPattern,
-  setFile,
-} from "./utils.mjs";
+import { IGNORE_NODE_TYPES, endsWith, getFile, setFile } from "./utils.mjs";
 
 function main() {
-  for (const files of config.files) {
-    // get extraction sources paths and do loop operation on them
-    const paths = glob.sync(files.sourcesPattern, {
-      root: CWD,
-    });
+  for (const language of config.outputLanguages) {
+    const translationsOutputFilePaths = glob.sync(
+      config.translations.output.concat(`/${language}`, "/**/*")
+    );
 
-    const inferredPathStart = getInferredPathStart(files.sourcesPattern);
-    const outputsPattern = getOutputsPattern(files.outputsPattern);
+    for (const path of translationsOutputFilePaths) {
+      if (endsWith(".mdx.json")(path)) {
+        const astFilePath = path
+          .replace(`/${language}/`, `/${config.sourceLanguage}/`)
+          .replace(".mdx.json", ".mdx.ast");
+        const ast = JSON.parse(getFile(astFilePath));
+        const strings = JSON.parse(getFile(path));
 
-    for (const path of paths) {
-      const inferredPath = path.slice(inferredPathStart);
-      const outputPatttern = outputsPattern.replace(
-        "%infer_path%",
-        inferredPath
-      );
+        const translatedAst = getTranslatedAst(ast, strings);
+        const translatedMdx = remark()
+          .use(remarkFrontmatter)
+          .use(remarkMdx)
+          .use(remarkComment, { ast: true })
+          .stringify(translatedAst);
 
-      if (endsWith(".mdx")(path)) {
-        const jsonSourcePath = outputPatttern.replace(".mdx", ".json");
-
-        const mdx = getFile(path);
-
-        for (const language of config.outputLanguages) {
-          const { value: strings } = getFile(
-            jsonSourcePath.replace("%lang_code%", language)
-          );
-
-          const translatedAst = getTranslatedAst(
-            getMdxAst(mdx),
-            JSON.parse(strings)
-          );
-
-          const translatedMdx = remark()
-            .use(remarkFrontmatter)
-            .use(remarkMdx)
-            .use(remarkComment, { ast: true })
-            .stringify(translatedAst);
-
-          setFile({
-            path: outputPatttern.replace("%lang_code%", language),
-            value: translatedMdx,
-          });
-        }
+        setFile({
+          path: path.slice(0, -5),
+          value: translatedMdx,
+        });
       }
     }
   }

@@ -8,14 +8,13 @@ import {
   IGNORE_NODE_TYPES,
   endsWith,
   getFile,
-  getMdxAst,
   resolvePath,
   setFile,
 } from "./utils.mjs";
 
 function main() {
-  const blogFilePaths = glob.sync(config.blog.source);
-  const docsFilePaths = glob.sync(config.docs.source);
+  const blogFilePaths = glob.sync(config.blog.source.concat("/**/*"));
+  const docsFilePaths = glob.sync(config.docs.source.concat("/**/*"));
 
   const blogOutputDir = resolvePath(
     config.blog.output.replace("$language$", config.sourceLanguage)
@@ -44,7 +43,7 @@ function main() {
       const strings = getTranslatableStrings(ast);
 
       setFile({
-        path: outputPath.replace(".mdx", ".json"),
+        path: outputPath.concat(".json"),
         value: JSON.stringify(strings),
       });
     } else {
@@ -66,7 +65,12 @@ function main() {
       const strings = getTranslatableStrings(ast);
 
       setFile({
-        path: outputPath.replace(".mdx", ".json"),
+        path: outputPath.concat(".ast"),
+        value: JSON.stringify(ast),
+      });
+
+      setFile({
+        path: outputPath.concat(".json"),
         value: JSON.stringify(strings),
       });
     } else {
@@ -84,6 +88,20 @@ function main() {
 }
 
 main();
+
+/**
+ * Get MDX flavored `mdast`.
+ *
+ * @param { string } value
+ * @returns { import('remark-mdx').Root }
+ */
+function getMdxAst(value) {
+  return remark()
+    .use(remarkFrontmatter)
+    .use(remarkMdx)
+    .use(remarkComment, { ast: true })
+    .parse(value);
+}
 
 function getTranslatableStrings(ast) {
   const strings = [];
