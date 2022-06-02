@@ -1,9 +1,5 @@
 import fs from "fs-extra";
 import p from "path";
-import { remark } from "remark";
-import remarkComment from "remark-comment";
-import remarkFrontmatter from "remark-frontmatter";
-import remarkMdx from "remark-mdx";
 
 export const CWD = process.cwd();
 export const IGNORE_NODE_TYPES = ["code", "comment", "mdxjsEsm", "yaml"];

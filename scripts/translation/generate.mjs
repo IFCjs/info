@@ -8,21 +8,30 @@ import remarkFrontmatter from "remark-frontmatter";
 import remarkMdx from "remark-mdx";
 import { visit } from "unist-util-visit";
 import { config } from "./config.mjs";
-import { IGNORE_NODE_TYPES, endsWith, getFile, setFile } from "./utils.mjs";
+import {
+  IGNORE_NODE_TYPES,
+  endsWith,
+  getFile,
+  resolvePath,
+  setFile,
+} from "./utils.mjs";
 
 function main() {
   for (const language of config.outputLanguages) {
-    const translationsOutputFilePaths = glob.sync(
-      config.translations.output.concat(`/${language}`, "/**/*")
-    );
+    const translationsOutputFilePaths = glob
+      .sync(config.translations.output.concat(`/${language}`, "/**/*.*"))
+      .map((path) => resolvePath(path));
+
+    console.log(config.translations.output.concat(`/${language}`, "/**/*.*"));
 
     for (const path of translationsOutputFilePaths) {
       if (endsWith(".mdx.json")(path)) {
         const astFilePath = path
           .replace(`/${language}/`, `/${config.sourceLanguage}/`)
           .replace(".mdx.json", ".mdx.ast");
-        const ast = JSON.parse(getFile(astFilePath));
-        const strings = JSON.parse(getFile(path));
+
+        const ast = JSON.parse(getFile(astFilePath).value);
+        const strings = JSON.parse(getFile(path).value);
 
         const translatedAst = getTranslatedAst(ast, strings);
         const translatedMdx = remark()
