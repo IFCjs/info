@@ -5,64 +5,81 @@ import { toMarkdown } from "mdast-util-to-markdown";
 import { visit } from "unist-util-visit";
 import { config } from "./config.mjs";
 import {
-  CWD,
   IGNORE_NODE_TYPES,
   endsWith,
-  getOutputsPattern,
   getFile,
-  getInferredPathStart,
   getMdxAst,
+  resolvePath,
   setFile,
 } from "./utils.mjs";
 
 function main() {
-  for (const files of config.files) {
-    const paths = glob.sync(files.sourcesPattern, {
-      root: CWD,
-    });
+  const blogFilePaths = glob.sync(config.blog.source);
+  const docsFilePaths = glob.sync(config.docs.source);
 
-    const inferredPathStart = getInferredPathStart(files.sourcesPattern);
-    const outputsPattern = getOutputsPattern(files.outputsPattern).replace(
-      "%lang_code%",
-      config.sourceLanguage
-    );
+  const blogOutputDir = resolvePath(
+    config.blog.output.replace("$language$", config.sourceLanguage)
+  );
+  const docsOutputDir = resolvePath(
+    config.docs.output.replace("$language$", config.sourceLanguage)
+  );
 
-    // cleanup output directory before writing and copying files
-    fs.removeSync(outputsPattern.replace("%infer_path%", ""));
+  // Clean up output directories.
+  fs.removeSync(blogOutputDir);
+  fs.removeSync(docsOutputDir);
 
-    /**
-     * @type { { source: string; destination: string; } }
-     */
-    const nonMdx = [];
+  /**
+   * @type { { source: string; output: string; }[] }
+   */
+  const nonMdx = [];
 
-    for (const path of paths) {
-      const inferredPath = path.slice(inferredPathStart);
+  for (const path of blogFilePaths) {
+    const inferredPath = path.slice(blogOutputDir.length);
+    const outputPath = resolvePath(inferredPath, blogOutputDir);
 
-      if (endsWith(".mdx")(path)) {
-        const { value } = getFile(path);
+    if (endsWith(".mdx")(path)) {
+      const { value } = getFile(path);
 
-        const ast = getMdxAst(value);
-        const strings = getTranslatableStrings(ast);
+      const ast = getMdxAst(value);
+      const strings = getTranslatableStrings(ast);
 
-        setFile({
-          path: outputsPattern.replace(
-            "%infer_path%",
-            inferredPath.replace(".mdx", ".json")
-          ),
-          value: JSON.stringify(strings),
-        });
-      } else {
-        nonMdx.push({
-          source: path,
-          destination: outputsPattern.replace("%infer_path%", inferredPath),
-        });
-      }
+      setFile({
+        path: outputPath.replace(".mdx", ".json"),
+        value: JSON.stringify(strings),
+      });
+    } else {
+      nonMdx.push({
+        source: path,
+        output: outputPath,
+      });
     }
+  }
 
-    // copy non-mdx files
-    for (const { source, destination } of nonMdx) {
-      fs.copyFileSync(source, destination);
+  for (const path of docsFilePaths) {
+    const inferredPath = path.slice(docsOutputDir.length);
+    const outputPath = resolvePath(inferredPath, docsOutputDir);
+
+    if (endsWith(".mdx")(path)) {
+      const { value } = getFile(path);
+
+      const ast = getMdxAst(value);
+      const strings = getTranslatableStrings(ast);
+
+      setFile({
+        path: outputPath.replace(".mdx", ".json"),
+        value: JSON.stringify(strings),
+      });
+    } else {
+      nonMdx.push({
+        source: path,
+        output: outputPath,
+      });
     }
+  }
+
+  // Copy non-mdx files.
+  for (const { source, output } of nonMdx) {
+    fs.copyFileSync(source, output);
   }
 }
 

@@ -9,7 +9,33 @@ export const CWD = process.cwd();
 export const IGNORE_NODE_TYPES = ["code", "comment", "mdxjsEsm", "yaml"];
 
 /**
- * check whether a file have the given extension.
+ * Resolve a path from `CWD`, returning the absolute path.
+ *
+ * @param { string } to
+ * @param { string } [from]
+ * @returns { string }
+ */
+export function resolvePath(to, from) {
+  if (from) {
+    return p.resolve(from, to);
+  } else {
+    return p.resolve(CWD, to);
+  }
+}
+
+/**
+ * Join a path with `CWD`, returning the joined path
+ * but not necessarilly a valid path.
+ *
+ * @param { string } path
+ * @returns { string }
+ */
+export function joinPath(path) {
+  return p.join(CWD, path);
+}
+
+/**
+ * Check whether a file have the given extension.
  *
  * @param { string } extension
  * @returns { function(string): boolean }
@@ -21,7 +47,7 @@ export function endsWith(extension) {
 }
 
 /**
- * get file content and group it with its path
+ * Get file content and group it with its path
  *
  * @param { string } path
  * @returns { import("./types").File }
@@ -36,7 +62,7 @@ export function getFile(path) {
 }
 
 /**
- * write file to disk using fs-extra to automatically create
+ * Write file to disk using fs-extra to automatically create
  * parent directories if not yet exist.
  *
  * @param { import("./types").File } file
@@ -46,7 +72,7 @@ export function setFile({ path, value }) {
 }
 
 /**
- * find the start index of the dynamic part of `sourcesPattern`.
+ * Find the start index of the dynamic part of `sourcesPattern`.
  *
  * @param { string } sourcesPattern
  * @returns { string }
@@ -56,7 +82,7 @@ export function getInferredPathStart(sourcesPattern) {
 }
 
 /**
- * attach `cwd` to outputsPattern, so it become an absolute path.
+ * Attach `cwd` to outputsPattern, so it become an absolute path.
  *
  * @param { string } outputsPattern
  * @returns { string }
@@ -66,7 +92,7 @@ export function getOutputsPattern(outputsPattern) {
 }
 
 /**
- * get MDX flavored `mdast`.
+ * Get MDX flavored `mdast`.
  *
  * @param { string } value
  * @returns { import('remark-mdx').Root }

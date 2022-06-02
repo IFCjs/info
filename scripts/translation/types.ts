@@ -1,3 +1,16 @@
+export interface Config {
+  sourceLanguage: string;
+  outputLanguages: string[];
+  blog: SourceOutputDirectories;
+  docs: SourceOutputDirectories;
+  translations: SourceOutputDirectories;
+}
+
+export interface SourceOutputDirectories {
+  source: string;
+  output: string;
+}
+
 export interface File {
   path: string;
   value: string;

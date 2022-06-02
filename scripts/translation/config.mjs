@@ -1,34 +1,19 @@
 /**
- * @typedef Files
- *
- * @property { string } sourcesPattern
- * @property { string } outputsPattern
- */
-
-/**
- * @typedef Config
- *
- * @property { string } sourceLanguage
- * @property { string[] } outputLanguages
- * @property { Files[] } files
- */
-
-/**
- * @type { Config }
+ * @type { import("./types").Config }
  */
 export const config = {
   sourceLanguage: "en",
   outputLanguages: ["ja", "zh"],
-  files: [
-    {
-      sourcesPattern: "/docs/**/*.*",
-      outputsPattern:
-        "/i18n/%lang_code%/docusaurus-plugin-content-docs/current/%infer_path%",
-    },
-    {
-      sourcesPattern: "/blog/**/*.*",
-      outputsPattern:
-        "/i18n/%lang_code%/docusaurus-plugin-content-blog/%infer_path%",
-    },
-  ],
+  docs: {
+    source: "docs",
+    output: "i18n/$language$/docusaurus-plugin-content-docs/current",
+  },
+  blog: {
+    source: "blog",
+    output: "i18n/$language$/docusaurus-plugin-content-blog",
+  },
+  translations: {
+    source: "i18n",
+    output: "i18n",
+  },
 };
