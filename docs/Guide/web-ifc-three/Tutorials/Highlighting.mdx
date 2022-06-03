@@ -12,21 +12,14 @@ import { Scene } from "../../../../src/components/Scene/Scene";
 🎩
 In almost all BIM applications, elements are highlighted when the user moves the mouse over them or selects them. IFC.js is no exception, and in this tutorial we will see how to achieve this.
 
-<a
-  href="https://ifcjs.github.io/info/docs/Guide/web-ifc-three/Tutorials/Picking/"
-  target="_self"
->
+<a href="https://ifcjs.github.io/info/docs/Guide/web-ifc-three/Tutorials/Picking/" target="_self">
   👩‍🏫 Previously{" "}
 </a>
 we have seen how to obtain the ID of an object on which we cast a ray with the
-<a href="https://threejs.org/docs/#api/en/core/Raycaster">Raycaster</a>. Now
-that we have those IDs, it's possible to highlight those elements using <b>
-  geometric subsets
-</b>.
+<a href="https://threejs.org/docs/#api/en/core/Raycaster">Raycaster</a>. Now that we have those IDs, it's possible to highlight those elements using <b>geometric subsets</b>.
 
 <IfcCard icon="🧱" title="Geometric subsets?">
-  <b>Geometric subsets</b> are any group of items in the model. For example: all
-  doors, all ground floor elements or all elements fulfilling a given condition.
+  <b>Geometric subsets</b> are any group of items in the model. For example: all doors, all ground floor elements or all elements fulfilling a given condition.
 </IfcCard>
 
 ### Import dependencies
@@ -64,10 +57,7 @@ Note that geometric subsets are **uniquely identified** by their material.
 
 - If you create a subset with a wall using material A, and then try to create another subset of the same wall using material B, you will have created two independent subsets.
 
-<IfcAlert>
-  You can have two separate subsets with the same appearance using two instances
-  of the same material.
-</IfcAlert>
+<IfcAlert>You can have two separate subsets with the same appearance using two instances of the same material.</IfcAlert>
 
 ### Single subset
 
@@ -108,11 +98,7 @@ function highlight(event, material, model) {
 window.onmousemove = (event) => highlight(event, preselectMat, preselectModel);
 ```
 
-<Scene
-  link={
-    "https://ifcjs.github.io/hello-world/examples/web-ifc-three/highlighting-single/"
-  }
-/>
+<Scene link={"https://ifcjs.github.io/hello-world/examples/web-ifc-three/highlighting-single/"} />
 
 👀
 There are several interesting things to look out for:
@@ -142,21 +128,14 @@ const selectModel = { id: -1 };
 window.ondblclick = (event) => highlight(event, selectMat, selectModel);
 ```
 
-<Scene
-  link={
-    "https://ifcjs.github.io/hello-world/examples/web-ifc-three/highlighting-multiple/"
-  }
-/>
+<Scene link={"https://ifcjs.github.io/hello-world/examples/web-ifc-three/highlighting-multiple/"} />
 
 ### Extracting geometry
 
 👩‍🏫
 If you create a geometry subset and do not specify a highlight material, the subset will have the **original materials**.
 
-<IfcAlert>
-  This would allow, for example, to create a geometric subset with all the
-  ground floor elements of the BIM model and hide the rest.
-</IfcAlert>
+<IfcAlert>This would allow, for example, to create a geometric subset with all the ground floor elements of the BIM model and hide the rest.</IfcAlert>
 
 🌚
 In the next example we will apply a transparent material to a copy of loaded IFC model and create a subset with the original materials when the mouse hovers over an item. For this we will use almost the same code as before.
@@ -183,11 +162,7 @@ ifcLoader.load("../../IFC/01.ifc", (ifcModel) => {
 window.onmousemove = (event) => highlight(event, undefined, highlightModel);
 ```
 
-<Scene
-  link={
-    "https://ifcjs.github.io/hello-world/examples/web-ifc-three/highlighting-single-original-material/"
-  }
-/>
+<Scene link={"https://ifcjs.github.io/hello-world/examples/web-ifc-three/highlighting-single-original-material/"} />
 
 ## Next steps
 

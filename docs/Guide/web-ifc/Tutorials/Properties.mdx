@@ -28,8 +28,7 @@ There are several types of properties in the IFC scheme, each with a specific pu
 </IfcCard>
 
 <IfcCard icon="📗" title="Type properties">
-  Describe properties of all elements of the same type (e.g. all envelope walls
-  of a particular type).
+  Describe properties of all elements of the same type (e.g. all envelope walls of a particular type).
 </IfcCard>
 
 <IfcCard icon="📘" title="Material properties">
@@ -37,16 +36,11 @@ There are several types of properties in the IFC scheme, each with a specific pu
 </IfcCard>
 
 <IfcCard icon="📙" title="Property sets">
-  Arbitrary sets of user-defined properties. There may be multiple sets of
-  properties associated with one or more elements. Each property set contains an
-  arbitrary group of properties related to each other.
+  Arbitrary sets of user-defined properties. There may be multiple sets of properties associated with one or more elements. Each property set contains an arbitrary group of properties related to each other.
 </IfcCard>
 
 <IfcCard icon="📒" title="Quantity sets">
-  Sets of properties describing the dimensions of the elements to which they
-  refer. Although it would also be possible to infer element dimensions
-  implicitly from the geometry definition, this explicit description makes it
-  much easier to create applications that measure IFC models.
+  Sets of properties describing the dimensions of the elements to which they refer. Although it would also be possible to infer element dimensions implicitly from the geometry definition, this explicit description makes it much easier to create applications that measure IFC models.
 </IfcCard>
 
 🚴‍♂️ But enough theory! Let's get down to work.
@@ -241,19 +235,13 @@ propsets.forEach((set) => {
 ```
 
 <IfcCard>
-  Your complete code until now should look like{" "}
-  <a href="https://github.com/IFCjs/hello-world/tree/main/examples/web-ifc/ifc-to-json/properties/app.js">
-    this
-  </a>
+  Your complete code until now should look like <a href="https://github.com/IFCjs/hello-world/tree/main/examples/web-ifc/ifc-to-json/properties/app.js">this</a>
 </IfcCard>
 
 ### FrontEnd
 
 <IfcCard>
-  We are using this example as a{" "}
-  <a href="https://github.com/IFCjs/hello-world/tree/main/examples/web-ifc/ifc-to-json/frontend">
-    base{" "}
-  </a>
+  We are using this example as a <a href="https://github.com/IFCjs/hello-world/tree/main/examples/web-ifc/ifc-to-json/frontend">base </a>
   and will be making additions to it
 </IfcCard>
 
@@ -294,9 +282,7 @@ function createRowInTable(label, value) {
       <div class="input-container">
         <input id="expressIDLabel" />
         <!-- On Clicking this button we call getPropertyWithExpressId() -->
-        <button class="property-button" onclick="getPropertyWithExpressId()">
-          Get Properties
-        </button>
+        <button class="property-button" onclick="getPropertyWithExpressId()">Get Properties</button>
       </div>
       <!-- This is the area where our properties will be shown -->
       <pre id="properties"></pre>

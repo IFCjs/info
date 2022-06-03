@@ -44,10 +44,7 @@ There are two ways to access the API:
 - Through `IfcLoader.IfcManager`.
 
 <IfcAlert>
-  Both <b>IfcModel</b> instances and <b>IfcLoader.IfcManager</b> can be used
-  interchangeably to access the API. There's one difference: when using{" "}
-  <b>IfcModel</b>, the ModelID never has to be given as an argument (it's known
-  implicitly).
+  Both <b>IfcModel</b> instances and <b>IfcLoader.IfcManager</b> can be used interchangeably to access the API. There's one difference: when using <b>IfcModel</b>, the ModelID never has to be given as an argument (it's known implicitly).
 </IfcAlert>
 
 ## 🧰 Setup
@@ -64,11 +61,7 @@ There are two ways to access the API:
 Specifies the location of the `web-ifc.wasm` and `web-ifc-mt.wasm` files. These files are the web-ifc file and is required to create any application with IFC.js. You can find them in `node_modules/web-ifc/`.
 
 <IfcCard icon={"🚧"} title={"Careful with your tooling!"}>
-  If you use frameworks or libraries like React, Angular, Vue or Svelte it is
-  possible that the root path of the project doesn't correspond to the root path
-  of the served application. You will have to check in{" "}
-  <a href="https://github.com/IFCjs/examples">each case</a> how the paths of the
-  statically served files are managed.
+  If you use frameworks or libraries like React, Angular, Vue or Svelte it is possible that the root path of the project doesn't correspond to the root path of the served application. You will have to check in <a href="https://github.com/IFCjs/examples">each case</a> how the paths of the statically served files are managed.
 </IfcCard>
 
 #### Arguments:
@@ -96,10 +89,7 @@ await ifcLoader.ifcManager.setWasmPath("dist/wasmDir/");
 ⚡⚡⚡
 This method allows object picking to be much faster, especially for very large models with heavy geometry. This method actually allows IFC.js to use the Garrett Johnson's amazing [library ](https://github.com/gkjohnson/three-mesh-bvh). u can install it with `npm i three-mesh-bvh` or `yarn add three-mesh-bvh`.
 
-<IfcCard>
-  ☝ Using this method not mandatory, but if you want to be able to select
-  objects in medium / large IFC models at 60 fps, it's necessary.
-</IfcCard>
+<IfcCard>☝ Using this method not mandatory, but if you want to be able to select objects in medium / large IFC models at 60 fps, it's necessary.</IfcCard>
 
 #### Arguments:
 
@@ -114,18 +104,10 @@ This method allows object picking to be much faster, especially for very large m
 ```js
 import { IFCLoader } from "web-ifc-three/dist/IFCLoader";
 
-import {
-  acceleratedRaycast,
-  computeBoundsTree,
-  disposeBoundsTree,
-} from "three-mesh-bvh";
+import { acceleratedRaycast, computeBoundsTree, disposeBoundsTree } from "three-mesh-bvh";
 
 const ifcLoader = new IFCLoader();
-ifcLoader.ifcManager.setupThreeMeshBVH(
-  acceleratedRaycast,
-  computeBoundsTree,
-  disposeBoundsTree
-);
+ifcLoader.ifcManager.setupThreeMeshBVH(acceleratedRaycast, computeBoundsTree, disposeBoundsTree);
 ```
 
 ### setOnProgress
@@ -303,9 +285,7 @@ await ifcLoader.ifcManager.loadJsonDataFromWorker(0, "path/to/data.json");
 Gets the Express ID of an IFC element from a face index.
 
 <IfcCard icon="📜" title="Why a face index?">
-  Because when we select an object in 3d space with the mouse we get the index
-  of that face. We usually want the ID of the object where that face belongs to
-  in order to highlight it, isolate it or get all its properties.
+  Because when we select an object in 3d space with the mouse we get the index of that face. We usually want the ID of the object where that face belongs to in order to highlight it, isolate it or get all its properties.
 </IfcCard>
 
 #### Arguments:
@@ -334,10 +314,7 @@ const id = ifcLoader.ifcManager.getExpressId(mesh, index);
 🎸🪕🎻
 Gets the IFC type of the specified element (e.g. IFCWALL).
 
-<IfcAlert>
-  Elements in IFC always have an associated type: IfcWall, IfcSlab, IfcWindow,
-  IfcDoor, etc.
-</IfcAlert>
+<IfcAlert>Elements in IFC always have an associated type: IfcWall, IfcSlab, IfcWindow, IfcDoor, etc.</IfcAlert>
 
 #### Arguments:
 
@@ -397,10 +374,7 @@ const walls = await manager.getAllItemsOfType(0, W, false);
 📕🔍
 Gets the native properties of the given element. In the IFC schema there are two types of properties: direct and indirect. How to obtain the indirect properties (psets, qsets and type properties) will be discussed later.
 
-<IfcAlert>
-  All methods related to properties return an array of objects where the keys
-  are the name of the properties and the values are their values.
-</IfcAlert>
+<IfcAlert>All methods related to properties return an array of objects where the keys are the name of the properties and the values are their values.</IfcAlert>
 
 #### Arguments:
 
@@ -463,9 +437,7 @@ const props = await manager.getTypeProperties(model, id, false);
 Gets the property sets and quantity sets of the given element.
 
 <IfcCard icon="📃" title="Property sets?">
-  Native and type properties are those that are predefined by the IFC schema:
-  they always contain the same information. Property sets, on the other hand,
-  are arbitrary and can be defined by the user.
+  Native and type properties are those that are predefined by the IFC schema: they always contain the same information. Property sets, on the other hand, are arbitrary and can be defined by the user.
 </IfcCard>
 
 #### Arguments:
@@ -527,12 +499,8 @@ const props = await manager.getMaterialsProperties(model, id, false);
 Gets the spatial structure of the project.
 
 <IfcAlert>
-  The{" "}
-  <a href="https://standards.buildingsmart.org/IFC/DEV/IFC4_2/FINAL/HTML/schema/ifcproductextension/lexical/ifcspatialstructureelement.htm">
-    spatial structure{" "}
-  </a>
-  is the hierarchical structure that organizes every IFC project (all physical items
-  are referenced to an element of the spatial structure).
+  The <a href="https://standards.buildingsmart.org/IFC/DEV/IFC4_2/FINAL/HTML/schema/ifcproductextension/lexical/ifcspatialstructureelement.htm">spatial structure </a>
+  is the hierarchical structure that organizes every IFC project (all physical items are referenced to an element of the spatial structure).
 </IfcAlert>
 
 #### Arguments:
@@ -561,11 +529,7 @@ const ifcProject = await manager.getSpatialStructure(model);
 🧱🔍
 Gets the mesh of the subset with the specified [material](https://threejs.org/docs/#api/en/materials/Material). If no material is given, this returns the subset with the original materials.
 
-<IfcAlert>
-  Geometric subsets are extracts of the geometry of the model. For example, you
-  could extract a subset with all the IfcDoors and IfcWindows that meet a
-  certain condition and highlight or export them.
-</IfcAlert>
+<IfcAlert>Geometric subsets are extracts of the geometry of the model. For example, you could extract a subset with all the IfcDoors and IfcWindows that meet a certain condition and highlight or export them.</IfcAlert>
 
 #### Arguments:
 

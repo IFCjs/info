@@ -17,28 +17,14 @@ _All the big companies are selling their CDE. Why don't YOU make your own CDE?_
 import { IfcImage } from "../src/components/Image/Image";
 import { IfcCard } from "../src/components/Card/InfoCard";
 
-<IfcImage
-  hideSource={true}
-  image={
-    <img
-      src={require("@site/static/img/blog/2021-09-27/lego.jpg").default}
-      alt="Lego image"
-    ></img>
-  }
-  ifcLink="https://www.pexels.com/photo/set-of-multicolored-plastic-construction-toys-scattered-on-floor-7444982/"
-></IfcImage>
+<IfcImage hideSource={true} image={<img src={require("@site/static/img/blog/2021-09-27/lego.jpg").default} alt="Lego image"></img>} ifcLink="https://www.pexels.com/photo/set-of-multicolored-plastic-construction-toys-scattered-on-floor-7444982/"></IfcImage>
 
 ## But wait, what is a CDE?
 
 📦
 Informally speaking, **CDE** is nothing more than a place where the information of a construction project is centralised and accesible through internet.
 
-<IfcCard>
-  🔧🔨 CDEs can have all the functionalities of traditional BIM applications: 3D
-  viewers, reading and editing data, energy simulations, automatic measurements
-  and budgets, etc.
-</IfcCard>
-️
+<IfcCard>🔧🔨 CDEs can have all the functionalities of traditional BIM applications: 3D viewers, reading and editing data, energy simulations, automatic measurements and budgets, etc.</IfcCard>️
 
 🌎🌍🌏
 However, they have a fundamental advantage: they are **on the web**, and that means they are accessible from anywhere and from any device without having to install anything.
@@ -66,12 +52,7 @@ Obviously, this tutorial is a minimal example. But from the simple CDE of this t
 ⏳
 We only have **half an hour** to do this CDE, so we have to choose carefully how to do it in order not to waste any time. First things first: we need **a place to store project documentation**. Do you know of an existing tool that allows us to do that? We have thought of **Google Drive**!
 
-<IfcCard>
-  💪 Google Drive has a lot of power: we can control read and write access to
-  files, version control, an open API... In short, it has many of the things
-  that BIM software companies charge you for, but totally free.
-</IfcCard>
-️
+<IfcCard>💪 Google Drive has a lot of power: we can control read and write access to files, version control, an open API... In short, it has many of the things that BIM software companies charge you for, but totally free.</IfcCard>️
 
 🛑
 However, Google Drive has a fundamental limitation: it does not have a 3D viewer and does not allow easy access to data in BIM models (e.g. IFC models).
@@ -84,14 +65,7 @@ However, Google Drive has a fundamental limitation: it does not have a 3D viewer
 🤷‍♀️
 **How to connect** IFC.js and google drive to be able to use both as a CDE? Our design proposal is as follows. It may look complicated, but it's actually very very simple.
 
-<IfcImage
-  image={
-    <img
-      src={require("@site/static/img/blog/2021-09-27/schema.jpg").default}
-      alt="Schema explaining the concept of the CDE"
-    ></img>
-  }
-></IfcImage>
+<IfcImage image={<img src={require("@site/static/img/blog/2021-09-27/schema.jpg").default} alt="Schema explaining the concept of the CDE"></img>}></IfcImage>
 
 🏠
 First we are going to create an **3D BIM web application that is able to download files from google drive**. Specifically, it will download the file from google drive whose ID it finds in its URL parameter. For example, if your URL is `https://.../?id=123&name=TEST.ifc`, it will download the file whose `ID` is `123` from the google account of the user who is logged into the app.
@@ -105,12 +79,7 @@ Then we are going to create a [google chrome extension](https://developer.chrome
 
 - **Create a menu that allows the user to open the URL with the IFC.js web application**. In addition, you are going to add two url parameters: the name and the id of the file.
 
-<IfcCard>
-  In short: a google chrome extension gets the name of a file when the user
-  clicks on it and opens a web app that knows how to download files by their ID.
-  That's all.
-</IfcCard>
-️
+<IfcCard>In short: a google chrome extension gets the name of a file when the user clicks on it and opens a web app that knows how to download files by their ID. That's all.</IfcCard>️
 
 ### IFC.js app
 
@@ -192,13 +161,7 @@ Make sure you create the necessary HTML and CSS to give the viewer the look and 
 🔒🔒🔒
 Well, we have a BIM viewer, but for now it can't download anything from the **Google Drive API**. However, that's easy: just follow these steps from the [official documentation](https://developers.google.com/drive/api/v3/quickstart/js) and copy and paste the JavaScript code to be able to access the API.
 
-<IfcCard>
-  🔑🔑🔑 Following the google guide, you'll need to create a new Google Cloud
-  project to get your own CLIENT_ID and API_KEY; they are just two texts that
-  you must have for google to know who you are. In other words, you can't use
-  the keys we have to access to your drive!
-</IfcCard>
-️
+<IfcCard>🔑🔑🔑 Following the google guide, you'll need to create a new Google Cloud project to get your own CLIENT_ID and API_KEY; they are just two texts that you must have for google to know who you are. In other words, you can't use the keys we have to access to your drive!</IfcCard>️
 
 📋
 If you take a look at the code we have posted, you will see that **we have copied and pasted almost all of the code** from the [google example](https://developers.google.com/drive/api/v3/quickstart/js). The only thing we have added is the following, which simply gets the ID of the file from the URL of the web application and downloads it from google drive:
@@ -263,14 +226,7 @@ function loadIfcModel(text) {
 Now we are going to make a Google Chrome extension so that the **user can select the files they want to open**. If you've never done this before, it may sound intimidating, but it's actually very simple. You can find the finished result [here](https://github.com/IFCjs/hello-world/tree/main/examples/extensions/Drive-CDE).
 
 <IfcCard>
-  🔑🔑🔑 Following the google guide, you'll need to create a new Google Cloud
-  project to get your own CLIENT_ID and API_KEY; they are just two texts that
-  you must have for google to know who you are. In other words, you can't use
-  the keys we have to access to your drive!{" "}
-  <a href="https://developers.google.com/drive/api/v3/about-sdk#create_and_open_files_directly_from_the_drive_ui">
-    Have a look here for more details
-  </a>
-  .
+  🔑🔑🔑 Following the google guide, you'll need to create a new Google Cloud project to get your own CLIENT_ID and API_KEY; they are just two texts that you must have for google to know who you are. In other words, you can't use the keys we have to access to your drive! <a href="https://developers.google.com/drive/api/v3/about-sdk#create_and_open_files_directly_from_the_drive_ui">Have a look here for more details</a>.
 </IfcCard>
 ️
 
@@ -295,15 +251,7 @@ In the repository you will find step-by-step comments on what does what. In tota
 🔥🔥🔥
 This is how our 30 minutes CDE looks:
 
-<iframe
-  width="100%"
-  height="600px"
-  src="https://www.youtube.com/embed/lYzTaOBuv7k"
-  title="YouTube video player"
-  frameborder="0"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-  allowfullscreen
-></iframe>
+<iframe width="100%" height="600px" src="https://www.youtube.com/embed/lYzTaOBuv7k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Conclusion
 

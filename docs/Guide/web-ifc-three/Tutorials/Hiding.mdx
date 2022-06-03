@@ -18,11 +18,7 @@ However, in many BIM applications it is also possible to **hide and isolate elem
 🍰 Of course, this is a piece of cake using IFC.js. In this example we are going to create **filters by category**, so that the user can show or hide items using checkboxes.
 
 <IfcCard>
-  As with the other tutorials, you can find the full example{" "}
-  <a href="https://github.com/IFCjs/hello-world/tree/main/examples/web-ifc-three/hiding">
-    here
-  </a>
-  .
+  As with the other tutorials, you can find the full example <a href="https://github.com/IFCjs/hello-world/tree/main/examples/web-ifc-three/hiding">here</a>.
 </IfcCard>
 
 ## How to do it
@@ -36,15 +32,7 @@ Visibility in IFC.js is based on **subset operations**. This allows complex visu
 To save memory, **categories in IFC.js are defined as numeric constants**. So let's create an object that maps the name of those constants to their numeric value, and a function to retrieve them:
 
 ```js
-import {
-  IFCWALLSTANDARDCASE,
-  IFCSLAB,
-  IFCDOOR,
-  IFCWINDOW,
-  IFCFURNISHINGELEMENT,
-  IFCMEMBER,
-  IFCPLATE,
-} from "web-ifc";
+import { IFCWALLSTANDARDCASE, IFCSLAB, IFCDOOR, IFCWINDOW, IFCFURNISHINGELEMENT, IFCMEMBER, IFCPLATE } from "web-ifc";
 
 // List of categories names
 const categories = {
@@ -67,10 +55,7 @@ function getName(category) {
 🏠⏩🚪
 Now let's create a couple of functions to **get all the IDs** of the elements belonging to a category and **create a subset** with those IDs.
 
-<IfcAlert>
-  Remember that many IFC.js functions are asynchronous, so we're going to use
-  async and await.
-</IfcAlert>
+<IfcAlert>Remember that many IFC.js functions are asynchronous, so we're going to use async and await.</IfcAlert>
 
 👩‍🏫
 You can also use `removeFromSubset()` to remove a single item from a subset (e.g. hide a single item). If you combine that with `createSubset()` with `removePrevious = false`, you'll have full control of what is added to which subset and its visibility.
@@ -225,22 +210,14 @@ function setupCheckBox(category) {
 
 😎 And here is the result:
 
-<Scene
-  link={
-    "https://ifcjs.github.io/hello-world/examples/web-ifc-three/hiding/index.html"
-  }
-/>
+<Scene link={"https://ifcjs.github.io/hello-world/examples/web-ifc-three/hiding/index.html"} />
 
 ## Next steps
 
 🎉🎉🎉
 Congratulations! Now you know how to control the visibility of elements using any filter.
 
-<IfcAlert>
-  This would be the same if we want to filter with other properties (e.g. the
-  floor they belong to using the spatial structure tree, seen in the properties
-  section). Just make sure you get the IDs of the elements you want to filter.
-</IfcAlert>
+<IfcAlert>This would be the same if we want to filter with other properties (e.g. the floor they belong to using the spatial structure tree, seen in the properties section). Just make sure you get the IDs of the elements you want to filter.</IfcAlert>
 
 👩‍🏫
 However, `web-ifc-three` has even more functionality. For example, what if we want to **open and close the viewer**? Let's take a look at it next.

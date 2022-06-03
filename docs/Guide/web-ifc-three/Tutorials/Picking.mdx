@@ -20,10 +20,7 @@ Before you can do things with objects, you need to be able to select them. This 
 import { Raycaster, Vector2 } from "three";
 ```
 
-<IfcAlert>
-  The Raycaster allows you to shoot "beams" that hit objects in the scene and
-  return their information.
-</IfcAlert>
+<IfcAlert>The Raycaster allows you to shoot "beams" that hit objects in the scene and return their information.</IfcAlert>
 
 ### Import three-mesh-bvh (optional)
 
@@ -31,18 +28,10 @@ import { Raycaster, Vector2 } from "three";
 In addition, we will import the [three-mesh-bvh library](https://github.com/gkjohnson/three-mesh-bvh) to make the selection of objects much more optimal. This can be installed with `npm i three-mesh-bvh`. Don't worry, you don't have to learn how to use that library. Just give us these library objects and IFC.js will take care of the rest.
 
 ```js
-import {
-  acceleratedRaycast,
-  computeBoundsTree,
-  disposeBoundsTree,
-} from "three-mesh-bvh";
+import { acceleratedRaycast, computeBoundsTree, disposeBoundsTree } from "three-mesh-bvh";
 
 // Sets up optimized picking
-ifcLoader.ifcManager.setupThreeMeshBVH(
-  computeBoundsTree,
-  disposeBoundsTree,
-  acceleratedRaycast
-);
+ifcLoader.ifcManager.setupThreeMeshBVH(computeBoundsTree, disposeBoundsTree, acceleratedRaycast);
 ```
 
 ### Store reference of IFC models
@@ -121,9 +110,7 @@ function pick(event) {
 ```
 
 <IfcAlert>
-  The Raycaster always returns an array of objects, even if{" "}
-  <i>raycaster.firstHitOnly = true;</i>. In this case, the array will only
-  contain one object that can be extracted with <i>[0]</i>.
+  The Raycaster always returns an array of objects, even if <i>raycaster.firstHitOnly = true;</i>. In this case, the array will only contain one object that can be extracted with <i>[0]</i>.
 </IfcAlert>
 
 Finally, all that remains is to associate that function with an event (in this case it's a double click).
@@ -134,9 +121,7 @@ threeCanvas.ondblclick = pick;
 
 If you have done everything right and double click on an item, you will see its Express ID in the console (you can access the console by pressing F12 or by inspecting the page).
 
-<Scene
-  link={"https://ifcjs.github.io/hello-world/examples/web-ifc-three/picking/"}
-/>
+<Scene link={"https://ifcjs.github.io/hello-world/examples/web-ifc-three/picking/"} />
 
 ## Next steps
 

@@ -22,11 +22,7 @@ However, when working with Three.js, data going to the graphics card (e.g. buffe
 That means that if we close a viewer made with Three.js (with or without IFC.js), we will create a 💦 **memory leak** 💦. That is to say, we are blocking a part of the user's RAM memory. If the leak becomes too big, the application will become slower and slower and may **crash**.
 
 <IfcAlert>
-  You can find more information about this topic{" "}
-  <a href="https://threejs.org/docs/#manual/en/introduction/How-to-dispose-of-objects">
-    here
-  </a>
-  .
+  You can find more information about this topic <a href="https://threejs.org/docs/#manual/en/introduction/How-to-dispose-of-objects">here</a>.
 </IfcAlert>
 
 🚀
@@ -35,11 +31,7 @@ This becomes especially critical if we are creating a **SPA** (**Single Page App
 Fortunately, IFC.js has taken this into account and allows you to **release the used memory very easily**. Let's see how. 👇
 
 <IfcCard>
-  You can find the full example of this tutorial{" "}
-  <a href="https://github.com/IFCjs/hello-world/tree/main/examples/web-ifc-three/memory">
-    here
-  </a>
-  .
+  You can find the full example of this tutorial <a href="https://github.com/IFCjs/hello-world/tree/main/examples/web-ifc-three/memory">here</a>.
 </IfcCard>
 
 ## How to do it
@@ -119,11 +111,7 @@ button.addEventListener(`click`, () => releaseMemory());
 
 😎 This is how the application looks like:
 
-<Scene
-  link={
-    "https://ifcjs.github.io/hello-world/examples/web-ifc-three/memory/index.html"
-  }
-/>
+<Scene link={"https://ifcjs.github.io/hello-world/examples/web-ifc-three/memory/index.html"} />
 
 Try loading a model and releasing the memory: you'll see it go back to normal. Beware that **it can take some seconds**, as the browser garbage collector takes some time. Alternatively, you can manually apply the garbage collector using the browser's developer tools.
 
