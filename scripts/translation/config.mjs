@@ -17,7 +17,9 @@ export const config = {
     output: "i18n",
   },
   components: {
+    IfcAlert: [],
     IfcCard: ["title"],
     IfcImage: ["image"],
+    IfcTab: ["items", "items.content"],
   },
 };

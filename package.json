@@ -47,6 +47,7 @@
   "devDependencies": {
     "@types/fs-extra": "^9.0.13",
     "@types/mdast": "^3.0.10",
+    "acorn-walk": "^8.2.0",
     "astring": "^1.8.3",
     "axios": "^0.21.1",
     "deepl-node": "^1.3.1",

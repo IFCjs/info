@@ -9,6 +9,7 @@ import remarkFrontmatter from "remark-frontmatter";
 import remarkMdx from "remark-mdx";
 import { visit } from "unist-util-visit";
 import { config } from "./config.mjs";
+import { walk } from "./estree-walk.mjs";
 import { JSX } from "./JSX.mjs";
 import {
   IGNORE_NODE_TYPES,
@@ -140,17 +141,22 @@ export function getTranslatableStrings(ast) {
           if (typeof attribute.value === "string") {
             strings.push(attribute.value);
           } else {
-            const expression = attribute.value.data.estree.body[0].expression;
+            const estree = attribute.value.data.estree;
 
-            if (expression.type === "Literal") {
-              strings.push(expression.raw);
-            } else if (expression.type === "JSXElement") {
-              strings.push(
-                generate(attribute.value.data.estree, {
-                  generator: { ...GENERATOR, ...JSX },
-                })
-              );
-            }
+            walk(estree, {
+              Literal(node) {
+                strings.push(node.value);
+              },
+              Property(node) {
+                const name = `${attribute.name}.${node.key.name}`;
+                if (!names.includes(name)) return false;
+              },
+              JSXElement(node) {
+                strings.push(
+                  generate(node, { generator: { ...GENERATOR, ...JSX } })
+                );
+              },
+            });
           }
         }
       }
