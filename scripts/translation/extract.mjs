@@ -15,6 +15,8 @@ import {
   IGNORE_NODE_TYPES,
   endsWith,
   getFile,
+  isJsxElement,
+  isJsxFlowElement,
   resolvePath,
   setFile,
 } from "./utils.mjs";
@@ -128,9 +130,11 @@ export function getTranslatableStrings(ast) {
       return;
     }
 
-    if (node.type === "mdxJsxFlowElement") {
+    if (isJsxElement(node)) {
       /** @type { import("mdast-util-mdx").MdxJsxFlowElement } */
-      const { name, attributes, children } = node;
+      const { name, attributes, children } = isJsxFlowElement(node)
+        ? node
+        : node.children[0];
 
       if (!names.includes(name)) return;
 
@@ -142,6 +146,8 @@ export function getTranslatableStrings(ast) {
             strings.push(attribute.value);
           } else {
             const estree = attribute.value.data.estree;
+
+            if (!estree) continue;
 
             walk(estree, {
               Literal(node) {

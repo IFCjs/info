@@ -2,7 +2,13 @@ import fs from "fs-extra";
 import p from "path";
 
 export const CWD = process.cwd();
-export const IGNORE_NODE_TYPES = ["code", "comment", "mdxjsEsm", "yaml"];
+export const IGNORE_NODE_TYPES = [
+  "code",
+  "comment",
+  "mdxjsEsm",
+  "mdxFlowExpression",
+  "yaml",
+];
 
 /**
  * Resolve a path from `CWD`, returning the absolute path.
@@ -54,4 +60,37 @@ export function getFile(path) {
  */
 export function setFile({ path, value }) {
   fs.outputFileSync(path, value);
+}
+
+/**
+ * Check whether an mdast node is JSX element or not.
+ *
+ * @param { object } node
+ * @returns { boolean }
+ */
+export function isJsxElement(node) {
+  return isJsxFlowElement(node) || isJsxTextElement(node);
+}
+
+/**
+ * Check whether an mdast node is mdxJsxFlowElement or not.
+ *
+ * @param { object } node
+ * @returns { boolean }
+ */
+export function isJsxFlowElement(node) {
+  return node.type === "mdxJsxFlowElement" ? true : false;
+}
+
+/**
+ * Check whether an mdast node is mdxJsxTextElement or not.
+ *
+ * @param { object } node
+ * @returns { boolean }
+ */
+export function isJsxTextElement(node) {
+  return node.type === "mdxJsxTextElement" ||
+    (node.type === "paragraph" && node.children[0].type === "mdxJsxTextElement")
+    ? true
+    : false;
 }
