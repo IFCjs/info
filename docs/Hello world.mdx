@@ -3,16 +3,14 @@ title: Hello world
 sidebar_position: 4
 ---
 
-import { IfcCard } from "../src/components/Card/InfoCard";
-import { IfcAlert } from "../src/components/Alert/Alert";
-import { Scene } from "../src/components/Scene/Scene";
+import { IfcCard } from "@site/src/components/Card/InfoCard";
+import { IfcAlert } from "@site/src/components/Alert/Alert";
+import { Scene } from "@site/src/components/Scene/Scene";
 
 ## Introduction
 
 ⚡
 Creating a BIM application with IFC.js is very easy. You can find the complete project of the guide [here](https://github.com/IFCjs/hello-world/tree/main/examples/web-ifc-three/helloworld) and the deployed application [here](https://ifcjs.github.io/hello-world/examples/web-ifc-three/helloworld/). You only need to have <a href="https://nodejs.org/en/">Node.js</a> and any IDE installed to follow the steps below. Also, if you don't have any IFC files to follow along, you can get some [here](https://github.com/IFCjs/test-ifc-files).
-
-{" "}
 
 <IfcAlert>
   Using IFC.js requires a basic knowledge of web development (HTML, CSS, JavaScript) and Three.js. If you have no previous experience with Three.js, you should probably look <a href="https://threejs.org/manual/">here</a>.
@@ -99,8 +97,6 @@ body {
 
 Next, we'll create the rollup configuration file. This file has to be called `rollup.config.js` and includes the reference to the plugins we have previously installed.
 
-{" "}
-
 <IfcCard icon="🧻" title="Rollup?">
   Rollup is a very popular bundling library. For instance, it's the bundler used by Three.js. Take a look at the <a href="https://rollupjs.org/guide/en/">rollup docs</a> to learn more.
 </IfcCard>
@@ -156,8 +152,6 @@ Also, the `package.json` file needs to be modified to contain the commands to co
 The next thing to do is to copy the `web-ifc.wasm` and `web-ifc-mt.wasm` files to a directory in your project. It can be found in `node_modules\web-ifc` (or `node_modules\three\examples\jsm\loaders\ifc` if you are only using Three's IFCLoader). We can copy them wherever we want; in this example, they will be copied to a folder called wasm in the root directory of the project.
 
 These files are necessary because they contain the compiled C++ logic of <a href="https://github.com/IFCjs/web-ifc">web-ifc</a>, which is the parsing core to read and write IFC files with native speed.
-
-{" "}
 
 <IfcAlert>These files have to be served statically in your application. This might need different tweaks if you are using frameworks or libraries like React, Angular, Vue or Svelte.</IfcAlert>
 
@@ -305,8 +299,6 @@ ifcLoader.load("models/Example_model.ifc", (ifcModel) => scene.add(ifcModel));
 
 🎉
 Congratulations! You have just created your first IFC viewer. Go to the next pages of the docs to find out what else can you do with IFC.js.
-
-{" "}
 
 <IfcCard icon="🔥" title="What else can I do with IFC.js?">
   This is just the beginning. You can take a look at <a href="https://github.com/IFCjs/web-ifc-viewer">web-ifc-viewer</a>, which includes tools for object selection, changing geometry appearance, section planes and much more. You can try it <a href="https://ifcjs.github.io/web-ifc-viewer/example/index">here</a>.
