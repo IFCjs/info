@@ -24,14 +24,16 @@ import {
 } from "./utils.mjs";
 
 function main() {
-  const translationsSourceFilePaths = glob
-    .sync(
-      config.translations.source.concat(`/${config.sourceLanguage}`, "/**/*.*")
-    )
-    .map((path) => resolvePath(path));
-
   for (const language of config.outputLanguages) {
-    for (const path of translationsSourceFilePaths) {
+    const translatedFilePaths = glob
+      .sync(
+        config.translations.output
+          .replace("%language%", language)
+          .concat("/**/*.*")
+      )
+      .map((path) => resolvePath(path));
+
+    for (const path of translatedFilePaths) {
       if (endsWith(".mdx.json")(path)) {
         const astFilePath = path.replace(".mdx.json", ".mdx.ast");
 
@@ -41,11 +43,7 @@ function main() {
         const translatedAst = getTranslatedAst(ast, strings);
         const translatedMdx = getMdxFromAst(translatedAst);
 
-        const outputPath = path
-          .replace(`/${config.sourceLanguage}/`, `/${language}/`)
-          // For Windows paths.
-          .replace(`\\${config.sourceLanguage}\\`, `\\${language}\\`)
-          .slice(0, -5);
+        const outputPath = path.slice(0, -5);
 
         setFile({
           path: outputPath,
