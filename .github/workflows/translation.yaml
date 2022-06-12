@@ -1,0 +1,29 @@
+name: translation
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - docs/**
+      - blog/**
+jobs:
+  translate:
+    name: Translate markdowns and generated-JSON with deepmark.
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: yarn install
+      - name: Translate
+        run: yarn translate
+      - name: Commit changes
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commmit -m "ci: translate" --no-verify
+          git push
