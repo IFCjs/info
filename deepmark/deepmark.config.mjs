@@ -10,7 +10,7 @@ export default {
       "i18n/%language%",
     ],
   },
-  ignore_components: ["Scene"],
+  ignore_components: ["Scene", "Sponsoring"],
   components_attributes: {
     IfcCard: ["children", "title"],
     IfcTab: ["items.content"],
