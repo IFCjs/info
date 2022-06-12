@@ -68,7 +68,7 @@ const mouse = new Vector2();
 
 Now we need a function for the Raycaster to cast rays, calculating the position of the mouse on the screen. Note that:
 
-- The threeCanvas object is the HTML `<canvas>` element where the Three.js scene is being rendered. A reference to it can be retrieved with `getElementByID()`.
+- The threeCanvas object is the HTML <code>&lt;canvas&gt;</code> element where the Three.js scene is being rendered. A reference to it can be retrieved with `getElementByID()`.
 
 - It is necessary to specify which objects the beam collides with. In this case, it will only collide with the loaded IFC models, i.e. if there are more objects in the scene, it will ignore them.
 
