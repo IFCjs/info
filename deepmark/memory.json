@@ -1,0 +1,93 @@
+{
+  "Hello IFC.js!": { "ja": "こんにちは、IFC.jsです。", "zh": "你好，IFC.js!" },
+  "Open BIM has come to the browser to stay.": {
+    "ja": "オープンBIMがブラウザに定着してきた。",
+    "zh": "开放式BIM已经来到了浏览器上，并在此停留。"
+  },
+  "industry": { "ja": "インダストリー", "zh": "行业" },
+  "community": { "ja": "コミュニティー", "zh": "社区" },
+  "project": { "ja": "プロジェクト", "zh": "项目" },
+  "Who we are and why we do this.": {
+    "ja": "私たちは何者なのか、なぜこんなことをするのか。",
+    "zh": "我们是谁，我们为什么这样做。"
+  },
+  "<img src={require(\"@site/static/img/blog/2021-07-17/Lukas.jpg\").default} alt=\"PC image\"></img>": {
+    "ja": "<img src={require(\"@site/static/img/blog/2021-07-17/Lukas.jpg\").default} alt=\"PC image\"></img>",
+    "zh": "<img src={require(\"@site/static/img/blog/2021-07-17/Lukas.jpg\").default} alt=\"PC image\"></img>"
+  },
+  "You may have heard about <strong>IFC.js</strong> in recent months. If you are not familiar with the world of software development and BIM, you may be wondering what it is all about.": {
+    "ja": "ここ数ヶ月、<strong>IFC.jsについて</strong>耳にしたことがある方も多いのではないでしょうか。ソフトウェア開発やBIMの世界に馴染みのない方は、「いったい何だろう」と思われるかもしれません。",
+    "zh": "近几个月来，你可能听说过<strong>IFC.js</strong>。如果你不熟悉软件开发和BIM的世界，你可能想知道它是怎么回事。"
+  },
+  "🏠 <strong>BIM</strong> (Building Information Modelling) is the new way of working in the construction industry. Instead of drawing plans, three-dimensional models containing the geometry of the building and its information are used. It is very similar to the buildings in <a href=\"https://www.ea.com/games/the-sims\">The SIMS</a>; it saves a lot of money and allows teams to work more efficiently.": {
+    "ja": "<strong>🏠BIM（Building</strong>Information Modelling）は、建設業界における新しい仕事のやり方です。図面を描く代わりに、建物の形状とその情報を含む3次元モデルを使用します。<a href=\"https://www.ea.com/games/the-sims\">The SIMSの</a>建物と非常によく似ています。コストを大幅に削減し、チームがより効率的に作業できるようになります。",
+    "zh": "🏠<strong>BIM</strong>（建筑信息模型）是建筑业的新工作方式。使用包含建筑物几何形状及其信息的三维模型来代替绘制图纸。它与<a href=\"https://www.ea.com/games/the-sims\">The SIMS</a>中的建筑非常相似；它节省了大量的资金，并使团队更有效地工作。"
+  },
+  "💸 However, there is a problem: developing BIM applications is not accesible to everyone, mainly because the necessary technology (<strong>IFC</strong>) is very expensive to implement. This means that until now only a small group of large commercial software houses have had access to the BIM ecosystem.": {
+    "ja": "しかし、BIMアプリケーションを開発することは、誰にでもできることではない、という問題があります。つまり、これまでBIMのエコシステムにアクセスできるのは、一部の大手商用ソフトウェア企業だけだったのです。",
+    "zh": "然而，有一个问题：开发BIM应用不是每个人都能做到的，主要是因为必要的技术<strong>（IFC</strong>）实施起来非常昂贵。这意味着到目前为止，只有一小群大型商业软件公司能够进入BIM生态系统。"
+  },
+  "We believe it's <strong>not fair</strong>. And not only is this not fair to developers who are left out of the market, but it is not fair to customers, who are victims of the predatory pricing of an oligopolistic market. That is why this project exists.": {
+    "ja": "私たちはそれが<strong>フェア</strong>でないと考えています。そして、市場から取り残された開発者にとって不公平なだけでなく、寡占市場の略奪的価格設定の犠牲者である顧客にとっても不公平なのです。そのためにこのプロジェクトは存在するのです。",
+    "zh": "我们认为这是<strong>不公平的</strong>。而且，这不仅对被排除在市场之外的开发商不公平，而且对客户也不公平，他们是寡头垄断市场的掠夺性定价的受害者。这就是这个项目存在的原因。"
+  },
+  "🤝 Our goal is to enable <b>anyone</b> to create BIM applications.": {
+    "ja": "<b>誰でも</b>BIMアプリケーションを作成できるようにすることが私たちの目標です。",
+    "zh": "🤝 我们的目标是让<b>任何人都</b>能创建BIM应用。"
+  },
+  "Who are we? A group of developers who want to improve the construction industry in their spare time. The project started in 2021 with <a href=\"https://github.com/tomvandig\">Tom</a>, <a href=\"https://github.com/harrycollin\">Harry</a> and me and has been growing ever since, with more and more people and companies willing to change the situation in the sector and commit to a <strong>real open BIM</strong>.": {
+    "ja": "私たちは何者か？余暇を利用して建設業界を改善したいと考える開発者のグループです。2021年に<a href=\"https://github.com/tomvandig\">トム</a>、<a href=\"https://github.com/harrycollin\">ハリー</a>、私の3人でスタートし、以来、この分野の状況を変え、<strong>真のオープンBIMに</strong>コミットしようという人々や企業が増え、プロジェクトは成長を続けています。",
+    "zh": "我们是谁？一群想在业余时间改善建筑行业的开发者。这个项目始于2021年，由<a href=\"https://github.com/tomvandig\">Tom</a>、<a href=\"https://github.com/harrycollin\">Harry</a>和我发起，此后一直在增长，越来越多的人和公司愿意改变这个行业的状况，致力于<strong>真正的开放BIM</strong>。"
+  },
+  "🚀 It doesn't matter if you are a developer, architect, engineer or something else. If you too want to improve the industry, <a href=\"https://discord.gg/FXfyR4XrKT\">join us</a> and help us make a difference.": {
+    "ja": "🚀 あなたが開発者、建築家、エンジニア、その他でもかまいません。あなたも業界を良くしたいと思っているのなら、<a href=\"https://discord.gg/FXfyR4XrKT\">私たちの仲間になって</a>、一緒に盛り上げていきましょう。",
+    "zh": "🚀 无论你是开发商、建筑师、工程师还是其他什么，都没关系。如果你也想改善这个行业，请<a href=\"https://discord.gg/FXfyR4XrKT\">加入我们</a>，帮助我们做出改变。"
+  },
+  "The BIM that we need": { "ja": "私たちに必要なBIM", "zh": "我们需要的BIM" },
+  "The price of an oligopoly.": {
+    "ja": "寡占状態の価格です。",
+    "zh": "寡头垄断的价格。"
+  },
+  "software": { "ja": "ソフトウェア", "zh": "软件" },
+  "Sometimes the only way to get what you need is to do it yourself.": {
+    "ja": "必要なものを手に入れるには、自分でやるしかないこともあります。",
+    "zh": "有时，获得你所需要的东西的唯一途径是自己动手。"
+  },
+  "<img src={require(\"@site/static/img/blog/2021-07-27/prometheus.jpeg\").default} alt=\"PC image\"></img>": {
+    "ja": "<img src={require(\"@site/static/img/blog/2021-07-27/prometheus.jpeg\").default} alt=\"PC image\"></img>",
+    "zh": "<img src={require(\"@site/static/img/blog/2021-07-27/prometheus.jpeg\").default} alt=\"PC image\"></img>"
+  },
+  "Software is becoming more and more necessary in our work; if you are involved in BIM, you know this well.": {
+    "ja": "私たちの仕事において、ソフトウェアの必要性はますます高まっています。BIMに携わっている方ならよくご存じでしょう。",
+    "zh": "在我们的工作中，软件正变得越来越必要；如果你参与BIM，你就很清楚这一点。"
+  },
+  "🤯 In addition to BIM architect, I am also a programmer. I decided to try out a new programming tool: <a href=\"https://www.jetbrains.com/webstorm/\">WebStorm by JetBrains</a>. My surprise was to discover its price: around <strong>100 euros/license year</strong>.": {
+    "ja": "🤯 私はBIMアーキテクトに加え、プログラマーでもあるのです。新しいプログラミングツールを試してみることにしました。<a href=\"https://www.jetbrains.com/webstorm/\">JetBrainsのWebStorm</a>です。驚いたのは、その価格です。<strong>1ライセンス年間約100ユーロ</strong>。",
+    "zh": "🤯 除了BIM建筑师，我也是一个程序员。我决定尝试一个新的编程工具。<a href=\"https://www.jetbrains.com/webstorm/\">JetBrains的WebStorm</a>。我惊讶地发现它的价格：大约<strong>100欧元/许可年</strong>。"
+  },
+  "💰 In contrast, some of the most popular BIM tools cost around <strong>2500 euros/license year</strong>. On top of that, they use proprietary formats, which means that the day you decide to stop using them, you lose access to all your work.": {
+    "ja": "対照的に、最も人気のあるBIMツールのいくつかは、<strong>1ライセンスあたり年間約2500ユーロの</strong>費用がかかります。その上、これらのツールは独自のフォーマットを使用しているため、使用を中止すると、すべての作業へのアクセスが失われます。",
+    "zh": "💰相比之下，一些最流行的BIM工具的费用约为<strong>2500欧元/许可年</strong>。除此之外，他们使用专有的格式，这意味着在你决定停止使用他们的那一天，你将失去对所有工作的访问。"
+  },
+  "👨‍💼👨‍💼👨‍💼 This is what happens when only a few have access to a resource that we all need; in this case, that resource is the <strong>ability to create BIM software</strong>. We can write all the <a href=\"https://gfxspeak.com/2020/08/04/architects-demand-autodesk/\">letters of complaint</a> we want, but the fact is that these software houses will keep doing what they do as long as we keep paying them.": {
+    "ja": "この場合、そのリソースとは<strong>BIMソフトウェアを作成する能力</strong>です。私たちは好きなだけ<a href=\"https://gfxspeak.com/2020/08/04/architects-demand-autodesk/\">苦情の手紙を</a>書くことができますが、私たちが彼らにお金を払い続ける限り、これらのソフトウェア会社は彼らがやっていることをやり続けるという事実があります。",
+    "zh": "👨💼👨💼👨💼这就是只有少数人能够获得我们所有人都需要的资源时的情况；在这种情况下，这种资源就是<strong>创建BIM软件的能力</strong>。我们可以写所有我们想要的<a href=\"https://gfxspeak.com/2020/08/04/architects-demand-autodesk/\">投诉信</a>，但事实是，只要我们继续付钱给他们，这些软件公司就会继续做他们的事情。"
+  },
+  "💸 Some BIM tools are around <b>25</b> times more expensive than software development tools.": {
+    "ja": "💢 BIMツールの中には、ソフトウェア開発ツールの<b>約25</b>倍も高価なものがある。",
+    "zh": "💸 一些BIM工具比软件开发工具的价格高<b>25</b>倍左右。"
+  },
+  "️": { "ja": "️", "zh": "️" },
+  "💪 But that can change. Now, for the first time, we have the opportunity to bring BIM back to the industry. A BIM that is affordable, effective and that suits our needs: <strong>a BIM made by us and for us</strong>.": {
+    "ja": "💪 しかし、それは変えることができます。今、私たちは初めて、BIMを業界に取り戻す機会を得ました。手頃な価格で効果的、そして私たちのニーズに合ったBIM、つまり<strong>私たちによる私たちのためのBIM</strong>です。",
+    "zh": "但是，这可以改变。现在，我们第一次有机会将BIM带回这个行业。一个负担得起的、有效的、适合我们需求的BIM：<strong>一个由我们制造的、为我们服务的BIM</strong>。"
+  },
+  "🤝 Maybe you think it's a bit utopian to think that we can stand up to the big commercial BIM houses with open source. However, don't forget that we are the source of money that keeps those big companies alive, and initiatives like <a href=\"https://ifcjs.github.io/info/\">IFC.js</a>, <a href=\"https://speckle.systems/\">Speckle</a>, <a href=\"https://blenderbim.org/\">BlenderBIM</a> and <a href=\"https://osarch.org/\">OSArch</a> keep growing every day.": {
+    "ja": "🤝 もしかしたら、オープンソースで商業用BIMの大企業に立ち向かうことができると考えるのは、少しユートピア的だと思われるかもしれませんね。しかし、私たちはそれらの大企業を存続させるための資金源であり、<a href=\"https://ifcjs.github.io/info/\">IFC.js</a>、<a href=\"https://speckle.systems/\">Speckle</a>、<a href=\"https://blenderbim.org/\">BlenderBIM</a>、<a href=\"https://osarch.org/\">OSArchなどの</a>イニシアチブが日々成長し続けていることを忘れてはいけません。",
+    "zh": "🤝 也许你认为认为我们可以用开源来对抗大型商业BIM公司的想法有点乌托邦。然而，别忘了，我们是维持那些大公司生存的资金来源，像<a href=\"https://ifcjs.github.io/info/\">IFC.js</a>、<a href=\"https://speckle.systems/\">Speckle</a>、<a href=\"https://blenderbim.org/\">BlenderBIM</a>和<a href=\"https://osarch.org/\">OSArch</a>这样的倡议每天都在增长。"
+  },
+  "🚀 At the end of the day, you can keep wishing for a better industry while letting big companies take your money, or you can <a href=\"https://discord.gg/FXfyR4XrKT\">contribute</a> to create it. Sometimes, the only way to get what you need is to do it yourself.": {
+    "ja": "🚀 結局のところ、大企業にお金を取られながら、より良い業界を願い続けることもできるし、それを作るために<a href=\"https://discord.gg/FXfyR4XrKT\">貢献</a>することもできるのです。必要なものを手に入れるには、自分でやるしかないこともある。",
+    "zh": "🚀 在一天结束时，你可以继续希望有一个更好的行业，同时让大公司拿走你的钱，或者你可以为创造它<a href=\"https://discord.gg/FXfyR4XrKT\">作出贡献</a>。有时，获得你所需要的东西的唯一途径是自己动手。"
+  }
+}
