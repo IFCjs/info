@@ -10,6 +10,8 @@ jobs:
   translate:
     name: Translate markdowns and generated-JSON with deepmark.
     runs-on: ubuntu-latest
+    env:
+      DEEPL_AUTH_KEY: ${{ secrets.DEEPL_AUTH_KEY }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
