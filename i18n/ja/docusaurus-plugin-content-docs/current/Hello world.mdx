@@ -1,0 +1,292 @@
+---
+title: ハローワールド
+sidebar_position: 4
+
+---
+
+import { IfcCard } from "@site/src/components/Card/InfoCard";
+import { IfcAlert } from "@site/src/components/Alert/Alert";
+import { Scene } from "@site/src/components/Scene/Scene";
+
+## イントロダクション
+
+⚡ IFC.jsでBIMアプリケーションを作成するのはとても簡単です。ガイドの完全なプロジェクトは<a href="https://github.com/IFCjs/hello-world/tree/main/examples/web-ifc-three/helloworld">こちら</a>、デプロイされたアプリケーションは<a href="https://ifcjs.github.io/hello-world/examples/web-ifc-three/helloworld/">こちらで</a>ご覧いただけます。<a href="https://nodejs.org/en/">Node.jsと</a>任意のIDEがインストールされていれば、以下のステップに従うことができます。また、IFCファイルをお持ちでない場合は、<a href="https://github.com/IFCjs/test-ifc-files">こちらで</a>入手できます。
+
+<IfcAlert>
+  IFC.jsを使用するには、Web開発（HTML、CSS、JavaScript）の基礎知識とThree.jsの知識が必要です。Three.jsの使用経験がない場合は、<a href="https://threejs.org/manual/">こちらを</a>ご覧ください。
+</IfcAlert>
+
+🐣 この最小限のチュートリアルは、React、Vue、Angular、Svelteなどのフレームワークを使用せず、Vanilla JavaScriptで行われる予定です。しかし、同じ手順は、これらのユースケースのいずれにも適応し、適用することができます。
+
+## プロジェクトのセットアップ
+
+### ライブラリのインストール
+
+👩🏫 まず最初に、空のフォルダを作成し、<code>npm init</code> コマンドで新しい npm プロジェクトを開始します。これにより、プロジェクト名、バージョン、コマンド、依存関係などのいくつかのデータを含む<code>package.json</code>ファイルが生成されます。また、以下の依存関係はnpmと一緒にインストールする必要があります。
+
+```bash
+    //Install IFC.js
+    npm i web-ifc-three
+
+    // Install Three.js
+    npm i three
+
+    // Install a bundler: we will use rollup.js for this guide
+    npm i rollup --save-dev
+    npm i @rollup/plugin-node-resolve --save-dev
+```
+
+📝 次のステップは、アプリケーションのメインドキュメントとして<code>index.html</code>という名前の HTML ファイルを作成することです。このHTMLには
+
+*   Three.jsのシーンをレンダリングするために使用される<strong>canvas要素</strong>です。
+*   コンピュータからアプリケーションにIFCファイルを開くための<strong>入力要素</strong>。
+*   rollupで生成するアプリのバンドルである<code>bundle.jsという</code>ファイルを参照する<strong>スクリプト</strong>です。
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="file" name="load" id="file-input" />
+    <canvas id="three-canvas"></canvas>
+    <script src="bundle.js"></script>
+  </body>
+</html>
+```
+
+### スタイルの追加
+
+🎨 以下のCSSファイルで、キャンバスをフルスクリーンにすることができます。
+
+```css
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  overflow: hidden;
+}
+
+#three-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  outline: none;
+}
+
+#file-input {
+  z-index: 1;
+  position: absolute;
+}
+```
+
+### バンドル
+
+次に、ロールアップの設定ファイルを作成します。このファイルは<code>rollup.config.jsという</code>名前で、以前インストールしたプラグインへの参照を含んでいなければならない。
+
+<IfcCard icon="🧻" title="ロールアップ？">
+  Rollupは非常に人気のあるバンドルライブラリです。例えば、Three.jsで使用されているバンドルです。詳しくは<a href="https://rollupjs.org/guide/en/">rollup docsを見て</a>ください。
+</IfcCard>
+
+```js
+import resolve from "@rollup/plugin-node-resolve";
+
+export default {
+  input: "src/app.js",
+  output: [
+    {
+      format: "esm",
+      file: "src/bundle.js",
+    },
+  ],
+  plugins: [resolve()],
+};
+```
+
+🎢 また、ロールアップを簡単に制御するためのコマンドを含むように<code>package.json</code>ファイルを修正する必要があります。各コマンドで、ロールアップ設定ファイルへの相対パスを指定する必要があります。すべてが正しくインストールされていれば、このファイルには同じ依存関係が表示されているはずです（ライブラリのバージョンは異なる場合があります）。
+
+*   <code>npm run build</code>でプロジェクトをバンドルし、プロジェクトのルートディレクトリに<code>bundle.js</code>というファイルを作成します。
+
+*   <code>npm run watchは</code> <code>ウォッチモードを</code>有効にし、コードに変更を加えて保存するたびに、そのファイルを自動的に更新します。
+
+```json
+{
+  "name": "example",
+  "version": "1.0.0",
+  "description": "-",
+  "main": "app.js",
+  "scripts": {
+    "build": "rollup -c ./rollup.config.js",
+    "watch": "rollup -w -c ./rollup.config.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^11.2.1",
+    "rollup": "^2.45.2"
+  },
+  "dependencies": {
+    "three": "^0.128.0",
+    "web-ifc-three": "0.0.102"
+  }
+}
+```
+
+### WebAssembly
+
+📁 次に行うことは、<code>web-ifc.wasm</code>と<code>web-ifc-mt.wasm</code>ファイルをプロジェクト内のディレクトリにコ ピーすることです。<code>node\_modules⇄web-ifc</code>(ThreeのIFCLoaderだけを使用している場合は、<code>node\_modules⇄examples⇄jsm⇄loaders⇄ifc</code>) にあるはずです。この例では、プロジェクトのルートディレクトリにあるwasmというフォルダーにコピーされます。
+
+これらのファイルは、IFC ファイルをネイティブの速度で読み書きするための解析コアである<a href="https://github.com/IFCjs/web-ifc">web-ifc</a> のコンパイルされた C++ ロジックを含んでいるので必要なのです。
+
+<IfcAlert>これらのファイルは、アプリケーションで静的に提供される必要があります。React、Angular、Vue、Svelteなどのフレームワークやライブラリを使用している場合は、異なる調整が必要になる場合があります。</IfcAlert>
+
+## 3Dシーンのセットアップ
+
+最後に、アプリケーションのコードを記述するためのJavaScriptファイルを作成します。このファイルはどこに置いても、どんな名前でも構いませんが、<code>rollup.config.jsに</code>反映させる必要があります。
+
+🇹 Three.jsを使って、基本的な3Dシーンを作成します。
+
+```js
+import { AmbientLight, AxesHelper, DirectionalLight, GridHelper, PerspectiveCamera, Scene, WebGLRenderer } from "three";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+
+//Creates the Three.js scene
+const scene = new Scene();
+
+//Object to store the size of the viewport
+const size = {
+  width: window.innerWidth,
+  height: window.innerHeight,
+};
+
+//Creates the camera (point of view of the user)
+const aspect = size.width / size.height;
+const camera = new PerspectiveCamera(75, aspect);
+camera.position.z = 15;
+camera.position.y = 13;
+camera.position.x = 8;
+
+//Creates the lights of the scene
+const lightColor = 0xffffff;
+
+const ambientLight = new AmbientLight(lightColor, 0.5);
+scene.add(ambientLight);
+
+const directionalLight = new DirectionalLight(lightColor, 1);
+directionalLight.position.set(0, 10, 0);
+directionalLight.target.position.set(-5, 0, 0);
+scene.add(directionalLight);
+scene.add(directionalLight.target);
+
+//Sets up the renderer, fetching the canvas of the HTML
+const threeCanvas = document.getElementById("three-canvas");
+const renderer = new WebGLRenderer({
+  canvas: threeCanvas,
+  alpha: true,
+});
+
+renderer.setSize(size.width, size.height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+//Creates grids and axes in the scene
+const grid = new GridHelper(50, 30);
+scene.add(grid);
+
+const axes = new AxesHelper();
+axes.material.depthTest = false;
+axes.renderOrder = 1;
+scene.add(axes);
+
+//Creates the orbit controls (to navigate the scene)
+const controls = new OrbitControls(camera, threeCanvas);
+controls.enableDamping = true;
+controls.target.set(-2, 0, 0);
+
+//Animation loop
+const animate = () => {
+  controls.update();
+  renderer.render(scene, camera);
+  requestAnimationFrame(animate);
+};
+
+animate();
+
+//Adjust the viewport to the size of the browser
+window.addEventListener("resize", () => {
+  size.width = window.innerWidth;
+  size.height = window.innerHeight;
+  camera.aspect = size.width / size.height;
+  camera.updateProjectionMatrix();
+  renderer.setSize(size.width, size.height);
+});
+```
+
+🌏 アプリケーションをローカルで実行するには、ローカルサーバーが必要です。IDEとしてVS Codeを使用している場合、1つのオプションとして<a href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer">Live Serverエクステンションを</a>インストールすることで、Google Chromeのインスタンスを開き、Webアプリケーションを実行し、コードに加えた変更をリアルタイムで確認することができるようになります。
+
+## IFCファイルの読み込み
+
+### ユーザーモデルの読み込み
+
+🏠 最後に、IFC.js を使用して IFC ファイルをロードします。これは、ローダーをインスタンス化し、ユーザーが HTML 入力要素に IFC ファイルをアップロードしたときのイベントを作成することで行うことができます。
+
+```js
+import { IFCLoader } from "web-ifc-three/IFCLoader";
+
+// Sets up the IFC loading
+const ifcLoader = new IFCLoader();
+
+const input = document.getElementById("file-input");
+input.addEventListener(
+  "change",
+  (changed) => {
+    const file = changed.target.files[0];
+    var ifcURL = URL.createObjectURL(file);
+    ifcLoader.load(ifcURL, (ifcModel) => scene.add(ifcModel));
+  },
+  false
+);
+```
+
+🎣 もし、プロジェクトの served ファイルのルートに wasm ファイルを保存していない場合、<code>setWasmPath</code> でその場所を指定する必要があることを覚えておいてください。例えば、プロジェクトのルートにある<code>static</code>というフォルダの中にある<code>wasm</code>というフォルダに保存していた場合、次のようになります。
+
+```js
+ifcLoader.ifcManager.setWasmPath("static/wasm/");
+```
+
+<Scene link={"https://ifcjs.github.io/hello-world/examples/web-ifc-three/helloworld/"} />
+
+すべてが正しく行われた場合、ローカルサーバーで<a href="https://ifcjs.github.io/hello-world/examples/web-ifc-three/helloworld/">この</a>ようなものが表示されるはずです。ここから先は、無限の可能性があります。
+
+### モデルの読み込み
+
+🤔 前のポイントでは、BIMモデルを直接ロードする方法を見ました。もし、ユーザーがBIMモデルをアップロードする代わりに、私たちのBIMモデルを表示したい場合はどうすればいいでしょうか？これは非常に簡単です。一般的に2つの可能性があります。
+
+*   IFCを表示するのと同じアプリケーションにIFCを持つこと。
+*   外部ストレージサービスから取得すること。
+
+    🎩 最初のケースでは、IFCファイルのURLを参照することで十分です。つまり、アプリケーション内の相対パスです。例えば、IFCがプロジェクトのルートにある「models」というフォルダーにある場合、アプリケーションの起動時にそのIFCを次のようにロードすることができます。
+
+```js
+ifcLoader.load("models/Example_model.ifc", (ifcModel) => scene.add(ifcModel));
+```
+
+<IfcAlert>リモートストレージサービスからのファイルの取得は、利用するサービスによって異なります。しかし、情報を取得してURLを作成し、それをIFCLoaderの引数として渡すというロジックは同じである。</IfcAlert>
+
+<Scene link={"https://ifcjs.github.io/hello-world/examples/web-ifc-three/introduction/"} />
+
+## 結論
+
+🎉 おめでとうございます。あなたは今、最初のIFCビューアを作成しました。IFC.jsで他に何ができるかは、ドキュメントの次のページで確認してください。
+
+<IfcCard icon="🔥" title="IFC.jsで他に何ができるのですか？">
+  これはほんの始まりに過ぎません。オブジェクトの選択、ジオメトリの外観の変更、セクション・プレーンなどのツールを含む<a href="https://github.com/IFCjs/web-ifc-viewer">web-ifc-viewer</a> を見てみましょう。<a href="https://ifcjs.github.io/web-ifc-viewer/example/index">ここで</a>試すことができます。
+</IfcCard>

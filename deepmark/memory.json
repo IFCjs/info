@@ -89,5 +89,984 @@
   "🚀 At the end of the day, you can keep wishing for a better industry while letting big companies take your money, or you can <a href=\"https://discord.gg/FXfyR4XrKT\">contribute</a> to create it. Sometimes, the only way to get what you need is to do it yourself.": {
     "ja": "🚀 結局のところ、大企業にお金を取られながら、より良い業界を願い続けることもできるし、それを作るために<a href=\"https://discord.gg/FXfyR4XrKT\">貢献</a>することもできるのです。必要なものを手に入れるには、自分でやるしかないこともある。",
     "zh": "🚀 在一天结束时，你可以继续希望有一个更好的行业，同时让大公司拿走你的钱，或者你可以为创造它<a href=\"https://discord.gg/FXfyR4XrKT\">作出贡献</a>。有时，获得你所需要的东西的唯一途径是自己动手。"
+  },
+  "Build a CDE in 30 minutes": {
+    "ja": "30分でCDEを構築",
+    "zh": "在30分钟内建立一个CDE"
+  },
+  "Make you own CDE from scratch!": {
+    "ja": "自分だけのCDEをゼロから作ろう",
+    "zh": "从头开始制作你自己的CDE!"
+  },
+  "tutorial": { "ja": "チュートリアル", "zh": "教程" },
+  "CDE": { "ja": "きょうつうデスクトップかんきょう", "zh": "CDE" },
+  "Google": { "ja": "グーグル", "zh": "谷歌" },
+  "All the big companies are selling their CDE. Why don't YOU make your own CDE?": {
+    "ja": "大企業がこぞってCDEを販売している。自分でCDEを作ったらどうですか？",
+    "zh": "所有的大公司都在销售他们的CDE。你为什么不做你自己的CDE呢？"
+  },
+  "<img src={require(\"@site/static/img/blog/2021-09-27/lego.jpg\").default} alt=\"Lego image\"></img>": {
+    "ja": "<img src={require(\"@site/static/img/blog/2021-09-27/lego.jpg\").default} alt=\"Lego image\"></img>",
+    "zh": "<img src={require(\"@site/static/img/blog/2021-09-27/lego.jpg\").default} alt=\"Lego image\"></img>"
+  },
+  "## But wait, what is a CDE?": {
+    "ja": "## しかし、待ってください、CDEとは何ですか？",
+    "zh": "##但是等等，什么是CDE？"
+  },
+  "📦 Informally speaking, <strong>CDE</strong> is nothing more than a place where the information of a construction project is centralised and accesible through internet.": {
+    "ja": "📦 簡単に言えば、<strong>CDEは</strong>建設プロジェクトの情報を一元化し、インターネットを通じてアクセスできる場所にほかならない。",
+    "zh": "📦非正式地讲，<strong>CDE</strong>只不过是一个集中了建筑项目信息的地方，可以通过互联网访问。"
+  },
+  "🔧🔨 CDEs can have all the functionalities of traditional BIM applications: 3D viewers, reading and editing data, energy simulations, automatic measurements and budgets, etc.": {
+    "ja": "🔧 CDEは、従来のBIMアプリケーションのすべての機能性を持つことができます。3Dビューア、データの読み込みと編集、エネルギーシミュレーション、自動計測と予算など、従来のBIMアプリケーションの機能をすべて備えています。",
+    "zh": "🔧🔨CDEs可以拥有传统BIM应用的所有功能。3D查看器、阅读和编辑数据、能源模拟、自动测量和预算等。"
+  },
+  "🌎🌍🌏 However, they have a fundamental advantage: they are <strong>on the web</strong>, and that means they are accessible from anywhere and from any device without having to install anything.": {
+    "ja": "しかし、基本的な利点は、<strong>ウェブ上にある</strong>ため、何もインストールしなくても、どこからでも、どのデバイスからでもアクセスできるということです。",
+    "zh": "然而，它们有一个基本的优势：它们是<strong>在网络上</strong>，这意味着它们可以从任何地方和任何设备上访问，而无需安装任何东西。"
+  },
+  "## Ok, but why would I want a CDE?": {
+    "ja": "## しかし、なぜCDEが必要なのでしょうか？",
+    "zh": "## 好的，但为什么我想要一个CDE？"
+  },
+  "💸 Well, the truth is that right now, CDEs are the new black. <strong>Almost every major company in the industry is building a CDE</strong> and selling them to their customers at exorbitant prices.": {
+    "ja": "💸 実のところ、今、CDEは新しい黒です。<strong>業界のほぼすべての主要企業がCDEを構築</strong>し、法外な価格で顧客に販売しているのです。",
+    "zh": "💸 好吧，事实是，现在，CDE是新的黑色。<strong>业内几乎每家大公司都在建造CDE</strong>，并以高昂的价格出售给他们的客户。"
+  },
+  "🏃‍♀️🏃‍♂️🏃‍♀️ With internet getting faster and better, there will come a day when desktop applications as we know them will lose relevance, and a large part of our tasks will be performed in web applications or server applications. In other words, <strong>CDEs are the future</strong>, and right now there is a big race to build the best one.": {
+    "ja": "インターネットがより速く、より良くなるにつれて、私たちが知っているデスクトップアプリケーションは関連性を失い、私たちのタスクの大部分はウェブアプリケーションまたはサーバーアプリケーションで実行される日が来るでしょう。つまり、<strong>CDEは未来の</strong>ものであり、現在、最高の<strong>CDEを</strong>構築するための大きな競争が行われているのです。",
+    "zh": "🏃♀️🏃♂️🏃♀️随着互联网越来越快，越来越好，总有一天，我们所知道的桌面应用程序将失去意义，我们的大部分任务将在Web应用程序或服务器应用程序中执行。换句话说，<strong>CDE是未来的趋势</strong>，而现在有一场建立最佳<strong>CDE</strong>的大竞赛。"
+  },
+  "## I get it, CDEs rock. But I will never be able to develop one myself": {
+    "ja": "## CDEは素晴らしい。でも、自分で開発するのは無理です。",
+    "zh": "##我明白了，CDEs很震撼。但我永远无法自己开发一个。"
+  },
+  "👩‍🏫 Wrong! The biggest beneficiary of you thinking you can't do BIM solutions is the current BIM vendors. At IFC.js we wanted to bust that myth and make a simple CDE from scratch to show that <strong>starting to develop BIM applications is not that difficult</strong>.": {
+    "ja": "👩🏫間違い!BIMソリューションが出来ないと思っているあなたの最大の受益者は、現在のBIMベンダーです。IFC.jsでは、その神話を打ち破り、シンプルなCDEをゼロから作り、<strong>BIMアプリケーションの開発を始めることはそれほど難しくない</strong>ことを示したいと思いました。",
+    "zh": "错了!你认为你不能做BIM解决方案的最大受益者是目前的BIM供应商。在IFC.js，我们想打破这个神话，从头开始做一个简单的CDE，以表明<strong>开始开发BIM应用并不难</strong>。"
+  },
+  "☝ Obviously, this tutorial is a minimal example. But from the simple CDE of this tutorial to the CDEs of large companies, there is not as much distance as it might seem. <strong>Enough chit-chat, let's get on with it!</strong>": {
+    "ja": "☝ 言うまでもなく、このチュートリアルは最小限の例です。しかし、このチュートリアルの単純なCDEから大企業のCDEまでは、見た目ほど距離がありません。<strong>雑談はここまでにして、さっそく本題に入りましょう。</strong>",
+    "zh": "☝ 很明显，这个教程是一个最小的例子。但是从本教程的简单CDE到大公司的CDE，并没有想象中的那么多距离。<strong>闲话少说，让我们继续吧!</strong>"
+  },
+  "## CDE design": { "ja": "# CDEデザイン", "zh": "## CDE设计" },
+  "### Strategy": { "ja": "### 戦略", "zh": "###战略" },
+  "⏳ We only have <strong>half an hour</strong> to do this CDE, so we have to choose carefully how to do it in order not to waste any time. First things first: we need <strong>a place to store project documentation</strong>. Do you know of an existing tool that allows us to do that? We have thought of <strong>Google Drive</strong>!": {
+    "ja": "このCDEを行う時間は<strong>30</strong>分しかないので、時間を無駄にしないために、慎重に方法を選択する必要があります⏳。まず最初に、<strong>プロジェクトのドキュメントを保存</strong>する場所が必要です。それを可能にする既存のツールをご存知ですか？私たちは、<strong>Googleドライブを</strong>思いつきました",
+    "zh": "⏳ 我们只有<strong>半个小时</strong>的时间来做这个CDE，所以我们必须仔细选择如何做，以便不浪费任何时间。首先：我们需要<strong>一个地方来存储项目文件</strong>。你知道有什么现有的工具可以让我们这样做吗？我们已经想到了<strong>Google Drive</strong>!"
+  },
+  "💪 Google Drive has a lot of power: we can control read and write access to files, version control, an open API... In short, it has many of the things that BIM software companies charge you for, but totally free.": {
+    "ja": "Google Driveは、ファイルへの読み取りと書き込みのアクセス制御、バージョン管理、オープンAPIなど、多くの機能を備えています。要するに、BIMソフトウェア会社が有料で提供しているものの多くを、完全に無料で提供しているのです。",
+    "zh": "💪 Google Drive有很多功能：我们可以控制对文件的读写权限、版本控制、开放API......。简而言之，它有许多BIM软件公司向你收费的东西，但完全免费。"
+  },
+  "🛑 However, Google Drive has a fundamental limitation: it does not have a 3D viewer and does not allow easy access to data in BIM models (e.g. IFC models).": {
+    "ja": "しかし、Google Driveには3Dビューアーがなく、BIMモデル（IFCモデルなど）のデータに簡単にアクセスできないという根本的な制約があります😖。",
+    "zh": "🛑 然而，Google Drive有一个基本的限制：它没有一个3D浏览器，也不允许轻易访问BIM模型（如IFC模型）中的数据。"
+  },
+  "🤝 <strong>This is where IFC.js comes in</strong>, allowing us to build BIM applications directly on the web. Combining the storage and permissions power of google drive with the 3d and data reading and editing capabilities of IFC.js, we could build our basic CDE in 30 minutes. Here's how:": {
+    "ja": "<strong>IFC.j</strong>sは、ウェブ上で直接BIMアプリケーションを構築することを可能にします。GoogleドライブのストレージとパーミッションのパワーとIFC.jsの3Dとデータの読み込みと編集機能を組み合わせることで、30分で基本的なCDEを構築することができました。その方法を紹介します。",
+    "zh": "🤝<strong>这就是IFC.js</strong>的作用，它允许我们直接在网上建立BIM应用。将google drive的存储和权限能力与IFC.js的3D和数据阅读和编辑能力相结合，我们可以在30分钟内建立我们的基本CDE。下面是方法。"
+  },
+  "### Architecture": { "ja": "### アーキテクチャ", "zh": "###架构" },
+  "🤷‍♀️ <strong>How to connect</strong> IFC.js and google drive to be able to use both as a CDE? Our design proposal is as follows. It may look complicated, but it's actually very very simple.": {
+    "ja": "🤷♀️ IFC.jsとgoogle driveを<strong>連携</strong>させて、両方をCDEとして使えるようにするにはどうしたらいいでしょうか？私たちの設計案は以下の通りです。複雑そうに見えるかもしれませんが、実はとてもシンプルです。",
+    "zh": "🤷♀️<strong>如何连接</strong>IFC.js和google drive，以便能够将两者作为CDE使用？我们的设计方案如下。它可能看起来很复杂，但实际上非常非常简单。"
+  },
+  "<img src={require(\"@site/static/img/blog/2021-09-27/schema.jpg\").default} alt=\"Schema explaining the concept of the CDE\"></img>": {
+    "ja": "<img src={require(\"@site/static/img/blog/2021-09-27/schema.jpg\").default} alt=\"Schema explaining the concept of the CDE\"></img>",
+    "zh": "<img src={require(\"@site/static/img/blog/2021-09-27/schema.jpg\").default} alt=\"Schema explaining the concept of the CDE\"></img>"
+  },
+  "🏠 First we are going to create an <strong>3D BIM web application that is able to download files from google drive</strong>. Specifically, it will download the file from google drive whose ID it finds in its URL parameter. For example, if your URL is <code>https://.../?id=123\\&name=TEST.ifc</code>, it will download the file whose <code>ID</code> is <code>123</code> from the google account of the user who is logged into the app.": {
+    "ja": "🏠 まず、<strong>google driveからファイルをダウンロードできる3D BIMのWebアプリケーションを</strong>作成する予定です。具体的には、URLのパラメータにあるIDのgoogle driveからファイルをダウンロードします。例えば、URLが<code>https://.../?id=123&amp;name=TEST.ifc</code> の場合、アプリにログインしているユーザーのgoogleアカウントから<code>IDが</code> <code>123の</code>ファイルをダウンロードすることになります。",
+    "zh": "🏠 首先，我们要创建一个能够<strong>从google drive下载文件的3D BIM网络应用</strong>。具体来说，它将从google drive下载它在URL参数中找到的ID的文件。例如，如果你的URL是<code>https://.../?id=123&amp;name=TEST.ifc</code>，它将从登录到应用程序的用户的谷歌账户中下载<code>ID</code>为<code>123</code>的文件。"
+  },
+  "🌐 Then we are going to create a <a href=\"https://developer.chrome.com/docs/extensions/\">google chrome extension</a> that is going to do three things:": {
+    "ja": "🌐 そして、3つのことを行う<a href=\"https://developer.chrome.com/docs/extensions/\">グーグルクロームの拡張機能を</a>作成する予定です。",
+    "zh": "然后，我们将创建一个<a href=\"https://developer.chrome.com/docs/extensions/\">谷歌铬扩展</a>，它将做三件事。"
+  },
+  "<strong>Read the name of the HTML element</strong> that the user clicks on via web scraping.": {
+    "ja": "Webスクレイピングにより、ユーザーがクリックした<strong>HTML要素の名前を読み取る</strong>。",
+    "zh": "<strong>读取</strong>用户通过网络搜刮点击的<strong>HTML元素的名称</strong>。"
+  },
+  "<strong>Find out the ID of that element</strong> using the google drive API.": {
+    "ja": "<strong>その要素のIDを</strong>google drive APIで調べる。",
+    "zh": "使用google drive API<strong>找出该元素的ID</strong>。"
+  },
+  "<strong>Create a menu that allows the user to open the URL with the IFC.js web application</strong>. In addition, you are going to add two url parameters: the name and the id of the file.": {
+    "ja": "<strong>IFC.js の Web アプリケーションで URL を開くためのメニューを作成</strong>します。さらに、ファイルの名前とidという2つのurlパラメータを追加することになります。",
+    "zh": "<strong>创建一个菜单，让用户用IFC.js网络应用程序打开URL</strong>。此外，你要添加两个URL参数：文件的名称和ID。"
+  },
+  "In short: a google chrome extension gets the name of a file when the user clicks on it and opens a web app that knows how to download files by their ID. That's all.": {
+    "ja": "要するに、google chromeの拡張機能が、ユーザーがクリックするとファイル名を取得し、そのIDでファイルをダウンロードする方法を知っているウェブアプリを開く。それだけです。",
+    "zh": "简而言之：一个google chrome扩展在用户点击文件时获得文件的名称，并打开一个知道如何按其ID下载文件的网络应用。这就是全部。"
+  },
+  "### IFC.js app": { "ja": "### IFC.jsアプリ", "zh": "### IFC.js应用程序" },
+  "#### BIM app": { "ja": "#### BIMアプリ", "zh": "#### BIM应用程序" },
+  "🏢 Thanks to IFC.js, <strong>this is the easiest part</strong>. Specifically, we are going to create it with <a href=\"https://github.com/IFCjs/web-ifc-viewer\">web-ifc-viewer</a>, which allows to make BIM applications in 50 lines of code. You can find all the code <a href=\"https://github.com/IFCjs/hello-world/tree/main/examples/web-ifc-viewer/google-drive-viewer\">here</a>.": {
+    "ja": "🏢 IFC.jsのおかげで、ここが<strong>一番簡単</strong>です。具体的には、50行のコードでBIMアプリケーションを作ることができる<a href=\"https://github.com/IFCjs/web-ifc-viewer\">web-ifc-viewerで</a>作成する予定です。すべてのコードは<a href=\"https://github.com/IFCjs/hello-world/tree/main/examples/web-ifc-viewer/google-drive-viewer\">ここに</a>あります。",
+    "zh": "🏢多亏了IFC.js，<strong>这是最简单的部分</strong>。具体来说，我们要用<a href=\"https://github.com/IFCjs/web-ifc-viewer\">web-ifc-viewer</a>来创建它，它可以在50行代码中制作BIM应用程序。你可以<a href=\"https://github.com/IFCjs/hello-world/tree/main/examples/web-ifc-viewer/google-drive-viewer\">在这里</a>找到所有的代码。"
+  },
+  "😉 Yes, you read that right: <strong>a full 3D BIM app in 50 lines</strong>. And it includes functionalities such as section drawings and 3D dimensions.": {
+    "ja": "そうです、<strong>50行のフル3D BIMアプリ</strong>です。しかも、断面図や3D寸法などの機能も搭載しています。",
+    "zh": "😉 是的，你没看错：<strong>一个完整的3D BIM应用，只有50行</strong>。而且它包括剖面图和三维尺寸等功能。"
+  },
+  "🎨 Make sure you create the necessary HTML and CSS to give the viewer the look and feel you want.": {
+    "ja": "🎨 必要なHTMLとCSSを作成して、視聴者が望む外観にする。",
+    "zh": "🎨 确保你创建必要的HTML和CSS，让浏览者有你想要的外观和感觉。"
+  },
+  "#### Google Drive API": {
+    "ja": "#### Google Drive API",
+    "zh": "#### Google Drive API"
+  },
+  "🔒🔒🔒 Well, we have a BIM viewer, but for now it can't download anything from the <strong>Google Drive API</strong>. However, that's easy: just follow these steps from the <a href=\"https://developers.google.com/drive/api/v3/quickstart/js\">official documentation</a> and copy and paste the JavaScript code to be able to access the API.": {
+    "ja": "BIMビューアーはありますが、今のところ<strong>Google Drive APIから</strong>何かをダウンロードすることはできません。しかし、それは簡単です。<a href=\"https://developers.google.com/drive/api/v3/quickstart/js\">公式ドキュメントの</a>以下のステップに従い、APIにアクセスできるようにするためのJavaScriptコードをコピー＆ペーストするだけです。",
+    "zh": "🔒🔒🔒嗯，我们有一个BIM浏览器，但目前它还不能从<strong>Google Drive API</strong>下载任何东西。不过，这很容易：只要按照<a href=\"https://developers.google.com/drive/api/v3/quickstart/js\">官方文档</a>中的这些步骤，复制和粘贴JavaScript代码，就能访问API。"
+  },
+  "🔑🔑🔑 Following the google guide, you'll need to create a new Google Cloud project to get your own CLIENT_ID and API_KEY; they are just two texts that you must have for google to know who you are. In other words, you can't use the keys we have to access to your drive!": {
+    "ja": "Googleのガイドに従って、新しいGoogle Cloudプロジェクトを作成し、あなた自身のCLIENT_IDおよびAPI_KEYを取得する必要があります; これらは、あなたが誰であるかを知るために持っていなければならない2つのテキストです。言い換えれば、私たちが持っているキーを使ってドライブにアクセスすることはできません。",
+    "zh": "🔑🔑🔑按照谷歌的指南，你需要创建一个新的谷歌云项目，以获得你自己的CLIENT_ID和API_KEY；它们只是你必须拥有的两个文本，以便谷歌知道你是谁。换句话说，你不能使用我们拥有的密钥来访问你的驱动器"
+  },
+  "📋 If you take a look at the code we have posted, you will see that <strong>we have copied and pasted almost all of the code</strong> from the <a href=\"https://developers.google.com/drive/api/v3/quickstart/js\">google example</a>. The only thing we have added is the following, which simply gets the ID of the file from the URL of the web application and downloads it from google drive:": {
+    "ja": "📋 私たちが投稿したコードを見てみると、<a href=\"https://developers.google.com/drive/api/v3/quickstart/js\">googleの例から</a> <strong>ほとんどすべてのコードをコピー＆ペーストして</strong>いることがわかります。追加したのは以下の部分のみで、単純にWebアプリケーションのURLからファイルのIDを取得してgoogle driveからダウンロードするようにしています。",
+    "zh": "📋 如果你看一下我们发布的代码，你会发现<strong>我们几乎复制和粘贴了</strong> <a href=\"https://developers.google.com/drive/api/v3/quickstart/js\">谷歌例子</a>中的<strong>所有代码</strong>。我们唯一添加的是以下内容，它只是从网络应用程序的URL中获取文件的ID，并从google drive中下载它。"
+  },
+  "🎉🎉 Congratulations! You have just built a BIM application capable of downloading files from Google Drive. Now all that remains is the last part: creating the Google Chrome extension.": {
+    "ja": "🎉🎉 おめでとうございます。Google DriveからファイルをダウンロードできるBIMアプリケーションを構築しました。あとは、Google Chromeの拡張機能を作成するのみです。",
+    "zh": "🎉 賀!你刚刚建立了一个能够从Google Drive下载文件的BIM应用程序。现在只剩下最后一个部分：创建谷歌浏览器扩展。"
+  },
+  "### Chrome extension": {
+    "ja": "### クロームエクステンション",
+    "zh": "#＃＃Chrome扩展"
+  },
+  "Now we are going to make a Google Chrome extension so that the <strong>user can select the files they want to open</strong>. If you've never done this before, it may sound intimidating, but it's actually very simple. You can find the finished result <a href=\"https://github.com/IFCjs/hello-world/tree/main/examples/extensions/Drive-CDE\">here</a>.": {
+    "ja": "さて、これからGoogle Chromeの拡張機能を作って、<strong>ユーザーが開きたい</strong>ファイルを選択できるようにします。初めてだと難しく感じるかもしれませんが、実はとても簡単なんです。出来上がったものは<a href=\"https://github.com/IFCjs/hello-world/tree/main/examples/extensions/Drive-CDE\">こちらで</a>ご覧いただけます。",
+    "zh": "现在我们要做一个谷歌浏览器扩展，以便<strong>用户可以选择他们想打开的文件</strong>。如果你以前没有做过这个，可能听起来很吓人，但实际上非常简单。你可以<a href=\"https://github.com/IFCjs/hello-world/tree/main/examples/extensions/Drive-CDE\">在这里</a>找到完成的结果。"
+  },
+  "🔑🔑🔑 Following the google guide, you'll need to create a new Google Cloud project to get your own CLIENT\\_ID and API\\_KEY; they are just two texts that you must have for google to know who you are. In other words, you can't use the keys we have to access to your drive! <a href=\"https://developers.google.com/drive/api/v3/about-sdk#create_and_open_files_directly_from_the_drive_ui\">Have a look here for more details</a>.": {
+    "ja": "Googleのガイドに従って、新しいGoogle Cloudプロジェクトを作成し、CLIENT_IDおよびAPI_KEYを取得する必要があります; これらは、Googleがあなたを知るために必要な2つのテキストです。言い換えれば、私たちが持っているキーを使ってあなたのドライブにアクセスすることはできません。<a href=\"https://developers.google.com/drive/api/v3/about-sdk#create_and_open_files_directly_from_the_drive_ui\">詳しくは</a>こちらをご覧ください。",
+    "zh": "🔑🔑🔑按照谷歌的指南，你需要创建一个新的谷歌云项目，以获得你自己的CLIENT\\_ID和API\\KEY；它们只是你必须拥有的两个文本，以便谷歌知道你是谁。换句话说，你不能使用我们拥有的密钥来访问你的驱动器<a href=\"https://developers.google.com/drive/api/v3/about-sdk#create_and_open_files_directly_from_the_drive_ui\">请看这里，了解更多细节</a>。"
+  },
+  "👣 There are many <a href=\"https://dev.to/anobjectisa/how-to-build-a-chrome-extension-new-manifest-v3-5edk\">step-by-step guides</a> on the internet, but we recommend that you take the code from our repository, study it and play with it to see how it works.": {
+    "ja": "👣 インターネット上には多くの<a href=\"https://dev.to/anobjectisa/how-to-build-a-chrome-extension-new-manifest-v3-5edk\">ステップバイステップのガイドが</a>ありますが、私たちのリポジトリからコードを取り出し、勉強し、どのように動くか遊んでみることをお勧めします。",
+    "zh": "👣 互联网上有许多<a href=\"https://dev.to/anobjectisa/how-to-build-a-chrome-extension-new-manifest-v3-5edk\">分步指南</a>，但我们建议你从我们的资源库中获取代码，研究它并玩玩它，看看它是如何工作的。"
+  },
+  "🧱 There are really only 2 important files:": {
+    "ja": "🧱 重要なファイルは本当に2つだけです。",
+    "zh": "🧱 其实只有两个重要的文件。"
+  },
+  "<a href=\"https://github.com/IFCjs/hello-world/tree/main/examples/extensions/Drive-CDE/background.js\">background.js</a>: controls the events of the page, like when the user clicks on something, but doesn't have access to the page content.": {
+    "ja": "<a href=\"https://github.com/IFCjs/hello-world/tree/main/examples/extensions/Drive-CDE/background.js\">background.js</a>: ユーザーが何かをクリックしたときなど、ページのイベントを制御しますが、ページのコンテンツにはアクセスできません。",
+    "zh": "<a href=\"https://github.com/IFCjs/hello-world/tree/main/examples/extensions/Drive-CDE/background.js\">background.js</a>：控制页面的事件，比如用户点击什么，但不能访问页面内容。"
+  },
+  "<a href=\"https://github.com/IFCjs/hello-world/tree/main/examples/extensions/Drive-CDE/foreground.js\">foreground.js</a>: has access to the page content, but not to the events.": {
+    "ja": "<a href=\"https://github.com/IFCjs/hello-world/tree/main/examples/extensions/Drive-CDE/foreground.js\">foreground.js</a>：ページのコンテンツにアクセスできるが、イベントにはアクセスできない。",
+    "zh": "<a href=\"https://github.com/IFCjs/hello-world/tree/main/examples/extensions/Drive-CDE/foreground.js\">foreground.js</a>：可以访问页面内容，但不能访问事件。"
+  },
+  "👬 So, as you can imagine, both files have to communicate with each other in order to do what we want. As you can see in the code, they do it with a simple message system.": {
+    "ja": "想像できるように、両方のファイルは私たちが望むことを行うために互いに通信する必要があります。コードを見ていただければわかりますが、単純なメッセージシステムでそれを行っています。",
+    "zh": "👬 所以，你可以想象，这两个文件必须相互沟通，以达到我们的目的。正如你在代码中看到的，它们用一个简单的消息系统来做。"
+  },
+  "👩‍🏫 In the repository you will find step-by-step comments on what does what. In total, there are less than 100 lines of relevant code: everything else is copied and pasted.": {
+    "ja": "👩🏠リポジトリには、何が何をするのかについてのステップバイステップのコメントがあります。合計で、関連するコードは100行以下です：他は全てコピー＆ペーストです。",
+    "zh": "在资源库中，你会发现关于什么做什么的分步注释。总共只有不到100行的相关代码：其他都是复制和粘贴的。"
+  },
+  "### All toguether!": {
+    "ja": "### みんな一緒に！",
+    "zh": "### ＃＃＃都在一起!"
+  },
+  "🔥🔥🔥 This is how our 30 minutes CDE looks:": {
+    "ja": "🔥🔥私たちの30分CDEはこんな感じです。",
+    "zh": "🔥🔥这是我们的30分钟CDE的样子。"
+  },
+  "## Conclusion": { "ja": "## 結論", "zh": "## 结论" },
+  "🏆 Congratulations! You have just created <strong>your first CDE</strong>. It may not seem much, but think of all its functionalities: file storage, permissions and version control, 3d view, access to properties, 3d measurements, section planes...": {
+    "ja": "🏆 おめでとうございます。あなたは今、<strong>最初のCDEを</strong>作成したところです。ファイル保存、権限とバージョン管理、3Dビュー、プロパティへのアクセス、3D測定、断面図......と、大したことはないように見えますが、その機能性を考えてみてください。",
+    "zh": "🏆 恭喜你！你刚刚创建了第一个CDE。你刚刚创建了<strong>你的第一个CDE</strong>。它可能看起来不多，但想想它的所有功能：文件存储、权限和版本控制、三维视图、访问属性、三维测量、剖面图......"
+  },
+  "🚀🚀🚀 If we have done this in such a short time and using Google Drive, can you imagine what is possible to build with IFC.js and other technologies such as <strong>databases</strong> or <strong>servers?</strong> Don't worry, we'll be making tutorials on all that and more!": {
+    "ja": "🚀🚀 このように短期間で、Google Drive を使って、IFC.js や<strong>データベースや</strong> <strong>サーバーなどの</strong>他の技術を使って構築することが可能かどうか想像できますか？このようなチュートリアルを作っていきますので、ご安心ください。",
+    "zh": "🚀🚀🚀如果我们在这么短的时间内使用Google Drive做到了这一点，你能想象用IFC.js和其他技术（如<strong>数据库</strong>或<strong>服务器</strong>）构建的可能性有多大<strong>？</strong>别担心，我们将制作关于所有这些和更多内容的教程!"
+  },
+  "Why IFC doesn't work": {
+    "ja": "IFCが機能しない理由",
+    "zh": "为什么IFC不起作用"
+  },
+  "ifc": { "ja": "もしも", "zh": "如果" },
+  "How is it so difficult to collaborate between software from different vendors?": {
+    "ja": "異なるベンダーのソフトウェア間のコラボレーションは、どうしてそんなに難しいのでしょうか？",
+    "zh": "在不同供应商的软件之间进行协作，怎么会这么困难呢？"
+  },
+  "<img src={require(\"@site/static/img/blog/2021-12-01/viktoria-goda.jpg\").default} alt=\"PC image\"></img>": {
+    "ja": "<img src={require(\"@site/static/img/blog/2021-12-01/viktoria-goda.jpg\").default} alt=\"PC image\"></img>",
+    "zh": "<img src={require(\"@site/static/img/blog/2021-12-01/viktoria-goda.jpg\").default} alt=\"PC image\"></img>"
+  },
+  "🤜💥🤛 In the BIM market there are multiple tools from different vendors. This means that we often have to use IFC to get the data from one application to another, and <strong>this is where the problems of interoperability arise</strong>.": {
+    "ja": "BIM市場では、異なるベンダーから複数のツールが提供されています。つまり、あるアプリケーションから別のアプリケーションにデータを取得するためにIFCを使用しなければならないことが多く、<strong>ここで相互運用性の問題が</strong>発生します。",
+    "zh": "在BIM市场上，有来自不同供应商的多种工具。这意味着我们经常要使用IFC来将数据从一个应用中获取到另一个应用中，而<strong>这正是互操作性问题产生的地方</strong>。"
+  },
+  "🤒 Data is being lost in the transfer of these documents from software to software, some geometry may not be displaying as it should or federated models are becoming out of place are just some of the <strong>pitfalls that many of us have experienced on projects of all sizes</strong>.": {
+    "ja": "ソフトウェアからソフトウェアへドキュメントを転送する際にデータが失われる 🤒 ジオメトリが正しく表示されない、連携モデルがずれてしまうなど、多くの人が<strong>あらゆる規模のプロジェクトで経験している落とし穴が</strong>あります。",
+    "zh": "在这些文件从软件到软件的传输过程中，数据被丢失了，一些几何图形可能无法正常显示，或者联合模型变得不合适，这些只是<strong>我们许多人在各种规模的项目中遇到的</strong>一些陷阱。"
+  },
+  "🤷‍♂️ We start to see and ask questions like: Why does IFC work so badly? Is open BIM technology unviable?": {
+    "ja": "🤷♂️ こんな疑問が見えてくるようになるんです。なぜIFCはそんなにうまくいかないのか？オープン BIM 技術は実現不可能なのか？",
+    "zh": "🤷♂️我们开始看到并提出这样的问题。为什么IFC工作得如此糟糕？开放的BIM技术是不可行的吗？"
+  },
+  "<img src={require(\"@site/static/img/clipart/1.png\").default} alt=\"PC image\"></img>": {
+    "ja": "<img src={require(\"@site/static/img/clipart/1.png\").default} alt=\"PC image\"></img>",
+    "zh": "<img src={require(\"@site/static/img/clipart/1.png\").default} alt=\"PC image\"></img>"
+  },
+  "📃 Many argue that IFC is unworkable because it is a textual (meaning non-binary) and open format. However, the <strong>JSON</strong> format (a standard in the software industry) is also textual and works perfectly well.": {
+    "ja": "📃 IFCはテキスト（非バイナリという意味）かつオープンなフォーマットであるため、実行不可能であるとする意見が多い。しかし、<strong>JSON</strong>フォーマット（ソフトウェア業界の標準）もテキスト形式であり、完全に機能する。",
+    "zh": "📃 许多人认为IFC是不可行的，因为它是一种文本（指非二进制）和开放的格式。然而，<strong>JSON</strong>格式（软件行业的一个标准）也是文本格式，而且运行得非常好。"
+  },
+  "👨‍💻👨‍💻👨‍💻 Others say the problem is the schema itself. It is true that IFC is complex and the documentation is dry, but IFC.js started between <strong>3 people in their spare time</strong>, implementing something that has extraordinary potential in less than a year.": {
+    "ja": "👨💻👨💻の問題はスキーマそのものだと言う人もいます。確かにIFCは複雑で、ドキュメントも辛口ですが、IFC.jsは<strong>3</strong>人が暇つぶしに始めたもので、並外れた可能性を秘めたものを1年足らずで実装しています。",
+    "zh": "有人说问题出在模式本身。的确，IFC很复杂，文档也很枯燥，但IFC.js是在<strong>3个人的业余时间里</strong>开始的，在不到一年的时间里实现了具有非凡潜力的东西。"
+  },
+  "The problem seems to be that <strong>no large software company has a commercial interest in IFC</strong>. In reality, the ultimate goal of all of them is to convince the user to use their entire ecosystem. The IFC is, in many cases, a partially flawed solution for attempting to fill gaps in other tools that may not have had time to implement certain features or will not, since their business is not in line with those feature interests.": {
+    "ja": "問題は、<strong>どの大手のソフトウェア会社もIFCに商業的な関心を</strong>抱いていないことだと思われます。現実には、すべての会社の最終目標は、自社のエコシステム全体を使うようにユーザーを説得することです。IFCは、多くの場合、他のツールのギャップを埋めるための部分的な欠陥のあるソリューションで、特定の機能を実装する時間がなかったり、ビジネスがそれらの機能の利益と一致しないため、実装しない可能性があります。",
+    "zh": "问题似乎是，<strong>没有一家大型软件公司对IFC有商业兴趣</strong>。实际上，所有这些公司的最终目标是说服用户使用他们的整个生态系统。在许多情况下，IFC是一个部分有缺陷的解决方案，试图填补其他工具的空白，这些工具可能没有时间实现某些功能，或者不会实现，因为他们的业务与这些功能的利益不一致。"
+  },
+  "👨‍💼 💼 In other words, how many customers would any of these large companies lose if they never improved their communication with IFC? Probably very little.": {
+    "ja": "つまり、これらの大企業がIFCとのコミュニケーションを改善しなかった場合、どれだけの顧客を失うことになるのでしょうか。おそらくほとんどないでしょう。",
+    "zh": "换句话说，如果这些大公司从未改善与IFC的沟通，他们会失去多少客户？可能非常少。"
+  },
+  "💵💵💵 <strong>This creates the illusion that the IFC \"just doesn't work well\"</strong> while they continue to grow their ecosystem through tremendous developments or the acquisition of other companies.": {
+    "ja": "は<strong>「うまく機能していないだけだ」と いう幻想を</strong>抱かせる一方で、途方もない開発や他の企業の買収を 通じてエコシステムを成長させ続けているのである。",
+    "zh": "💵💵💵<strong>这造成了一种错觉，即国际金融公司 \"只是工作不力\"</strong>，而他们却通过巨大的发展或收购其他公司继续发展他们的生态系统。"
+  },
+  "🙍‍♂️This is unfortunate because some of the industry players do have commercial interests in IFC. This includes engineering companies, architectural firms, construction companies, real estate companies, asset managers, etc.": {
+    "ja": "🙍♂️これは残念なことですが、業界のプレイヤーの中にはIFCに商業的な利益をもたらしている人たちがいます。これには、エンジニアリング会社、建築会社、建設会社、不動産会社、アセットマネージャーなどが含まれます。",
+    "zh": "🙍♂️这很不幸，因为一些行业参与者确实在IFC有商业利益。这包括工程公司、建筑公司、建筑公司、房地产公司、资产管理公司等。"
+  },
+  "💸 <strong>We are the big losers in this situation.</strong> We all have to choose whether to subjugate ourselves to a closed, private ecosystem and depend on these companies, or waste time and money with all the problems that come with the current implementation of the IFC in their tools.": {
+    "ja": "💸 この状況では、<strong>私たちは大きな敗者</strong>です。私たちは皆、閉鎖的で私的なエコシステムに従属してこれらの企業に依存するか、IFCのツールに現在実装されているすべての問題で時間とお金を浪費するかを選択しなければなりません。",
+    "zh": "💸<strong>在这种情况下，我们是大输家。</strong>我们都必须选择是让自己屈从于一个封闭的私人生态系统并依赖这些公司，还是浪费时间和金钱来解决目前在他们的工具中实施国际金融公司所带来的所有问题。"
+  },
+  "🤝 Last week there was a round table discussion at the <a href=\"https://www.typsa.com/en/\">Typsa</a> offices where there was an <a href=\"https://teys.es/01-hackaton-typsa-ue4-actividades/\">open conversation</a> with representatives from <a href=\"https://www.ferrovial.com/\">Ferrovial</a> and <a href=\"https://www.fcc.es/\">FCC</a>, and we all agreed that maybe <strong>it is time for us to step up to the plate and develop in the world of BIM software to defend our own interests</strong>.": {
+    "ja": "先週、<a href=\"https://www.typsa.com/en/\">ティプサの</a>オフィスでラウンドテーブルディスカッションがあり、<a href=\"https://www.ferrovial.com/\">フェロビアル</a>社や<a href=\"https://www.fcc.es/\">FCC</a>社の代表者と<a href=\"https://teys.es/01-hackaton-typsa-ue4-actividades/\">オープンに話を</a>しましたが、私たちは自分たちの<strong>利益を守るために、BIMソフトウェアの世界でステップアップして発展</strong>する時期なのかもしれないと、全員が同意しました。",
+    "zh": "🤝 上周在<a href=\"https://www.typsa.com/en/\">Typsa</a>办公室举行了一次圆桌讨论，与<a href=\"https://www.ferrovial.com/\">Ferrovial</a>和<a href=\"https://www.fcc.es/\">FCC</a>的代表进行了<a href=\"https://teys.es/01-hackaton-typsa-ue4-actividades/\">公开对话</a>，我们都认为，也许<strong>现在是我们站出来在BIM软件的世界里发展以维护自己利益</strong>的时候了。"
+  },
+  "<img src={require(\"@site/static/img/clipart/2.png\").default} alt=\"PC image\"></img>": {
+    "ja": "<img src={require(\"@site/static/img/clipart/2.png\").default} alt=\"PC image\"></img>",
+    "zh": "<img src={require(\"@site/static/img/clipart/2.png\").default} alt=\"PC image\"></img>"
+  },
+  "💪 You may think that we will never be able to catch up with the giants. But not only us. We are <a href=\"https://ifcjs.github.io/info/docs/Contribute\">many companies</a> joining our efforts in this project; <strong>companies of all kinds, of all sizes and from all areas are creating our own BIM tools without paying anything</strong>. Some of them are even getting into the market as new players.": {
+    "ja": "💪 私たちは巨人に追いつくことはできないと思うかもしれません。しかし、私たちだけではありません。<a href=\"https://ifcjs.github.io/info/docs/Contribute\">多くの企業が</a>このプロジェクトに参加してくれています。<strong>あらゆる種類の、あらゆる規模の、あらゆる分野の企業が、お金を払うことなく自分たちのBIMツールを作ってくれて</strong>います。中には、新しいプレイヤーとして市場に参入しているところもあります。",
+    "zh": "💪 你可能认为我们永远无法追上巨人。但不仅仅是我们。我们有<a href=\"https://ifcjs.github.io/info/docs/Contribute\">很多公司</a>加入到这个项目的努力中；<strong>各种类型、各种规模、各种领域的公司都在创造我们自己的BIM工具，而不需要付出任何代价</strong>。他们中的一些人甚至正在作为新的参与者进入市场。"
+  },
+  "👩‍💻 Although developing BIM applications sounds daunting, it is actually much simpler than a video game, and nowadays it is already possible to create video games in a very short time with tools like Godot, Unreal or Unity. With tools like IFC.js creating BIM tools can be just as easy.": {
+    "ja": "BIMアプリケーションの開発は難しそうに聞こえますが、実はビデオゲームよりもずっとシンプルで、最近ではGodot、Unreal、Unityなどのツールを使えば、すでにビデオゲームを短時間で作成することが可能です。IFC.jsのようなツールを使えば、BIMツールの作成も同じように簡単にできます。",
+    "zh": "虽然开发BIM应用程序听起来令人生畏，但实际上它比视频游戏要简单得多，现在已经可以用Godot、Unreal或Unity等工具在很短的时间内创建视频游戏。有了IFC.js这样的工具，创建BIM工具也可以变得同样简单。"
+  },
+  "💛 We are working hard to make this possible. We are convinced that this is the only way to improve the sector.": {
+    "ja": "💛 私たちは、これを可能にするために努力しています。この分野を改善する唯一の方法であると確信しています。",
+    "zh": "💛 我们正在努力工作，使之成为可能。我们相信，这是改善该部门的唯一途径。"
+  },
+  "Contribute": { "ja": "貢献する", "zh": "贡献" },
+  "## Work with us": { "ja": "## Work with us", "zh": "##与我们一起工作" },
+  "👩‍💻 IFC.js is developed by many companies and individuals around the globe. Do you want to help us with the code and join our consortium? This is the page you were looking for.": {
+    "ja": "👩💻 IFC.jsは、世界中の多くの企業や個人によって開発されています。あなたもコードを手伝って、コンソーシアムに参加しませんか？これはあなたが探していたページです。",
+    "zh": "💻 IFC.js是由全球许多公司和个人开发的。你想用代码帮助我们，加入我们的联盟吗？这是你正在寻找的页面。"
+  },
+  "If you are looking for a way to join our community and learn BIM and coding with us, check out our <a href=\"https://ifcjs.github.io/info/docs/Patreon\">patreon's page</a>!": {
+    "ja": "私たちのコミュニティに参加して、一緒にBIMやコーディングを学びたい方は、<a href=\"https://ifcjs.github.io/info/docs/Patreon\">パトロンのページを</a>チェックしてみてくださいね。",
+    "zh": "如果你正在寻找一种方式来加入我们的社区，和我们一起学习BIM和编码，请查看我们的<a href=\"https://ifcjs.github.io/info/docs/Patreon\">PATREON页面</a>"
+  },
+  "🤷‍♀️️ We all want the same thing: to create our own BIM applications and do business. However, if we all develop applications from scratch, <strong>we will never be able to compete with the industry giants</strong>.": {
+    "ja": "🤷♀️ BIMアプリケーションを自作してビジネスをしたいという思いは皆同じです。しかし、全員がゼロからアプリケーションを開発していては、<strong>業界大手に</strong>太刀打ちできない。",
+    "zh": "🤷♀️我们都想做同样的事情：创建我们自己的BIM应用程序并开展业务。然而，如果我们都从头开始开发应用程序，<strong>我们将永远无法与行业巨头竞争</strong>。"
+  },
+  "🤝 So we want to propose you to <strong>join forces</strong>.": {
+    "ja": "🤝 そこで、<strong>力を</strong>合わせようと提案したいのです。",
+    "zh": "🤝 所以我们想提议你们<strong>联合起来</strong>。"
+  },
+  "👨‍💼 It's easy: anyone can use IFC.js commercially without any limitations. However, each BIM application is different, and it is likely that as you build your application, <strong>you will create new cool BIM functionalities</strong>.": {
+    "ja": "👨 簡単です：IFC.jsは誰でも何の制限もなく商用利用することができます。しかし、BIMアプリケーションはそれぞれ異なり、アプリケーションを構築していくうちに、<strong>新しいクールなBIMの機能性が</strong>生まれる可能性があります。",
+    "zh": "👨💼 这很简单：任何人都可以不受任何限制地商业使用IFC.js。然而，每个BIM应用都是不同的，很可能在你建立你的应用时，<strong>你会创造出新的很酷的BIM功能</strong>。"
+  },
+  "🔥 Of course, you could implement those features in your closed source application... or you could <strong>implement them directly in IFC.js</strong>.": {
+    "ja": "🔥 もちろん、これらの機能をクローズドソースのアプリケーションに実装することもできますし、<strong>IFC.jsに直接実装</strong>することも可能です。",
+    "zh": "当然，你可以在你的闭源程序中实现这些功能......或者你可以<strong>直接在IFC.js中实现它们</strong>。"
+  },
+  "### But wait, why on earth would I do that!?": {
+    "ja": "### しかし、待てよ、いったいなぜそんなことをするんだ！？",
+    "zh": "###但是等等，我到底为什么要这样做！？"
+  },
+  "💪💪💪 It is pointless to compete with each other for the scraps of the big BIM software companies. However, <strong>if we join forces, we can make this a fair fight</strong>.": {
+    "ja": "💪 大手のBIMソフトウェア会社のスクラップを奪い合うのは無意味です。しかし、<strong>力を合わせれば、公平な戦</strong>いにすることができる。",
+    "zh": "💪💪 互相争夺大型BIM软件公司的残羹剩饭是毫无意义的。然而，<strong>如果我们联合起来，我们可以使这成为一场公平的战斗</strong>。"
+  },
+  "🤖 Also, by doing so you would become a <strong>code sponsor</strong>. This grants you the following advantages:": {
+    "ja": "🤖 また、そうすることによって、あなたは<strong>コードスポンサーに</strong>なることができます。これにより、以下のようなメリットがあります。",
+    "zh": "🤖同时，这样做你将成为<strong>代码赞助商</strong>。这将赋予你以下优势。"
+  },
+  "Your needs go FIRST": {
+    "ja": "お客様のニーズを最優先",
+    "zh": "你的需求是第一位的"
+  },
+  "We will implement everything you need from the library very quickly. Your needs will have top priority over the rest.": {
+    "ja": "私たちは、お客様が必要とするすべてを、ライブラリから非常に迅速に実装します。あなたのニーズは、他のものよりも最優先されます。",
+    "zh": "我们将非常迅速地实施你在图书馆中需要的一切。你的需求将是最优先的。"
+  },
+  "Decision-making power": { "ja": "意思決定力", "zh": "决策权" },
+  "Do you think the library should go in a particular direction? You can decide! You will have a say in the direction of the project.": {
+    "ja": "図書館は特定の方向へ進むべきだと思いますか？あなたが決められる!プロジェクトの方向性を決定するのはあなたです。",
+    "zh": "你认为图书馆应该朝着某个特定的方向发展吗？你可以决定!你将对项目的方向有发言权。"
+  },
+  "Early access to new functionalities": {
+    "ja": "新機能への早期アクセス",
+    "zh": "尽早获得新功能"
+  },
+  "You will be able to access new project functionalities before anyone else; a competitive advantage in your BIM app.": {
+    "ja": "誰よりも早くプロジェクトの新機能にアクセスすることができ、BIMアプリの競争力を高めることができます。",
+    "zh": "你将能够比别人更早地获得新的项目功能；这是你的BIM应用中的竞争优势。"
+  },
+  "Access to exclusive chat for maintainers": {
+    "ja": "メンテナ専用チャットへのアクセス",
+    "zh": "访问维护者的独家聊天记录"
+  },
+  "You will have a direct line to us and you will be able to see how the project is cooked behind closed doors.": {
+    "ja": "私たちとダイレクトに接することができ、プロジェクトが密室でどのように調理されているかを見ることができます。",
+    "zh": "你将与我们有直接联系，你将能够看到项目是如何闭门造车的。"
+  },
+  "### What does it cost me?": {
+    "ja": "### 費用はいくらですか？",
+    "zh": "###我花了多少钱？"
+  },
+  "👌 <strong>Absolutely nothing</strong>, not even time. Simply put, instead of reserving all of your BIM code for yourself, you can leave some of it open in IFC.js.": {
+    "ja": "👌<strong>絶対に何も</strong>ない、時間さえも。簡単に言うと、BIMのコードを全て予約する代わりに、IFC.jsで一部をオープンにしておくことができます。",
+    "zh": "👌<strong>绝对没有</strong>，甚至没有时间。简单地说，与其把所有的BIM代码保留给自己，不如在IFC.js中留下一部分代码。"
+  },
+  "It's simply a question of which repository you save your code to.": {
+    "ja": "単純に、どのリポジトリにコードを保存するかが問題です。",
+    "zh": "这只是一个问题，你把你的代码保存到哪个仓库。"
+  },
+  "### Are there really any companies participating?": {
+    "ja": "### 本当に参加企業があるのでしょうか？",
+    "zh": "###真的有公司参加吗？"
+  },
+  "💼 Yes, and <strong>some of them are worth millions</strong>. If the programme is good enough for them, maybe it's good enough for your company.": {
+    "ja": "そうです、中には<strong>何百万ドルもする</strong>人もいます。彼らにとってプログラムが十分であれば、あなたの会社にとっても十分かもしれません。",
+    "zh": "💼 是的，而且<strong>其中一些人价值数百万</strong>。如果这个方案对他们来说足够好，也许对你的公司也足够好。"
+  },
+  "💰💰💰 These companies are creating their own BIM software from scratch, tailor-made and <strong>without paying anything at all</strong>.": {
+    "ja": "これらの企業は、BIMソフトウェアをゼロから、テーラーメイドで、<strong>まったくお金を払わ</strong>ずに作っているのです💢。",
+    "zh": "💰这些公司正在从头开始创建自己的BIM软件，量身定做，<strong>根本不需要支付任何费用</strong>。"
+  },
+  "### Do you seriously think you can compete with the big BIM software companies?": {
+    "ja": "### 大手のBIMソフト会社に対抗できると本気で思っているのでしょうか？",
+    "zh": "###你真的认为你能与大型BIM软件公司竞争吗？"
+  },
+  "🌈 In 2020 nobody thought you could create BIM applications in 50 lines of code; now, thanks to IFC.js, it's trivial. In one year, 3 people from different countries and companies have achieved that in our spare time.": {
+    "ja": "🌈 2020年には誰も50行のコードでBIMアプリケーションを作れるとは思っていませんでしたが、今はIFC.jsのおかげで些細なことです。1年の間に、国も会社も違う3人が、暇つぶしにそれを実現しました。",
+    "zh": "🌈 在2020年，没有人认为你可以用50行代码创建BIM应用程序；现在，由于IFC.js的出现，这一切都变得微不足道了。在一年的时间里，来自不同国家和公司的3个人利用业余时间实现了这一点。"
+  },
+  "🤝 Can you imagine how much we could achieve <strong>with your contribution?</strong>": {
+    "ja": "🤝皆さんの貢献でどれだけのことができるか想像<strong>できますか？</strong>",
+    "zh": "🤝 你能想象<strong>你的贡献</strong>能让我们取得多大的成就吗<strong>？</strong>"
+  },
+  "The thought that we cannot compete with them is a thought that only benefits them. Are we going to admit that we have already lost before we try?": {
+    "ja": "相手にかなわないという思いは、相手を利するだけの思いです。挑戦する前に、すでに負けていることを認めるつもりなのだろうか。",
+    "zh": "认为我们无法与他们竞争的想法是一种只对他们有利的想法。难道我们要在尝试之前承认我们已经输了吗？"
+  },
+  "### But I know nothing about the project!": {
+    "ja": "### しかし、私はこのプロジェクトについて何も知らないのです",
+    "zh": "###但我对这个项目一无所知!"
+  },
+  "👩‍🏫 Don't worry: if you want to participate, we will give <strong>top priority to your onboarding</strong> so that you can start using the library right away and help us with whatever you want.": {
+    "ja": "ご安心ください！参加希望の方は、すぐにライブラリーを使い始められるよう、<strong>オンボーディングを最優先</strong>し、何でもご相談ください。",
+    "zh": "别担心：如果你想参加，我们会<strong>优先考虑你的入职培训</strong>，这样你就可以马上开始使用图书馆，并帮助我们做任何你想做的事情。"
+  },
+  "### Do I have to share all my code?": {
+    "ja": "### 自分のコードをすべて共有しなければならないのでしょうか？",
+    "zh": "###我必须分享我所有的代码吗？"
+  },
+  "🔑 No! <strong>You can share only those parts that you want</strong> and that can be interesting for the whole community. There is no minimum size to be a sponsor, so don't worry.": {
+    "ja": "🔑 いいえ!<strong>自分の好きなところ</strong>、コミュニティ全体が興味を持てるところ<strong>だけシェア</strong>すればいいんです。スポンサーになるのに最低限必要なサイズはありませんから、ご安心ください。",
+    "zh": "🔑 不!<strong>你可以只分享那些你想分享的部分</strong>，而且可以让整个社区感兴趣。成为赞助商没有最小规模，所以不用担心。"
+  },
+  "### What if I am an educational institution?": {
+    "ja": "### 教育機関である場合はどうすればよいですか？",
+    "zh": "### 如果我是一个教育机构怎么办？"
+  },
+  "👩‍🏫 Great! If you decide to include IFC.js in your teaching programme, you can also be a sponsor. Contact us, and we will be at your disposal to train you, solve your and your students' doubts and help them to enter the world of Open BIM.": {
+    "ja": "👩🏫 素晴らしい!もし、あなたの教育プログラムにIFC.jsを取り入れることを決めたら、スポンサーになることも可能です。私たちにご連絡ください。私たちは、あなたを訓練し、あなたとあなたの学生の疑問を解決し、彼らがOpen BIMの世界に入るのを支援するために、あなたの自由裁量で対応します。",
+    "zh": "🏫 太好了!如果您决定将IFC.js纳入您的教学计划，您也可以成为赞助商。联系我们，我们将随时为您提供培训，解决您和您的学生的疑惑，帮助他们进入开放BIM的世界。"
+  },
+  "### How do I get started?": {
+    "ja": "### はじめに",
+    "zh": "###我如何开始？"
+  },
+  "😊 <a href=\"https://discord.gg/FXfyR4XrKT\">Talk to us!</a> Tell us about your situation and your ideas and we will help you get started as soon as possible.": {
+    "ja": "😊 お話をお聞かせ<a href=\"https://discord.gg/FXfyR4XrKT\">ください</a>あなたの状況やアイデアをお聞かせください。",
+    "zh": "😊<a href=\"https://discord.gg/FXfyR4XrKT\">与我们交谈!</a>告诉我们你的情况和你的想法，我们将帮助你尽快开始。"
+  },
+  "Hello world": { "ja": "ハローワールド", "zh": "你好，世界" },
+  "## Introduction": { "ja": "## イントロダクション", "zh": "## ＃＃介绍" },
+  "⚡ Creating a BIM application with IFC.js is very easy. You can find the complete project of the guide <a href=\"https://github.com/IFCjs/hello-world/tree/main/examples/web-ifc-three/helloworld\">here</a> and the deployed application <a href=\"https://ifcjs.github.io/hello-world/examples/web-ifc-three/helloworld/\">here</a>. You only need to have <a href=\"https://nodejs.org/en/\">Node.js</a> and any IDE installed to follow the steps below. Also, if you don't have any IFC files to follow along, you can get some <a href=\"https://github.com/IFCjs/test-ifc-files\">here</a>.": {
+    "ja": "⚡ IFC.jsでBIMアプリケーションを作成するのはとても簡単です。ガイドの完全なプロジェクトは<a href=\"https://github.com/IFCjs/hello-world/tree/main/examples/web-ifc-three/helloworld\">こちら</a>、デプロイされたアプリケーションは<a href=\"https://ifcjs.github.io/hello-world/examples/web-ifc-three/helloworld/\">こちらで</a>ご覧いただけます。<a href=\"https://nodejs.org/en/\">Node.jsと</a>任意のIDEがインストールされていれば、以下のステップに従うことができます。また、IFCファイルをお持ちでない場合は、<a href=\"https://github.com/IFCjs/test-ifc-files\">こちらで</a>入手できます。",
+    "zh": "⚡ 用IFC.js创建一个BIM应用程序是非常容易的。你可以<a href=\"https://github.com/IFCjs/hello-world/tree/main/examples/web-ifc-three/helloworld\">在这里</a>找到指南的完整项目，<a href=\"https://ifcjs.github.io/hello-world/examples/web-ifc-three/helloworld/\">在这里</a>找到部署的应用程序。你只需要安装<a href=\"https://nodejs.org/en/\">Node.js</a>和任何IDE就可以按照下面的步骤操作。另外，如果你没有任何IFC文件可以跟随，你可以<a href=\"https://github.com/IFCjs/test-ifc-files\">在这里</a>得到一些。"
+  },
+  "Using IFC.js requires a basic knowledge of web development (HTML, CSS, JavaScript) and Three.js. If you have no previous experience with Three.js, you should probably look <a href=\"https://threejs.org/manual/\">here</a>.": {
+    "ja": "IFC.jsを使用するには、Web開発（HTML、CSS、JavaScript）の基礎知識とThree.jsの知識が必要です。Three.jsの使用経験がない場合は、<a href=\"https://threejs.org/manual/\">こちらを</a>ご覧ください。",
+    "zh": "使用IFC.js需要有网络开发（HTML、CSS、JavaScript）和Three.js的基本知识。如果你以前没有使用Three.js的经验，你也许应该看看<a href=\"https://threejs.org/manual/\">这里</a>。"
+  },
+  "🐣 This minimal tutorial will be done with Vanilla JavaScript, without using frameworks like React, Vue, Angular, Svelte, etc. However, the same steps can be adapted and applied to any of these use cases.": {
+    "ja": "🐣 この最小限のチュートリアルは、React、Vue、Angular、Svelteなどのフレームワークを使用せず、Vanilla JavaScriptで行われる予定です。しかし、同じ手順は、これらのユースケースのいずれにも適応し、適用することができます。",
+    "zh": "这个最小的教程将用Vanilla JavaScript完成，没有使用React、Vue、Angular、Svelte等框架。然而，同样的步骤可以适应并应用于任何这些用例。"
+  },
+  "## Setting up the project": {
+    "ja": "## プロジェクトのセットアップ",
+    "zh": "## 设置项目"
+  },
+  "### Install libraries": {
+    "ja": "### ライブラリのインストール",
+    "zh": "###安装库"
+  },
+  "👩‍🏫 The first thing to do is to create an empty folder and start a new npm project with the command <code>npm init</code>. This will generate a <code>package.json</code> file containing some data such as the project name, version, commands and dependencies. In addition, the following dependencies must be installed with npm:": {
+    "ja": "👩🏫 まず最初に、空のフォルダを作成し、<code>npm init</code> コマンドで新しい npm プロジェクトを開始します。これにより、プロジェクト名、バージョン、コマンド、依存関係などのいくつかのデータを含む<code>package.json</code>ファイルが生成されます。また、以下の依存関係はnpmと一緒にインストールする必要があります。",
+    "zh": "首先要做的是创建一个空文件夹，用<code>npm init</code>命令启动一个新的npm项目。这将生成一个<code>package.json</code>文件，其中包含一些数据，如项目名称、版本、命令和依赖性。此外，必须用npm安装以下依赖项。"
+  },
+  "📝 The next step is to create an HTML file named <code>index.html</code> as the main document of the application. The HTML will have:": {
+    "ja": "📝 次のステップは、アプリケーションのメインドキュメントとして<code>index.html</code>という名前の HTML ファイルを作成することです。このHTMLには",
+    "zh": "📝 下一步是创建一个名为<code>index.html</code>的HTML文件作为应用程序的主文件。该HTML将有。"
+  },
+  "A <strong>canvas element</strong>, used to render the Three.js scene.": {
+    "ja": "Three.jsのシーンをレンダリングするために使用される<strong>canvas要素</strong>です。",
+    "zh": "一个<strong>画布元素</strong>，用于渲染Three.js场景。"
+  },
+  "An <strong>input element</strong>, which will open IFC files from our computer to the application.": {
+    "ja": "コンピュータからアプリケーションにIFCファイルを開くための<strong>入力要素</strong>。",
+    "zh": "一个<strong>输入元素</strong>，它将从我们的计算机上打开IFC文件到应用程序。"
+  },
+  "A <strong>script</strong> referencing a file called <code>bundle.js</code>, which is the bundle of the app that we will produce with rollup.": {
+    "ja": "rollupで生成するアプリのバンドルである<code>bundle.jsという</code>ファイルを参照する<strong>スクリプト</strong>です。",
+    "zh": "一个引用名为<code>bundle.js</code>的文件的<strong>脚本</strong>，这是我们将用rollup制作的应用程序的捆绑包。"
+  },
+  "### Adding style": { "ja": "### スタイルの追加", "zh": "###添加样式" },
+  "🎨 The following CSS file will make the canvas full screen:": {
+    "ja": "🎨 以下のCSSファイルで、キャンバスをフルスクリーンにすることができます。",
+    "zh": "🎨 以下CSS文件将使画布成为全屏。"
+  },
+  "### Bundling": { "ja": "### バンドル", "zh": "### 捆绑式" },
+  "Next, we'll create the rollup configuration file. This file has to be called <code>rollup.config.js</code> and includes the reference to the plugins we have previously installed.": {
+    "ja": "次に、ロールアップの設定ファイルを作成します。このファイルは<code>rollup.config.jsという</code>名前で、以前インストールしたプラグインへの参照を含んでいなければならない。",
+    "zh": "接下来，我们将创建rollup配置文件。这个文件必须被称为<code>rollup.config.js</code>，并包括对我们之前安装的插件的引用。"
+  },
+  "Rollup?": { "ja": "ロールアップ？", "zh": "轧制？" },
+  "Rollup is a very popular bundling library. For instance, it's the bundler used by Three.js. Take a look at the <a href=\"https://rollupjs.org/guide/en/\">rollup docs</a> to learn more.": {
+    "ja": "Rollupは非常に人気のあるバンドルライブラリです。例えば、Three.jsで使用されているバンドルです。詳しくは<a href=\"https://rollupjs.org/guide/en/\">rollup docsを見て</a>ください。",
+    "zh": "Rollup是一个非常流行的捆绑库。例如，它是Three.js使用的捆绑器。看看<a href=\"https://rollupjs.org/guide/en/\">Rollup的文档</a>，了解更多。"
+  },
+  "🎯 Also, the <code>package.json</code> file needs to be modified to contain the commands to control rollup easily. In each command, you'll have to specify the relative path to your rollup configuration file. If we have installed everything correctly, we should see the same dependencies in this file (the version of the libraries may differ).": {
+    "ja": "🎢 また、ロールアップを簡単に制御するためのコマンドを含むように<code>package.json</code>ファイルを修正する必要があります。各コマンドで、ロールアップ設定ファイルへの相対パスを指定する必要があります。すべてが正しくインストールされていれば、このファイルには同じ依存関係が表示されているはずです（ライブラリのバージョンは異なる場合があります）。",
+    "zh": "🎯 另外，<code>package.json</code>文件需要修改，以包含控制rollup的命令，很容易。在每个命令中，你必须指定你的rollup配置文件的相对路径。如果我们正确地安装了一切，我们应该在这个文件中看到相同的依赖关系（库的版本可能不同）。"
+  },
+  "<code>npm run build</code> will bundle the project and create a file called <code>bundle.js</code> in the root directory of the project.": {
+    "ja": "<code>npm run build</code>でプロジェクトをバンドルし、プロジェクトのルートディレクトリに<code>bundle.js</code>というファイルを作成します。",
+    "zh": "<code>npm run build</code>将捆绑项目，并在项目的根目录下创建一个名为<code>bundle.js</code>的文件。"
+  },
+  "<code>npm run watch</code> will activate the <code>watch mode</code>, updating that file automatically every time we make changes to the code and save it.": {
+    "ja": "<code>npm run watchは</code> <code>ウォッチモードを</code>有効にし、コードに変更を加えて保存するたびに、そのファイルを自動的に更新します。",
+    "zh": "<code>npm run watch</code>将激活<code>观察模式</code>，在我们每次对代码进行修改并保存时自动更新该文件。"
+  },
+  "### WebAssembly": { "ja": "### WebAssembly", "zh": "### WebAssembly" },
+  "📁 The next thing to do is to copy the <code>web-ifc.wasm</code> and <code>web-ifc-mt.wasm</code> files to a directory in your project. It can be found in <code>node\\_modules\\web-ifc</code> (or <code>node\\_modules\\three\\examples\\jsm\\loaders\\ifc</code> if you are only using Three's IFCLoader). We can copy them wherever we want; in this example, they will be copied to a folder called wasm in the root directory of the project.": {
+    "ja": "📁 次に行うことは、<code>web-ifc.wasm</code>と<code>web-ifc-mt.wasm</code>ファイルをプロジェクト内のディレクトリにコ ピーすることです。<code>node_modules⇄web-ifc</code>(ThreeのIFCLoaderだけを使用している場合は、<code>node_modules⇄examples⇄jsm⇄loaders⇄ifc</code>) にあるはずです。この例では、プロジェクトのルートディレクトリにあるwasmというフォルダーにコピーされます。",
+    "zh": "📁 接下来要做的是把<code>web-ifc.wasm</code>和<code>web-ifc-mt.wasm</code>文件复制到你项目中的一个目录。它可以在<code>node/modules/web-ifc</code>（如果你只使用Three的IFCLoader，可以在<code>node/modules/three/examples/jsm\\loaders/ifc</code>）中找到。我们可以把它们复制到我们想要的地方；在这个例子中，它们将被复制到项目根目录下一个叫wasm的文件夹中。"
+  },
+  "These files are necessary because they contain the compiled C++ logic of <a href=\"https://github.com/IFCjs/web-ifc\">web-ifc</a>, which is the parsing core to read and write IFC files with native speed.": {
+    "ja": "これらのファイルは、IFC ファイルをネイティブの速度で読み書きするための解析コアである<a href=\"https://github.com/IFCjs/web-ifc\">web-ifc</a> のコンパイルされた C++ ロジックを含んでいるので必要なのです。",
+    "zh": "这些文件是必要的，因为它们包含了<a href=\"https://github.com/IFCjs/web-ifc\">web-ifc</a>的编译C++逻辑，它是以本地速度读写IFC文件的解析核心。"
+  },
+  "These files have to be served statically in your application. This might need different tweaks if you are using frameworks or libraries like React, Angular, Vue or Svelte.": {
+    "ja": "これらのファイルは、アプリケーションで静的に提供される必要があります。React、Angular、Vue、Svelteなどのフレームワークやライブラリを使用している場合は、異なる調整が必要になる場合があります。",
+    "zh": "这些文件必须在你的应用程序中静态地提供。如果你使用的是React、Angular、Vue或Svelte等框架或库，这可能需要进行不同的调整。"
+  },
+  "## Setting up a 3D scene": {
+    "ja": "## 3Dシーンのセットアップ",
+    "zh": "## 设置一个3D场景"
+  },
+  "Finally, we are going to create the JavaScript file to write the code for our application. This file can be located anywhere and have any name, but you must reflect this in the <code>rollup.config.js</code>.": {
+    "ja": "最後に、アプリケーションのコードを記述するためのJavaScriptファイルを作成します。このファイルはどこに置いても、どんな名前でも構いませんが、<code>rollup.config.jsに</code>反映させる必要があります。",
+    "zh": "最后，我们要创建一个JavaScript文件，为我们的应用程序编写代码。这个文件可以位于任何地方，有任何名字，但你必须在<code>rollup.config.js</code>中反映这一点。"
+  },
+  "🧱 We are going to create a basic 3D scene using Three.js.": {
+    "ja": "🇹 Three.jsを使って、基本的な3Dシーンを作成します。",
+    "zh": "🧱 我们将使用Three.js创建一个基本的3D场景。"
+  },
+  "🌏 To run the application locally we will need a local server. If you are using VS Code as IDE, one option is to install the <a href=\"https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer\">Live Server extension</a>, which allows us to open an instance of Google Chrome, run our web application and see the changes we make to the code in real-time.": {
+    "ja": "🌏 アプリケーションをローカルで実行するには、ローカルサーバーが必要です。IDEとしてVS Codeを使用している場合、1つのオプションとして<a href=\"https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer\">Live Serverエクステンションを</a>インストールすることで、Google Chromeのインスタンスを開き、Webアプリケーションを実行し、コードに加えた変更をリアルタイムで確認することができるようになります。",
+    "zh": "🌏 要在本地运行应用程序，我们将需要一个本地服务器。如果你使用VS Code作为IDE，一个选择是安装<a href=\"https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer\">Live Server扩展</a>，它允许我们打开谷歌浏览器的一个实例，运行我们的网络应用程序，并实时查看我们对代码的修改。"
+  },
+  "## Loading IFC files": {
+    "ja": "## IFCファイルの読み込み",
+    "zh": "##加载IFC文件"
+  },
+  "### Loading user's models": {
+    "ja": "### ユーザーモデルの読み込み",
+    "zh": "###加载用户的模型"
+  },
+  "🏠 Finally, we will use IFC.js to load IFC files. This can be done by instantiating the loader and creating an event for when the user uploads an IFC file to the HTML input element.": {
+    "ja": "🏠 最後に、IFC.js を使用して IFC ファイルをロードします。これは、ローダーをインスタンス化し、ユーザーが HTML 入力要素に IFC ファイルをアップロードしたときのイベントを作成することで行うことができます。",
+    "zh": "🏠最后，我们将使用IFC.js加载IFC文件。这可以通过实例化加载器来完成，并为用户向HTML输入元素上传IFC文件时创建一个事件。"
+  },
+  "🎣 Keep in mind that if you haven't saved the wasm files in the root of served files of the project, you'll need to specify its location with <code>setWasmPath</code>. For instance, if we had them stored in a folder called <code>wasm</code> contained in a folder called <code>static</code> in the root of the project, we would do the following:": {
+    "ja": "🎣 もし、プロジェクトの served ファイルのルートに wasm ファイルを保存していない場合、<code>setWasmPath</code> でその場所を指定する必要があることを覚えておいてください。例えば、プロジェクトのルートにある<code>static</code>というフォルダの中にある<code>wasm</code>というフォルダに保存していた場合、次のようになります。",
+    "zh": "🎣请记住，如果你没有把wasm文件保存在项目的服务文件根目录下，你需要用<code>setWasmPath</code>指定它的位置。例如，如果我们将它们保存在一个叫做<code>wasm</code>的文件夹中，该文件夹包含在项目根部一个叫做<code>static</code>的文件夹中，我们将做如下操作。"
+  },
+  "If you have done everything correctly, you should be able to see something similar to <a href=\"https://ifcjs.github.io/hello-world/examples/web-ifc-three/helloworld/\">this</a> in your local server. From here, the possibilities are endless.": {
+    "ja": "すべてが正しく行われた場合、ローカルサーバーで<a href=\"https://ifcjs.github.io/hello-world/examples/web-ifc-three/helloworld/\">この</a>ようなものが表示されるはずです。ここから先は、無限の可能性があります。",
+    "zh": "如果你所做的一切都正确，你应该能够在你的本地服务器中看到与<a href=\"https://ifcjs.github.io/hello-world/examples/web-ifc-three/helloworld/\">此</a>类似的东西。从这里开始，可能性是无穷的。"
+  },
+  "### Loading our models": {
+    "ja": "### モデルの読み込み",
+    "zh": "###加载我们的模型"
+  },
+  "🤔 In the previous point we saw how to load BIM models directly, and that's great. What if we want to show our BIM models instead of allowing the user to upload theirs? This is very simple. Generally there are two possibilities:": {
+    "ja": "🤔 前のポイントでは、BIMモデルを直接ロードする方法を見ました。もし、ユーザーがBIMモデルをアップロードする代わりに、私たちのBIMモデルを表示したい場合はどうすればいいでしょうか？これは非常に簡単です。一般的に2つの可能性があります。",
+    "zh": "🤔在上一点中我们看到了如何直接加载BIM模型，这很好。如果我们想显示我们的BIM模型而不是让用户上传他们的模型呢？这很简单。一般来说，有两种可能性。"
+  },
+  "Having the IFC in the same application where you want to display it.": {
+    "ja": "IFCを表示するのと同じアプリケーションにIFCを持つこと。",
+    "zh": "把IFC放在你想显示它的同一个应用程序中。"
+  },
+  "Having to get it from an external storage service.": {
+    "ja": "外部ストレージサービスから取得すること。",
+    "zh": "不得不从外部存储服务中获取。"
+  },
+  "🎩 In the first case, it is sufficient to reference the URL of the IFC file. That is, its relative path in the application. For example, if the IFC is in a folder called \"models\" in the root of the project, we could load that IFC when starting the application as follows:": {
+    "ja": "🎩 最初のケースでは、IFCファイルのURLを参照することで十分です。つまり、アプリケーション内の相対パスです。例えば、IFCがプロジェクトのルートにある「models」というフォルダーにある場合、アプリケーションの起動時にそのIFCを次のようにロードすることができます。",
+    "zh": "🎩在第一种情况下，只要引用IFC文件的URL即可。就是说，它在应用程序中的相对路径。例如，如果IFC在项目根部的 \"models \"文件夹中，我们可以在启动应用程序时加载该IFC，方法如下。"
+  },
+  "Getting a file from a remote storage service varies depending on the service used. However, the logic is the same: get the information, create a URL and pass it as an argument to the IFCLoader.": {
+    "ja": "リモートストレージサービスからのファイルの取得は、利用するサービスによって異なります。しかし、情報を取得してURLを作成し、それをIFCLoaderの引数として渡すというロジックは同じである。",
+    "zh": "从远程存储服务中获取文件的方法因使用的服务而异。然而，逻辑是相同的：获取信息，创建一个URL并将其作为参数传递给IFCLoader。"
+  },
+  "🎉 Congratulations! You have just created your first IFC viewer. Go to the next pages of the docs to find out what else can you do with IFC.js.": {
+    "ja": "🎉 おめでとうございます。あなたは今、最初のIFCビューアを作成しました。IFC.jsで他に何ができるかは、ドキュメントの次のページで確認してください。",
+    "zh": "祝贺你！你刚刚创建了你的第一个IFC浏览器。你刚刚创建了你的第一个IFC浏览器。在接下来的几页文档中，你可以了解到IFC.js还能做什么。"
+  },
+  "What else can I do with IFC.js?": {
+    "ja": "IFC.jsで他に何ができるのですか？",
+    "zh": "我还能用IFC.js做什么？"
+  },
+  "This is just the beginning. You can take a look at <a href=\"https://github.com/IFCjs/web-ifc-viewer\">web-ifc-viewer</a>, which includes tools for object selection, changing geometry appearance, section planes and much more. You can try it <a href=\"https://ifcjs.github.io/web-ifc-viewer/example/index\">here</a>.": {
+    "ja": "これはほんの始まりに過ぎません。オブジェクトの選択、ジオメトリの外観の変更、セクション・プレーンなどのツールを含む<a href=\"https://github.com/IFCjs/web-ifc-viewer\">web-ifc-viewer</a> を見てみましょう。<a href=\"https://ifcjs.github.io/web-ifc-viewer/example/index\">ここで</a>試すことができます。",
+    "zh": "这仅仅是个开始。你可以看看<a href=\"https://github.com/IFCjs/web-ifc-viewer\">web-ifc-viewer</a>，它包括选择对象、改变几何体外观、剖面图和更多的工具。你可以<a href=\"https://ifcjs.github.io/web-ifc-viewer/example/index\">在这里</a>试试。"
+  },
+  "Introduction": { "ja": "はじめに", "zh": "简介" },
+  "🎮 IFC.js is a JavaScript library to load, display and edit IFC models in the browser. Try the <a href=\"https://ifcjs.github.io/web-ifc-viewer/example/index\">live demo</a> with your IFC model and discover the power of IFC.js.": {
+    "ja": "🎮 IFC.jsは、ブラウザ上でIFCモデルを読み込み、表示、編集するためのJavaScriptライブラリです。あなたのIFCモデルで<a href=\"https://ifcjs.github.io/web-ifc-viewer/example/index\">ライブデモを</a>試し、IFC.jsのパワーを発見してください。",
+    "zh": "🎮 IFC.js是一个JavaScript库，用于在浏览器中加载、显示和编辑IFC模型。用你的IFC模型试试<a href=\"https://ifcjs.github.io/web-ifc-viewer/example/index\">现场演示</a>，发现IFC.js的力量。"
+  },
+  "## What is this library?": {
+    "ja": "## このライブラリは何ですか？",
+    "zh": "## 这个库是什么？"
+  },
+  "### What is IFC?": { "ja": "### IFCとは？", "zh": "### 什么是IFC？" },
+  "🏠 Architects and engineers used to draw building plans one by one. Not anymore! With BIM (Building Information Modelling), architects and engineers now create models of their projects. These models contains both the geometry and the information needed to get the project realized and should be the hub of all information throughout the project from cradle to grave.": {
+    "ja": "建築家やエンジニアは、かつて建物の設計図をひとつひとつ描いていました。しかし、今は違います。BIM（ビルディング・インフォメーション・モデリング）により、建築家とエンジニアはプロジェクトのモデルを作成するようになりました。これらのモデルには、プロジェクトを実現するために必要なジオメトリと情報の両方が含まれており、ゆりかごから墓場まで、プロジェクト全体を通してすべての情報のハブとなる必要があります。",
+    "zh": "🏠 建筑师和工程师过去都是一个一个地画建筑图。现在不一样了!有了BIM（建筑信息模型），建筑师和工程师现在为他们的项目创建模型。这些模型包含了项目实现所需的几何图形和信息，应该是整个项目从摇篮到坟墓的所有信息的枢纽。"
+  },
+  "🔥 However, a building is so complex that there is no single application that can create these models in their entirety. Each application has a specific mission: modelling geometry, calculating structures, making energy simulations, creating project documents, and so on.": {
+    "ja": "しかし、建築物は非常に複雑であるため、これらのモデル全体を作成できる単一のアプリケーションは存在しません。各アプリケーションは、形状のモデリング、構造計算、エネルギーシミュレーション、プロジェクトドキュメントの作成など、特定のミッションを持っています。",
+    "zh": "🔥然而，一个建筑是如此复杂，以至于没有一个单一的应用程序可以完整地创建这些模型。每个应用程序都有特定的任务：建立几何模型，计算结构，进行能源模拟，创建项目文件，等等。"
+  },
+  "👀 These tools come from multiple developers around the world and each one works in its format. In other words, the structural model created by a structural calculation application cannot be read by energy simulation software and vice versa. So how is it possible to create a model of a building from multiple tools?": {
+    "ja": "これらのツールは、世界中の複数の開発元から提供されており、それぞれが独自のフォーマットで動作します👀。つまり、構造計算アプリケーションで作成した構造モデルは、エネルギーシミュレーションソフトでは読み込めませんし、その逆も然りです。では、どのようにして複数のツールから建物のモデルを作ることができるのでしょうか？",
+    "zh": "👀 这些工具来自世界各地的多个开发商，每一个都按其格式工作。换句话说，由结构计算应用程序创建的结构模型不能被能源模拟软件读取，反之亦然。那么，怎么可能从多个工具中创建一个建筑模型呢？"
+  },
+  "🎉 The answer is <a href=\"https://www.buildingsmart.org/standards/bsi-standards/industry-foundation-classes/\"><strong>IFC</strong></a>, a format created by BuildingSMART to contain these 3D models of buildings. It is open, so anyone can read and write it. Yay!": {
+    "ja": "<a href=\"https://www.buildingsmart.org/standards/bsi-standards/industry-foundation-classes/\"><strong>IFCとは</strong></a>、BuildingSMART社が作成した、建物の3Dモデルを格納するためのフォーマットです。オープンなフォーマットなので、誰でも読み書きできます。やったーーー",
+    "zh": "答案是<a href=\"https://www.buildingsmart.org/standards/bsi-standards/industry-foundation-classes/\"><strong>IFC</strong></a>，这是BuildingSMART创建的一种格式，用于包含这些建筑的三维模型。它是开放的，所以任何人都可以读和写它。耶!"
+  },
+  "Thanks to IFC any developer can freely create BIM apps that can communicate with the apps of the big development companies in the construction sector.": {
+    "ja": "IFCのおかげで、どんな開発者でも自由にBIMアプリを作ることができ、建設分野の大手開発会社のアプリと通信することができます。",
+    "zh": "由于IFC的存在，任何开发者都可以自由地创建BIM应用程序，可以与建筑领域的大型开发公司的应用程序进行交流。"
+  },
+  "### The problem of IFC": {
+    "ja": "### IFCの問題点",
+    "zh": "###国际金融公司的问题"
+  },
+  "Anyone who wants to make a BIM application <strong>needs to read and write IFC files</strong> to be able to import and export information from other tools. Unfortunately, IFC is a format that is difficult to read and write. There are thousands of pages of documentation and creating and maintaining a self-made IFC parser is a huge task.": {
+    "ja": "BIMアプリケーションを作ろうとする人は、他のツールから情報をインポートしたりエクスポートしたりできるように、<strong>IFCファイルを読み書き</strong>する必要があります。残念ながら、IFCは読み書きが難しいフォーマットです。何千ページものドキュメントがあり、自作のIFCパーサーを作成・維持するのは大変な作業です。",
+    "zh": "任何想做BIM应用的人都<strong>需要读和写IFC文件</strong>，以便能够从其他工具中导入和导出信息。不幸的是，IFC是一种很难读和写的格式。有成千上万页的文档，创建和维护一个自制的IFC解析器是一项巨大的任务。"
+  },
+  "Can you afford IFC?": {
+    "ja": "IFCは買えるのか？",
+    "zh": "你能负担得起IFC吗？"
+  },
+  "💸 This is something only companies with several developers working full time on this could afford. It doesn't sound that open anymore, does it?": {
+    "ja": "これは、何人もの開発者がフルタイムで働いている会社だけができることです。もうそんなにオープンな感じはしませんよね？",
+    "zh": "💸这是只有拥有数名全职开发人员的公司才能负担得起的事情。这听起来不再那么开放了，不是吗？"
+  },
+  "In case you are curious about how an IFC looks like inside, here you have an example. Imagine parsing hundreds of thousands of lines like these:": {
+    "ja": "IFCが内部でどのように見えるか興味がある方のために、ここに例を示します。このように何十万行もパースすることを想像してみてください。",
+    "zh": "如果你对IFC内部的样子感到好奇，这里有一个例子。想象一下，要解析成百上千行这样的内容。"
+  },
+  "💀 Even if you are willing to create a parser from scratch and maintain it with every change in the IFC schema, there are several non-trivial questions to tackle this problem. How to manage memory in very large files? How to implement geometric generation efficiently? What to do when an IFC has not been defined correctly?": {
+    "ja": "💀 ゼロからパーサーを作り、IFCスキーマの変更のたびにメンテナンスすることをいとわないとしても、この問題に取り組むには、自明でないいくつかの問題があります。非常に大きなファイルのメモリをどのように管理するか？幾何学的な生成を効率的に実装するにはどうすればよいか？IFCが正しく定義されていない場合、どうすればよいか？",
+    "zh": "💀 即使你愿意从头开始创建一个解析器，并随着IFC模式的每一次改变而维护它，也有几个非简单的问题需要解决。如何在非常大的文件中管理内存？如何有效地实现几何图形的生成？当一个IFC没有被正确定义时，该怎么办？"
+  },
+  "### IFC.js to the rescue": {
+    "ja": "### IFC.jsの救済",
+    "zh": "### IFC.js的救援"
+  },
+  "It wouldn't make sense for all developers to have to implement their own IFC file reader and writer for their applications. Especially when we all want the same thing: <strong>importing and exporting geometry and data</strong>.": {
+    "ja": "すべての開発者が、アプリケーション用に独自のIFCファイルリーダとライタを実装しなければならないのは理にかなっていないでしょう。特に、<strong>ジオメトリとデータのインポートとエクスポート</strong>という、同じものを求めている場合はなおさらです。",
+    "zh": "如果所有的开发者都必须为他们的应用程序实现自己的IFC文件读写器，那就没有意义了。特别是当我们都想要同样的东西：<strong>导入和导出几何图形和数据</strong>时。"
+  },
+  "IFC.js is a JavaScript library that makes it super easy to <b>read and write IFC files</b>.": {
+    "ja": "IFC.jsは、<b>IFCファイルの読み書きを</b>超簡単に行うためのJavaScriptライブラリです。",
+    "zh": "IFC.js是一个JavaScript库，使<b>读写IFC文件</b>变得超级简单。"
+  },
+  "This allows developers of architecture and construction applications to work in IFC effortlessly and focus on the functionalities that add value to their business.": {
+    "ja": "これにより、建築・建設アプリケーションの開発者は、IFCで楽に作業し、ビジネスに付加価値を与える機能に集中することができます。",
+    "zh": "这使建筑和施工应用程序的开发者能够毫不费力地在IFC中工作，并专注于为其业务增加价值的功能。"
+  },
+  "## IFC.js in a nutshell": {
+    "ja": "## IFC.jsをひとことで言うと",
+    "zh": "## IFC.js 简而言之"
+  },
+  "IFC.js has two focuses:": {
+    "ja": "IFC.jsには、2つの焦点があります。",
+    "zh": "IFC.js有两个重点。"
+  },
+  "Geometry": { "ja": "ジオメトリー", "zh": "几何学" },
+  "IFC.js can generate 3D scenes because it is compatible with 3D libraries such as Three.js or Babylon.js. This means that you can create 3D BIM tools right away.": {
+    "ja": "IFC.jsは、Three.jsやBabylon.jsなどの3Dライブラリと互換性があるため、3Dシーンを生成することができます。つまり、3D BIMツールをすぐに作成することができます。",
+    "zh": "IFC.js可以生成3D场景，因为它与Three.js或Babylon.js等3D库兼容。这意味着你可以立即创建3D BIM工具。"
+  },
+  "Data": { "ja": "データ", "zh": "数据" },
+  "High-level access to all the properties associated with that geometry. This means easy access to data on the building components, their materials, thermal characteristics, structural strength, etc.": {
+    "ja": "そのジオメトリに関連するすべてのプロパティへのハイレベルなアクセス。つまり、建築部材やその材料、熱特性、構造強度などに関するデータに簡単にアクセスできる。",
+    "zh": "对与该几何体相关的所有属性的高层次访问。这意味着可以很容易地获取建筑部件、其材料、热特性、结构强度等方面的数据。"
+  },
+  "Creating BIM applications with IFC.js is as easy as creating a webpage with JavaScript, HTML and CSS.": {
+    "ja": "IFC.jsを使ったBIMアプリケーションの作成は、JavaScript、HTML、CSSでWebページを作成するのと同じように簡単に行えます。",
+    "zh": "用IFC.js创建BIM应用程序就像用JavaScript、HTML和CSS创建网页一样简单。"
+  },
+  "## Who is this library for": {
+    "ja": "## このライブラリは誰のためにあるのか",
+    "zh": "## 这个图书馆是为谁准备的"
+  },
+  "This library is for anyone who wants to develop BIM applications. This includes both developers creating applications for the construction industry and architects and other professionals who want to take advantage of the data in their IFC files.": {
+    "ja": "このライブラリは、BIMアプリケーションの開発を希望するすべての人のためのものです。これには、建設業界向けのアプリケーションを作成する開発者と、IFCファイル内のデータを活用したい建築家やその他の専門家の両方が含まれます。",
+    "zh": "这个库是为任何想开发BIM应用的人准备的。这既包括为建筑行业创建应用程序的开发者，也包括建筑师和其他想要利用IFC文件中的数据的专业人士。"
+  },
+  "To use this library it is necessary to have a basic knowledge of JavaScript, HTML and CSS. This knowledge is beyond the scope of this documentation. You'll also need to use some 3D libraries to display the geometry of the IFC (Three.js or Babylon.js).": {
+    "ja": "このライブラリを使用するためには、JavaScript、HTML、CSSの基本的な知識が必要です。この知識は、このドキュメントの範囲を超えています。また、IFCのジオメトリを表示するために、いくつかの3Dライブラリ（Three.jsやBabylon.js）を使用する必要があります。",
+    "zh": "要使用这个库，有必要具备JavaScript、HTML和CSS的基本知识。这些知识已经超出了本文档的范围。你还需要使用一些3D库来显示IFC的几何图形（Three.js或Babylon.js）。"
+  },
+  "😊 If you don't know where to start, we suggest you take a look <a href=\"https://threejs.org/manual/\">here</a> or just join the <a href=\"https://discord.gg/FXfyR4XrKT\">Discord Channel</a> and say hi.": {
+    "ja": "何から始めたらいいかわからないという方は、<a href=\"https://threejs.org/manual/\">こちらを</a>ご覧いただくか、<a href=\"https://discord.gg/FXfyR4XrKT\">Discordチャンネルに</a>参加してご挨拶することをお勧めします😊。",
+    "zh": "如果你不知道从哪里开始，我们建议你看一下<a href=\"https://threejs.org/manual/\">这里</a>，或者直接加入<a href=\"https://discord.gg/FXfyR4XrKT\">Discord频道</a>并问好。"
+  },
+  "## Why is IFC.js different?": {
+    "ja": "## なぜIFC.jsは違うのか？",
+    "zh": "## 为什么IFC.js与众不同？"
+  },
+  "IFC.js is a library written by and for JavaScript, arguably one of the most ubiquitous languages. This means that it is compatible with web browsers, desktop and mobile applications. JavaScript is also one of the easiest languages to learn and allows you to build user interfaces with HTML and CSS. In other words, creating BIM applications with IFC.js is as easy as creating a web page.": {
+    "ja": "IFC.jsは、最もユビキタスな言語の一つであるJavaScriptによって、またそのために書かれたライブラリです。つまり、ウェブブラウザ、デスクトップ、モバイルアプリケーションと互換性があります。また、JavaScriptは最も習得しやすい言語の一つであり、HTMLやCSSでユーザーインターフェースを構築することが可能です。つまり、IFC.jsを使ったBIMアプリケーションの作成は、Webページを作成するのと同じくらい簡単なのです。",
+    "zh": "IFC.js是一个由JavaScript编写的库，可以说是最普遍的语言之一。这意味着它与网络浏览器、桌面和移动应用程序兼容。JavaScript也是最容易学习的语言之一，它允许你用HTML和CSS构建用户界面。换句话说，用IFC.js创建BIM应用程序就像创建一个网页一样容易。"
+  },
+  "### Multiplatform": {
+    "ja": "### マルチプラットフォーム",
+    "zh": "### 多平台"
+  },
+  "You can use IFC.js to create open BIM applications for any platform:": {
+    "ja": "IFC.jsを使用することで、あらゆるプラットフォーム向けのオープンなBIMアプリケーションを作成することができます。",
+    "zh": "你可以使用IFC.js来为任何平台创建开放的BIM应用程序。"
+  },
+  "<p>\n          <b>Frontend web applications</b> that read and write IFC files and display 3D without relying on server communication can be created using <b>vanilla JavaScript</b> or other tools such as <b>React, Vue, Angular, Svelte, etc</b>. That is, <i>with IFC.js we can turn any web browser into an open BIM app.</i>\n        </p>": {
+    "ja": "<p>\n          サーバー通信に頼らずにIFCファイルを読み書きして3D表示する<b>フロントエンドのWebアプリケーションは</b>、<b>バニラJavaScriptや</b> <b>React、Vue、Angular、Svelteなどの</b>ツールを使って作ることができます。つまり、<i>IFC.jsを使えば、どんなWebブラウザでもオープンなBIMアプリに</i>変身させることができるのです。        </p>",
+    "zh": "<p>\n          可以使用<b>vanilla JavaScript</b>或其他工具（如<b>React、Vue、Angular、Svelte等</b>）来创建读写IFC文件和显示3D的<b>前端网络应用</b>，而无需依赖服务器通信。也就是说，<i>通过IFC.js，我们可以把任何网络浏览器变成一个开放的BIM应用</i>。        </p>"
+  },
+  "<p>\n          There are cases where the IFC file cannot be processed by the client. For example, a mobile device may not have the power to display several medium or large IFCs. In this case, it is possible to <b>use IFC.js on the server</b> via <a href=\"https://nodejs.org/en/\">Node.js</a> and send the Three.js scene already prepared to the client.\n        </p>": {
+    "ja": "<p>\n          IFCファイルは、クライアントで処理できない場合があります。例えば、モバイル端末では、中型や大型のIFCを複数表示するパワーがない場合があります。このような場合、<a href=\"https://nodejs.org/en/\">Node.jsを介して</a> <b>サーバー上でIFC.jsを使用</b>し、すでに用意されているThree.jsのシーンをクライアントに送信することが可能です。        </p>",
+    "zh": "<p>\n          有些情况下，IFC文件不能被客户端处理。例如，移动设备可能没有能力显示几个中型或大型IFC。在这种情况下，可以通过<a href=\"https://nodejs.org/en/\">Node.js</a> <b>在服务器上使用IFC.js</b>，并将已经准备好的Three.js场景发送到客户端。        </p>"
+  },
+  "<p>\n          Sometimes we don't want to create web applications, but <b>native desktop applications that run on Windows, iOS and Linux</b>. This is possible thanks to technologies like <a href=\"https://www.electronjs.org/\">Electron</a>. These native applications will be programmed in the same way as web applications; HTML, CSS, JavaScript, React, Vue, etc.\n        </p>": {
+    "ja": "<p>\n          Webアプリケーションではなく、<b>Windows、iOS、Linux上で動作するネイティブデスクトップアプリケーションを</b>作りたいと思うことがあります。これは<a href=\"https://www.electronjs.org/\">Electronの</a>ような技術のおかげで可能です。これらのネイティブアプリケーションは、Webアプリケーションと同じように、HTML、CSS、JavaScript、React、Vueなどでプログラムされます。        </p>",
+    "zh": "<p>\n          有时我们不想创建网络应用，而是想创建<b>能在Windows、iOS和Linux上运行的本地桌面应用</b>。这要感谢像<a href=\"https://www.electronjs.org/\">Electron</a>这样的技术。这些本地应用程序的编程方式将与Web应用程序相同；HTML、CSS、JavaScript、React、Vue，等等。        </p>"
+  },
+  "<p>\n          IFC.js also supports <a href=\"https://reactnative.dev/\">React Native</a>, which maps WebGL code to native OpenGL. This means that you can create IFC-compatible <b>Open BIM apps that run on Android and iOS</b> easily.\n        </p>": {
+    "ja": "<p>\n          IFC.jsは、WebGLのコードをネイティブのOpenGLにマッピングする<a href=\"https://reactnative.dev/\">React Nativeにも</a>対応しています。つまり、<b>AndroidやiOSで</b>動作するIFC互換の<b>Open BIMアプリを</b>簡単に作成することができます。        </p>",
+    "zh": "<p>\n          IFC.js也支持<a href=\"https://reactnative.dev/\">React Native</a>，它将WebGL代码映射到本地OpenGL。这意味着你可以创建兼容IFC的<b>Open BIM应用程序，并</b>轻松地<b>在Android和iOS上运行</b>。        </p>"
+  },
+  "### Speed": { "ja": "### 速度", "zh": "###速度" },
+  "⚡️ If you have experience with web applications, you might be thinking that the weak point of a JavaScript-based IFC library is performance. However, the core of the library is developed in C++ combined with WebAssembly and <a href=\"https://emscripten.org/\">Emscripten</a>. It is designed specifically for <strong>maximum performance</strong>, allowing IFC.js to approach the speed and performance of desktop applications while running directly in the browser.": {
+    "ja": "⚡️ Webアプリケーションの経験がある方なら、JavaScriptベースのIFCライブラリの弱点はパフォーマンスだと思うかもしれません。しかし、このライブラリのコアは、WebAssemblyと<a href=\"https://emscripten.org/\">Emscriptenを</a>組み合わせたC++で開発されています。IFC.jsは、ブラウザ上で直接実行しながら、デスクトップアプリケーションの速度や性能に近づけることができます。",
+    "zh": "⚡️ 如果你有网络应用的经验，你可能会想，基于JavaScript的IFC库的弱点是性能。然而，该库的核心是用C++结合WebAssembly和<a href=\"https://emscripten.org/\">Emscripten</a>开发的。它是专门为<strong>最大性能</strong>而设计的，允许IFC.js在直接在浏览器中运行时接近桌面应用程序的速度和性能。"
+  },
+  "### Features": { "ja": "### 特徴", "zh": "###特点" },
+  "👓 IFC.js can <b>read</b> IFC files seamlessly.": {
+    "ja": "👓 IFC.js は IFC ファイルをシームレスに<b>読み込む</b>ことができます。",
+    "zh": "👓 IFC.js可以无缝<b>读取</b>IFC文件。"
+  },
+  "🏐 Generate <b>3D geometry</b> that runs on 60 fps in a browser.": {
+    "ja": "🏠 ブラウザで60fpsで動作する<b>3Dジオメトリを</b>生成する。",
+    "zh": "🏐生成在浏览器中以60帧运行的<b>3D几何图形</b>。"
+  },
+  "🎨 Easily edit geometry <b>appearance</b> with the power of Three.js.": {
+    "ja": "🎨 Three.jsのパワーでジオメトリの<b>外観を</b>簡単に編集できます。",
+    "zh": "🎨 利用Three.js的力量轻松地编辑几何体<b>的外观</b>。"
+  },
+  "🏠🏠🏠 Load <b>multiple</b> federated IFC models.": {
+    "ja": "🏠<b>複数の</b>連携したIFCモデルを読み込む。",
+    "zh": "🏠🏠🏠加载<b>多个</b>联合的IFC模型。"
+  },
+  "📃 Retrieve <b>IFC properties</b> for reports and databases.": {
+    "ja": "📃 レポートとデータベースの<b>IFC プロパティを</b>取得する。",
+    "zh": "📃 检索报告和数据库的<b>IFC属性</b>。"
+  },
+  "✍ IFC.js also can <b>edit and write</b> IFC files from scratch.": {
+    "ja": "✍ IFC.jsは、IFCファイルをゼロから<b>編集して書き出す</b>こともできます。",
+    "zh": "✍ IFC.js也可以从头<b>编辑和编写</b>IFC文件。"
+  },
+  "## Source code": { "ja": "## ソースコード", "zh": "## 源代码" },
+  "IFC.js is a large, multi-language library (C++, TypeScript JavaScript, etc). Having it in a single repository would be difficult and unwieldy. For that reason, the library exists in multiple repositories, where each one has its purpose. You can find them <a href=\"https://github.com/IFCjs\">here</a>.": {
+    "ja": "IFC.jsは大規模で多言語のライブラリです（C++、TypeScript JavaScriptなど）。これを単一のリポジトリで持つことは困難であり、扱いにくい。そのため、このライブラリは複数のリポジトリに存在し、それぞれが目的を持っています。<a href=\"https://github.com/IFCjs\">ここに</a>あります。",
+    "zh": "IFC.js是一个大型的、多语言的库（C++、TypeScript JavaScript等）。把它放在一个单一的资源库中会很困难，而且不方便。出于这个原因，该库存在于多个仓库中，每个仓库都有其用途。你可以<a href=\"https://github.com/IFCjs\">在这里</a>找到它们。"
+  },
+  "<p>\n          The core of the library: an IFC <b>parser and geometry generator</b> written from scratch in C++ and compiled via Emscripten to WebAssembly. This repository encapsulates the complexity of reading IFC files and loading their data into memory.\n        </p>": {
+    "ja": "<p>\n          ライブラリのコア：C++でゼロから書かれ、Emscriptenを介してWebAssemblyにコンパイルされたIFC<b>パーサーとジオメトリジェネレータ</b>です。このリポジトリは、IFC ファイルの読み取りとメモリへのデータロードの複雑さをカプセル化します。        </p>",
+    "zh": "<p>\n          该库的核心是：用C++从头开始编写的IFC<b>解析器和几何图形生成器</b>，并通过Emscripten编译为WebAssembly。这个库封装了读取IFC文件并将其数据加载到内存中的复杂性。        </p>"
+  },
+  "<p>\n          This library adapts web-ifc to Three.js, generating an <b>optimized 3D scene where users can directly interact with the IFC</b>. This library is <a href=\"https://threejs.org/examples/webgl_loader_ifc.html\">the official Three.js IFC Loader</a>. Thanks to this adapter open BIM applications can be created with Three.js in just two lines of code.\n        </p>": {
+    "ja": "<p>\n          このライブラリは、web-ifc を Three.js に適応させ、<b>ユーザーが IFC と直接対話できる最適化された 3D シーンを</b>生成します。このライブラリは、Three<a href=\"https://threejs.org/examples/webgl_loader_ifc.html\">.jsの公式IFCローダー</a>です。このアダプタのおかげで、Three.jsでオープンBIMアプリケーションをたった2行のコードで作成することができます。        </p>",
+    "zh": "<p>\n          这个库将web-ifc改编成Three.js，生成一个<b>优化的3D场景，用户可以直接与IFC互动</b>。该库是<a href=\"https://threejs.org/examples/webgl_loader_ifc.html\">Three.js的官方IFC加载器</a>。有了这个适配器，只需两行代码就能用Three.js创建开放的BIM应用。        </p>"
+  },
+  "<p>\n          This is a browser-based <a href=\"https://ifcjs.github.io/web-ifc-viewer/example/index\">IFC viewer </a>\n          with <b>many examples of what can be done with IFC.js</b>. Scene navigation, material changes, element selection by clicking on them, section plans, etc. There is an example of all these functionalities in this repository, so it can be reused in open BIM applications out of the box.\n        </p>": {
+    "ja": "<p>\n         <b>IFC.jsでできる多くの事例</b>を紹介した、ブラウザベースの<a href=\"https://ifcjs.github.io/web-ifc-viewer/example/index\">IFCビューア </a>です。シーンナビゲーション、材料変更、クリックによる要素選択、断面図など。このリポジトリにはこれらすべての機能の例があるので、オープンなBIMアプリケーションですぐに再利用できます。        </p>",
+    "zh": "<p>\n          这是一个基于浏览器的<a href=\"https://ifcjs.github.io/web-ifc-viewer/example/index\">IFC查看器 </a>，有<b>许多可以用IFC.js完成的例子</b>。场景导航、材料变化、通过点击选择元素、剖面图等。在这个资源库中，有所有这些功能的例子，所以它可以在开放的BIM应用中开箱即用。        </p>"
+  },
+  "## Contribute": { "ja": "## Contribute", "zh": "## 贡献" },
+  "Do you want to help us keep improving the world of Open BIM development with IFC.js? The library is big, so you will have to choose where you want to participate.": {
+    "ja": "IFC.jsでOpen BIM開発の世界をどんどん良くしていきませんか？ライブラリは大きいので、どこに参加するか選ぶ必要があります。",
+    "zh": "你想帮助我们不断完善IFC.js的开放BIM开发世界吗？这个库很大，所以你必须选择你想参与的地方。"
+  },
+  "I can't code, but I want to get in": {
+    "ja": "コーディングはできないけど、入りたい",
+    "zh": "我不会编码，但我想进入"
+  },
+  "That's great! There are tons of things you can do aside from coding. Get into the <a href=\"https://discord.gg/FXfyR4XrKT\">Discord channel</a> to find out how.": {
+    "ja": "それはすごいですね。コーディング以外にもできることは山ほどあります。<a href=\"https://discord.gg/FXfyR4XrKT\">Discordのチャンネルに入って</a>、その方法を見つけてください。",
+    "zh": "这很好!除了编码之外，你还有很多事情可以做。进入<a href=\"https://discord.gg/FXfyR4XrKT\">Discord频道</a>，了解如何做。"
+  },
+  "Parsing, geometry and C++": {
+    "ja": "パース、ジオメトリ、C++の3つ。",
+    "zh": "解析、几何学和C++"
+  },
+  "If you are passionate about C++, WebAssembly, parsing or the nitty-gritty of IFC, you can help us with the fastest open source BIM parser in the industry: <a href=\"https://github.com/tomvandig/web-ifc\">web-ifc</a>.": {
+    "ja": "C++、WebAssembly、パース、またはIFCの細部にまでこだわるなら、業界最速のオープンソースBIMパーサーである<a href=\"https://github.com/tomvandig/web-ifc\">web-ifcで</a>私たちを助けてください。",
+    "zh": "如果你对C++、WebAssembly、解析或IFC的细枝末节有热情，你可以用业内最快的开源BIM解析器帮助我们：<a href=\"https://github.com/tomvandig/web-ifc\">web-ifc</a>。"
+  },
+  "Three.js, geometry and Typescript": {
+    "ja": "Three.js、ジオメトリ、タイプスクリプト",
+    "zh": "Three.js, geometry and Typescript"
+  },
+  "If you are a Three.js developer, you can help us with <a href=\"https://github.com/IFCjs/web-ifc-three\">web-ifc-three</a>, which is <a href=\"https://threejs.org/examples/webgl_loader_ifc.html\">the official Three.js IFC Loader</a>.": {
+    "ja": "Three.jsの開発者の方は、<a href=\"https://threejs.org/examples/webgl_loader_ifc.html\">Three.jsの公式IFCローダー</a>である<a href=\"https://github.com/IFCjs/web-ifc-three\">web-ifc-threeに</a>ご協力ください。",
+    "zh": "如果你是Three.js的开发者，你可以用<a href=\"https://github.com/IFCjs/web-ifc-three\">web-ifc-three</a>帮助我们，它是<a href=\"https://threejs.org/examples/webgl_loader_ifc.html\">Three.js官方的IFC加载</a>器。"
+  },
+  "BIM tools, brainstorming and UX": {
+    "ja": "BIMツール、ブレーンストーミング、UX",
+    "zh": "BIM工具、头脑风暴和用户体验"
+  },
+  "If you are interested in creating cool open BIM applications and you have great ideas for BIM tools or user interfaces, help us make <a href=\"https://github.com/IFCjs/web-ifc-viewer\">web-ifc-viewer</a> the best IFC viewer on the market.": {
+    "ja": "もしあなたがクールなオープンBIMアプリケーションを作ることに興味があり、BIMツールやユーザーインターフェースについて素晴らしいアイデアを持っているならば、<a href=\"https://github.com/IFCjs/web-ifc-viewer\">web-ifc-viewerを</a>市場で最高のIFCビューワーにするために私たちに協力してください。",
+    "zh": "如果你对创建很酷的开放式BIM应用感兴趣，并且你对BIM工具或用户界面有很好的想法，请帮助我们使<a href=\"https://github.com/IFCjs/web-ifc-viewer\">web-ifc-viewer</a>成为市场上最好的IFC浏览器。"
+  },
+  "In any case, we encourage you to stop by the <a href=\"https://discord.gg/FXfyR4XrKT\">Discord channel</a>, say hello and tell us what's on your mind, so we can give you some guidance.": {
+    "ja": "いずれにせよ、<a href=\"https://discord.gg/FXfyR4XrKT\">Discordチャンネルに立ち寄って</a>、ご挨拶をし、気になることを教えていただければ、私たちからご案内させていただくことをお勧めします。",
+    "zh": "在任何情况下，我们都鼓励你在<a href=\"https://discord.gg/FXfyR4XrKT\">讨论区频道</a>停下来，打个招呼，告诉我们你的想法，这样我们可以给你一些指导。"
+  },
+  "Patreon": { "ja": "パトロン", "zh": "赞助人" },
+  "## Join our community": {
+    "ja": "## Join our community",
+    "zh": "## 加入我们的社区"
+  },
+  "🌱 Do you want to <strong>join us in our journey</strong> and be an active part of our BIM & Development learning community? Then this is what you were looking for.": {
+    "ja": "🌱<strong>私たちの旅に参加</strong>し、BIM &amp; Developmentラーニングコミュニティーの一員として活躍しませんか？それなら、これはあなたが探していたものです。",
+    "zh": "🌱 你想<strong>加入我们的旅程</strong>，成为我们BIM与发展学习社区的积极成员吗？那么这就是你在寻找的。"
+  },
+  "If you want to join our development team instead, go to the <a href=\"https://ifcjs.github.io/info/docs/Contribute\">contribution page</a>.": {
+    "ja": "代わりに開発チームに参加したい場合は、<a href=\"https://ifcjs.github.io/info/docs/Contribute\">コントリビューションページに</a>アクセスしてください。",
+    "zh": "如果你想加入我们的开发团队，请到<a href=\"https://ifcjs.github.io/info/docs/Contribute\">贡献页面</a>。"
+  },
+  "<img src={require(\"@site/static/img/clipart/coffee-mates.png\").default} alt=\"PC image\"></img>": {
+    "ja": "<img src={require(\"@site/static/img/clipart/coffee-mates.png\").default} alt=\"PC image\"></img>",
+    "zh": "<img src={require(\"@site/static/img/clipart/coffee-mates.png\").default} alt=\"PC image\"></img>"
+  },
+  "### As an individual": { "ja": "### 個人として", "zh": "###作为一个人" },
+  "🧑 Our patreon system is super simple: you give <strong>$5/month</strong> to the project to help IFC.js keep growing. However, <strong>we don't believe that open source should depend on altruistic donations</strong>. For this reason, all patreons gain access to the following:": {
+    "ja": "🧑 私たちのパトロンシステムはとてもシンプルで、IFC.jsが成長し続けるために、<strong>月々5ドルを</strong>プロジェクトに寄付していただきます。しかし、<strong>私たちはオープンソースが利他的な寄付によって左右されるべきではないと考えて</strong>います。このため、すべてのパトロンには、次のようなアクセス権が与えられています。",
+    "zh": "🧑 我们的patreon系统超级简单：你<strong>每个月</strong>给项目捐<strong>5美元</strong>，帮助IFC.js继续成长。然而，<strong>我们不相信开放源代码应该依赖于利他主义的捐赠</strong>。出于这个原因，所有的赞助人都可以获得以下服务。"
+  },
+  "BIM programming courses for all levels": {
+    "ja": "BIMプログラミングコース（全レベル対象",
+    "zh": "适用于所有级别的BIM编程课程"
+  },
+  "We have BIM programming courses for all levels. Each course cost $100, but patreons can access them <a href=\"https://ifcjs.github.io/info/docs/Courses/Getting-started#for-patreons\">at just $25</a>.": {
+    "ja": "BIMプログラミングコースは、全レベルに対応しています。各コースは100ドルですが、パトロンになると<a href=\"https://ifcjs.github.io/info/docs/Courses/Getting-started#for-patreons\">25ドルで</a>アクセスできます。",
+    "zh": "我们有适合所有级别的BIM编程课程。每门课程的费用为100美元，但赞助人<a href=\"https://ifcjs.github.io/info/docs/Courses/Getting-started#for-patreons\">只需25美元</a>就可以获得这些课程。"
+  },
+  "Access to the patreon community": {
+    "ja": "パトロンコミュニティへのアクセス",
+    "zh": "进入PATREON社区"
+  },
+  "Patreons have access to an exclusive channel where they can ask us questions and make suggestions directly, as well as meet other active members and companies.": {
+    "ja": "パトロンは、私たちに直接質問や提案をしたり、他のアクティブなメンバーや企業と出会うことができる専用チャンネルにアクセスすることができます。",
+    "zh": "赞助人可以进入一个独家频道，他们可以直接向我们提出问题和建议，也可以认识其他活跃的会员和公司。"
+  },
+  "Exclusive live webinars and streams": {
+    "ja": "独占ライブウェビナーおよびストリーム",
+    "zh": "独家现场网络研讨会和流媒体"
+  },
+  "Every week we do exclusive streams for patreons where we do tutorials, live coding sessions, interviews and showcase patreon community projects.": {
+    "ja": "毎週、チュートリアル、ライブ・コーディング・セッション、インタビュー、パトロン・コミュニティ・プロジェクトの紹介など、パトロン限定のストリームを配信しています。",
+    "zh": "每周我们都会为赞助人做独家流媒体，在那里我们做教程、现场编码课程、采访和展示赞助人社区项目。"
+  },
+  "Our help with your projects": {
+    "ja": "お客様のプロジェクトをサポートします",
+    "zh": "我们对您的项目的帮助"
+  },
+  "Patreons can ask us for help and advice on their projects. We develop BIM software every day and will share our experience so patreons can take their bim software to the next level.": {
+    "ja": "パトロンは、私たちにプロジェクトに関するヘルプやアドバイスを求めることができます。私たちは日々BIMソフトウェアを開発しており、その経験を共有することで、パトロンがBIMソフトウェアを次のレベルへ引き上げることができます。",
+    "zh": "赞助人可以就他们的项目向我们寻求帮助和建议。我们每天都在开发BIM软件，并将分享我们的经验，以便赞助人可以将他们的BIM软件提升到一个新的水平。"
+  },
+  "Prime access to hackathons": {
+    "ja": "ハッカソンへの優先参加権",
+    "zh": "进入黑客活动的最佳途径"
+  },
+  "We will organise hackathons with great prizes (in the form of cash and merchandising) to which only patrons will have access. We will broadcast these hackathons on our networks, do interviews and much more.": {
+    "ja": "パトロンだけが参加できる、豪華賞品（現金や商品）が当たるハッカソンを開催します。このハッカソンは、私たちのネットワークで放送され、インタビューも行われます。",
+    "zh": "我们将组织黑客马拉松，并提供丰厚的奖品（以现金和商品的形式），只有赞助者才有机会获得。我们将在我们的网络上播放这些黑客活动，并进行采访和其他活动。"
+  },
+  "Visibility from our networks": {
+    "ja": "ネットワークからの視認性",
+    "zh": "来自我们网络的可见性"
+  },
+  "Patreons and the BIM products they develop can use our networks to show their products and expand their network.": {
+    "ja": "パトロンおよびパトロンが開発するBIM製品は、私たちのネットワークを利用して製品を展示し、ネットワークを拡大することができます。",
+    "zh": "赞助人和他们开发的BIM产品可以利用我们的网络来展示他们的产品，扩大他们的网络。"
+  },
+  "Merch and perks": { "ja": "商品・特典", "zh": "商品和福利" },
+  "Patreons will receive exclusive merchandising gifts exclusive IFC.js merchandising and gifts.": {
+    "ja": "パトロンには、IFC.js限定のマーチャンダイズやギフトが贈られます。",
+    "zh": "赞助人将收到独家商品礼品，独家IFC.js的商品和礼品。"
+  },
+  "### As a company": { "ja": "### 企業として", "zh": "###作为一个公司" },
+  "👨‍💼 We do have a corporate patreon which is <strong>$50/month</strong>. It offers all the benefits mentioned above, plus:": {
+    "ja": "👨<strong> 月額$50の</strong>コーポレート・パトリオンを用意しています。上記の全ての特典に加えて",
+    "zh": "我们确实有一个企业赞助，每月<strong>50美元</strong>。它提供上述的所有好处，另外。"
+  },
+  "Consulting and prime support": {
+    "ja": "コンサルティング、プライムサポート",
+    "zh": "咨询和主要支持"
+  },
+  "We will share our experience in creating professional BIM tools with your company and help you find the best solution.": {
+    "ja": "プロフェッショナルなBIMツール制作の経験を貴社と共有し、最適なソリューションのご提案をさせていただきます。",
+    "zh": "我们将与贵公司分享我们创建专业BIM工具的经验，并帮助您找到最佳解决方案。"
+  },
+  "All courses for free + private webinars": {
+    "ja": "全コース無料＋プライベートウェビナー",
+    "zh": "所有课程免费+私人网络研讨会"
+  },
+  "All official IFC.js courses free of charge for all your employees, as well as exclusive webinars / consulting sessions.": {
+    "ja": "IFC.jsの全公式コースが無料で受講できるほか、専用のWebセミナーやコンサルティングを受けることができます。",
+    "zh": "所有官方IFC.js课程对你的所有员工都是免费的，还有独家网络研讨会/咨询会。"
+  },
+  "Product promotion through our networks": {
+    "ja": "ネットワークを活用した製品プロモーション",
+    "zh": "通过我们的网络推广产品"
+  },
+  "Your brand and BIM applications will be promoted in all our networks, including hackathons and stream interviews.": {
+    "ja": "ハッカソンやストリームインタビューなど、私たちのあらゆるネットワークで、あなたのブランドとBIMアプリケーションを宣伝します。",
+    "zh": "您的品牌和BIM应用将在我们所有的网络中被推广，包括黑客活动和流媒体采访。"
+  },
+  "Decission making power": { "ja": "意思決定力", "zh": "决策权" },
+  "You will have some decision-making power over the bookshop's next steps to align them with your business.": {
+    "ja": "書店の次のステップをあなたのビジネスと一致させるために、ある程度の決定権を持つことになります。",
+    "zh": "你将对书店的下一步行动有一定的决策权，使其与你的业务保持一致。"
+  },
+  "## Where does my money go?": {
+    "ja": "# 私のお金はどこに行くのでしょう？",
+    "zh": "## 我的钱去哪里了？"
+  },
+  "💛 We manage all money through <a href=\"https://opencollective.com/ifcjs\">Open Collective</a>. That means that anyone can see who has put how much money into the project.": {
+    "ja": "💛 私たちは、すべての資金を<a href=\"https://opencollective.com/ifcjs\">Open Collectiveで</a>管理しています。つまり、誰がどれだけ資金を投入したかを誰でも見ることができるのです。",
+    "zh": "💛 我们通过<a href=\"https://opencollective.com/ifcjs\">Open Collective</a>管理所有资金。这意味着任何人都可以看到谁为这个项目投入了多少资金。"
+  },
+  "💵 Every time we want to use that money we will have to upload an invoice that will be published on the same page. That way, <strong>the money is as open as the code</strong>.": {
+    "ja": "💵 そのお金を使いたいときは、毎回、同じページで公開される請求書をアップロードする必要があります。そうすれば、お金も<strong>コードと同じようにオープンに</strong>なります。",
+    "zh": "💵每次我们想使用这笔钱时，都要上传一张发票，并在同一页上公布。这样一来，<strong>钱就像代码一样开放</strong>。"
+  },
+  "## Who's in?": { "ja": "## Who's in?", "zh": "∮∮谁在其中？" },
+  "IFC.js crash course": {
+    "ja": "IFC.jsクラッシュコース",
+    "zh": "IFC.js速成班"
+  },
+  "## What's this about?": {
+    "ja": "## 何これ？",
+    "zh": "## ＃＃这是在干什么？"
+  },
+  "👩‍💻 In the process of digitalization of our industry, <strong>programming is becoming increasingly important</strong>. Although it may seem an intimidating area, it is a lot of fun and offers a world of business possibilities.": {
+    "ja": "👩💻私たちの業界がデジタル化する過程で、<strong>プログラミングの重要性が増して</strong>きています。一見敷居の高い分野ですが、とても楽しく、ビジネスの可能性が広がる世界です。",
+    "zh": "在我们行业的数字化进程中，<strong>编程正变得越来越重要</strong>。虽然它可能看起来是一个令人生畏的领域，但它却有很多乐趣，并提供了一个商业可能性的世界。"
+  },
+  "👩‍🏫 However, the world of programming is so vast that it is difficult to decide where to start. That is why we have created this course. Here <strong>you will learn how to program from scratch and the basics to create BIM applications with IFC.js</strong>.": {
+    "ja": "👩🏫 しかし、プログラミングの世界はあまりにも広大で、どこから手をつけていいのか判断に迷うところです。そこで、この講座を作りました。ここでは、<strong>IFC.jsでBIMアプリケーションを作成するために、ゼロからプログラミングをする方法と基本を学びます</strong>。",
+    "zh": "然而，编程的世界是如此广阔，以至于很难决定从哪里开始。这就是为什么我们创建了这个课程。在这里，<strong>你将学习如何从头开始编程，以及用IFC.js创建BIM应用程序的基本知识</strong>。"
+  },
+  "BIM programming will allow you to create your own tools, automate processes, create new businesses and qualify for better jobs.": {
+    "ja": "BIMプログラミングにより、独自のツールを作成し、プロセスを自動化し、新しいビジネスを創造し、より良い仕事に就くための資格を得ることができるようになります。",
+    "zh": "BIM编程将允许你创建自己的工具，使流程自动化，创造新的业务并有资格获得更好的工作。"
+  },
+  "<img src={require(\"@site/static/img/clipart/crash-course.png\").default} alt=\"PC image\"></img>": {
+    "ja": "<img src={require(\"@site/static/img/clipart/crash-course.png\").default} alt=\"PC image\"></img>",
+    "zh": "<img src={require(\"@site/static/img/clipart/crash-course.png\").default} alt=\"PC image\"></img>"
+  },
+  "## Course content": { "ja": "## コース内容", "zh": "##课程内容" },
+  "💻 IT fundamentals: internet and programming.": {
+    "ja": "💻 ITの基礎：インターネットとプログラミング。",
+    "zh": "💻 IT基础知识：互联网和编程。"
+  },
+  "🌳 HTML from zero to hero.": {
+    "ja": "🌳 HTMLをゼロからヒーローにする。",
+    "zh": "🌳 HTML从零到英雄。"
+  },
+  "💅 CSS: what you need to know.": {
+    "ja": "💅 CSS：知っておきたいこと。",
+    "zh": "💅 CSS：你需要知道什么。"
+  },
+  "🐱 Git + npm crash course.": {
+    "ja": "Git + npmのクラッシュコース。",
+    "zh": "🐱 Git + npm速成班。"
+  },
+  "🎥 Three.js foundation.": {
+    "ja": "🎥 3.jsの基盤。",
+    "zh": "🎥 Three.js基础。"
+  },
+  "🚀 Create a basic BIM viewer with web-ifc-three.": {
+    "ja": "🚀 web-ifc-threeで基本的なBIMビューアを作成する。",
+    "zh": "🚀 用web-ifc-three创建一个基本的BIM查看器。"
+  },
+  "🔥🚀 Create an advanced BIM app with web-ifc-viewer.": {
+    "ja": "🔥 Web-ifc-viewerで高度なBIMアプリを作成する。",
+    "zh": "🔥🚀 用web-ifc-viewer创建一个先进的BIM应用程序。"
+  },
+  "🧠 Advanced IFC internals with web-ifc.": {
+    "ja": "🧠 web-ifcによる高度なIFCの内部構造。",
+    "zh": "🧠 使用web-ifc的高级IFC内部程序。"
+  },
+  "## Requirements": { "ja": "# 必要条件", "zh": "## 要求" },
+  "👌 Nothing! We will teach you to code your own BIM applications from scratch.": {
+    "ja": "👌 何もない！？BIMアプリケーションをゼロから自分でコーディングできるように教えます。",
+    "zh": "👌什么都没有!我们将教你从头开始编码你自己的BIM应用程序。"
   }
 }

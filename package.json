@@ -12,7 +12,7 @@
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
-    "translate": "yarn write-translations & deepmark translate",
+    "translate": "yarn write-translations && deepmark translate",
     "publish-docs": "cmd /C 'set \"GIT_USER=agviegas\" && yarn deploy'",
     "prepare": "husky install",
     "format": "prettier --write .",
