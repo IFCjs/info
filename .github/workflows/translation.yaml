@@ -29,5 +29,5 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add .
-          git commmit -m "ci: translate" --no-verify
+          git commmit -m "action: translate" --no-verify
           git push
