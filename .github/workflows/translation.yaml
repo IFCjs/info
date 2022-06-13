@@ -1,14 +1,16 @@
-name: translation
+name: Translation
 on:
   push:
     branches:
       - master
     paths:
-      - docs/**
       - blog/**
+      - docs/**
+      - package.json
+      - src/pages/**
 jobs:
   translate:
-    name: Translate markdowns and generated-JSON with deepmark.
+    name: Translate markdowns and generated-JSONs with deepmark.
     runs-on: ubuntu-latest
     env:
       DEEPL_AUTH_KEY: ${{ secrets.DEEPL_AUTH_KEY }}
