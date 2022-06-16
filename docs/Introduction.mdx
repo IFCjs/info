@@ -25,13 +25,13 @@ However, a building is so complex that there is no single application that can c
 These tools come from multiple developers around the world and each one works in its format. In other words, the structural model created by a structural calculation application cannot be read by energy simulation software and vice versa. So how is it possible to create a model of a building from multiple tools?
 
 🎉
-The answer is [**IFC**](https://www.buildingsmart.org/standards/bsi-standards/industry-foundation-classes/), a format created by BuildingSMART to contain these 3D models of buildings. It is open, so anyone can read and write it. Yay!
+The answer is [IFC](https://www.buildingsmart.org/standards/bsi-standards/industry-foundation-classes/), a format created by BuildingSMART to contain these 3D models of buildings. It is open, so anyone can read and write it. Yay!
 
 <IfcAlert>Thanks to IFC any developer can freely create BIM apps that can communicate with the apps of the big development companies in the construction sector.</IfcAlert>
 
 ### The problem of IFC
 
-Anyone who wants to make a BIM application **needs to read and write IFC files** to be able to import and export information from other tools. Unfortunately, IFC is a format that is difficult to read and write. There are thousands of pages of documentation and creating and maintaining a self-made IFC parser is a huge task.
+Anyone who wants to make a BIM application needs to read and write IFC files to be able to import and export information from other tools. Unfortunately, IFC is a format that is difficult to read and write. There are thousands of pages of documentation and creating and maintaining a self-made IFC parser is a huge task.
 
 <IfcCard title="Can you afford IFC?">💸 This is something only companies with several developers working full time on this could afford. It doesn't sound that open anymore, does it?</IfcCard>
 
@@ -51,7 +51,7 @@ Even if you are willing to create a parser from scratch and maintain it with eve
 
 ### IFC.js to the rescue
 
-It wouldn't make sense for all developers to have to implement their own IFC file reader and writer for their applications. Especially when we all want the same thing: **importing and exporting geometry and data**.
+It wouldn't make sense for all developers to have to implement their own IFC file reader and writer for their applications. Especially when we all want the same thing: importing and exporting geometry and data.
 
 <IfcCard>
   IFC.js is a JavaScript library that makes it super easy to <b>read and write IFC files</b>.
@@ -146,7 +146,7 @@ You can use IFC.js to create open BIM applications for any platform:
 ### Speed
 
 ⚡️
-If you have experience with web applications, you might be thinking that the weak point of a JavaScript-based IFC library is performance. However, the core of the library is developed in C++ combined with WebAssembly and [Emscripten](https://emscripten.org/). It is designed specifically for **maximum performance**, allowing IFC.js to approach the speed and performance of desktop applications while running directly in the browser.
+If you have experience with web applications, you might be thinking that the weak point of a JavaScript-based IFC library is performance. However, the core of the library is developed in C++ combined with WebAssembly and [Emscripten](https://emscripten.org/). It is designed specifically for maximum performance, allowing IFC.js to approach the speed and performance of desktop applications while running directly in the browser.
 
 ### Features
 

@@ -38,7 +38,7 @@ We'll use the Raycaster, so you'll also need <a href="https://ifcjs.github.io/in
 ### Highlight material
 
 🌀
-The first thing is to create the **highlight material**.Play with the configuration and make the material look nice! Pro tip: you can use `depthTest=false` so that the object is visible from any viewpoint.
+The first thing is to create the highlight material.Play with the configuration and make the material look nice! Pro tip: you can use `depthTest=false` so that the object is visible from any viewpoint.
 
 ```js
 // Creates subset material
@@ -51,7 +51,7 @@ const preselectMat = new MeshLambertMaterial({
 ```
 
 ☝
-Note that geometric subsets are **uniquely identified** by their material.
+Note that geometric subsets are uniquely identified by their material.
 
 - If you create a subset with a wall using a material A, and then try to create a subset of another wall with the same material A, the second wall will be added to the subset of the first one.
 
@@ -107,14 +107,14 @@ There are several interesting things to look out for:
 
 - The variable `currentModel` is used to store a reference of the selected model; this way, when the user is not hovering an object, we are able to remove the previous subset with <a href="https://ifcjs.github.io/info/docs/Guide/web-ifc-three/api#removesubset" target="_self">removeSubset</a>.
 
-- The IDs of the items whose subset to create have to be given as an **array** (even if it's a single ID).
+- The IDs of the items whose subset to create have to be given as an array (even if it's a single ID).
 
 ### Multiple subsets
 
 💅💅💅
-Working with **multiple subsets** is as easy as working with a single subset. We just need to create a new material, create a new subset with the same function and associate the creation of that subset to an event.
+Working with multiple subsets is as easy as working with a single subset. We just need to create a new material, create a new subset with the same function and associate the creation of that subset to an event.
 
-In this example we are going to bind it to **double click** to simulate the effect of highlighting objects when they are selected.
+In this example we are going to bind it to double click to simulate the effect of highlighting objects when they are selected.
 
 ```js
 const selectMat = new MeshLambertMaterial({
@@ -133,7 +133,7 @@ window.ondblclick = (event) => highlight(event, selectMat, selectModel);
 ### Extracting geometry
 
 👩‍🏫
-If you create a geometry subset and do not specify a highlight material, the subset will have the **original materials**.
+If you create a geometry subset and do not specify a highlight material, the subset will have the original materials.
 
 <IfcAlert>This would allow, for example, to create a geometric subset with all the ground floor elements of the BIM model and hide the rest.</IfcAlert>
 

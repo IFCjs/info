@@ -31,9 +31,9 @@
     "ja": "私たちはそれが<strong>フェア</strong>でないと考えています。そして、市場から取り残された開発者にとって不公平なだけでなく、寡占市場の略奪的価格設定の犠牲者である顧客にとっても不公平なのです。そのためにこのプロジェクトは存在するのです。",
     "zh": "我们认为这是<strong>不公平的</strong>。而且，这不仅对被排除在市场之外的开发商不公平，而且对客户也不公平，他们是寡头垄断市场的掠夺性定价的受害者。这就是这个项目存在的原因。"
   },
-  "🤝 Our goal is to enable <b>anyone</b> to create BIM applications.": {
-    "ja": "<b>誰でも</b>BIMアプリケーションを作成できるようにすることが私たちの目標です。",
-    "zh": "🤝 我们的目标是让<b>任何人都</b>能创建BIM应用。"
+  "🤝 Our goal is to enable anyone to create BIM applications.": {
+    "ja": "誰でもBIMアプリケーションを作成できるようにすることが私たちの目標です。",
+    "zh": "🤝 我们的目标是让任何人都能创建BIM应用。"
   },
   "Who are we? A group of developers who want to improve the construction industry in their spare time. The project started in 2021 with <a href=\"https://github.com/tomvandig\">Tom</a>, <a href=\"https://github.com/harrycollin\">Harry</a> and me and has been growing ever since, with more and more people and companies willing to change the situation in the sector and commit to a <strong>real open BIM</strong>.": {
     "ja": "私たちは何者か？余暇を利用して建設業界を改善したいと考える開発者のグループです。2021年に<a href=\"https://github.com/tomvandig\">トム</a>、<a href=\"https://github.com/harrycollin\">ハリー</a>、私の3人でスタートし、以来、この分野の状況を変え、<strong>真のオープンBIMに</strong>コミットしようという人々や企業が増え、プロジェクトは成長を続けています。",
@@ -73,9 +73,9 @@
     "ja": "この場合、そのリソースとは<strong>BIMソフトウェアを作成する能力</strong>です。私たちは好きなだけ<a href=\"https://gfxspeak.com/2020/08/04/architects-demand-autodesk/\">苦情の手紙を</a>書くことができますが、私たちが彼らにお金を払い続ける限り、これらのソフトウェア会社は彼らがやっていることをやり続けるという事実があります。",
     "zh": "👨💼👨💼👨💼这就是只有少数人能够获得我们所有人都需要的资源时的情况；在这种情况下，这种资源就是<strong>创建BIM软件的能力</strong>。我们可以写所有我们想要的<a href=\"https://gfxspeak.com/2020/08/04/architects-demand-autodesk/\">投诉信</a>，但事实是，只要我们继续付钱给他们，这些软件公司就会继续做他们的事情。"
   },
-  "💸 Some BIM tools are around <b>25</b> times more expensive than software development tools.": {
-    "ja": "💢 BIMツールの中には、ソフトウェア開発ツールの<b>約25</b>倍も高価なものがある。",
-    "zh": "💸 一些BIM工具比软件开发工具的价格高<b>25</b>倍左右。"
+  "💸 Some BIM tools are around 25 times more expensive than software development tools.": {
+    "ja": "💢 BIMツールの中には、ソフトウェア開発ツールの約25倍も高価なものがある。",
+    "zh": "💸 一些BIM工具比软件开发工具的价格高25倍左右。"
   },
   "️": { "ja": "️", "zh": "️" },
   "💪 But that can change. Now, for the first time, we have the opportunity to bring BIM back to the industry. A BIM that is affordable, effective and that suits our needs: <strong>a BIM made by us and for us</strong>.": {
@@ -719,9 +719,9 @@
     "ja": "すべての開発者が、アプリケーション用に独自のIFCファイルリーダとライタを実装しなければならないのは理にかなっていないでしょう。特に、<strong>ジオメトリとデータのインポートとエクスポート</strong>という、同じものを求めている場合はなおさらです。",
     "zh": "如果所有的开发者都必须为他们的应用程序实现自己的IFC文件读写器，那就没有意义了。特别是当我们都想要同样的东西：<strong>导入和导出几何图形和数据</strong>时。"
   },
-  "IFC.js is a JavaScript library that makes it super easy to <b>read and write IFC files</b>.": {
-    "ja": "IFC.jsは、<b>IFCファイルの読み書きを</b>超簡単に行うためのJavaScriptライブラリです。",
-    "zh": "IFC.js是一个JavaScript库，使<b>读写IFC文件</b>变得超级简单。"
+  "IFC.js is a JavaScript library that makes it super easy to read and write IFC files.": {
+    "ja": "IFC.jsは、IFCファイルの読み書きを超簡単に行うためのJavaScriptライブラリです。",
+    "zh": "IFC.js是一个JavaScript库，使读写IFC文件变得超级简单。"
   },
   "This allows developers of architecture and construction applications to work in IFC effortlessly and focus on the functionalities that add value to their business.": {
     "ja": "これにより、建築・建設アプリケーションの開発者は、IFCで楽に作業し、ビジネスに付加価値を与える機能に集中することができます。",
@@ -781,21 +781,21 @@
     "ja": "IFC.jsを使用することで、あらゆるプラットフォーム向けのオープンなBIMアプリケーションを作成することができます。",
     "zh": "你可以使用IFC.js来为任何平台创建开放的BIM应用程序。"
   },
-  "<p>\n          <b>Frontend web applications</b> that read and write IFC files and display 3D without relying on server communication can be created using <b>vanilla JavaScript</b> or other tools such as <b>React, Vue, Angular, Svelte, etc</b>. That is, <i>with IFC.js we can turn any web browser into an open BIM app.</i>\n        </p>": {
-    "ja": "<p>\n          サーバー通信に頼らずにIFCファイルを読み書きして3D表示する<b>フロントエンドのWebアプリケーションは</b>、<b>バニラJavaScriptや</b> <b>React、Vue、Angular、Svelteなどの</b>ツールを使って作ることができます。つまり、<i>IFC.jsを使えば、どんなWebブラウザでもオープンなBIMアプリに</i>変身させることができるのです。        </p>",
-    "zh": "<p>\n          可以使用<b>vanilla JavaScript</b>或其他工具（如<b>React、Vue、Angular、Svelte等</b>）来创建读写IFC文件和显示3D的<b>前端网络应用</b>，而无需依赖服务器通信。也就是说，<i>通过IFC.js，我们可以把任何网络浏览器变成一个开放的BIM应用</i>。        </p>"
+  "<p>\n          Frontend web applications that read and write IFC files and display 3D without relying on server communication can be created using vanilla JavaScript or other tools such as React, Vue, Angular, Svelte, etc. That is, <i>with IFC.js we can turn any web browser into an open BIM app.</i>\n        </p>": {
+    "ja": "<p>\n          サーバー通信に頼らずにIFCファイルを読み書きして3D表示するフロントエンドのWebアプリケーションは、バニラJavaScriptや React、Vue、Angular、Svelteなどのツールを使って作ることができます。つまり、<i>IFC.jsを使えば、どんなWebブラウザでもオープンなBIMアプリに</i>変身させることができるのです。        </p>",
+    "zh": "<p>\n          可以使用vanilla JavaScript或其他工具（如React、Vue、Angular、Svelte等）来创建读写IFC文件和显示3D的前端网络应用，而无需依赖服务器通信。也就是说，<i>通过IFC.js，我们可以把任何网络浏览器变成一个开放的BIM应用</i>。        </p>"
   },
-  "<p>\n          There are cases where the IFC file cannot be processed by the client. For example, a mobile device may not have the power to display several medium or large IFCs. In this case, it is possible to <b>use IFC.js on the server</b> via <a href=\"https://nodejs.org/en/\">Node.js</a> and send the Three.js scene already prepared to the client.\n        </p>": {
-    "ja": "<p>\n          IFCファイルは、クライアントで処理できない場合があります。例えば、モバイル端末では、中型や大型のIFCを複数表示するパワーがない場合があります。このような場合、<a href=\"https://nodejs.org/en/\">Node.jsを介して</a> <b>サーバー上でIFC.jsを使用</b>し、すでに用意されているThree.jsのシーンをクライアントに送信することが可能です。        </p>",
-    "zh": "<p>\n          有些情况下，IFC文件不能被客户端处理。例如，移动设备可能没有能力显示几个中型或大型IFC。在这种情况下，可以通过<a href=\"https://nodejs.org/en/\">Node.js</a> <b>在服务器上使用IFC.js</b>，并将已经准备好的Three.js场景发送到客户端。        </p>"
+  "<p>\n          There are cases where the IFC file cannot be processed by the client. For example, a mobile device may not have the power to display several medium or large IFCs. In this case, it is possible to use IFC.js on the server via <a href=\"https://nodejs.org/en/\">Node.js</a> and send the Three.js scene already prepared to the client.\n        </p>": {
+    "ja": "<p>\n          IFCファイルは、クライアントで処理できない場合があります。例えば、モバイル端末では、中型や大型のIFCを複数表示するパワーがない場合があります。このような場合、<a href=\"https://nodejs.org/en/\">Node.jsを介して</a> サーバー上でIFC.jsを使用し、すでに用意されているThree.jsのシーンをクライアントに送信することが可能です。        </p>",
+    "zh": "<p>\n          有些情况下，IFC文件不能被客户端处理。例如，移动设备可能没有能力显示几个中型或大型IFC。在这种情况下，可以通过<a href=\"https://nodejs.org/en/\">Node.js</a> 在服务器上使用IFC.js，并将已经准备好的Three.js场景发送到客户端。        </p>"
   },
-  "<p>\n          Sometimes we don't want to create web applications, but <b>native desktop applications that run on Windows, iOS and Linux</b>. This is possible thanks to technologies like <a href=\"https://www.electronjs.org/\">Electron</a>. These native applications will be programmed in the same way as web applications; HTML, CSS, JavaScript, React, Vue, etc.\n        </p>": {
-    "ja": "<p>\n          Webアプリケーションではなく、<b>Windows、iOS、Linux上で動作するネイティブデスクトップアプリケーションを</b>作りたいと思うことがあります。これは<a href=\"https://www.electronjs.org/\">Electronの</a>ような技術のおかげで可能です。これらのネイティブアプリケーションは、Webアプリケーションと同じように、HTML、CSS、JavaScript、React、Vueなどでプログラムされます。        </p>",
-    "zh": "<p>\n          有时我们不想创建网络应用，而是想创建<b>能在Windows、iOS和Linux上运行的本地桌面应用</b>。这要感谢像<a href=\"https://www.electronjs.org/\">Electron</a>这样的技术。这些本地应用程序的编程方式将与Web应用程序相同；HTML、CSS、JavaScript、React、Vue，等等。        </p>"
+  "<p>\n          Sometimes we don't want to create web applications, but native desktop applications that run on Windows, iOS and Linux. This is possible thanks to technologies like <a href=\"https://www.electronjs.org/\">Electron</a>. These native applications will be programmed in the same way as web applications; HTML, CSS, JavaScript, React, Vue, etc.\n        </p>": {
+    "ja": "<p>\n          Webアプリケーションではなく、Windows、iOS、Linux上で動作するネイティブデスクトップアプリケーションを作りたいと思うことがあります。これは<a href=\"https://www.electronjs.org/\">Electronの</a>ような技術のおかげで可能です。これらのネイティブアプリケーションは、Webアプリケーションと同じように、HTML、CSS、JavaScript、React、Vueなどでプログラムされます。        </p>",
+    "zh": "<p>\n          有时我们不想创建网络应用，而是想创建能在Windows、iOS和Linux上运行的本地桌面应用。这要感谢像<a href=\"https://www.electronjs.org/\">Electron</a>这样的技术。这些本地应用程序的编程方式将与Web应用程序相同；HTML、CSS、JavaScript、React、Vue，等等。        </p>"
   },
-  "<p>\n          IFC.js also supports <a href=\"https://reactnative.dev/\">React Native</a>, which maps WebGL code to native OpenGL. This means that you can create IFC-compatible <b>Open BIM apps that run on Android and iOS</b> easily.\n        </p>": {
-    "ja": "<p>\n          IFC.jsは、WebGLのコードをネイティブのOpenGLにマッピングする<a href=\"https://reactnative.dev/\">React Nativeにも</a>対応しています。つまり、<b>AndroidやiOSで</b>動作するIFC互換の<b>Open BIMアプリを</b>簡単に作成することができます。        </p>",
-    "zh": "<p>\n          IFC.js也支持<a href=\"https://reactnative.dev/\">React Native</a>，它将WebGL代码映射到本地OpenGL。这意味着你可以创建兼容IFC的<b>Open BIM应用程序，并</b>轻松地<b>在Android和iOS上运行</b>。        </p>"
+  "<p>\n          IFC.js also supports <a href=\"https://reactnative.dev/\">React Native</a>, which maps WebGL code to native OpenGL. This means that you can create IFC-compatible Open BIM apps that run on Android and iOS easily.\n        </p>": {
+    "ja": "<p>\n          IFC.jsは、WebGLのコードをネイティブのOpenGLにマッピングする<a href=\"https://reactnative.dev/\">React Nativeにも</a>対応しています。つまり、AndroidやiOSで動作するIFC互換のOpen BIMアプリを簡単に作成することができます。        </p>",
+    "zh": "<p>\n          IFC.js也支持<a href=\"https://reactnative.dev/\">React Native</a>，它将WebGL代码映射到本地OpenGL。这意味着你可以创建兼容IFC的Open BIM应用程序，并轻松地在Android和iOS上运行。        </p>"
   },
   "### Speed": { "ja": "### 速度", "zh": "###速度" },
   "⚡️ If you have experience with web applications, you might be thinking that the weak point of a JavaScript-based IFC library is performance. However, the core of the library is developed in C++ combined with WebAssembly and <a href=\"https://emscripten.org/\">Emscripten</a>. It is designed specifically for <strong>maximum performance</strong>, allowing IFC.js to approach the speed and performance of desktop applications while running directly in the browser.": {
@@ -803,46 +803,46 @@
     "zh": "⚡️ 如果你有网络应用的经验，你可能会想，基于JavaScript的IFC库的弱点是性能。然而，该库的核心是用C++结合WebAssembly和<a href=\"https://emscripten.org/\">Emscripten</a>开发的。它是专门为<strong>最大性能</strong>而设计的，允许IFC.js在直接在浏览器中运行时接近桌面应用程序的速度和性能。"
   },
   "### Features": { "ja": "### 特徴", "zh": "###特点" },
-  "👓 IFC.js can <b>read</b> IFC files seamlessly.": {
-    "ja": "👓 IFC.js は IFC ファイルをシームレスに<b>読み込む</b>ことができます。",
-    "zh": "👓 IFC.js可以无缝<b>读取</b>IFC文件。"
+  "👓 IFC.js can read IFC files seamlessly.": {
+    "ja": "👓 IFC.js は IFC ファイルをシームレスに読み込むことができます。",
+    "zh": "👓 IFC.js可以无缝读取IFC文件。"
   },
-  "🏐 Generate <b>3D geometry</b> that runs on 60 fps in a browser.": {
-    "ja": "🏠 ブラウザで60fpsで動作する<b>3Dジオメトリを</b>生成する。",
-    "zh": "🏐生成在浏览器中以60帧运行的<b>3D几何图形</b>。"
+  "🏐 Generate 3D geometry that runs on 60 fps in a browser.": {
+    "ja": "🏠 ブラウザで60fpsで動作する3Dジオメトリを生成する。",
+    "zh": "🏐生成在浏览器中以60帧运行的3D几何图形。"
   },
-  "🎨 Easily edit geometry <b>appearance</b> with the power of Three.js.": {
-    "ja": "🎨 Three.jsのパワーでジオメトリの<b>外観を</b>簡単に編集できます。",
-    "zh": "🎨 利用Three.js的力量轻松地编辑几何体<b>的外观</b>。"
+  "🎨 Easily edit geometry appearance with the power of Three.js.": {
+    "ja": "🎨 Three.jsのパワーでジオメトリの外観を簡単に編集できます。",
+    "zh": "🎨 利用Three.js的力量轻松地编辑几何体的外观。"
   },
-  "🏠🏠🏠 Load <b>multiple</b> federated IFC models.": {
-    "ja": "🏠<b>複数の</b>連携したIFCモデルを読み込む。",
-    "zh": "🏠🏠🏠加载<b>多个</b>联合的IFC模型。"
+  "🏠🏠🏠 Load multiple federated IFC models.": {
+    "ja": "🏠複数の連携したIFCモデルを読み込む。",
+    "zh": "🏠🏠🏠加载多个联合的IFC模型。"
   },
-  "📃 Retrieve <b>IFC properties</b> for reports and databases.": {
-    "ja": "📃 レポートとデータベースの<b>IFC プロパティを</b>取得する。",
-    "zh": "📃 检索报告和数据库的<b>IFC属性</b>。"
+  "📃 Retrieve IFC properties for reports and databases.": {
+    "ja": "📃 レポートとデータベースのIFC プロパティを取得する。",
+    "zh": "📃 检索报告和数据库的IFC属性。"
   },
-  "✍ IFC.js also can <b>edit and write</b> IFC files from scratch.": {
-    "ja": "✍ IFC.jsは、IFCファイルをゼロから<b>編集して書き出す</b>こともできます。",
-    "zh": "✍ IFC.js也可以从头<b>编辑和编写</b>IFC文件。"
+  "✍ IFC.js also can edit and write IFC files from scratch.": {
+    "ja": "✍ IFC.jsは、IFCファイルをゼロから編集して書き出すこともできます。",
+    "zh": "✍ IFC.js也可以从头编辑和编写IFC文件。"
   },
   "## Source code": { "ja": "## ソースコード", "zh": "## 源代码" },
   "IFC.js is a large, multi-language library (C++, TypeScript JavaScript, etc). Having it in a single repository would be difficult and unwieldy. For that reason, the library exists in multiple repositories, where each one has its purpose. You can find them <a href=\"https://github.com/IFCjs\">here</a>.": {
     "ja": "IFC.jsは大規模で多言語のライブラリです（C++、TypeScript JavaScriptなど）。これを単一のリポジトリで持つことは困難であり、扱いにくい。そのため、このライブラリは複数のリポジトリに存在し、それぞれが目的を持っています。<a href=\"https://github.com/IFCjs\">ここに</a>あります。",
     "zh": "IFC.js是一个大型的、多语言的库（C++、TypeScript JavaScript等）。把它放在一个单一的资源库中会很困难，而且不方便。出于这个原因，该库存在于多个仓库中，每个仓库都有其用途。你可以<a href=\"https://github.com/IFCjs\">在这里</a>找到它们。"
   },
-  "<p>\n          The core of the library: an IFC <b>parser and geometry generator</b> written from scratch in C++ and compiled via Emscripten to WebAssembly. This repository encapsulates the complexity of reading IFC files and loading their data into memory.\n        </p>": {
-    "ja": "<p>\n          ライブラリのコア：C++でゼロから書かれ、Emscriptenを介してWebAssemblyにコンパイルされたIFC<b>パーサーとジオメトリジェネレータ</b>です。このリポジトリは、IFC ファイルの読み取りとメモリへのデータロードの複雑さをカプセル化します。        </p>",
-    "zh": "<p>\n          该库的核心是：用C++从头开始编写的IFC<b>解析器和几何图形生成器</b>，并通过Emscripten编译为WebAssembly。这个库封装了读取IFC文件并将其数据加载到内存中的复杂性。        </p>"
+  "<p>\n          The core of the library: an IFC parser and geometry generator written from scratch in C++ and compiled via Emscripten to WebAssembly. This repository encapsulates the complexity of reading IFC files and loading their data into memory.\n        </p>": {
+    "ja": "<p>\n          ライブラリのコア：C++でゼロから書かれ、Emscriptenを介してWebAssemblyにコンパイルされたIFCパーサーとジオメトリジェネレータです。このリポジトリは、IFC ファイルの読み取りとメモリへのデータロードの複雑さをカプセル化します。        </p>",
+    "zh": "<p>\n          该库的核心是：用C++从头开始编写的IFC解析器和几何图形生成器，并通过Emscripten编译为WebAssembly。这个库封装了读取IFC文件并将其数据加载到内存中的复杂性。        </p>"
   },
-  "<p>\n          This library adapts web-ifc to Three.js, generating an <b>optimized 3D scene where users can directly interact with the IFC</b>. This library is <a href=\"https://threejs.org/examples/webgl_loader_ifc.html\">the official Three.js IFC Loader</a>. Thanks to this adapter open BIM applications can be created with Three.js in just two lines of code.\n        </p>": {
-    "ja": "<p>\n          このライブラリは、web-ifc を Three.js に適応させ、<b>ユーザーが IFC と直接対話できる最適化された 3D シーンを</b>生成します。このライブラリは、Three<a href=\"https://threejs.org/examples/webgl_loader_ifc.html\">.jsの公式IFCローダー</a>です。このアダプタのおかげで、Three.jsでオープンBIMアプリケーションをたった2行のコードで作成することができます。        </p>",
-    "zh": "<p>\n          这个库将web-ifc改编成Three.js，生成一个<b>优化的3D场景，用户可以直接与IFC互动</b>。该库是<a href=\"https://threejs.org/examples/webgl_loader_ifc.html\">Three.js的官方IFC加载器</a>。有了这个适配器，只需两行代码就能用Three.js创建开放的BIM应用。        </p>"
+  "<p>\n          This library adapts web-ifc to Three.js, generating an optimized 3D scene where users can directly interact with the IFC. This library is <a href=\"https://threejs.org/examples/webgl_loader_ifc.html\">the official Three.js IFC Loader</a>. Thanks to this adapter open BIM applications can be created with Three.js in just two lines of code.\n        </p>": {
+    "ja": "<p>\n          このライブラリは、web-ifc を Three.js に適応させ、ユーザーが IFC と直接対話できる最適化された 3D シーンを生成します。このライブラリは、Three<a href=\"https://threejs.org/examples/webgl_loader_ifc.html\">.jsの公式IFCローダー</a>です。このアダプタのおかげで、Three.jsでオープンBIMアプリケーションをたった2行のコードで作成することができます。        </p>",
+    "zh": "<p>\n          这个库将web-ifc改编成Three.js，生成一个优化的3D场景，用户可以直接与IFC互动。该库是<a href=\"https://threejs.org/examples/webgl_loader_ifc.html\">Three.js的官方IFC加载器</a>。有了这个适配器，只需两行代码就能用Three.js创建开放的BIM应用。        </p>"
   },
-  "<p>\n          This is a browser-based <a href=\"https://ifcjs.github.io/web-ifc-viewer/example/index\">IFC viewer </a>\n          with <b>many examples of what can be done with IFC.js</b>. Scene navigation, material changes, element selection by clicking on them, section plans, etc. There is an example of all these functionalities in this repository, so it can be reused in open BIM applications out of the box.\n        </p>": {
-    "ja": "<p>\n         <b>IFC.jsでできる多くの事例</b>を紹介した、ブラウザベースの<a href=\"https://ifcjs.github.io/web-ifc-viewer/example/index\">IFCビューア </a>です。シーンナビゲーション、材料変更、クリックによる要素選択、断面図など。このリポジトリにはこれらすべての機能の例があるので、オープンなBIMアプリケーションですぐに再利用できます。        </p>",
-    "zh": "<p>\n          这是一个基于浏览器的<a href=\"https://ifcjs.github.io/web-ifc-viewer/example/index\">IFC查看器 </a>，有<b>许多可以用IFC.js完成的例子</b>。场景导航、材料变化、通过点击选择元素、剖面图等。在这个资源库中，有所有这些功能的例子，所以它可以在开放的BIM应用中开箱即用。        </p>"
+  "<p>\n          This is a browser-based <a href=\"https://ifcjs.github.io/web-ifc-viewer/example/index\">IFC viewer </a>\n          with many examples of what can be done with IFC.js. Scene navigation, material changes, element selection by clicking on them, section plans, etc. There is an example of all these functionalities in this repository, so it can be reused in open BIM applications out of the box.\n        </p>": {
+    "ja": "<p>\n         IFC.jsでできる多くの事例を紹介した、ブラウザベースの<a href=\"https://ifcjs.github.io/web-ifc-viewer/example/index\">IFCビューア </a>です。シーンナビゲーション、材料変更、クリックによる要素選択、断面図など。このリポジトリにはこれらすべての機能の例があるので、オープンなBIMアプリケーションですぐに再利用できます。        </p>",
+    "zh": "<p>\n          这是一个基于浏览器的<a href=\"https://ifcjs.github.io/web-ifc-viewer/example/index\">IFC查看器 </a>，有许多可以用IFC.js完成的例子。场景导航、材料变化、通过点击选择元素、剖面图等。在这个资源库中，有所有这些功能的例子，所以它可以在开放的BIM应用中开箱即用。        </p>"
   },
   "## Contribute": { "ja": "## Contribute", "zh": "## 贡献" },
   "Do you want to help us keep improving the world of Open BIM development with IFC.js? The library is big, so you will have to choose where you want to participate.": {

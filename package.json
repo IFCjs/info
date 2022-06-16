@@ -15,7 +15,7 @@
     "translate": "yarn write-translations && deepmark translate",
     "publish-docs": "cmd /C 'set \"GIT_USER=agviegas\" && yarn deploy'",
     "prepare": "husky install",
-    "format": "prettier --write .",
+    "format": "deepmark format && prettier --write .",
     "lint:mdx": "node ./scripts/lint-mdx.mjs",
     "lint": "yarn lint:mdx"
   },
