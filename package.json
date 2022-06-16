@@ -33,6 +33,19 @@
     "url-loader": "^4.1.1",
     "web-ifc-three": "^0.0.32"
   },
+  "devDependencies": {
+    "axios": "^0.21.1",
+    "deepmark": "^0.0.10",
+    "glob": "^8.0.3",
+    "husky": "^8.0.0",
+    "picocolors": "^1.0.0",
+    "prettier": "^2.6.2",
+    "pretty-quick": "^3.1.3",
+    "remark": "^14.0.2",
+    "remark-comment": "^1.0.0",
+    "remark-frontmatter": "^4.0.1",
+    "remark-mdx": "^2.1.1"
+  },
   "browserslist": {
     "production": [
       ">0.5%",
@@ -44,18 +57,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "axios": "^0.21.1",
-    "deepmark": "^0.0.8",
-    "glob": "^8.0.3",
-    "husky": "^8.0.0",
-    "picocolors": "^1.0.0",
-    "prettier": "^2.6.2",
-    "pretty-quick": "^3.1.3",
-    "remark": "^14.0.2",
-    "remark-comment": "^1.0.0",
-    "remark-frontmatter": "^4.0.1",
-    "remark-mdx": "^2.1.1"
   }
 }
