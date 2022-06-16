@@ -36,7 +36,7 @@
   "devDependencies": {
     "axios": "^0.21.1",
     "callsites": "^3.1.0",
-    "deepmark": "^0.0.10",
+    "deepmark": "^0.0.12",
     "glob": "^8.0.3",
     "husky": "^8.0.0",
     "picocolors": "^1.0.0",
