@@ -9,14 +9,11 @@ import { Scene } from "@site/src/components/Scene/Scene";
 
 ## Introduction
 
-🥶🥶🥶
-Everything seen so far is very cool, but we have a problem: when we load a very large model the application freezes for some seconds. This problem also happens when we want to extract many properties from the model. Is there any way to avoid this?
+🥶🥶🥶 Everything seen so far is very cool, but we have a problem: when we load a very large model the application freezes for some seconds. This problem also happens when we want to extract many properties from the model. Is there any way to avoid this?
 
-🔥
-Of course, IFC.js has foreseen this situation and has implemented multithreading. This means that heavy operations will be carried out in a parallel process that will not block the application, which will be updated asynchronously when the process concludes.
+🔥 Of course, IFC.js has foreseen this situation and has implemented multithreading. This means that heavy operations will be carried out in a parallel process that will not block the application, which will be updated asynchronously when the process concludes.
 
-👌
-This sounds complicated, and it is. But don't worry: we've got it all set up so you can have this in your BIM applications in a couple of lines of code.
+👌 This sounds complicated, and it is. But don't worry: we've got it all set up so you can have this in your BIM applications in a couple of lines of code.
 
 <IfcCard>
   You can find the full example of this tutorial <a href="https://github.com/IFCjs/hello-world/tree/main/examples/web-ifc-three/multithreading">here</a>.
@@ -26,16 +23,13 @@ This sounds complicated, and it is. But don't worry: we've got it all set up so 
 
 ### Set up the webworker
 
-👩‍🏫
-In order to enable multithreading, the webworker must be configured. But what is a webworker? The webworker is the mechanism that web browsers have to be able to work with multithreading. But don't worry if you haven't heard of them before, you don't need them to use multithreading in IFC.js.
+👩‍🏫 In order to enable multithreading, the webworker must be configured. But what is a webworker? The webworker is the mechanism that web browsers have to be able to work with multithreading. But don't worry if you haven't heard of them before, you don't need them to use multithreading in IFC.js.
 
-📦📦📦
-If you work with `npm`, `yarn` or another package manager in your project there should be a folder called `node_modules`, with all the folders of the libraries your project is using. In `node_modules/web-ifc-three` you will find the two files needed to use webworkers: `IFCWorker.js` and `IFCWorker.js.map`.
+📦📦📦 If you work with `npm`, `yarn` or another package manager in your project there should be a folder called `node_modules`, with all the folders of the libraries your project is using. In `node_modules/web-ifc-three` you will find the two files needed to use webworkers: `IFCWorker.js` and `IFCWorker.js.map`.
 
 <IfcCard>You have to copy these two files to a directory in your project that will be served with the final application. This varies depending on the technology you are using (vanilla JS, React, Angular, etc). You can use the same directory you are using for the wasm files.</IfcCard>
 
-🌍
-Then you have to specify where this file is located, in the same way as with the wasm file. This can be done like this:
+🌍 Then you have to specify where this file is located, in the same way as with the wasm file. This can be done like this:
 
 ```js
 async function setUpMultiThreading() {
@@ -48,18 +42,15 @@ async function setUpMultiThreading() {
 setUpMultiThreading();
 ```
 
-🥶⛔
-And, voi lá! Believe it or not, you have already enabled multithreading in your project. If you now try to load a file in your application or try to get many properties at once, you will see that the application does not freeze.
+🥶⛔ And, voi lá! Believe it or not, you have already enabled multithreading in your project. If you now try to load a file in your application or try to get many properties at once, you will see that the application does not freeze.
 
 <IfcAlert>Note that if you activate the webworker, the path to the wasm files must be relative to the webworker.</IfcAlert>
 
-🤖❓📚
-Keep in mind that the version of the webworker has to match the version of the library you are using. This means that if you update the version of `web-ifc-three` in the future, you'll need to copy these files again. You can automate this using a command-line library to copy files like `cpy`.
+🤖❓📚 Keep in mind that the version of the webworker has to match the version of the library you are using. This means that if you update the version of `web-ifc-three` in the future, you'll need to copy these files again. You can automate this using a command-line library to copy files like `cpy`.
 
 ### Loading progress
 
-🔥
-Using multithreading in your BIM application has numerous advantages. The most immediate is that we can now show the user the loading progress of a model. First we'll add a simple HTML message to show the progress:
+🔥 Using multithreading in your BIM application has numerous advantages. The most immediate is that we can now show the user the loading progress of a model. First we'll add a simple HTML message to show the progress:
 
 ```html
 div id="text-container">
@@ -69,8 +60,7 @@ div id="text-container">
 /div>
 ```
 
-✨✨✨
-Next we are going to link this HTML element to the model load event. This can be easily done with the `setOnProgress()` method. Let's also apply some basic math to convert progress into a percentage.
+✨✨✨ Next we are going to link this HTML element to the model load event. This can be easily done with the `setOnProgress()` method. Let's also apply some basic math to convert progress into a percentage.
 
 ```js
 function setupProgressNotification() {
@@ -85,15 +75,12 @@ function setupProgressNotification() {
 setupProgressNotification();
 ```
 
-🌈
-If you have done everything correctly, we should be able to see the following viewer. If you try to load an IFC model, not only you will see that the loading process does not block the 3D view, but the html text shows the loading progress in real time.
+🌈 If you have done everything correctly, we should be able to see the following viewer. If you try to load an IFC model, not only you will see that the loading process does not block the 3D view, but the html text shows the loading progress in real time.
 
 <Scene link={"https://ifcjs.github.io/hello-world/examples/web-ifc-three/multithreading/index.html"} />
 
 ## Next steps
 
-🎉🎉🎉
-Congratulations! You can now create multithreaded BIM applications that never freeze.
+🎉🎉🎉 Congratulations! You can now create multithreaded BIM applications that never freeze.
 
-😎
-You are now familiar with some advanced tools of IFC.js, but there's much more to learn. In later tutorials we will see how to not only read, but also edit and create IFC files.
+😎 You are now familiar with some advanced tools of IFC.js, but there's much more to learn. In later tutorials we will see how to not only read, but also edit and create IFC files.

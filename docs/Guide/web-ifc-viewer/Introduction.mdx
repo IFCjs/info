@@ -40,10 +40,10 @@ npm i @rollup/plugin-node-resolve --save-dev
 📝🎨🧻📁 You can follow the steps in the [Hello World](../../Hello%20world.mdx) guide to create the `index.html`, `styles.css`, `rollup.config.js` files and also copy the necessary `.wasm` files from `node_modules\web-ifc` (or `node_modules\three\examples\jsm\loaders\ifc` folder.
 
 <IfcCard icon="📃" title="minor change in index.html">
-  Note that there is one minor change in index.html file you need to make - compared to the "Hello World" guide. You don't need to create a <code>&lt;canvas&gt;</code> element manually as it will b created by web-ifc-viewer for you. But you do need to add the container element in which the viewer is supposed to be placed in.
+  Note that there is one minor change in index.html file you need to make - compared to the "Hello World" guide. You don't need to create a <code>\<canvas></code> element manually as it will b created by web-ifc-viewer for you. But you do need to add the container element in which the viewer is supposed to be placed in.
 </IfcCard>
 
-Replace <code>&lt;canvas id="three-canvas"&gt;&lt;/canvas&gt;</code> from your `index.html` file with <code>&lt;div id="viewer-container"&gt;&lt;/div&gt;</code>
+Replace <code>\<canvas id="three-canvas">\</canvas></code> from your `index.html` file with <code>\<div id="viewer-container">\</div></code>
 
 <IfcCard icon="🌏" title="What else can I do with IFC.js?">
   To run the application locally we will need a local server. If you are using VS Code as IDE, one option is to install the <a href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer">Live Server extension</a>, which allows us to open an instance of Google Chrome, run our web application and see the changes we make to the code in real-time.
@@ -122,8 +122,7 @@ loadIfc("models/01.ifc");
 
 ## Conclusion
 
-🎉
-Congratulations! You have just created your first IFC viewer. Go to the next pages of the docs to find out what else can you do with IFC Viewer.
+🎉 Congratulations! You have just created your first IFC viewer. Go to the next pages of the docs to find out what else can you do with IFC Viewer.
 
 <IfcCard icon="🔥" title="What else can I do with IFC.js?">
   This is just the beginning. You can take a look at <a href="https://github.com/IFCjs/hello-world/tree/main/examples/web-ifc-viewer">web-ifc-viewer examples</a>, which includes tools for floor plans, changing geometry visibility, floor plans and much more. You can try it <a href="https://ifcjs.github.io/web-ifc-viewer/example/index">here</a>.

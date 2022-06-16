@@ -9,22 +9,19 @@ import { Scene } from "@site/src/components/Scene/Scene";
 
 ## Introduction
 
-⚡
-Creating a BIM application with IFC.js is very easy. You can find the complete project of the guide [here](https://github.com/IFCjs/hello-world/tree/main/examples/web-ifc-three/helloworld) and the deployed application [here](https://ifcjs.github.io/hello-world/examples/web-ifc-three/helloworld/). You only need to have <a href="https://nodejs.org/en/">Node.js</a> and any IDE installed to follow the steps below. Also, if you don't have any IFC files to follow along, you can get some [here](https://github.com/IFCjs/test-ifc-files).
+⚡ Creating a BIM application with IFC.js is very easy. You can find the complete project of the guide [here](https://github.com/IFCjs/hello-world/tree/main/examples/web-ifc-three/helloworld) and the deployed application [here](https://ifcjs.github.io/hello-world/examples/web-ifc-three/helloworld/). You only need to have <a href="https://nodejs.org/en/">Node.js</a> and any IDE installed to follow the steps below. Also, if you don't have any IFC files to follow along, you can get some [here](https://github.com/IFCjs/test-ifc-files).
 
 <IfcAlert>
   Using IFC.js requires a basic knowledge of web development (HTML, CSS, JavaScript) and Three.js. If you have no previous experience with Three.js, you should probably look <a href="https://threejs.org/manual/">here</a>.
 </IfcAlert>
 
-🐣
-This minimal tutorial will be done with Vanilla JavaScript, without using frameworks like React, Vue, Angular, Svelte, etc. However, the same steps can be adapted and applied to any of these use cases.
+🐣 This minimal tutorial will be done with Vanilla JavaScript, without using frameworks like React, Vue, Angular, Svelte, etc. However, the same steps can be adapted and applied to any of these use cases.
 
 ## Setting up the project
 
 ### Install libraries
 
-👩‍🏫
-The first thing to do is to create an empty folder and start a new npm project with the command `npm init`. This will generate a `package.json` file containing some data such as the project name, version, commands and dependencies. In addition, the following dependencies must be installed with npm:
+👩‍🏫 The first thing to do is to create an empty folder and start a new npm project with the command `npm init`. This will generate a `package.json` file containing some data such as the project name, version, commands and dependencies. In addition, the following dependencies must be installed with npm:
 
 ```bash
     //Install IFC.js
@@ -38,11 +35,12 @@ The first thing to do is to create an empty folder and start a new npm project w
     npm i @rollup/plugin-node-resolve --save-dev
 ```
 
-📝
-The next step is to create an HTML file named `index.html` as the main document of the application. The HTML will have:
+📝 The next step is to create an HTML file named `index.html` as the main document of the application. The HTML will have:
 
 - A canvas element, used to render the Three.js scene.
+
 - An input element, which will open IFC files from our computer to the application.
+
 - A script referencing a file called `bundle.js`, which is the bundle of the app that we will produce with rollup.
 
 ```html
@@ -65,8 +63,7 @@ The next step is to create an HTML file named `index.html` as the main document 
 
 ### Adding style
 
-🎨
-The following CSS file will make the canvas full screen:
+🎨 The following CSS file will make the canvas full screen:
 
 ```css
 * {
@@ -116,8 +113,7 @@ export default {
 };
 ```
 
-🎯
-Also, the `package.json` file needs to be modified to contain the commands to control rollup easily. In each command, you'll have to specify the relative path to your rollup configuration file. If we have installed everything correctly, we should see the same dependencies in this file (the version of the libraries may differ).
+🎯 Also, the `package.json` file needs to be modified to contain the commands to control rollup easily. In each command, you'll have to specify the relative path to your rollup configuration file. If we have installed everything correctly, we should see the same dependencies in this file (the version of the libraries may differ).
 
 - `npm run build` will bundle the project and create a file called `bundle.js` in the root directory of the project.
 
@@ -148,8 +144,7 @@ Also, the `package.json` file needs to be modified to contain the commands to co
 
 ### WebAssembly
 
-📁
-The next thing to do is to copy the `web-ifc.wasm` and `web-ifc-mt.wasm` files to a directory in your project. It can be found in `node_modules\web-ifc` (or `node_modules\three\examples\jsm\loaders\ifc` if you are only using Three's IFCLoader). We can copy them wherever we want; in this example, they will be copied to a folder called wasm in the root directory of the project.
+📁 The next thing to do is to copy the `web-ifc.wasm` and `web-ifc-mt.wasm` files to a directory in your project. It can be found in `node_modules\web-ifc` (or `node_modules\three\examples\jsm\loaders\ifc` if you are only using Three's IFCLoader). We can copy them wherever we want; in this example, they will be copied to a folder called wasm in the root directory of the project.
 
 These files are necessary because they contain the compiled C++ logic of <a href="https://github.com/IFCjs/web-ifc">web-ifc</a>, which is the parsing core to read and write IFC files with native speed.
 
@@ -159,8 +154,7 @@ These files are necessary because they contain the compiled C++ logic of <a href
 
 Finally, we are going to create the JavaScript file to write the code for our application. This file can be located anywhere and have any name, but you must reflect this in the `rollup.config.js`.
 
-🧱
-We are going to create a basic 3D scene using Three.js.
+🧱 We are going to create a basic 3D scene using Three.js.
 
 ```js
 import { AmbientLight, AxesHelper, DirectionalLight, GridHelper, PerspectiveCamera, Scene, WebGLRenderer } from "three";
@@ -237,15 +231,13 @@ window.addEventListener("resize", () => {
 });
 ```
 
-🌏
-To run the application locally we will need a local server. If you are using VS Code as IDE, one option is to install the [Live Server extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer), which allows us to open an instance of Google Chrome, run our web application and see the changes we make to the code in real-time.
+🌏 To run the application locally we will need a local server. If you are using VS Code as IDE, one option is to install the [Live Server extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer), which allows us to open an instance of Google Chrome, run our web application and see the changes we make to the code in real-time.
 
 ## Loading IFC files
 
 ### Loading user's models
 
-🏠
-Finally, we will use IFC.js to load IFC files. This can be done by instantiating the loader and creating an event for when the user uploads an IFC file to the HTML input element.
+🏠 Finally, we will use IFC.js to load IFC files. This can be done by instantiating the loader and creating an event for when the user uploads an IFC file to the HTML input element.
 
 ```js
 import { IFCLoader } from "web-ifc-three/IFCLoader";
@@ -265,8 +257,7 @@ input.addEventListener(
 );
 ```
 
-🎣
-Keep in mind that if you haven't saved the wasm files in the root of served files of the project, you'll need to specify its location with `setWasmPath`. For instance, if we had them stored in a folder called `wasm` contained in a folder called `static` in the root of the project, we would do the following:
+🎣 Keep in mind that if you haven't saved the wasm files in the root of served files of the project, you'll need to specify its location with `setWasmPath`. For instance, if we had them stored in a folder called `wasm` contained in a folder called `static` in the root of the project, we would do the following:
 
 ```js
 ifcLoader.ifcManager.setWasmPath("static/wasm/");
@@ -278,14 +269,13 @@ If you have done everything correctly, you should be able to see something simil
 
 ### Loading our models
 
-🤔
-In the previous point we saw how to load BIM models directly, and that's great. What if we want to show our BIM models instead of allowing the user to upload theirs? This is very simple. Generally there are two possibilities:
+🤔 In the previous point we saw how to load BIM models directly, and that's great. What if we want to show our BIM models instead of allowing the user to upload theirs? This is very simple. Generally there are two possibilities:
 
 - Having the IFC in the same application where you want to display it.
+
 - Having to get it from an external storage service.
 
-  🎩
-  In the first case, it is sufficient to reference the URL of the IFC file. That is, its relative path in the application. For example, if the IFC is in a folder called "models" in the root of the project, we could load that IFC when starting the application as follows:
+  🎩 In the first case, it is sufficient to reference the URL of the IFC file. That is, its relative path in the application. For example, if the IFC is in a folder called "models" in the root of the project, we could load that IFC when starting the application as follows:
 
 ```js
 ifcLoader.load("models/Example_model.ifc", (ifcModel) => scene.add(ifcModel));
@@ -297,8 +287,7 @@ ifcLoader.load("models/Example_model.ifc", (ifcModel) => scene.add(ifcModel));
 
 ## Conclusion
 
-🎉
-Congratulations! You have just created your first IFC viewer. Go to the next pages of the docs to find out what else can you do with IFC.js.
+🎉 Congratulations! You have just created your first IFC viewer. Go to the next pages of the docs to find out what else can you do with IFC.js.
 
 <IfcCard icon="🔥" title="What else can I do with IFC.js?">
   This is just the beginning. You can take a look at <a href="https://github.com/IFCjs/web-ifc-viewer">web-ifc-viewer</a>, which includes tools for object selection, changing geometry appearance, section planes and much more. You can try it <a href="https://ifcjs.github.io/web-ifc-viewer/example/index">here</a>.

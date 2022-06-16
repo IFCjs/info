@@ -9,11 +9,9 @@ import { Scene } from "@site/src/components/Scene/Scene";
 
 ## Introduction
 
-👩‍🏫
-With what we have seen in other tutorials we already know how to select elements in 3D, access their properties and highlight them using subsets, which are parts of the whole model.
+👩‍🏫 With what we have seen in other tutorials we already know how to select elements in 3D, access their properties and highlight them using subsets, which are parts of the whole model.
 
-🚪🧱
-However, in many BIM applications it is also possible to hide and isolate elements. A common use case is to hide all elements that do not comply with a certain filter or show only those objects belonging to a floor of the building.
+🚪🧱 However, in many BIM applications it is also possible to hide and isolate elements. A common use case is to hide all elements that do not comply with a certain filter or show only those objects belonging to a floor of the building.
 
 🍰 Of course, this is a piece of cake using IFC.js. In this example we are going to create filters by category, so that the user can show or hide items using checkboxes.
 
@@ -25,11 +23,9 @@ However, in many BIM applications it is also possible to hide and isolate elemen
 
 ### Get subsets of categories
 
-👩‍🏫
-Visibility in IFC.js is based on subset operations. This allows complex visualisations to be created with minimal memory usage. The first thing we are going to do is to define which IFC categories we are going to allow the user to show or hide.
+👩‍🏫 Visibility in IFC.js is based on subset operations. This allows complex visualisations to be created with minimal memory usage. The first thing we are going to do is to define which IFC categories we are going to allow the user to show or hide.
 
-📋📋📋
-To save memory, categories in IFC.js are defined as numeric constants. So let's create an object that maps the name of those constants to their numeric value, and a function to retrieve them:
+📋📋📋 To save memory, categories in IFC.js are defined as numeric constants. So let's create an object that maps the name of those constants to their numeric value, and a function to retrieve them:
 
 ```js
 import { IFCWALLSTANDARDCASE, IFCSLAB, IFCDOOR, IFCWINDOW, IFCFURNISHINGELEMENT, IFCMEMBER, IFCPLATE } from "web-ifc";
@@ -52,13 +48,11 @@ function getName(category) {
 }
 ```
 
-🏠⏩🚪
-Now let's create a couple of functions to get all the IDs of the elements belonging to a category and create a subset with those IDs.
+🏠⏩🚪 Now let's create a couple of functions to get all the IDs of the elements belonging to a category and create a subset with those IDs.
 
 <IfcAlert>Remember that many IFC.js functions are asynchronous, so we're going to use async and await.</IfcAlert>
 
-👩‍🏫
-You can also use `removeFromSubset()` to remove a single item from a subset (e.g. hide a single item). If you combine that with `createSubset()` with `removePrevious = false`, you'll have full control of what is added to which subset and its visibility.
+👩‍🏫 You can also use `removeFromSubset()` to remove a single item from a subset (e.g. hide a single item). If you combine that with `createSubset()` with `removePrevious = false`, you'll have full control of what is added to which subset and its visibility.
 
 ```js
 // Gets the IDs of all the items of a specific category
@@ -82,11 +76,9 @@ async function newSubsetOfType(category) {
 
 ### Set up GUI
 
-💻🧑
-We will now create a simple GUI to allow the user to control which categories are visible or invisible. We are going to create a checkbox for each category of the BIM model we are working with.
+💻🧑 We will now create a simple GUI to allow the user to control which categories are visible or invisible. We are going to create a checkbox for each category of the BIM model we are working with.
 
-💅
-This can easily be done with a little HTML and CSS:
+💅 This can easily be done with a little HTML and CSS:
 
 ```html
 <!DOCTYPE html>
@@ -171,11 +163,9 @@ body {
 
 ### Bind GUI with visibility
 
-✨
-Now it only remains to link the click event of each checkbox with the visibility of the corresponding category, so that when the checkbox is activated the category becomes visible and when it is deactivated it disappears.
+✨ Now it only remains to link the click event of each checkbox with the visibility of the corresponding category, so that when the checkbox is activated the category becomes visible and when it is deactivated it disappears.
 
-🎨👨‍🎨
-Here it is worth noting that to make the code more concise we have given each checkbox an ID with the same name as the category it links to.
+🎨👨‍🎨 Here it is worth noting that to make the code more concise we have given each checkbox an ID with the same name as the category it links to.
 
 ```js
 // Stores the created subsets
@@ -214,10 +204,8 @@ function setupCheckBox(category) {
 
 ## Next steps
 
-🎉🎉🎉
-Congratulations! Now you know how to control the visibility of elements using any filter.
+🎉🎉🎉 Congratulations! Now you know how to control the visibility of elements using any filter.
 
 <IfcAlert>This would be the same if we want to filter with other properties (e.g. the floor they belong to using the spatial structure tree, seen in the properties section). Just make sure you get the IDs of the elements you want to filter.</IfcAlert>
 
-👩‍🏫
-However, `web-ifc-three` has even more functionality. For example, what if we want to open and close the viewer? Let's take a look at it next.
+👩‍🏫 However, `web-ifc-three` has even more functionality. For example, what if we want to open and close the viewer? Let's take a look at it next.

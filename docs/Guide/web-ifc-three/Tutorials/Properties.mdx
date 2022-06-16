@@ -9,16 +9,13 @@ import { Scene } from "@site/src/components/Scene/Scene";
 
 ## Introduction
 
-🧬🧬🧬️
-Although virtually all BIM models have geometry, almost everyone agrees that what is really important is the "I" in BIM, i.e. Information. IFC.js can traverse any IFC file from top to bottom at native speed and with almost no code.
+🧬🧬🧬️ Although virtually all BIM models have geometry, almost everyone agrees that what is really important is the "I" in BIM, i.e. Information. IFC.js can traverse any IFC file from top to bottom at native speed and with almost no code.
 
-💾
-This not only makes it possible to create web applications that read information from IFC files directly on the client side, but also to transfer that information into relational or non-relational databases and process it on the backend.
+💾 This not only makes it possible to create web applications that read information from IFC files directly on the client side, but also to transfer that information into relational or non-relational databases and process it on the backend.
 
 <IfcAlert>IFC.js can read IFC files by IDs, by spatial tree and by filtered search.</IfcAlert>
 
-📚
-There are several types of properties in the IFC scheme, each with a specific purpose, and IFC.js can get all of them. Some of the most common are:
+📚 There are several types of properties in the IFC scheme, each with a specific purpose, and IFC.js can get all of them. Some of the most common are:
 
 <IfcCard icon="📕" title="Native properties">
   Specific to each IFC class.
@@ -54,8 +51,7 @@ There are several types of properties in the IFC scheme, each with a specific pu
   have shown how to get that ID easily.
 </p>
 
-☝
-Now that we have that ID, how hard it is to get the properties of an element? You only need to add one line of code to what we saw in the <a href="https://ifcjs.github.io/info/docs/Guide/web-ifc-three/Tutorials/Picking/" target="_self"> picking tutorial </a> to be able to see the properties of the selected element when double clicking.
+☝ Now that we have that ID, how hard it is to get the properties of an element? You only need to add one line of code to what we saw in the <a href="https://ifcjs.github.io/info/docs/Guide/web-ifc-three/Tutorials/Picking/" target="_self"> picking tutorial </a> to be able to see the properties of the selected element when double clicking.
 
 ```js {9}
 // Event that gets executed when an item is picked
@@ -83,9 +79,7 @@ They are native properties, that is, the basic properties inherent to each ifc e
 
 These are not numbers, but express IDs! This means that you can use `getItemProperties()` again using that ID, and you'll get the properties of that referenced element.
 
-<IfcCard>
-  That is how IFC works: each <b>element</b> has <b>properties</b>, and each <b>property</b> can be the reference to other <b>element</b>. So you can basically traverse the whole IFC navigating through references.
-</IfcCard>
+<IfcCard>That is how IFC works: each element has properties, and each property can be the reference to other element. So you can basically traverse the whole IFC navigating through references.</IfcCard>
 
 **😑 References? But I want all the information directly!**
 
@@ -129,8 +123,7 @@ interface Node {
 }
 ```
 
-👩‍🏫
-Notice that you only get the type (e.g. `IfcWall`) and the express ID. If you want to get the properties of an element, you'll have to traverse the tree and call the abovementioned property getter methods over all the IDs.
+👩‍🏫 Notice that you only get the type (e.g. `IfcWall`) and the express ID. If you want to get the properties of an element, you'll have to traverse the tree and call the abovementioned property getter methods over all the IDs.
 
 <IfcCard>If your goal is to display properties to users, it's generally better to only get the properties when the user requests it (e. g. clicks on a specific item in your GUI).</IfcCard>
 
@@ -165,11 +158,9 @@ For instance, if you request the spatial structure of a project, you might get s
 
 ### Get items by type
 
-👩‍🏫
-Sometimes you'll want to retrieve all elements of a certain type (e.g. all `IfcWall` instances in the project). In these cases it is not useful to select elements by clicking on them or to get the spatial tree of the project.
+👩‍🏫 Sometimes you'll want to retrieve all elements of a certain type (e.g. all `IfcWall` instances in the project). In these cases it is not useful to select elements by clicking on them or to get the spatial tree of the project.
 
-🎸🪕🎻
-That's what the `getAllItemsOfType` method is for. Using it is really easy, and you can import the types directly from `web-ifc`. For instance, to get the properties of all the `IfcSlab` instances of the project, you can do the following:
+🎸🪕🎻 That's what the `getAllItemsOfType` method is for. Using it is really easy, and you can import the types directly from `web-ifc`. For instance, to get the properties of all the `IfcSlab` instances of the project, you can do the following:
 
 ```js
 import { IFCSLAB } from "web-ifc";
@@ -192,7 +183,6 @@ logAllSlabs();
 
 ## Next steps
 
-🎉🎉🎉
-Congratulations! You should now be able to traverse any IFC and extract the properties you are looking for.
+🎉🎉🎉 Congratulations! You should now be able to traverse any IFC and extract the properties you are looking for.
 
 🐱‍👤 However, what can we do with these properties? One possible application can be found in the following tutorial, where we will see how to hide and isolate elements.

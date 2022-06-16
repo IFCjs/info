@@ -1,9 +1,10 @@
 module.exports = {
   overrides: [
     {
-      files: ["**/*.md", "**/*.mdx"],
+      files: ["blog/**/*.{md,mdx}", "docs/**/*.{md,mdx}"],
       options: {
         printWidth: Infinity,
+        proseWrap: "never",
       },
     },
   ],
