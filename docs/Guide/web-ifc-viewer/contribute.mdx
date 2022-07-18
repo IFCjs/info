@@ -1,0 +1,158 @@
+---
+  title: Contribute
+  sidebar_position: X
+---
+
+import { IfcAlert } from "../../../src/components/Alert/Alert"
+import { IfcCard } from "../../../src/components/Card/InfoCard"
+import { Scene } from "../../../src/components/Scene/Scene"
+import { Tab } from "../../../src/components/Tab/Tab"
+
+# Contribute to web-ifc-viewer
+
+☝
+Have you already decided to contribute to the `web-ifc-viewer` library? Congratulations on that wise decision, let's start...
+
+😊
+If you are new,[Check it out!](https://ifcjs.github.io/info/docs/Introduction) Here, you can learn about the possibilities and features of IFC.
+
+## Documentation
+
+📜
+The contribution must be made in the IFCjs/info repository (https://github.com/IFCjs/info) We use docusaurus for documentation. Don't worry, you don't need to know Docusaurus to do this.
+
+## Setup
+
+🧰
+To get started with a viewer, you can get one from the official IFC repository on Github, (https://github.com/IFCjs/web-ifc-viewer). In it we will check the methods.
+
+<IfcAlert>To run the application locally we will need a local server. If you're using VS Code as your IDE, one option is to install the Live Server extension, which allows us to open an instance of Google Chrome, run our web application, and see the changes we make to the code in real time.</IfcAlert>
+
+## Tools
+
+🧶
+With these tools you can make your contribution more dynamic and illustrative`.
+
+
+### Alert
+
+🎹
+Adds a blue alert window containing an animated icon(💡) Color:(#1a73e8).
+
+#### Example:
+
+```js
+import { IfcAlert } from "../../../src/components/Alert/Alert"
+
+<IfcAlert>Write here your text to display inside `IfcAlert`</IfcAlert>
+```
+
+### Card
+
+🏠
+Add a gray card, it can contain icon. Color:(#f3f4f6).
+
+#### Example:
+
+```js
+import { IfcCard } from "../../../src/components/Card/InfoCard"
+
+<IfcCard icon="🏆" title="TITLE">
+Write here your text to display inside `IfcCard`
+</IfcCard>
+```
+
+### Scene
+
+💎
+Add a `Scene` with a link.
+
+#### Example:
+
+```js
+import { Scene } from "../../../src/components/Scene/Scene"
+
+<Scene link ={"https://ifcjs.github.io/hello-world/examples/web-ifc-three/helloworld/"} />
+```
+
+### Tab
+
+🌵
+Add selectable `tab`.
+
+#### Example:
+
+```js
+import { Tab } from "../../../src/components/Tab/Tab"
+
+<IfcTab
+  items={[
+    {
+      icon: "🤖",
+      content: (
+        <p>
+          <b>Font bold</b>
+          <a href="LINK/">NAMELINK</a>
+        </p>
+      ),
+    },
+     {
+      icon: "🦅",
+      content: (
+        <p>
+          <i>Font italics </i>
+        </p>
+      ),
+    },
+]}
+/>
+```
+## Titles
+
+🎉
+We can order the titles and establish a development tree thanks to their sizes.
+
+# = # Document Header
+## = ## Title
+### = ### Subtitle
+#### = #### Example / Arguments
+
+### Icons
+
+📝🤔👩‍💻🤷‍♀️⛔💳🤖🏠🎩🧊🎯⚡💻🧑📁💎🐱‍👤✌🌱🧰⏳💾☝❓🌚👀👓🎹👨‍💼👷‍♀️🚧📦💳📜🎸🪕🎻📕🔍📘📗📒🌀🧱✨💣💥💅
+🎓👬💛🐁🌵😊🤕🚦🌎🔥📦🌳🌲🌴🚀📚⚽🌈🥶🧵🧠💼🔢1️⃣2️⃣3️⃣👌🦅☝📝🎨🧻📁📭📫🎥🚩🎉⏩🚴‍♂️👨‍🎨🤏🚪💪🧶🐭🐣🔳
+ and more...
+
+ ## Example
+
+### addGrid
+
+🚴‍♂️🚴‍♂️
+The `setGrid` function allows us to set: `size`, `divisions`, `colorCenterLine` and colorGrid`. It is possible to create a custom grid.
+
+```js
+IfcViewerAPI.grid.setGrid(size: number, divisions: number,
+                          colorCenterLine: Color, colorGrid: Color)
+```
+
+#### Arguments:
+
+- `size`: Grid `size`.
+- `divisions`: Number of `divisions` in `X` & `Y`.
+- `colorCenterLine`: Color of the `X` & `Y` center lines of the`grid`.
+- `colorGrid`: Color of lines `X` & `Y` of the `grid`.
+
+#### Example:
+
+```js
+IfcViewerAPI.grid.setGrid(40)
+```
+
+✌
+Using `size` resizes the size of the mesh in X and Y.
+
+<IfcCard icon="🏆" title="Congratulations">
+Thanks to your contribution we can make the library more extensive and able to meet the needs of developers and architects.
+</IfcCard>
+
+Below is an example of how to expose a function and its features. You can also use this same document to develop your own contribution to `IFC`.
