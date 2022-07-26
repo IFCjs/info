@@ -30,7 +30,6 @@ import { IfcCard } from "../../../src/components/Card/InfoCard";
 📦
 非正式地讲，**CDE**只不过是一个集中的地方，可以通过互联网获取建筑项目的信息。
 
-{" "}
 
 <IfcCard>
   🔧🔨
@@ -64,7 +63,6 @@ import { IfcCard } from "../../../src/components/Card/InfoCard";
 ⏳
 我们只有**个半小时的时间来做这个 CDE，所以我们必须仔细选择如何做，以不浪费任何时间。首先：我们需要**个地方来存储项目文件**。你知道有什么现有的工具可以让我们这样做吗？我们已经想到了**Google Drive\*\*!
 
-{" "}
 
 <IfcCard>
   💪 Google
@@ -103,7 +101,7 @@ import { IfcCard } from "../../../src/components/Card/InfoCard";
 
 - **创建一个菜单，让用户用 IFC.js 网络应用程序打开 URL**。此外，你要添加两个 URL 参数：文件的名称和 ID。
 
-  {" "}
+
 
   <IfcCard>
     简而言之：一个google
@@ -191,7 +189,6 @@ import { IfcCard } from "../../../src/components/Card/InfoCard";
 🔒🔒🔒
 好吧，我们有一个 BIM 浏览器，但现在它还不能从**Google Drive API**下载任何东西。不过，这很容易：只要按照[官方文档](https://developers.google.com/drive/api/v3/quickstart/js)中的这些步骤，复制并粘贴 JavaScript 代码，就能访问 API。
 
-{" "}
 
 <IfcCard>
   🔑🔑🔑
@@ -260,11 +257,10 @@ function loadIfcModel(text) {
 
 现在我们要做一个谷歌浏览器扩展，以便**用户可以选择他们想要打开的文件**。如果你以前没有做过这个，可能听起来很吓人，但实际上非常简单。你可以找到完成的结果[这里]（https://github.com/IFCjs/hello-world/tree/main/examples/extensions/Drive-CDE）。
 
-{" "}
 
 <IfcCard>
   🔑🔑🔑
-  按照谷歌的指南，你需要创建一个新的谷歌云项目，以获得你自己的CLIENT_ID和API_KEY；它们只是你必须拥有的两个文本，以便谷歌知道你是谁。换句话说，你不能使用我们拥有的密钥来访问你的驱动器！你可以通过以下方式来实现：1.{" "}
+  按照谷歌的指南，你需要创建一个新的谷歌云项目，以获得你自己的CLIENT_ID和API_KEY；它们只是你必须拥有的两个文本，以便谷歌知道你是谁。换句话说，你不能使用我们拥有的密钥来访问你的驱动器！你可以通过以下方式来实现：1
   <a href="https://developers.google.com/drive/api/v3/about-sdk#create_and_open_files_directly_from_the_drive_ui">
     请看这里，了解更多细节
   </a>
