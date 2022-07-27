@@ -1,0 +1,132 @@
+---
+title: 🧠 Memory
+sidebar_position: 5
+---
+
+import { IfcCard } from "../../../../src/components/Card/InfoCard";
+import { IfcAlert } from "../../../../src/components/Alert/Alert";
+import { Scene } from "../../../../src/components/Scene/Scene";
+
+<IfcAlert>
+  You can follow along with the full example on <a href="https://github.com/IFCjs/hello-world/tree/main/examples/web-ifc-viewer/memory">Github</a>.
+</IfcAlert>
+
+## Introduction
+
+🚀🚀
+You have both freedom and responsibility when it comes to **memory management** in your IFC.js app. Fortunately, IFC.js lets you balance these to **release memory** very easily. Let's see how it's done. 👇
+
+<IfcCard>
+  🗑️ IFC.js builds upon the Three.js <b>dispose() </b> function. See how IFC.js does it <a href="https://github.com/IFCjs/web-ifc-viewer/blob/master/viewer/src/ifc-viewer-api.ts#L220">here</a> and <a href="https://github.com/IFCjs/web-ifc-three/blob/main/web-ifc-three/src/IFC/components/MemoryCleaner.ts">here</a>, and also read what Three.js
+  <a href="https://threejs.org/docs/#manual/en/introduction/How-to-dispose-of-objects"> has to say</a>. 🗑️
+</IfcCard>
+
+## How to do it
+
+### Monitoring the memory
+
+👀 [stats.js](https://github.com/mrdoob/stats.js/) is a library to **monitor the memory and performance** of your Three.js app, made by the creator of Three.js himself. Let's go ahead and install with `npm i stats.js`, **import**, **initialize** and **hook it** into our render loop.
+
+```js
+import Stats from "stats.js/src/Stats";
+
+// init
+const stats = new Stats();
+stats.showPanel(2);
+document.body.append(stats.dom);
+
+//hook into render loop
+function animate() {
+  stats.begin();
+  stats.end();
+  requestAnimationFrame(animate);
+}
+animate();
+```
+
+📋 During development we don't have to second guess our memory management anymore, because now it's **visualized** for us.
+
+<IfcAlert>
+  If you don't remember how to setup your viewer, just look at the <a href="https://github.com/IFCjs/hello-world/tree/main/examples/web-ifc-viewer/memory">full example</a> or at previous tutorials.
+</IfcAlert>
+
+### Load up the model
+
+⛽⛽ First we'll **create** an HTML **input button** and use `loadIfc()` to load our models from file. 🎨 Style as you wish!
+
+```html
+<input type="file" id="input-button" />
+```
+
+```js
+async function loadIfcFromFile(file) {
+  const model = await viewer.IFC.loadIfc(file, true);
+}
+```
+
+<IfcCard>
+  👁️‍🗨️ We call <a href="https://github.com/IFCjs/web-ifc-viewer/blob/master/viewer/src/components/ifc/ifc-manager.ts#L42/">loadIfc()</a> when a user loads an IFC file. Internally, it creates a URL then calls <a href="https://github.com/IFCjs/web-ifc-viewer/blob/master/viewer/src/components/ifc/ifc-manager.ts#L53/"> loadIfcUrl() </a>for us.
+</IfcCard>
+
+💅 Now **link** the button and the function.
+
+```js {3}
+const input_button = document.getElementById("input-button");
+input_button.addEventListener("input", (input) => {
+  loadIfcFromFile(input.target.files[0])},
+  false
+);
+```
+
+So that we can load and release the same model over and over, for this example we'll add a tiny hack to reset the DOM event.
+
+```js
+input_button.addEventListener("click", (e) => {
+  e.target.value = "";
+});
+```
+
+### Dispose memory
+
+✌🥤 Finally let's create our function to **dispose** memory on command using `dispose()`. Here's how it's done:
+
+```js
+function releaseMemory() {
+  viewer.dispose();
+  viewer = null;
+  viewer = new IfcViewerAPI({ container });
+  viewer.IFC.setWasmPath("../../../");
+}
+```
+
+❗❗ Keep in mind: Once we call `dispose()`, we need to **re-initialize** our viewer instance.❗❗
+
+⌨️ For this example let's attach our function to a new HTML button.
+
+```html
+<input type="button" id="release-button" value="Release Memory" />
+```
+
+```js
+const release_button = document.getElementById("release-button");
+release_button.addEventListener("click", () => releaseMemory());
+```
+
+🧪 Try loading a model and releasing the memory: you'll notice our model disappears and our visualizer confirms this. Remember that it **might take time** for the garbage collector to do its job.
+
+<IfcAlert>
+  We have <a href="https://github.com/IFCjs/test-ifc-files">test files</a> for you to try out different models.
+</IfcAlert>
+
+## The result
+
+😎 This is how the application looks like:
+
+<a href="https://github.com/IFCjs/hello-world/tree/main/examples/web-ifc-viewer/memory/">Github repo</a>
+<Scene link={"https://ifcjs.github.io/hello-world/examples/web-ifc-viewer/memory/index.html"} />
+
+## Next steps
+
+🎉🎉🎉
+Congratulations! Your IFC.js apps are now **free of memory leaks**. This memory management will keep your app squeaky clean and running smooth.
+💪💪💪
