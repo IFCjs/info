@@ -15,13 +15,13 @@
     "message": "🧩 web-ifc",
     "description": "The label for category 🧩 web-ifc in sidebar tutorialSidebar"
   },
-  "sidebar.tutorialSidebar.category.🧩 web-ifc-three": {
-    "message": "🧩 web-ifc-three",
-    "description": "The label for category 🧩 web-ifc-three in sidebar tutorialSidebar"
-  },
   "sidebar.tutorialSidebar.category.🎓 Tutorials": {
     "message": "🎓 Tutorials",
     "description": "The label for category 🎓 Tutorials in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.🧩 web-ifc-three": {
+    "message": "🧩 web-ifc-three",
+    "description": "The label for category 🧩 web-ifc-three in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.🧩 web-ifc-viewer": {
     "message": "🧩 web-ifc-viewer",

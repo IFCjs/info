@@ -3,25 +3,21 @@ title: 📃 Properties
 sidebar_position: 2
 ---
 
-import { IfcAlert } from "../../../../src/components/Alert/Alert";
-import { IfcCard } from "../../../../src/components/Card/InfoCard";
-import { Scene } from "../../../../src/components/Scene/Scene";
+import { IfcAlert } from "@site/src/components/Alert/Alert";
+import { IfcCard } from "@site/src/components/Card/InfoCard";
+import { Scene } from "@site/src/components/Scene/Scene";
 
 ## Introduction
 
-🧊
-One of the coolest thing you can do is traverse the IFC file and fetch the relevant information, web-ifc provides us with the capability to read and write IFC file from within the browser, In this tutorial we will **Read Properties** from IFC file and **Output it on Frontend**.
+🧊 One of the coolest thing you can do is traverse the IFC file and fetch the relevant information, web-ifc provides us with the capability to read and write IFC file from within the browser, In this tutorial we will Read Properties from IFC file and Output it on Frontend.
 
-💾
-This tutorial will help us to get the **Analysis** of IFC without a viewer😎.
+💾 This tutorial will help us to get the Analysis of IFC without a viewer😎.
 
 <IfcCard>
-    👉 You can check out the final result deployed <a href="https://ifcjs.github.io/hello-world/examples/web-ifc/ifc-to-json/properties/index.html">here</a> and the full code <a href="https://github.com/ifcjs/hello-world/tree/main/examples/web-ifc/ifc-to-json/properties">here</a>.
-
+  👉 You can check out the final result deployed <a href="https://ifcjs.github.io/hello-world/examples/web-ifc/ifc-to-json/properties/index.html">here</a> and the full code <a href="https://github.com/ifcjs/hello-world/tree/main/examples/web-ifc/ifc-to-json/properties">here</a>.
 </IfcCard>
 
-📚
-There are several types of properties in the IFC scheme, each with a specific purpose, and IFC.js can get **all of them**. Some of the most common are:
+📚 There are several types of properties in the IFC scheme, each with a specific purpose, and IFC.js can get all of them. Some of the most common are:
 
 <IfcCard icon="📕" title="Native properties">
   Specific to each IFC class.
@@ -75,8 +71,9 @@ fetch("../../../../IFC/01.ifc")
   });
 ```
 
-** Creating a method which will be called for getting Element Properties **
-All the code for getting **Element Data** goes inside it
+**Creating a method which will be called for getting Element Properties**
+
+All the code for getting Element Data goes inside it
 
 ```js {8}
 function getPropertyWithExpressId(modelID=0) {
@@ -102,7 +99,7 @@ function getPropertyWithExpressId(modelID=0) {
 
 `GetLines()` can be used at times like these when we know ElementID and want the data for it.
 
-** 🔢 Getting Element Data by ElementID **
+**🔢 Getting Element Data by ElementID**
 
 ```js {2}
 // If third parameter is added as true, we get a flatten result
@@ -114,18 +111,23 @@ const guid = element.GlobalId.value;
 
 **🤨 But what is Element?**
 
-Every Entity can be considered as an Element which has it's own unique ElementID, by using the above code we can get various values that are contained in that Element Data. Few values that you can get and what we will **output on Frontend** are
+Every Entity can be considered as an Element which has it's own unique ElementID, by using the above code we can get various values that are contained in that Element Data. Few values that you can get and what we will output on Frontend are
 
 - [GUID](https://technical.buildingsmart.org/resources/ifcimplementationguidance/ifc-guid/) : Globally Unique Identifier for the Element
+
 - Name - Name given to that Element
+
 - IfcType - It refers to the type of Element it is e.g. `IFCWALL`,`IFCWINDOW`
+
 - [IfcObjectType](https://standards.buildingsmart.org/IFC/RELEASE/IFC2x3/TC1/HTML/ifckernel/lexical/ifctypeobject.htm#:~:text=IfcTypeObject&text=Definition%20from%20buildingSMART%3A%20The%20object,%2D%20specific%20%2D%20occurrence%20modeling%20paradigm.) - Defines the specific information about a type
+
 - [Tag](https://www.visualarq.com/features/collaboration/ifc/#:~:text=Tag%20feature.-,The%20IFC%20Tag,-The%20IFC%20tag) - The IFC tag feature lets you assign IFC properties to the objects when they are exported to IFC
-- and **Many More**
+
+- and many more.
 
 **🤖 Element Data**
 
-Please **Ignore** `createRowInTable()` as of now, it will be covered in Frontend Section
+Please ignore `createRowInTable()` as of now, it will be covered in Frontend Section
 
 Just remember 1st parameter is the Label and the 2nd parameter is the respected value.
 
@@ -151,7 +153,7 @@ createRowInTable("Tag", tag);
 
 Now that we have Element Data, we need to get the properties of that Element, the way IFC is structured we can't directly get Properties like we got Element Data, we have to fetch Lines which are Property Data and filter it according to the ExpressID we want.
 
-Feels too hectic? Don't worry, web-ifc with it's **Native Speed** gets us the data easily.
+Feels too hectic? Don't worry, web-ifc with it's Native Speed gets us the data easily.
 
 **1️⃣ Getting All Lines with Type**
 
@@ -162,9 +164,10 @@ We will get all `Lines` that has relation as properties with Elements i.e `IFCRE
 let lines = ifcapi.GetLineIDsWithType(modelID, IFCRELDEFINESBYPROPERTIES);
 ```
 
-** 2️⃣ Get ElementID of Property Sets **
+**2️⃣ Get ElementID of Property Sets**
 
 - After getting the lines we will fetch the ElementID from those lines, next we use those ElementID to get the Element Data same like what we have done above.
+
 - Next, we will go through the Element Data and find out the RelatedObjects and if those RelatedObjects contain the ElementID for which we are trying to find properties we save them in a local array🥳
 
 ```js {8,16,26,28}
@@ -206,10 +209,12 @@ for (let i = 0; i < lines.size(); i++) {
 
 ⚖️ The heavy lifting has been done, now we will repeat few of the steps.
 
-** 3️⃣ Getting Property Sets from their ID **
+**3️⃣ Getting Property Sets from their ID**
 
 - Yes you are right, getting Element Data using Element IDs!, now we will use the IDs from propSetIds and Get Data.
+
 - Then we will check whether they have properties i.e. check if they contain [Nominal Values](https://standards.buildingsmart.org/IFC/RELEASE/IFC2x3/TC1/HTML/ifcpropertyresource/lexical/ifcpropertysinglevalue.htm)
+
 - If you want you can store Property Sets but in our case we will show them on Frontend, so no need to store.
 
 ```js {2,6,8}
@@ -245,8 +250,7 @@ propsets.forEach((set) => {
   and will be making additions to it
 </IfcCard>
 
-** 🤖 Method to Create Rows **
-We will create a function to create rows dynamically, this will help us to insert data directly into table and show it on the FrontEnd.
+**🤖 Method to Create Rows** We will create a function to create rows dynamically, this will help us to insert data directly into table and show it on the FrontEnd.
 
 - We will now use the `table` variable we had created globally while doing the setup
 
@@ -263,7 +267,7 @@ function createRowInTable(label, value) {
 }
 ```
 
-** 🔳 Your HTML Code inside `<body>` should like this **
+**🔳 Your HTML Code inside <code>\<body></code> should like this**
 
 ```html
 <div class="file-opener">
@@ -291,7 +295,7 @@ function createRowInTable(label, value) {
 </div>
 ```
 
-** 🎨 Now Styling **
+**🎨 Now Styling**
 
 Containers:
 
@@ -356,7 +360,6 @@ td {
 
 ## Next steps
 
-🎉
-Congratulations! You should now be able to **traverse any IFC** and extract the properties you are looking for.
+🎉 Congratulations! You should now be able to traverse any IFC and extract the properties you are looking for.
 
 You can use the web-ifc APIs to get Material Data as well and many more to query the lines according to your need.

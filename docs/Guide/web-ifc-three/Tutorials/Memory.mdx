@@ -3,32 +3,27 @@ title: 🧠 Memory
 sidebar_position: 5
 ---
 
-import { IfcCard } from "../../../../src/components/Card/InfoCard";
-import { IfcAlert } from "../../../../src/components/Alert/Alert";
-import { Scene } from "../../../../src/components/Scene/Scene";
+import { IfcCard } from "@site/src/components/Card/InfoCard";
+import { IfcAlert } from "@site/src/components/Alert/Alert";
+import { Scene } from "@site/src/components/Scene/Scene";
 
 ## Introduction
 
-📭📫
-On many occasions we will want to create applications that are able to **open and close BIM viewers**. Although this may seem obvious, there is a problem: **memory management**.
+📭📫 On many occasions we will want to create applications that are able to open and close BIM viewers. Although this may seem obvious, there is a problem: memory management.
 
-🤔
-Now many will be scratching their heads, since memory management is not a common issue in web applications. JavaScript and other modern languages have **automatic memory management / garbage collector**, so the programmer doesn't have to worry about freeing up objects and arrays.
+🤔 Now many will be scratching their heads, since memory management is not a common issue in web applications. JavaScript and other modern languages have automatic memory management / garbage collector, so the programmer doesn't have to worry about freeing up objects and arrays.
 
-✍🤖❓
-However, when working with Three.js, data going to the graphics card (e.g. buffers) is **not affected by this automatic memory management**.
+✍🤖❓ However, when working with Three.js, data going to the graphics card (e.g. buffers) is not affected by this automatic memory management.
 
-🤕
-That means that if we close a viewer made with Three.js (with or without IFC.js), we will create a 💦 **memory leak** 💦. That is to say, we are blocking a part of the user's RAM memory. If the leak becomes too big, the application will become slower and slower and may **crash**.
+🤕 That means that if we close a viewer made with Three.js (with or without IFC.js), we will create a 💦 memory leak 💦. That is to say, we are blocking a part of the user's RAM memory. If the leak becomes too big, the application will become slower and slower and may crash.
 
 <IfcAlert>
   You can find more information about this topic <a href="https://threejs.org/docs/#manual/en/introduction/How-to-dispose-of-objects">here</a>.
 </IfcAlert>
 
-🚀
-This becomes especially critical if we are creating a **SPA** (**Single Page Application**), for example, using frameworks and libraries such as **React or **Angular\*\*. In these cases the web application is never reloaded, and the memory leak accumulates.
+🚀 This becomes especially critical if we are creating a SPA (Single Page Application), for example, using frameworks and libraries such as React or Angular\*\*. In these cases the web application is never reloaded, and the memory leak accumulates.
 
-Fortunately, IFC.js has taken this into account and allows you to **release the used memory very easily**. Let's see how. 👇
+Fortunately, IFC.js has taken this into account and allows you to release the used memory very easily. Let's see how. 👇
 
 <IfcCard>
   You can find the full example of this tutorial <a href="https://github.com/IFCjs/hello-world/tree/main/examples/web-ifc-three/memory">here</a>.
@@ -38,14 +33,11 @@ Fortunately, IFC.js has taken this into account and allows you to **release the 
 
 ### Monitoring the memory
 
-👀
-The first question you probably have if you haven't worked much with Three.js optimized scenes is **how to see how much memory your application consumes**. Otherwise, it is impossible to detect memory leaks.
+👀 The first question you probably have if you haven't worked much with Three.js optimized scenes is how to see how much memory your application consumes. Otherwise, it is impossible to detect memory leaks.
 
-🌍
-There are several ways to do this. The first is to use the **developer tools** of the browser you are using. For example, in Google Chrome there is a section called "Memory" where you can take snapshots and see how much memory the current tab is consuming.
+🌍 There are several ways to do this. The first is to use the developer tools of the browser you are using. For example, in Google Chrome there is a section called "Memory" where you can take snapshots and see how much memory the current tab is consuming.
 
-🤖
-However, a more convenient way is to use the library [stats.js](https://github.com/mrdoob/stats.js/). This library allows to **monitor the performance and memory** of a Three.js application. It can be installed with `npm i stats.js` and can be used as follows:
+🤖 However, a more convenient way is to use the library [stats.js](https://github.com/mrdoob/stats.js/). This library allows to monitor the performance and memory of a Three.js application. It can be installed with `npm i stats.js` and can be used as follows:
 
 ```js
 // Stats
@@ -65,17 +57,15 @@ const animate = () => {
 animate();
 ```
 
-📋
-This will bring up the **scene statistics during execution**. By clicking on them we can toggle between performance and memory usage of the app.
+📋 This will bring up the scene statistics during execution. By clicking on them we can toggle between performance and memory usage of the app.
 
 ### Dispose memory
 
-✌
-Now let's create a function that removes all the memory consumed by IFC.js. There are 2 things to keep in mind:
+✌ Now let's create a function that removes all the memory consumed by IFC.js. There are 2 things to keep in mind:
 
-- If we have specified the **path to the WASM files** previously, we will have to do it again in the new instance of web-ifc-three.
+- If we have specified the path to the WASM files previously, we will have to do it again in the new instance of web-ifc-three.
 
-- This one is important: if we have stored a reference to the loaded IFC models in an array, an object or a class, **we have to delete them manually**. Otherwise, the memory will not be freed.
+- This one is important: if we have stored a reference to the loaded IFC models in an array, an object or a class, we have to delete them manually. Otherwise, the memory will not be freed.
 
 ```js
 async function releaseMemory() {
@@ -96,8 +86,7 @@ async function releaseMemory() {
 
 ### Set up simple GUI
 
-💅
-Finally, we are going to create an HTML button and link it to the function we created earlier.
+💅 Finally, we are going to create an HTML button and link it to the function we created earlier.
 
 ```html
 <input type="button" id="memory-button" value="Release memory" />
@@ -113,23 +102,18 @@ button.addEventListener(`click`, () => releaseMemory());
 
 <Scene link={"https://ifcjs.github.io/hello-world/examples/web-ifc-three/memory/index.html"} />
 
-Try loading a model and releasing the memory: you'll see it go back to normal. Beware that **it can take some seconds**, as the browser garbage collector takes some time. Alternatively, you can manually apply the garbage collector using the browser's developer tools.
+Try loading a model and releasing the memory: you'll see it go back to normal. Beware that it can take some seconds, as the browser garbage collector takes some time. Alternatively, you can manually apply the garbage collector using the browser's developer tools.
 
 ### SPA
 
-🌈
-It is very common to create **SPA** or **Single Page Applications** because they are more efficient and require less communication with the backend. Examples of tools to make these applications are **React**, **Angular**, **Vue**, etc.
+🌈 It is very common to create SPA or Single Page Applications because they are more efficient and require less communication with the backend. Examples of tools to make these applications are React, Angular, Vue, etc.
 
-👶👴
-In many cases **these tools manage the lifecycle of the application components automatically**. For example, when the user closes the 3d view, the HTML element containing the view is automatically destroyed.
+👶👴 In many cases these tools manage the lifecycle of the application components automatically. For example, when the user closes the 3d view, the HTML element containing the view is automatically destroyed.
 
-🚧🚧🚧
-To avoid memory leaks, it will be necessary to **free the application memory as seen in this tutorial each time the component containing the 3D view is destroyed**. In many cases there are hooks or similar mechanisms to execute this logic automatically each time the component is destroyed.
+🚧🚧🚧 To avoid memory leaks, it will be necessary to free the application memory as seen in this tutorial each time the component containing the 3D view is destroyed. In many cases there are hooks or similar mechanisms to execute this logic automatically each time the component is destroyed.
 
 ## Next steps
 
-🎉🎉🎉
-Congratulations! You now know how to manage the memory of the BIM applications you create with IFC.js, so your applications will be 100% free of memory leaks.
+🎉🎉🎉 Congratulations! You now know how to manage the memory of the BIM applications you create with IFC.js, so your applications will be 100% free of memory leaks.
 
-💪
-Next we are going to look at some advanced model loading tools, such as multithreading and load process event.
+💪 Next we are going to look at some advanced model loading tools, such as multithreading and load process event.
