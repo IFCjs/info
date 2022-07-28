@@ -1,0 +1,102 @@
+---
+title: 🤏 Picking
+sidebar_position: 1
+---
+import {IfcCard} from "../../../../src/components/Card/InfoCard";
+import {IfcAlert} from "../../../../src/components/Alert/Alert";
+import {Scene} from "../../../../src/components/Scene/Scene"
+
+## Introduction
+
+🚶‍♀️ Now that you're able to load models into your scene, we can jump into functionalities that make `web-ifc-viewer` really shine 🌟. Here we'll learn to make our models a little more **interactive**, using **picking functions** from the IFC.js API. 
+
+<IfcCard>
+✌ Dig into the code and check out all the details about the <a href="https://github.com/IFCjs/web-ifc-viewer/tree/master/viewer/src/components/ifc/selection">selection</a> component methods on Github. 
+</IfcCard>
+
+## How to do it 
+
+### Easy pickings
+
+👩‍🏫 Let's start out by using our 🖱️ mouse to highlight different parts of our model when **hovered**. Thankfully IFC.js makes it easy with the built in method `prePickIfcItem()`. 
+
+```js
+window.onmousemove = () => viewer.IFC.selector.prePickIfcItem()
+```
+
+<IfcCard>
+🙌 Under the hood web-ifc-viewer borrows the <a href="https://threejs.org/docs/index.html?q=raycaster#api/en/core/Raycaster">Raycaster</a> from Three.js. And since IFC.js created the official <a href="https://threejs.org/examples/webgl_loader_ifc.html">IFCLoader</a> for Three.js, it's a beautiful marriage! 
+</IfcCard>
+
+### Preserve the pick
+
+Now, let's use `pickIfcItem()` to preserve our selection and then **center our model** in the camera's view.  
+
+```js
+window.onclick = () => viewer.IFC.selector.pickIfcItem(true)
+```
+<IfcCard>
+🧐 If you don't want to center the model, just leave the first argument of <i>pickIfcItem()</i> empty, which defaults to <i>false</i>.
+</IfcCard>
+
+If we go a step further and **destructure** the selection, we return information very useful in other IFC.js methods, such as `getProperties()`.
+
+```js
+window.onclick = async () => {
+  const {modelID, id} = await viewer.IFC.selector.pickIfcItem(true);
+    const props = await viewer.IFC.getProperties(modelID, id, true, false);
+    console.log(props);
+}
+```
+
+### Highlighting
+
+What if we wanted to **isolate** a certain part of our model and 👻 hide the rest? This is where `highlightIfcItem()` comes in handy. We'll just attach it to the `ondblclick` event for now.
+
+```js
+window.ondblclick = viewer.IFC.selector.highlightIfcItem(true)
+```
+
+### Clear it up
+
+🔙 Maybe we went a bit wild with our clicking and selecting. So let's call `unpickIfcItems()` and `unHighlightIfcItems()` to clear our doings with our `C` key ⌨️.
+
+```js
+window.onkeydown = (event) => {
+    if(event.code === 'KeyC') {
+        viewer.IFC.selector.unpickIfcItems();
+        viewer.IFC.selector.unHighlightIfcItems();
+    }
+}
+```
+### Getting specific
+
+🔍 In some situations, we may want to use our **Express ID's** to interact with the model in a different way. In this tutorial we'll add a simple button to let the user highlight a part of the model that isn't so easily visible. 
+
+Let's quickly **add a button** with some styling 🎨.
+
+```html 
+<button id="express_22492">Front Door</button>
+<!-- style to your preference  -->
+```
+
+🏷️ And finally specify our **Express ID** in the event handler 🖐️ with the `pickIfcItemsByID()` method,  
+
+```js
+document.getElementById('express_22492')
+.addEventListener('click', () => {
+    viewer.IFC.selector.pickIfcItemsByID(0, [22492], true);
+})
+```
+
+## The result
+
+🖥️ Here is an example of everything we've learned today: 🖥️
+
+<a href="https://github.com/IFCjs/hello-world/tree/main/examples/web-ifc-viewer/picking/">Github repo</a>
+<Scene link={"https://ifcjs.github.io/hello-world/examples/web-ifc-three/mapbox/"}/>
+
+## Next steps
+
+🎉🎉🎉
+Congrats! You now know how to **pick** and **highlight** your model in a handful of different ways. Now it's up to you to use the tools creatively in your own project! 

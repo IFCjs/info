@@ -1,0 +1,188 @@
+---
+title: 🗺️ Mapbox
+sidebar_position: 7
+---
+
+import {IfcAlert} from "../../../../src/components/Alert/Alert";
+import {IfcCard} from "../../../../src/components/Card/InfoCard";
+import {Scene} from "../../../../src/components/Scene/Scene"
+
+## Introduction
+
+🚶‍♀️ <a href="https://docs.mapbox.com/mapbox-gl-js/">Mapbox GL JS</a> is a library that can be paired with IFC.js to provide **worldly context** for your models. Building on top of our knowledge from previous tutorials, we're going to find out how to **view our models inside a custom map**. 
+
+<IfcCard>
+    We all have different learning styles. ☝ Check out the <a href="https://github.com/IFCjs/hello-world/tree/main/examples/web-ifc-three/mapbox">Github repo</a> for the full working example. This tutorial was modeled after <a href="https://docs.mapbox.com/mapbox-gl-js/example/add-3d-model/">this Mapbox example</a>.
+</IfcCard>
+
+## How to do it
+
+### Groundwork
+
+💾 We'll get you up and running with a simple map instance, but do check out the Mapbox GL JS <a href="https://docs.mapbox.com/mapbox-gl-js/">docs</a> for more **in-depth guides** and sweet **examples**. Let's first load the Mapbox dependencies — in this guide we'll just add them with HTML tags.
+
+```html
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.8.2/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.8.2/mapbox-gl.css' rel='stylesheet' />
+```
+
+Then add a simple `div` to hold our map:
+
+```html
+<div id="map"></div>
+```
+
+Some styling 💄
+```css
+#map {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+```
+
+And finally some imports from `web-ifc-three` and `three` that we'll use later on. 
+
+```js
+import {
+  Matrix4, Vector3,
+  DirectionalLight, AmbientLight,
+  PerspectiveCamera, Scene, WebGLRenderer,
+} from "three";
+import { IFCLoader } from "web-ifc-three/IFCLoader";
+``` 
+
+### Init map
+With our structure in place, let's initialize our map 🗺️. 
+
+```js {1}
+mapboxgl.accessToken = 'YOUR_API_KEY_HERE';
+const map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/mapbox/light-v10',
+  zoom: 20.5,
+  center: [13.4453, 52.4910],
+  pitch: 75,
+  bearing: -80,
+  antialias: true
+});
+```
+
+<IfcAlert>
+You must make a free <a href="https://account.mapbox.com/auth/signup/">Mapbox account</a> to get your own API key. 🗝️ 
+</IfcAlert>
+
+### Prepping our model
+
+📐 In order for Mapbox to display our model correctly, we need to define our **position, rotation and scale** in map terms.
+
+
+```js
+const modelOrigin = [13.4453, 52.4910];
+const modelAltitude = 0;
+const modelRotate = [Math.PI / 2, .72, 0];
+
+// translate to map coordinates
+const modelAsMercatorCoordinate = 
+mapboxgl.MercatorCoordinate.fromLngLat(modelOrigin, modelAltitude);
+
+const modelTransform = {
+    translateX: modelAsMercatorCoordinate.x,
+    translateY: modelAsMercatorCoordinate.y,
+    translateZ: modelAsMercatorCoordinate.z,
+    rotateX: modelRotate[0],
+    rotateY: modelRotate[1],
+    rotateZ: modelRotate[2],
+    scale: modelAsMercatorCoordinate.meterInMercatorCoordinateUnits()
+};
+```
+
+Depending on your model, you may have to tweak the `modelOrigin`, `modelAltitude` and `modelRotate` to get things fitting right. 
+
+<IfcAlert>
+If your coordinates aren't returning the place you expected 🤔, <b>try swapping</b> them! Mapbox uses <b>longitude, latitude</b> coordinates to match geoJSON. 
+</IfcAlert>
+
+### Setting the scene
+
+🎸 Now we'll start to configure our **Three.js scene** for our **custom Mapbox layer**. First some larger scope **definitions**:
+
+```js {5}
+const scene = new Scene();
+const camera = new PerspectiveCamera();
+const renderer = new WebGLRenderer({
+  // here we inject our Three.js scene into Mapbox
+  canvas: map.getCanvas(),
+  antialias: true
+});
+renderer.autoClear = false;
+```
+🌪️Then in `customLayer` we'll include an `onAdd` function to **load our IFC model** and some **lighting** to the scene, as well as a `render` function to apply our **position, rotation and scale** changes. 
+
+```js
+const customLayer = {
+
+    id: '3d-model',
+    type: 'custom',
+    renderingMode: '3d',
+
+    onAdd: function () {
+
+        //load model
+        const ifcLoader = new IFCLoader();
+        ifcLoader.ifcManager.setWasmPath( '../../../' );
+        ifcLoader.load( '../../../IFC/01.ifc', function ( model ) {
+            scene.add( model );
+        });
+
+        //add lighting
+        const directionalLight = new DirectionalLight(0x404040);
+        const directionalLight2 = new DirectionalLight(0x404040);
+        const ambientLight = new AmbientLight( 0x404040, 3 ); 
+        directionalLight.position.set(0, -70, 100).normalize();
+        directionalLight2.position.set(0, 70, 100).normalize();
+
+        scene.add(directionalLight, directionalLight2, ambientLight);
+    },
+
+    render: function (gl, matrix) {
+
+        //apply model transformations
+        const rotationX = new Matrix4().makeRotationAxis(new Vector3(1, 0, 0), modelTransform.rotateX);
+        const rotationY = new Matrix4().makeRotationAxis(new Vector3(0, 1, 0), modelTransform.rotateY);
+        const rotationZ = new Matrix4().makeRotationAxis(new Vector3(0, 0, 1), modelTransform.rotateZ);
+        
+        const m = new Matrix4().fromArray(matrix);
+        const l = new Matrix4()
+        .makeTranslation(modelTransform.translateX, modelTransform.translateY, modelTransform.translateZ)
+        .scale(new Vector3(modelTransform.scale, -modelTransform.scale, modelTransform.scale))
+        .multiply(rotationX)
+        .multiply(rotationY)
+        .multiply(rotationZ);
+        
+        camera.projectionMatrix = m.multiply(l);
+        renderer.resetState();
+        renderer.render(scene, camera);
+        map.triggerRepaint();
+    }
+};
+```
+
+The last thing to do is simply add our `customLayer` when our map style is loaded.
+
+```js
+map.on('style.load', () => {
+    map.addLayer(customLayer, 'waterway-label');
+});
+```
+
+### The result
+<a href="https://github.com/IFCjs/hello-world/tree/main/examples/web-ifc-three/mapbox">Github repo</a>
+<Scene link={"https://ifcjs.github.io/hello-world/examples/web-ifc-three/mapbox/"}/>
+
+## Next steps
+
+🎉🎉🎉
+Yoohoo! You should now be able to **load your model into Mapbox** and place it anywhere in the world you'd like. 
