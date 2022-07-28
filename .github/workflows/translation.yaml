@@ -6,7 +6,6 @@ on:
     paths:
       - blog/**
       - docs/**
-      - package.json
       - src/pages/**
 jobs:
   translate:
